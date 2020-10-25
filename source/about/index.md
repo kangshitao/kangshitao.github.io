@@ -1,5 +1,5 @@
 ---
 title: 关于
-layout: page
+layout: pages
 comments: false
 ---
