@@ -24,7 +24,7 @@ preview:
   model: wave  #cloud
   welcome_image: /images/theme/welcome-image.jpg
   motto:
-    default: 我在开了灯的床头下，想问问自己的心啊。
+    default: 故事，才刚刚开始……
     color: '#000000'
     api:  #'http://localhost:3000/api/motto'
 
@@ -42,11 +42,11 @@ copyright: <p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  
 
 # Social
 social:
-  qq: tencent://message/?Menu=yes&uin=894519210 || iconQQ || '#12B7F5'
+  qq: tencent://message/?Menu=yes&uin=1574716653 || iconQQ || '#12B7F5'
   wechat: javascript:; || iconwechat-fill || '#09BB07'
-  instagram: https://www.instagram.com/izhaoo/ || iconinstagram || '#DA2E76'
-  github: https://github.com/izhaoo || icongithub-fill || '#24292E'
-  email: mailto:izhaoo@163.com || iconmail
+  #instagram: https://www.instagram.com/izhaoo/ || iconinstagram || '#DA2E76'
+  github: https://github.com/kangshitao || icongithub-fill || '#24292E'
+  email: mailto:1574716653@qq.com || iconmail
 
 # Loading
 loading: /images/theme/loading.gif
@@ -72,8 +72,8 @@ post_image:
 # Donate
 donate:
   enable: true
-  alipay: https://pic.izhaoo.com/alipay.jpg
-  wechat: https://pic.izhaoo.com/wechat.jpg
+  alipay: /images/theme/alipay.jpg
+  wechat: /images/theme/wechat.jpg
 
 # Copyright
 post_copyright:
