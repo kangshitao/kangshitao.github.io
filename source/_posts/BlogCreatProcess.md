@@ -124,7 +124,7 @@ tags和categories属性的值可以用列表，表示多个标签/类别。
 
 ## 数学公式渲染
 
-> hexo默认的Markdown渲染器是hexo-renderer-marked，会先按照Markdown语法解析，然后才是LaTex，所以会有冲突。试了网上各种解决方法，终于碰到一个有效的方法：[hexo无法显示公式的问题-DGZ's Blog](https://www.dazhuanlan.com/2020/03/07/5e633a3b46a81/)
+> hexo默认的Markdown渲染器是hexo-renderer-marked，会先按照Markdown语法解析，然后才是LaTex，所以会有冲突。试了网上各种解决方法，终于遇到一个有效的方法：[hexo无法显示公式的问题-DGZ's Blog](https://www.dazhuanlan.com/2020/03/07/5e633a3b46a81/)
 
 ### 1、重装插件
 
@@ -250,4 +250,6 @@ github头像->Settings->Developer settings->Generate new token
 
 ## 参考教程：
 
+> [hexo官方文档](https://hexo.io/zh-cn/docs/)
+>
 > [hexo史上最全搭建教程](https://blog.csdn.net/sinat_37781304/article/details/82729029)
