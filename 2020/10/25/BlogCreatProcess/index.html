@@ -169,7 +169,7 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 25, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2979</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2988</span>
     </div>
   </div>
 </section>
@@ -216,7 +216,7 @@
 <p>在<code>scaffolds</code>文件夹中，有三种默认布局新建时的模版，可以自定义新建文件时的格式。</p>
 <p>tags和categories属性的值可以用列表，表示多个标签/类别。</p>
 <h2 id="数学公式渲染"><a href="#数学公式渲染" class="headerlink" title="数学公式渲染"></a>数学公式渲染</h2><blockquote>
-<p>hexo默认的Markdown渲染器是hexo-renderer-marked，会先按照Markdown语法解析，然后才是LaTex，所以会有冲突。试了网上各种解决方法，终于碰到一个有效的方法：<a target="_blank" rel="noopener" href="https://www.dazhuanlan.com/2020/03/07/5e633a3b46a81/">hexo无法显示公式的问题-DGZ’s Blog</a></p>
+<p>hexo默认的Markdown渲染器是hexo-renderer-marked，会先按照Markdown语法解析，然后才是LaTex，所以会有冲突。试了网上各种解决方法，终于遇到一个有效的方法：<a target="_blank" rel="noopener" href="https://www.dazhuanlan.com/2020/03/07/5e633a3b46a81/">hexo无法显示公式的问题-DGZ’s Blog</a></p>
 </blockquote>
 <h3 id="1、重装插件"><a href="#1、重装插件" class="headerlink" title="1、重装插件"></a>1、重装插件</h3><p>首先，只保留一个公式渲染器，这里保留kramed渲染器。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment"># 卸载默认的渲染器，其他的公式渲染器也卸载，只保留kramed</span><br>npm <span class="hljs-keyword">uninstall</span> hexo-renderer-marked <span class="hljs-comment">--save</span><br>npm <span class="hljs-keyword">install</span> hexo-renderer-kramed <span class="hljs-comment">--save</span><br></code></pre></td></tr></table></figure>
@@ -252,6 +252,7 @@
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>关于博客的其他设置问题，以后再更新…</p>
 <hr>
 <h2 id="参考教程："><a href="#参考教程：" class="headerlink" title="参考教程："></a>参考教程：</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">hexo官方文档</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_37781304/article/details/82729029">hexo史上最全搭建教程</a></p>
 </blockquote>
 
