@@ -24,14 +24,15 @@ preview:
   model: wave  #cloud
   welcome_image: /images/theme/welcome-image.jpg
   motto:
-    default: 故事，才刚刚开始……
+    default: 心之所向，素履以往
     color: '#000000'
     api:  #'http://localhost:3000/api/motto'
+
 
 # Menu
 menu:
   home: / || 首页
-  galleries: /galleries || 摄影
+  #galleries: /galleries || 摄影
   archives: /archives || 归档
   tags: /tags || 标签
   categories: /categories || 分类
@@ -48,7 +49,7 @@ social:
   github: https://github.com/kangshitao || icongithub-fill || '#24292E'
   email: mailto:1574716653@qq.com || iconmail
 
-# Loading
+# Loading动画
 loading: /images/theme/loading.gif
 
 # Fab (FloatActionButton)
@@ -66,8 +67,8 @@ gray:
 
 # Post image
 post_image:
-  random: local #galleries
-  default: /images/theme/post-image.jpg
+  random: local  #galleries
+  default: /images/theme/post_image/5.jpg
 
 # Donate
 donate:
@@ -77,7 +78,7 @@ donate:
 
 # Copyright
 post_copyright:
-  enable: true
+  enable: false
 
 # Carrier（copy article with one click）
 carrier:
@@ -113,9 +114,9 @@ gitalk:
 
 # Valine
 valine:
-  appId:
-  appKey:
-  placeholder: 雁过留痕
+  appId: C1IH3DfcmYPQ1T2Ox2nh15Xt-gzGzoHsz
+  appKey: tRi9LbD7i7Gdlj8fYrUXJK6S
+  placeholder: Author
   avatar: mp
   pageSize: 10
   lang: zh-CN
@@ -129,31 +130,31 @@ changyan:
 # Plugin settings
 # --------------------------------------------------
 
-# Daovoice
+# Daovoice即时通讯
 daovoice:
   enable: true
   appId: abcdefg  # app_id
 
-# Lazyload
+# Lazyload图片懒加载
 lazyload:
   enable: true
   onlyPost: false
   loading: /images/theme/loading.gif
 
-# LeanCloud
+# LeanCloud,访问量统计
 leancloud:
-  enable: false
-  appId:
-  appKey:
-  serverURLs:
+  enable: true
+  appId: dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz
+  appKey: XipU873t8gkSypbwl1HWUARD
+  serverURLs: https://dvb32zrr.lc-cn-n1-shared.com
 
-# FancyBox
+# FancyBox图片灯箱
 fancybox: true
 
-# Pjax
+# Pjax无刷新加载
 pjax: false
 
-# HighLight
+# HighLight代码高亮
 highlight: true
 
 # --------------------------------------------------

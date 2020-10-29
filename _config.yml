@@ -108,3 +108,18 @@ deploy:
   repo: git@github.com:kangshitao/kangshitao.github.io.git
   branch: master
   message:
+
+# plugins
+githubEmojis:
+  enable: true
+  className: github-emoji
+  inject: true
+  styles:
+  customEmojis:
+
+# 搜索插件
+search:
+  path: search.xml
+  field: post
+  content: true
+  format: html

@@ -240,7 +240,33 @@ github头像->Settings->Developer settings->Generate new token
 
 ## 其他
 
-关于博客的其他设置问题，以后再更新...
+#### 访问量统计
+
+使用[leancloud](https://leancloud.cn/)，前提是主题支持：
+
+```
+进入leancloud，创建应用(开发版)
+创建Class，ACL权限选择无限制
+打开设置-应用keys
+将AppID、AppKey、Rest API服务器地址复制到themes/_config.yml
+```
+
+#### 评论功能
+
+使用[Valine](https://valine.js.org/)，前提是主题支持：
+
+```
+leancloud,创建应用(开发版)
+创建Class，配置默认
+打开设置-应用keys
+将AppID、AppKey复制到themes/_config.yml
+```
+
+
+
+
+
+其他设置问题，持续更新...
 
 ---
 
