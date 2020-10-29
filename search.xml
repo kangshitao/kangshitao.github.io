@@ -81,6 +81,11 @@
 <figure class="highlight monkey"><table><tbody><tr><td class="code"><pre><code class="hljs monkey">进入leancloud，创建应用(开发版)<br>创建<span class="hljs-class"><span class="hljs-keyword">Class</span>，<span class="hljs-title">ACL</span>权限选择无限制</span><br>打开设置-应用keys<br>将AppID、AppKey、Rest API服务器地址复制到themes/_config.yml<br></code></pre></td></tr></tbody></table></figure>
 <h4 id="评论功能"><a href="#评论功能" class="headerlink" title="评论功能"></a>评论功能</h4><p>使用<a href="https://valine.js.org/">Valine</a>，前提是主题支持：</p>
 <figure class="highlight monkey"><table><tbody><tr><td class="code"><pre><code class="hljs monkey">leancloud,创建应用(开发版)<br>创建<span class="hljs-class"><span class="hljs-keyword">Class</span>，配置默认</span><br>打开设置-应用keys<br>将AppID、AppKey复制到themes/_config.yml<br></code></pre></td></tr></tbody></table></figure>
+<h4 id="SEO优化"><a href="#SEO优化" class="headerlink" title="SEO优化"></a>SEO优化</h4><blockquote>
+<p>搜索引擎优化（Search Engine Optimization,SEO），是一种通过了解搜索引擎的运作规则来调整网站，以及提高目的网站在有关搜索引擎内排名的方式。</p>
+</blockquote>
+<p>Github.pages屏蔽了百度的爬虫请求，配置较麻烦，这里仅以Google为例，使用<a href="https://search.google.com/search-console/about">Google Search Console</a>，以下过程参考：<a href="https://zhuanlan.zhihu.com/p/35400128">hexo博客搭建(五) SEO优化</a></p>
+<figure class="highlight yaml"><table><tbody><tr><td class="code"><pre><code class="hljs yaml"><span class="hljs-number">1</span><span class="hljs-string">、首先去google</span> <span class="hljs-string">search</span> <span class="hljs-string">console验证，有多种方式可选。</span><br><span class="hljs-number">2</span><span class="hljs-string">、添加站点地图</span> <span class="hljs-string">sitemap</span><br><span class="hljs-string">npm</span> <span class="hljs-string">install</span> <span class="hljs-string">hexo-generator-sitemap</span> <span class="hljs-string">--save</span>  <span class="hljs-comment"># 安装站点地图自动生成的插件</span><br><span class="hljs-string">在_config.yml文件中添加以下代码：</span><br><span class="hljs-attr">sitemap:</span><br>  <span class="hljs-attr">path:</span> <span class="hljs-string">sitemap.xml</span><br><span class="hljs-number">3</span><span class="hljs-string">、部署之后可以去google</span> <span class="hljs-string">search</span> <span class="hljs-string">console测试。</span><br></code></pre></td></tr></tbody></table></figure>
 <p>其他设置问题，持续更新…</p>
 <hr>
 <h2 id="参考教程："><a href="#参考教程：" class="headerlink" title="参考教程："></a>参考教程：</h2><blockquote>
