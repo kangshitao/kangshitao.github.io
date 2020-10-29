@@ -63,7 +63,7 @@ prismjs:
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
   path: ''
-  per_page: 9
+  per_page: 3
   order_by: -date
 
 # Category & Tag
@@ -123,3 +123,7 @@ search:
   field: post
   content: true
   format: html
+  
+# 站点地图
+sitemap:
+  path: sitemap.xml

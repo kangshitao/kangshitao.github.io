@@ -262,6 +262,22 @@ leancloud,创建应用(开发版)
 将AppID、AppKey复制到themes/_config.yml
 ```
 
+#### SEO优化
+
+>搜索引擎优化（Search Engine Optimization,SEO），是一种通过了解搜索引擎的运作规则来调整网站，以及提高目的网站在有关搜索引擎内排名的方式。
+
+Github.pages屏蔽了百度的爬虫请求，配置较麻烦，这里仅以Google为例，使用[Google Search Console](https://search.google.com/search-console/about)，以下过程参考：[hexo博客搭建(五) SEO优化](https://zhuanlan.zhihu.com/p/35400128)
+
+```
+1、首先去google search console验证，有多种方式可选。
+2、添加站点地图 sitemap
+npm install hexo-generator-sitemap --save  # 安装站点地图自动生成的插件
+在_config.yml文件中添加以下代码：
+sitemap:
+  path: sitemap.xml
+3、部署之后可以去google search console测试。
+```
+
 
 
 

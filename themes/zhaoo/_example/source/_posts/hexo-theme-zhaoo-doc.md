@@ -211,7 +211,7 @@ color:
 1. 在主题配置文件中配置 `menu` 项，用 `||` 将内容分割为两部分，前面部分为页面URL，后面部分为菜单中显示的名字，示例如下：
 
    ```yml
-  menu:
+    menu:
     home: / || 首页
     galleries: /galleries || 摄影
     archives: /archives || 归档
@@ -355,12 +355,12 @@ menu:
 
 4. 在主题配置文件开启相册功能：
 
-```yml
+​```yml
 galleries:
   enable: true  #开启相册
   title: 相册  #相册标题
   subtitle: Galleries  #相册副标题
-```
+  ```
 
 5. 在 `/data` 目录下新建 `galleries.json` 文件，创建分目录相册及图片内容：
 
@@ -525,7 +525,7 @@ vendors:
   ```
 
   可以在 [highlight.js](https://highlightjs.org/) 官方网站预览样式，挑选自己喜欢的样式模式，再到 `BootCDN` 复制对应的 `CSS` 链接即可。
-  
+
   也可以直接下载 `CSS` 文件 ，放到 `/source/lib/highlight` 中，这样的的话 `CDN` 配置需要留空。
 
 ##### 无刷新加载（Pjax）
