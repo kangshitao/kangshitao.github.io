@@ -97,16 +97,50 @@
       </tags>
   </entry>
   <entry>
+    <title>conda常用命令</title>
+    <url>/2020/10/28/conda/</url>
+    <content><![CDATA[<blockquote>
+<p>conda是一个开源的软件包管理系统和环境管理系统，用于安装多个版本的软件包及其依赖关系，并在它们之间轻松切换。</p>
+<p><a href="https://www.anaconda.com/">Anaconda</a>是一个开源的Python发行版本，包含了conda、python等180多个科学包及其依赖项。</p>
+<p><a href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a>是最小的conda安装环境，只包含最基本的内容——python和conda，以及相关的必须依赖项。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p><strong>参考文档：官方<a href="https://docs.conda.io/projects/conda/en/latest/commands.html">conda命令参考</a></strong></p>
+</blockquote>
+<h1 id="Conda-指令"><a href="#Conda-指令" class="headerlink" title="Conda 指令"></a>Conda 指令</h1><h2 id="查看指令"><a href="#查看指令" class="headerlink" title="查看指令"></a>查看指令</h2><figure class="highlight crmsh"><table><tbody><tr><td class="code"><pre><code class="hljs crmsh">conda -V 或 conda --<span class="hljs-keyword">version</span>	<span class="hljs-comment"># 查看conda版本</span><br></code></pre></td></tr></tbody></table></figure>
+<figure class="highlight nginx"><table><tbody><tr><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">conda</span> env list 或 conda <span class="hljs-literal">info</span> --envs  <span class="hljs-comment"># 查看存在哪些虚拟环境</span><br></code></pre></td></tr></tbody></table></figure>
+<h2 id="更新conda"><a href="#更新conda" class="headerlink" title="更新conda"></a>更新conda</h2><figure class="highlight nginx"><table><tbody><tr><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">conda</span> update conda  <span class="hljs-comment"># 检查并更新当前conda</span><br></code></pre></td></tr></tbody></table></figure>
+<h2 id="创建虚拟环境"><a href="#创建虚拟环境" class="headerlink" title="创建虚拟环境"></a>创建虚拟环境</h2><figure class="highlight sas"><table><tbody><tr><td class="code"><pre><code class="hljs sas">conda <span class="hljs-meta">create</span> -n [env_name] python=<span class="hljs-meta">x</span>.<span class="hljs-meta">x</span>	# 创建python版本号为<span class="hljs-meta">x</span>.<span class="hljs-meta">x</span>的虚拟环境<br></code></pre></td></tr></tbody></table></figure>
+<h2 id="激活-切换虚拟环境"><a href="#激活-切换虚拟环境" class="headerlink" title="激活/切换虚拟环境"></a>激活/切换虚拟环境</h2><figure class="highlight apache"><table><tbody><tr><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Windows</span>： activate<span class="hljs-meta"> [env_name]</span><br><span class="hljs-attribute">Linux</span>: source activate<span class="hljs-meta"> [env_name]</span><br></code></pre></td></tr></tbody></table></figure>
+<h2 id="关闭-退出虚拟环境"><a href="#关闭-退出虚拟环境" class="headerlink" title="关闭/退出虚拟环境"></a>关闭/退出虚拟环境</h2><figure class="highlight applescript"><table><tbody><tr><td class="code"><pre><code class="hljs applescript">conda deactivate  <span class="hljs-comment">#　退出当前虚拟环境</span><br><span class="hljs-built_in">activate</span> [env_name]  <span class="hljs-comment"># 切换到其他环境，也相当于关闭当前环境</span><br></code></pre></td></tr></tbody></table></figure>
+<h2 id="删除虚拟环境"><a href="#删除虚拟环境" class="headerlink" title="删除虚拟环境"></a>删除虚拟环境</h2><figure class="highlight lua"><table><tbody><tr><td class="code"><pre><code class="hljs lua">conda <span class="hljs-built_in">remove</span> -n [env_name] <span class="hljs-comment">--all</span><br></code></pre></td></tr></tbody></table></figure>
+<h2 id="设置镜像"><a href="#设置镜像" class="headerlink" title="设置镜像"></a>设置镜像</h2><figure class="highlight routeros"><table><tbody><tr><td class="code"><pre><code class="hljs routeros">conda<span class="hljs-built_in"> config </span>--<span class="hljs-builtin-name">add</span> channels [mirroe_url]   # 添加镜像地址<br>conda<span class="hljs-built_in"> config </span>--<span class="hljs-builtin-name">set</span> show_channel_urls <span class="hljs-literal">yes</span>   # 设置搜索时显示通道地址<br>conda<span class="hljs-built_in"> config </span>--<span class="hljs-builtin-name">get</span> channels                # 查看已经配置的channels<br>conda<span class="hljs-built_in"> config </span>--remove-key channels  	   # 恢复为默认地址(删除所有其他镜像url)<br></code></pre></td></tr></tbody></table></figure>
+<hr>
+<h1 id="Conda的package管理命令"><a href="#Conda的package管理命令" class="headerlink" title="Conda的package管理命令"></a>Conda的package管理命令</h1><h2 id="查看已安装的包"><a href="#查看已安装的包" class="headerlink" title="查看已安装的包"></a>查看已安装的包</h2><figure class="highlight applescript"><table><tbody><tr><td class="code"><pre><code class="hljs applescript">conda <span class="hljs-built_in">list</span>	<span class="hljs-comment"># 查看当前环境已安装的所有包</span><br>conda <span class="hljs-built_in">list</span> -n [env_name]	<span class="hljs-comment"># 查看指定环境已安装的所有包</span><br></code></pre></td></tr></tbody></table></figure>
+<h2 id="安装包"><a href="#安装包" class="headerlink" title="安装包"></a>安装包</h2><figure class="highlight cmake"><table><tbody><tr><td class="code"><pre><code class="hljs cmake">conda <span class="hljs-keyword">install</span> [package_name]	<span class="hljs-comment"># 当前环境下安装包</span><br>conda <span class="hljs-keyword">install</span> -n [env_name] [package_name]	<span class="hljs-comment"># 指定环境先安装包</span><br><span class="hljs-comment"># 还可以使用-c参数，指定通过某个channel安装</span><br></code></pre></td></tr></tbody></table></figure>
+<h2 id="更新包"><a href="#更新包" class="headerlink" title="更新包"></a>更新包</h2><figure class="highlight sql"><table><tbody><tr><td class="code"><pre><code class="hljs sql">conda <span class="hljs-keyword">update</span> [package_name]		<span class="hljs-comment"># 更新当前环境下的包</span><br>conda <span class="hljs-keyword">update</span> -n [env_name] [package_name]	<span class="hljs-comment"># 更新指定环境下的包</span><br></code></pre></td></tr></tbody></table></figure>
+<h2 id="删除包"><a href="#删除包" class="headerlink" title="删除包"></a>删除包</h2><figure class="highlight cmake"><table><tbody><tr><td class="code"><pre><code class="hljs cmake">conda <span class="hljs-keyword">remove</span> [package_name]		<span class="hljs-comment"># 删除当前环境下的包</span><br>conda <span class="hljs-keyword">remove</span> -n [env_name] [package_name	<span class="hljs-comment"># 删除指定环境下的包</span><br></code></pre></td></tr></tbody></table></figure>
+<h2 id="查找包的信息"><a href="#查找包的信息" class="headerlink" title="查找包的信息"></a>查找包的信息</h2><figure class="highlight nginx"><table><tbody><tr><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">conda</span> search [package_name]	<span class="hljs-comment"># 查找指定包的信息</span><br></code></pre></td></tr></tbody></table></figure>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>conda</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Markdown基础教程</title>
     <url>/2020/10/25/markdown/</url>
     <content><![CDATA[<p><em>本文作为 Markdown基础语法教程，同时作为个人笔记 &amp;练习。使用 Typora工具，语法可能略有不同，以实际平台为准</em></p>
 <h2 id="一、标题"><a href="#一、标题" class="headerlink" title="一、标题"></a>一、标题</h2><p>Markdown标题有两种格式</p>
 <h4 id="1、使用-和-标记一级和二级标签"><a href="#1、使用-和-标记一级和二级标签" class="headerlink" title="1、使用 = 和 - 标记一级和二级标签"></a>1、使用 = 和 - 标记一级和二级标签</h4><p>语法如下：</p>
-<figure class="highlight asciidoc"><table><tr><td class="code"><pre><code class="hljs asciidoc">一级标题<br>=====<br><br>二级标题<br>-----<br></code></pre></td></tr></table></figure>
+<figure class="highlight asciidoc"><table><tbody><tr><td class="code"><pre><code class="hljs asciidoc">一级标题<br>=====<br><br>二级标题<br>-----<br></code></pre></td></tr></tbody></table></figure>
 <p>效果如下：</p>
 <p><img src="https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/markdown_1.png" alt=""></p>
 <h4 id="2、使用-号标记"><a href="#2、使用-号标记" class="headerlink" title="2、使用#号标记"></a>2、使用#号标记</h4><p>语法如下：</p>
-<figure class="highlight clean"><table><tr><td class="code"><pre><code class="hljs clean"># 一级标题<br>## 二级标题<br>### 三级标题<br>#### 四级标题<br>##### 五级标题<br>###### 六级标题<br></code></pre></td></tr></table></figure>
+<figure class="highlight clean"><table><tbody><tr><td class="code"><pre><code class="hljs clean"># 一级标题<br>## 二级标题<br>### 三级标题<br>#### 四级标题<br>##### 五级标题<br>###### 六级标题<br></code></pre></td></tr></tbody></table></figure>
 <blockquote>
 <p>注意：#号后面要加一个空格</p>
 </blockquote>
@@ -116,60 +150,60 @@
 <p>两个或以上的空格+shift+enter，实现段内强制换行（行尾有↓箭头）。</p>
 </blockquote>
 <h2 id="三、字体格式"><a href="#三、字体格式" class="headerlink" title="三、字体格式"></a>三、字体格式</h2><p>字体格式：</p>
-<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima">*斜体文本*<br><span class="hljs-symbol">_</span>斜体文本<span class="hljs-symbol">_</span><br>**粗体文本**<br><span class="hljs-symbol">__</span>粗体文本<span class="hljs-symbol">__</span><br>***粗斜体文本***<br>___粗斜体文本___<br></code></pre></td></tr></table></figure>
+<figure class="highlight maxima"><table><tbody><tr><td class="code"><pre><code class="hljs maxima">*斜体文本*<br><span class="hljs-symbol">_</span>斜体文本<span class="hljs-symbol">_</span><br>**粗体文本**<br><span class="hljs-symbol">__</span>粗体文本<span class="hljs-symbol">__</span><br>***粗斜体文本***<br>___粗斜体文本___<br></code></pre></td></tr></tbody></table></figure>
 <p>显示效果如下：<br><em>斜体文本</em><br><em>斜体文本</em><br><strong>粗体文本</strong><br><strong>粗体文本</strong><br><strong><em>粗斜体文本</em></strong><br><strong><em>粗斜体文本</em></strong></p>
 <h2 id="四、列表"><a href="#四、列表" class="headerlink" title="四、列表"></a>四、列表</h2><p>Markdown支持无序列表和有序列表。</p>
 <h4 id="1、无序列表："><a href="#1、无序列表：" class="headerlink" title="1、无序列表："></a>1、无序列表：</h4><p>无序列表有三种写法，<code>+</code> 或<code>-</code>或<code>*</code>后加空格即可：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">+</span> 第一项<br><span class="hljs-bullet">*</span> 第一项<br><span class="hljs-bullet">-</span> 第一项<br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">+</span> 第一项<br><span class="hljs-bullet">*</span> 第一项<br><span class="hljs-bullet">-</span> 第一项<br></code></pre></td></tr></tbody></table></figure>
 <p>显示效果：</p>
 <p><img src="https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/markdown_2.png" alt=""></p>
 <h4 id="2、有序列表"><a href="#2、有序列表" class="headerlink" title="2、有序列表"></a>2、有序列表</h4><p>有序列表使用数字和<code>.</code>再加上空格即可：</p>
-<figure class="highlight angelscript"><table><tr><td class="code"><pre><code class="hljs angelscript"><span class="hljs-number">1.</span> 第一项<br><span class="hljs-number">2.</span> 第二项<br><span class="hljs-number">3.</span> 第三项<br></code></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tbody><tr><td class="code"><pre><code class="hljs angelscript"><span class="hljs-number">1.</span> 第一项<br><span class="hljs-number">2.</span> 第二项<br><span class="hljs-number">3.</span> 第三项<br></code></pre></td></tr></tbody></table></figure>
 <p>显示效果：</p>
 <p><img src="https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/markdown_3.png" alt=""></p>
 <h4 id="３、列表嵌套"><a href="#３、列表嵌套" class="headerlink" title="　３、列表嵌套"></a>　３、列表嵌套</h4><p>列表嵌套需要在子列表选项前加四个空格：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">1.</span> 第一项：<br><span class="hljs-bullet">    -</span> 第一项的第一个元素<br><span class="hljs-bullet">    -</span> 第一项的第二个元素<br><span class="hljs-bullet">2.</span> 第二项：<br><span class="hljs-bullet">    -</span> 第二项的第一个元素<br><span class="hljs-bullet">    -</span> 第二项的第二个元素<br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">1.</span> 第一项：<br><span class="hljs-bullet">    -</span> 第一项的第一个元素<br><span class="hljs-bullet">    -</span> 第一项的第二个元素<br><span class="hljs-bullet">2.</span> 第二项：<br><span class="hljs-bullet">    -</span> 第二项的第一个元素<br><span class="hljs-bullet">    -</span> 第二项的第二个元素<br></code></pre></td></tr></tbody></table></figure>
 <p>显示效果：</p>
 <p><img src="https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/markdown_4.png" alt=""></p>
 <blockquote>
 <p>Typora中，子列表选项前不加空格也可以。</p>
 </blockquote>
 <h2 id="五、插入区块和分隔线"><a href="#五、插入区块和分隔线" class="headerlink" title="五、插入区块和分隔线"></a>五、插入区块和分隔线</h2><h4 id="1、区块"><a href="#1、区块" class="headerlink" title="1、区块"></a>1、区块</h4><p>Markdown的区块引用是在段落开头使用<code>&gt;</code> 号和空格：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-quote">&gt; 区块引用</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-quote">&gt; 区块引用</span><br></code></pre></td></tr></tbody></table></figure>
 <p>显示效果：</p>
 <p><img src="https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/markdown_5.png" alt=""></p>
 <p>另外，区块引用也可以像列表一样嵌套，一个<code>&gt;</code> 表示第一层，两个<code>&gt;</code> 表示第二层，以此类推：</p>
-<figure class="highlight ruby"><table><tr><td class="code"><pre><code class="hljs ruby">&gt; 第一层<br><span class="hljs-meta">&gt;&gt;</span> 第二层<br><span class="hljs-meta">&gt;&gt;</span>&gt; 第三层<br></code></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><code class="hljs ruby">&gt; 第一层<br><span class="hljs-meta">&gt;&gt;</span> 第二层<br><span class="hljs-meta">&gt;&gt;</span>&gt; 第三层<br></code></pre></td></tr></tbody></table></figure>
 <p>区块中也可以使用列表，同样，列表中也可以使用区块。</p>
 <h4 id="2、分隔线"><a href="#2、分隔线" class="headerlink" title="2、分隔线"></a>2、分隔线</h4><p>在一个空行中，使用三个或以上的<code>*</code>、<code>+</code>、<code>-</code>、<code>_</code>来创建分隔线：</p>
-<figure class="highlight asciidoc"><table><tr><td class="code"><pre><code class="hljs asciidoc">**<span class="hljs-strong">*</span><br><span class="hljs-strong">++++</span><br><span class="hljs-strong">-----</span><br><span class="hljs-strong">______</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight asciidoc"><table><tbody><tr><td class="code"><pre><code class="hljs asciidoc">**<span class="hljs-strong">*</span><br><span class="hljs-strong">++++</span><br><span class="hljs-strong">-----</span><br><span class="hljs-strong">______</span><br></code></pre></td></tr></tbody></table></figure>
 <h2 id="六、插入代码"><a href="#六、插入代码" class="headerlink" title="六、插入代码"></a>六、插入代码</h2><h4 id="1、句中代码"><a href="#1、句中代码" class="headerlink" title="1、句中代码"></a>1、句中代码</h4><p>如果是句中的代码片段或函数，只需要一对反引号<code>` </code>即可 (位于Tab键上面):</p>
-<figure class="highlight autohotkey"><table><tr><td class="code"><pre><code class="hljs autohotkey">`printf()`函数<br></code></pre></td></tr></table></figure>
+<figure class="highlight autohotkey"><table><tbody><tr><td class="code"><pre><code class="hljs autohotkey">`printf()`函数<br></code></pre></td></tr></tbody></table></figure>
 <p>显示效果：</p>
 <p><code>pringf()</code>函数</p>
 <h4 id="2、代码块"><a href="#2、代码块" class="headerlink" title="2、代码块"></a>2、代码块</h4><p>代码块需要两个以上反引号，可以指定语言，以下为python语言的代码块：</p>
-<figure class="highlight isbl"><table><tr><td class="code"><pre><code class="hljs isbl">​```<br><span class="hljs-variable">def</span> <span class="hljs-function"><span class="hljs-title">main</span>():</span><br><span class="hljs-function">	<span class="hljs-title">print</span>(<span class="hljs-string">&#x27;hello world&#x27;</span>)</span><br>​```<br></code></pre></td></tr></table></figure>
+<figure class="highlight isbl"><table><tbody><tr><td class="code"><pre><code class="hljs isbl">​```<br><span class="hljs-variable">def</span> <span class="hljs-function"><span class="hljs-title">main</span>():</span><br><span class="hljs-function">	<span class="hljs-title">print</span>(<span class="hljs-string">'hello world'</span>)</span><br>​```<br></code></pre></td></tr></tbody></table></figure>
 <p>显示效果：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span><br>	print(<span class="hljs-string">&#x27;hello world&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span><br>	print(<span class="hljs-string">'hello world'</span>)<br></code></pre></td></tr></tbody></table></figure>
 <blockquote>
 <p>还可以使用缩进式方法，使用四个空格或者一个制表符(Tab键)，一段代码会持续到没有缩进的那一行</p>
 </blockquote>
 <h2 id="七、插入链接和图片"><a href="#七、插入链接和图片" class="headerlink" title="　七、插入链接和图片"></a>　七、插入链接和图片</h2><h4 id="1、插入链接"><a href="#1、插入链接" class="headerlink" title="1、插入链接"></a>1、插入链接</h4><p>插入链接有两种方法：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">[<span class="hljs-string">链接名称</span>](<span class="hljs-link">链接地址</span>)<br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown">[<span class="hljs-string">链接名称</span>](<span class="hljs-link">链接地址</span>)<br></code></pre></td></tr></tbody></table></figure>
 <p>或者：</p>
-<figure class="highlight apache"><table><tr><td class="code"><pre><code class="hljs apache"><span class="hljs-section">&lt;链接地址&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tbody><tr><td class="code"><pre><code class="hljs apache"><span class="hljs-section">&lt;链接地址&gt;</span><br></code></pre></td></tr></tbody></table></figure>
 <p>例如：<br>方法一：<a href="https://github.com/">github</a><br>方法二：<a href="https://github.com/">https://github.com/</a></p>
 <h4 id="2、插入图片"><a href="#2、插入图片" class="headerlink" title="2、插入图片"></a>2、插入图片</h4><p>插入图片的方法与插入链接的方法区别在于，插入图片的语法前加<code>!</code>号：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">![<span class="hljs-string">属性名称</span>](<span class="hljs-link">图片地址</span>)<br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown">![<span class="hljs-string">属性名称</span>](<span class="hljs-link">图片地址</span>)<br></code></pre></td></tr></tbody></table></figure>
 <p>还可以使用<img>标签，用来指定图片大小：</p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><code class="hljs routeros">&lt;img <span class="hljs-attribute">src</span>=<span class="hljs-string">&quot;图片地址&quot;</span> <span class="hljs-attribute">width</span>=<span class="hljs-string">&quot;80%&quot;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tbody><tr><td class="code"><pre><code class="hljs routeros">&lt;img <span class="hljs-attribute">src</span>=<span class="hljs-string">"图片地址"</span> <span class="hljs-attribute">width</span>=<span class="hljs-string">"80%"</span><br></code></pre></td></tr></tbody></table></figure>
 <blockquote>
 <p>Markdown需要以链接的形式插入图片，如果md文件发布到网站，则链接可能会失效，所以建议使用图床保存图片，这样无论md文件在哪里，只要链接不失效，就可以看到图片。</p>
 </blockquote>
 <h4 id="3、高级链接"><a href="#3、高级链接" class="headerlink" title="3、高级链接"></a>3、高级链接</h4><p>可以通过变量来设置一个链接，在文档末尾为变量赋值：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">网址链接[<span class="hljs-string">链接名称</span>][<span class="hljs-symbol">1</span>]<br>插入图片![][2]<br>[<span class="hljs-symbol">1</span>]:<span class="hljs-link">https://github.com/</span><br>[<span class="hljs-symbol">2</span>]:<span class="hljs-link">https://www.google.com.hk/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown">网址链接[<span class="hljs-string">链接名称</span>][<span class="hljs-symbol">1</span>]<br>插入图片![][2]<br>[<span class="hljs-symbol">1</span>]:<span class="hljs-link">https://github.com/</span><br>[<span class="hljs-symbol">2</span>]:<span class="hljs-link">https://www.google.com.hk/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png</span><br></code></pre></td></tr></tbody></table></figure>
 <h2 id="八、插入表格"><a href="#八、插入表格" class="headerlink" title="八、插入表格"></a>八、插入表格</h2><p>Markdown制作表格使用<code>|</code> 来分隔不同的单元格，使用<code>-</code>分隔表头和其他行，代码如下：</p>
-<figure class="highlight gherkin"><table><tr><td class="code"><pre><code class="hljs gherkin">|<span class="hljs-string"> 表头 </span>|<span class="hljs-string"> 表头</span>|<br>|<span class="hljs-string"> --- </span>|<span class="hljs-string"> ---</span>|<br>|<span class="hljs-string">单元格</span>|<span class="hljs-string">单元格</span>|<br>|<span class="hljs-string">单元格</span>|<span class="hljs-string">单元格</span>|<br></code></pre></td></tr></table></figure>
+<figure class="highlight gherkin"><table><tbody><tr><td class="code"><pre><code class="hljs gherkin">|<span class="hljs-string"> 表头 </span>|<span class="hljs-string"> 表头</span>|<br>|<span class="hljs-string"> --- </span>|<span class="hljs-string"> ---</span>|<br>|<span class="hljs-string">单元格</span>|<span class="hljs-string">单元格</span>|<br>|<span class="hljs-string">单元格</span>|<span class="hljs-string">单元格</span>|<br></code></pre></td></tr></tbody></table></figure>
 <p>效果如下：</p>
 <div class="table-container">
 <table>
@@ -198,7 +232,7 @@
 <li><code>:-:</code>设置内容和标题栏居中对齐</li>
 </ul>
 <p>代码如下：</p>
-<figure class="highlight gherkin"><table><tr><td class="code"><pre><code class="hljs gherkin">|<span class="hljs-string">左对齐</span>|<span class="hljs-string">右对齐</span>|<span class="hljs-string">居中对齐</span>|<br>|<span class="hljs-string">：---</span>|<span class="hljs-string">---：</span>|<span class="hljs-string">：----：</span>|<br>|<span class="hljs-string">单元格</span>|<span class="hljs-string">单元格</span>|<span class="hljs-string">单元格</span>|<br>|<span class="hljs-string">单元格</span>|<span class="hljs-string">单元格</span>|<span class="hljs-string">单元格</span>|<br></code></pre></td></tr></table></figure>
+<figure class="highlight gherkin"><table><tbody><tr><td class="code"><pre><code class="hljs gherkin">|<span class="hljs-string">左对齐</span>|<span class="hljs-string">右对齐</span>|<span class="hljs-string">居中对齐</span>|<br>|<span class="hljs-string">：---</span>|<span class="hljs-string">---：</span>|<span class="hljs-string">：----：</span>|<br>|<span class="hljs-string">单元格</span>|<span class="hljs-string">单元格</span>|<span class="hljs-string">单元格</span>|<br>|<span class="hljs-string">单元格</span>|<span class="hljs-string">单元格</span>|<span class="hljs-string">单元格</span>|<br></code></pre></td></tr></tbody></table></figure>
 <p>效果如下：</p>
 <div class="table-container">
 <table>
@@ -224,25 +258,25 @@
 </table>
 </div>
 <h2 id="九、HTML元素"><a href="#九、HTML元素" class="headerlink" title="九、HTML元素"></a>九、HTML元素</h2><p>Markdown支持部分html标签，比如：<code>&lt;kbd&gt;</code>、<code>&lt;b&gt;</code>、<code>&lt;i&gt;</code>、<code>&lt;em&gt;</code>、<code>&lt;sup&gt;</code>、<code>&lt;sub&gt;</code>、<code>&lt;br&gt;</code>，以及<code>&lt;fond&gt;</code>等html标签：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml">使用 <span class="hljs-tag">&lt;<span class="hljs-name">kbd</span>&gt;</span>Ctrl<span class="hljs-tag">&lt;/<span class="hljs-name">kbd</span>&gt;</span>+<span class="hljs-tag">&lt;<span class="hljs-name">kbd</span>&gt;</span>c<span class="hljs-tag">&lt;/<span class="hljs-name">kbd</span>&gt;</span> 复制<br><span class="hljs-tag">&lt;<span class="hljs-name">font</span> <span class="hljs-attr">color</span>=<span class="hljs-string">&quot;red&quot;</span> <span class="hljs-attr">size</span>=<span class="hljs-string">5</span>&gt;</span>我是红色字体,大小为<span class="hljs-tag">&lt;/<span class="hljs-name">font</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tbody><tr><td class="code"><pre><code class="hljs xml">使用 <span class="hljs-tag">&lt;<span class="hljs-name">kbd</span>&gt;</span>Ctrl<span class="hljs-tag">&lt;/<span class="hljs-name">kbd</span>&gt;</span>+<span class="hljs-tag">&lt;<span class="hljs-name">kbd</span>&gt;</span>c<span class="hljs-tag">&lt;/<span class="hljs-name">kbd</span>&gt;</span> 复制<br><span class="hljs-tag">&lt;<span class="hljs-name">font</span> <span class="hljs-attr">color</span>=<span class="hljs-string">"red"</span> <span class="hljs-attr">size</span>=<span class="hljs-string">5</span>&gt;</span>我是红色字体,大小为<span class="hljs-tag">&lt;/<span class="hljs-name">font</span>&gt;</span><br></code></pre></td></tr></tbody></table></figure>
 <p>效果如下：</p>
 <p>使用 <kbd>Ctrl</kbd>+<kbd>c</kbd> 复制</p>
-<font color="red" size=5>
+<font color="red" size="5">
 我是红色字体,大小为5</font>
 
 <h2 id="十、其他"><a href="#十、其他" class="headerlink" title="十、其他"></a>十、其他</h2><h4 id="1、转义"><a href="#1、转义" class="headerlink" title="1、转义"></a>1、转义</h4><p>使用<code>\</code>符号转移特殊字符：</p>
-<figure class="highlight taggerscript"><table><tr><td class="code"><pre><code class="hljs taggerscript">**文本加粗**<br><span class="hljs-symbol">\*</span><span class="hljs-symbol">\*</span>正常显示星号<span class="hljs-symbol">\*</span><span class="hljs-symbol">\*</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight taggerscript"><table><tbody><tr><td class="code"><pre><code class="hljs taggerscript">**文本加粗**<br><span class="hljs-symbol">\*</span><span class="hljs-symbol">\*</span>正常显示星号<span class="hljs-symbol">\*</span><span class="hljs-symbol">\*</span><br></code></pre></td></tr></tbody></table></figure>
 <p>效果如下：</p>
 <p><strong>文本加粗</strong><br>**正常显示星号**</p>
 <h4 id="2、插入公式"><a href="#2、插入公式" class="headerlink" title="2、插入公式"></a>2、插入公式</h4><p>使用两个美元符号<code>$$</code>将TeX或LaTeX格式的数字公式包裹，即可插入公式：</p>
 <blockquote>
 <p>由于渲染器的问题，两个花括号中间必须要有个空格</p>
 </blockquote>
-<figure class="highlight gams"><table><tr><td class="code"><pre><code class="hljs gams"><span class="hljs-symbol">$</span><br>\<span class="hljs-built_in">sqrt</span>&#123; &#123;x^<span class="hljs-number">2</span>&#125;+&#123;y^<span class="hljs-number">2</span>&#125; &#125;+v_1+v_2<br><span class="hljs-symbol">$</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight gams"><table><tbody><tr><td class="code"><pre><code class="hljs gams"><span class="hljs-symbol">$</span><br>\<span class="hljs-built_in">sqrt</span>{ {x^<span class="hljs-number">2</span>}+{y^<span class="hljs-number">2</span>} }+v_1+v_2<br><span class="hljs-symbol">$</span><br></code></pre></td></tr></tbody></table></figure>
 <p>效果如下：</p>
 <p>$\sqrt{ {x^2}+{y^2} }+v_1+v_2$</p>
 <h4 id="3、插入流程图"><a href="#3、插入流程图" class="headerlink" title="3、插入流程图"></a>3、插入流程图</h4><p>Typora插入横向流程图：</p>
-<figure class="highlight coq"><table><tr><td class="code"><pre><code class="hljs coq">​```mermaid<br>graph LR<br>A[方形] --&gt;B(圆角)<br>    B --&gt; C&#123;条件a&#125;<br>    C --&gt;|<span class="hljs-type">a</span>=<span class="hljs-number">1</span>| <span class="hljs-type">D</span>[结果<span class="hljs-number">1</span>]<br>    C --&gt;|<span class="hljs-type">a</span>=<span class="hljs-number">2</span>| <span class="hljs-type">E</span>[结果<span class="hljs-number">2</span>]<br>    F[横向流程图]<br>​```<br></code></pre></td></tr></table></figure>
+<figure class="highlight coq"><table><tbody><tr><td class="code"><pre><code class="hljs coq">​```mermaid<br>graph LR<br>A[方形] --&gt;B(圆角)<br>    B --&gt; C{条件a}<br>    C --&gt;|<span class="hljs-type">a</span>=<span class="hljs-number">1</span>| <span class="hljs-type">D</span>[结果<span class="hljs-number">1</span>]<br>    C --&gt;|<span class="hljs-type">a</span>=<span class="hljs-number">2</span>| <span class="hljs-type">E</span>[结果<span class="hljs-number">2</span>]<br>    F[横向流程图]<br>​```<br></code></pre></td></tr></tbody></table></figure>
 <p>效果如下：</p>
 <p><img src="https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/markdown_6.png" alt=""></p>
 <blockquote>
@@ -261,40 +295,6 @@
       </categories>
       <tags>
         <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>conda常用命令</title>
-    <url>/2020/10/28/conda/</url>
-    <content><![CDATA[<blockquote>
-<p>conda是一个开源的软件包管理系统和环境管理系统，用于安装多个版本的软件包及其依赖关系，并在它们之间轻松切换。</p>
-<p><a href="https://www.anaconda.com/">Anaconda</a>是一个开源的Python发行版本，包含了conda、python等180多个科学包及其依赖项。</p>
-<p><a href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a>是最小的conda安装环境，只包含最基本的内容——python和conda，以及相关的必须依赖项。</p>
-</blockquote>
-<hr>
-<blockquote>
-<p><strong>参考文档：官方<a href="https://docs.conda.io/projects/conda/en/latest/commands.html">conda命令参考</a></strong></p>
-</blockquote>
-<h1 id="Conda-指令"><a href="#Conda-指令" class="headerlink" title="Conda 指令"></a>Conda 指令</h1><h2 id="查看指令"><a href="#查看指令" class="headerlink" title="查看指令"></a>查看指令</h2><figure class="highlight crmsh"><table><tr><td class="code"><pre><code class="hljs crmsh">conda -V 或 conda --<span class="hljs-keyword">version</span>	<span class="hljs-comment"># 查看conda版本</span><br></code></pre></td></tr></table></figure>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">conda</span> env list 或 conda <span class="hljs-literal">info</span> --envs  <span class="hljs-comment"># 查看存在哪些虚拟环境</span><br></code></pre></td></tr></table></figure>
-<h2 id="更新conda"><a href="#更新conda" class="headerlink" title="更新conda"></a>更新conda</h2><figure class="highlight nginx"><table><tr><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">conda</span> update conda  <span class="hljs-comment"># 检查并更新当前conda</span><br></code></pre></td></tr></table></figure>
-<h2 id="创建虚拟环境"><a href="#创建虚拟环境" class="headerlink" title="创建虚拟环境"></a>创建虚拟环境</h2><figure class="highlight sas"><table><tr><td class="code"><pre><code class="hljs sas">conda <span class="hljs-meta">create</span> -n [env_name] python=<span class="hljs-meta">x</span>.<span class="hljs-meta">x</span>	# 创建python版本号为<span class="hljs-meta">x</span>.<span class="hljs-meta">x</span>的虚拟环境<br></code></pre></td></tr></table></figure>
-<h2 id="激活-切换虚拟环境"><a href="#激活-切换虚拟环境" class="headerlink" title="激活/切换虚拟环境"></a>激活/切换虚拟环境</h2><figure class="highlight apache"><table><tr><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Windows</span>： activate<span class="hljs-meta"> [env_name]</span><br><span class="hljs-attribute">Linux</span>: source activate<span class="hljs-meta"> [env_name]</span><br></code></pre></td></tr></table></figure>
-<h2 id="关闭-退出虚拟环境"><a href="#关闭-退出虚拟环境" class="headerlink" title="关闭/退出虚拟环境"></a>关闭/退出虚拟环境</h2><figure class="highlight applescript"><table><tr><td class="code"><pre><code class="hljs applescript">conda deactivate  <span class="hljs-comment">#　退出当前虚拟环境</span><br><span class="hljs-built_in">activate</span> [env_name]  <span class="hljs-comment"># 切换到其他环境，也相当于关闭当前环境</span><br></code></pre></td></tr></table></figure>
-<h2 id="删除虚拟环境"><a href="#删除虚拟环境" class="headerlink" title="删除虚拟环境"></a>删除虚拟环境</h2><figure class="highlight lua"><table><tr><td class="code"><pre><code class="hljs lua">conda <span class="hljs-built_in">remove</span> -n [env_name] <span class="hljs-comment">--all</span><br></code></pre></td></tr></table></figure>
-<h2 id="设置镜像"><a href="#设置镜像" class="headerlink" title="设置镜像"></a>设置镜像</h2><figure class="highlight routeros"><table><tr><td class="code"><pre><code class="hljs routeros">conda<span class="hljs-built_in"> config </span>--<span class="hljs-builtin-name">add</span> channels [mirroe_url]   # 添加镜像地址<br>conda<span class="hljs-built_in"> config </span>--<span class="hljs-builtin-name">set</span> show_channel_urls <span class="hljs-literal">yes</span>   # 设置搜索时显示通道地址<br>conda<span class="hljs-built_in"> config </span>--<span class="hljs-builtin-name">get</span> channels                # 查看已经配置的channels<br>conda<span class="hljs-built_in"> config </span>--remove-key channels  	   # 恢复为默认地址(删除所有其他镜像url)<br></code></pre></td></tr></table></figure>
-<hr>
-<h1 id="Conda的package管理命令"><a href="#Conda的package管理命令" class="headerlink" title="Conda的package管理命令"></a>Conda的package管理命令</h1><h2 id="查看已安装的包"><a href="#查看已安装的包" class="headerlink" title="查看已安装的包"></a>查看已安装的包</h2><figure class="highlight applescript"><table><tr><td class="code"><pre><code class="hljs applescript">conda <span class="hljs-built_in">list</span>	<span class="hljs-comment"># 查看当前环境已安装的所有包</span><br>conda <span class="hljs-built_in">list</span> -n [env_name]	<span class="hljs-comment"># 查看指定环境已安装的所有包</span><br></code></pre></td></tr></table></figure>
-<h2 id="安装包"><a href="#安装包" class="headerlink" title="安装包"></a>安装包</h2><figure class="highlight cmake"><table><tr><td class="code"><pre><code class="hljs cmake">conda <span class="hljs-keyword">install</span> [package_name]	<span class="hljs-comment"># 当前环境下安装包</span><br>conda <span class="hljs-keyword">install</span> -n [env_name] [package_name]	<span class="hljs-comment"># 指定环境先安装包</span><br><span class="hljs-comment"># 还可以使用-c参数，指定通过某个channel安装</span><br></code></pre></td></tr></table></figure>
-<h2 id="更新包"><a href="#更新包" class="headerlink" title="更新包"></a>更新包</h2><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">conda <span class="hljs-keyword">update</span> [package_name]		<span class="hljs-comment"># 更新当前环境下的包</span><br>conda <span class="hljs-keyword">update</span> -n [env_name] [package_name]	<span class="hljs-comment"># 更新指定环境下的包</span><br></code></pre></td></tr></table></figure>
-<h2 id="删除包"><a href="#删除包" class="headerlink" title="删除包"></a>删除包</h2><figure class="highlight cmake"><table><tr><td class="code"><pre><code class="hljs cmake">conda <span class="hljs-keyword">remove</span> [package_name]		<span class="hljs-comment"># 删除当前环境下的包</span><br>conda <span class="hljs-keyword">remove</span> -n [env_name] [package_name	<span class="hljs-comment"># 删除指定环境下的包</span><br></code></pre></td></tr></table></figure>
-<h2 id="查找包的信息"><a href="#查找包的信息" class="headerlink" title="查找包的信息"></a>查找包的信息</h2><figure class="highlight nginx"><table><tr><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">conda</span> search [package_name]	<span class="hljs-comment"># 查找指定包的信息</span><br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>conda</tag>
       </tags>
   </entry>
 </search>
