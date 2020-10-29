@@ -79,7 +79,7 @@ layout: tags
 
 
 
-##　关联git库
+## 关联git库
 
 ```
 # 安装要用的插件
@@ -126,7 +126,7 @@ tags和categories属性的值可以用列表，表示多个标签/类别。
 
 > hexo默认的Markdown渲染器是hexo-renderer-marked，会先按照Markdown语法解析，然后才是LaTex，所以会有冲突。试了网上各种解决方法，终于遇到一个有效的方法：[hexo无法显示公式的问题-DGZ's Blog](https://www.dazhuanlan.com/2020/03/07/5e633a3b46a81/)
 
-### 1、重装插件
+### 重装插件
 
 首先，只保留一个公式渲染器，这里保留kramed渲染器。
 
@@ -136,7 +136,7 @@ npm uninstall hexo-renderer-marked --save
 npm install hexo-renderer-kramed --save
 ```
 
-### 2、修改js文件
+### 修改js文件
 
 打开`bolg/node_modules/hexo-renderer-kramed/lib/renderer.js`，将：
 
@@ -157,7 +157,7 @@ function formatText(text) {
 }
 ```
 
-### 3、安装mathjax插件
+### 安装mathjax插件
 
 ```
 # 如果有hexo-math，则卸载掉
@@ -165,7 +165,7 @@ npm uninstall hexo-math --save
 npm install hexo-renderer-mathjax --save
 ```
 
-### 4、修改html文件
+### 修改html文件
 
 打开`blog/node_modules/hexo-renderer-mathjax/mathjax.html，将：`
 
@@ -179,7 +179,7 @@ npm install hexo-renderer-mathjax --save
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 ```
 
-### 5、激活插件
+### 激活插件
 
 在使用公式的md文件添加属性：
 
@@ -187,7 +187,7 @@ npm install hexo-renderer-mathjax --save
 mathjax: true
 ```
 
-### 6、部署
+### 部署
 
 如果是第一次修改，修改完以后需要重新启动服务：
 
@@ -201,7 +201,7 @@ hexo s
 
 众所周知，github是万能的，使用[PigGo](https://picgo.github.io/PicGo-Doc/)和Github搭建个人图床，参考[PigGo官方文档](https://picgo.github.io/PicGo-Doc/zh/guide/#%E5%90%AC%E8%AF%B4%E4%BD%A0%E4%B9%9F%E6%83%B3%E7%94%A8picgo)
 
-### 1、新建github项目
+### 新建github项目
 
 新建github项目用来存放图片，并生成token：
 
@@ -210,23 +210,23 @@ github头像->Settings->Developer settings->Generate new token
 将repo选项打勾
 ```
 
-### 2、配置PicGo
+### 配置PicGo
 
 ![](https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/blogcreatprocess_1.png)
 
 然后点击确定，并设置为默认图床
 
-### 3、上传图片
+### 上传图片
 
 将图片拖入上传区，上传成功后会自动在剪切板生成图片链接。
 
-### 4、其他设置
+### 其他设置
 
 其他参数设置可根据个人喜好进行设置：
 
 ![](https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/blogcreatprocess_2.png)
 
-### 5、图片上传失败问题
+### 图片上传失败问题
 
 由于某些原因，github当作图库不是很稳定，时好时坏也是正常现象。
 
@@ -290,7 +290,7 @@ sitemap:
 
 
 
-## 参考教程：
+## 参考教程
 
 > [hexo官方文档](https://hexo.io/zh-cn/docs/)
 >
