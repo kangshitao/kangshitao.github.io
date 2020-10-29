@@ -76,7 +76,7 @@
       },
       motto: {
         api: '',
-        default: '故事，才刚刚开始……'
+        default: '心之所向，素履以往'
       },
       galleries: {
         enable: true
@@ -97,7 +97,9 @@
   
 
   
-<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Live And Learn" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Live And Learn" type="application/atom+xml">
 </head>
 <body class="lock-screen">
   <div class="loading"></div>
@@ -127,11 +129,6 @@
       
       
       
-      <li class="menu-item"><a href="/galleries " class="underline"> 摄影</a></li>
-      
-      
-      
-      
       <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
       
       
@@ -156,11 +153,12 @@
   <main id="main">
   <section class="tags">
     <header class="header">
+  <meta name="google-site-verification" content="hYGeBDrUxqrEbiMSzoMK8p_p_-Njub7GwE33WsytCSo" />
   <h1 class="header-title">标签</h1>
-  <p class="header-subtitle">共: 3 个</p>
+  <p class="header-subtitle">共: 4 个</p>
 </header>
     <div class="tags-container">
-      <a href="/tags/Markdown/" style="font-size: 14px; color: #666">Markdown</a> <a href="/tags/blog/" style="font-size: 14px; color: #666">blog</a> <a href="/tags/hexo/" style="font-size: 14px; color: #666">hexo</a>
+      <a href="/tags/Markdown/" style="font-size: 14px; color: #666">Markdown</a> <a href="/tags/blog/" style="font-size: 14px; color: #666">blog</a> <a href="/tags/conda/" style="font-size: 14px; color: #666">conda</a> <a href="/tags/hexo/" style="font-size: 14px; color: #666">hexo</a>
     </div>
   </section>
 </main>
@@ -264,6 +262,43 @@
 <script src="/js/script.js"></script>
 
 
+
+<script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz',
+      appKey: 'XipU873t8gkSypbwl1HWUARD',
+      serverURLs: 'https://dvb32zrr.lc-cn-n1-shared.com',
+    });
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud").each(async (e) => {
+        const url = $(".leancloud").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud").eq(e).text(count ? count : '--');
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud").length === 1 ? $(".leancloud").attr('id').trim() : 'http://kangshitao.github.io';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    $(function () {
+      const Counter = AV.Object.extend("Counter");
+      addCount(Counter);
+      showCount(Counter);
+    });
+    
+  });
+</script>
 
 
 

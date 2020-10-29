@@ -7,13 +7,15 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>关于 - Live And Learn</title>
+  <title>conda常用命令 - Live And Learn</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
 
   
   
+  <meta name="description" content="
+conda是一个开源的软件包管理系统和环境管理系统，..."> 
   
   <meta name="author" content="康仕涛"> 
 
@@ -108,7 +110,7 @@
 
 <nav class="navbar">
   <div class="left"></div>
-  <div class="center">关于</div>
+  <div class="center">conda常用命令</div>
   <div class="right">
     <i class="iconfont iconmenu j-navbar-menu"></i>
   </div>
@@ -157,21 +159,44 @@
     <section class="head">
   <img   class="lazyload" data-original="/images/theme/post_image/5.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
-    <h1 class="head-title">关于</h1>
+    <h1 class="head-title">conda常用命令</h1>
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 28, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconeye"></i><span id="/about/index.html"
-          class="leancloud" data-flag-title="关于"></span></span>
+      <span class="post-info-item"><i class="iconfont iconeye"></i><span id="/2020/10/28/conda/"
+          class="leancloud" data-flag-title="conda常用命令"></span></span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>0</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1302</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
-        
+        <blockquote>
+<p>conda是一个开源的软件包管理系统和环境管理系统，用于安装多个版本的软件包及其依赖关系，并在它们之间轻松切换。</p>
+<p><a target="_blank" rel="noopener" href="https://www.anaconda.com/">Anaconda</a>是一个开源的Python发行版本，包含了conda、python等180多个科学包及其依赖项。</p>
+<p><a target="_blank" rel="noopener" href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a>是最小的conda安装环境，只包含最基本的内容——python和conda，以及相关的必须依赖项。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p><strong>参考文档：官方<a target="_blank" rel="noopener" href="https://docs.conda.io/projects/conda/en/latest/commands.html">conda命令参考</a></strong></p>
+</blockquote>
+<h1 id="Conda-指令"><a href="#Conda-指令" class="headerlink" title="Conda 指令"></a>Conda 指令</h1><h2 id="查看指令"><a href="#查看指令" class="headerlink" title="查看指令"></a>查看指令</h2><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">conda -V 或 conda --<span class="hljs-keyword">version</span>	<span class="hljs-comment"># 查看conda版本</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">conda</span> env list 或 conda <span class="hljs-literal">info</span> --envs  <span class="hljs-comment"># 查看存在哪些虚拟环境</span><br></code></pre></td></tr></table></figure>
+<h2 id="更新conda"><a href="#更新conda" class="headerlink" title="更新conda"></a>更新conda</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">conda</span> update conda  <span class="hljs-comment"># 检查并更新当前conda</span><br></code></pre></td></tr></table></figure>
+<h2 id="创建虚拟环境"><a href="#创建虚拟环境" class="headerlink" title="创建虚拟环境"></a>创建虚拟环境</h2><figure class="highlight sas"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sas">conda <span class="hljs-meta">create</span> -n [env_name] python=<span class="hljs-meta">x</span>.<span class="hljs-meta">x</span>	# 创建python版本号为<span class="hljs-meta">x</span>.<span class="hljs-meta">x</span>的虚拟环境<br></code></pre></td></tr></table></figure>
+<h2 id="激活-切换虚拟环境"><a href="#激活-切换虚拟环境" class="headerlink" title="激活/切换虚拟环境"></a>激活/切换虚拟环境</h2><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Windows</span>： activate<span class="hljs-meta"> [env_name]</span><br><span class="hljs-attribute">Linux</span>: source activate<span class="hljs-meta"> [env_name]</span><br></code></pre></td></tr></table></figure>
+<h2 id="关闭-退出虚拟环境"><a href="#关闭-退出虚拟环境" class="headerlink" title="关闭/退出虚拟环境"></a>关闭/退出虚拟环境</h2><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs applescript">conda deactivate  <span class="hljs-comment">#　退出当前虚拟环境</span><br><span class="hljs-built_in">activate</span> [env_name]  <span class="hljs-comment"># 切换到其他环境，也相当于关闭当前环境</span><br></code></pre></td></tr></table></figure>
+<h2 id="删除虚拟环境"><a href="#删除虚拟环境" class="headerlink" title="删除虚拟环境"></a>删除虚拟环境</h2><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lua">conda <span class="hljs-built_in">remove</span> -n [env_name] <span class="hljs-comment">--all</span><br></code></pre></td></tr></table></figure>
+<h2 id="设置镜像"><a href="#设置镜像" class="headerlink" title="设置镜像"></a>设置镜像</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs routeros">conda<span class="hljs-built_in"> config </span>--<span class="hljs-builtin-name">add</span> channels [mirroe_url]   # 添加镜像地址<br>conda<span class="hljs-built_in"> config </span>--<span class="hljs-builtin-name">set</span> show_channel_urls <span class="hljs-literal">yes</span>   # 设置搜索时显示通道地址<br>conda<span class="hljs-built_in"> config </span>--<span class="hljs-builtin-name">get</span> channels                # 查看已经配置的channels<br>conda<span class="hljs-built_in"> config </span>--remove-key channels  	   # 恢复为默认地址(删除所有其他镜像url)<br></code></pre></td></tr></table></figure>
+<hr>
+<h1 id="Conda的package管理命令"><a href="#Conda的package管理命令" class="headerlink" title="Conda的package管理命令"></a>Conda的package管理命令</h1><h2 id="查看已安装的包"><a href="#查看已安装的包" class="headerlink" title="查看已安装的包"></a>查看已安装的包</h2><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs applescript">conda <span class="hljs-built_in">list</span>	<span class="hljs-comment"># 查看当前环境已安装的所有包</span><br>conda <span class="hljs-built_in">list</span> -n [env_name]	<span class="hljs-comment"># 查看指定环境已安装的所有包</span><br></code></pre></td></tr></table></figure>
+<h2 id="安装包"><a href="#安装包" class="headerlink" title="安装包"></a>安装包</h2><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cmake">conda <span class="hljs-keyword">install</span> [package_name]	<span class="hljs-comment"># 当前环境下安装包</span><br>conda <span class="hljs-keyword">install</span> -n [env_name] [package_name]	<span class="hljs-comment"># 指定环境先安装包</span><br><span class="hljs-comment"># 还可以使用-c参数，指定通过某个channel安装</span><br></code></pre></td></tr></table></figure>
+<h2 id="更新包"><a href="#更新包" class="headerlink" title="更新包"></a>更新包</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql">conda <span class="hljs-keyword">update</span> [package_name]		<span class="hljs-comment"># 更新当前环境下的包</span><br>conda <span class="hljs-keyword">update</span> -n [env_name] [package_name]	<span class="hljs-comment"># 更新指定环境下的包</span><br></code></pre></td></tr></table></figure>
+<h2 id="删除包"><a href="#删除包" class="headerlink" title="删除包"></a>删除包</h2><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cmake">conda <span class="hljs-keyword">remove</span> [package_name]		<span class="hljs-comment"># 删除当前环境下的包</span><br>conda <span class="hljs-keyword">remove</span> -n [env_name] [package_name	<span class="hljs-comment"># 删除指定环境下的包</span><br></code></pre></td></tr></table></figure>
+<h2 id="查找包的信息"><a href="#查找包的信息" class="headerlink" title="查找包的信息"></a>查找包的信息</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">conda</span> search [package_name]	<span class="hljs-comment"># 查找指定包的信息</span><br></code></pre></td></tr></table></figure>
+
       </section>
       <section class="extra">
         
@@ -187,7 +212,16 @@
 </section>
         
         
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/conda/" rel="tag">conda</a></li></ul>
+
         
+<nav class="nav">
+  
+  
+    <a href="/2020/10/25/BlogCreatProcess/">使用Hexo搭建博客过程<i class="iconfont iconright"></i></a>
+  
+</nav>
+
       </section>
       
       <section class="comments">
