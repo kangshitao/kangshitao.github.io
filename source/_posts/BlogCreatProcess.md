@@ -8,7 +8,7 @@ categories: 教程
 
 > 使用hexo和github.pages搭建博客
 
-## 准备工作
+# 准备工作
 
 github创建名为username.github.io的repository
 
@@ -18,7 +18,7 @@ github创建名为username.github.io的repository
 
 
 
-## 安装Hexo
+# 安装Hexo
 
 新建文件夹blog，存放博客的所有内容
 
@@ -49,7 +49,7 @@ hexo server
 
 
 
-## 更换主题
+# 更换主题
 
 hexo默认主题是landscape，可以自由更换主题：
 
@@ -79,7 +79,7 @@ layout: tags
 
 
 
-## 关联git库
+# 关联git库
 
 ```
 # 安装要用的插件
@@ -103,7 +103,7 @@ deploy：
 
 
 
-## 新建文章
+# 新建文章
 
 ```
 # 创建新的文件，默认保存在source/_post路径下
@@ -122,11 +122,11 @@ hexo deploy/hexo d
 
 tags和categories属性的值可以用列表，表示多个标签/类别。
 
-## 数学公式渲染
+# 数学公式渲染
 
 > hexo默认的Markdown渲染器是hexo-renderer-marked，会先按照Markdown语法解析，然后才是LaTex，所以会有冲突。试了网上各种解决方法，终于遇到一个有效的方法：[hexo无法显示公式的问题-DGZ's Blog](https://www.dazhuanlan.com/2020/03/07/5e633a3b46a81/)
 
-### 重装插件
+## 重装插件
 
 首先，只保留一个公式渲染器，这里保留kramed渲染器。
 
@@ -136,7 +136,7 @@ npm uninstall hexo-renderer-marked --save
 npm install hexo-renderer-kramed --save
 ```
 
-### 修改js文件
+## 修改js文件
 
 打开`bolg/node_modules/hexo-renderer-kramed/lib/renderer.js`，将：
 
@@ -157,7 +157,7 @@ function formatText(text) {
 }
 ```
 
-### 安装mathjax插件
+## 安装mathjax插件
 
 ```
 # 如果有hexo-math，则卸载掉
@@ -165,7 +165,7 @@ npm uninstall hexo-math --save
 npm install hexo-renderer-mathjax --save
 ```
 
-### 修改html文件
+## 修改html文件
 
 打开`blog/node_modules/hexo-renderer-mathjax/mathjax.html，将：`
 
@@ -179,7 +179,7 @@ npm install hexo-renderer-mathjax --save
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 ```
 
-### 激活插件
+## 激活插件
 
 在使用公式的md文件添加属性：
 
@@ -187,7 +187,7 @@ npm install hexo-renderer-mathjax --save
 mathjax: true
 ```
 
-### 部署
+## 部署
 
 如果是第一次修改，修改完以后需要重新启动服务：
 
@@ -197,11 +197,11 @@ hexo g
 hexo s
 ```
 
-## 图床
+# 图床
 
 众所周知，github是万能的，使用[PigGo](https://picgo.github.io/PicGo-Doc/)和Github搭建个人图床，参考[PigGo官方文档](https://picgo.github.io/PicGo-Doc/zh/guide/#%E5%90%AC%E8%AF%B4%E4%BD%A0%E4%B9%9F%E6%83%B3%E7%94%A8picgo)
 
-### 新建github项目
+## 新建github项目
 
 新建github项目用来存放图片，并生成token：
 
@@ -210,23 +210,23 @@ github头像->Settings->Developer settings->Generate new token
 将repo选项打勾
 ```
 
-### 配置PicGo
+## 配置PicGo
 
 ![](https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/blogcreatprocess_1.png)
 
 然后点击确定，并设置为默认图床
 
-### 上传图片
+## 上传图片
 
 将图片拖入上传区，上传成功后会自动在剪切板生成图片链接。
 
-### 其他设置
+## 其他设置
 
 其他参数设置可根据个人喜好进行设置：
 
 ![](https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/blogcreatprocess_2.png)
 
-### 图片上传失败问题
+## 图片上传失败问题
 
 由于某些原因，github当作图库不是很稳定，时好时坏也是正常现象。
 
@@ -238,9 +238,9 @@ github头像->Settings->Developer settings->Generate new token
 
 另外，有条件的可以使用全局代理:airplane:
 
-## 其他
+# 其他
 
-#### 访问量统计
+## 访问量统计
 
 使用[leancloud](https://leancloud.cn/)，前提是主题支持：
 
@@ -251,7 +251,7 @@ github头像->Settings->Developer settings->Generate new token
 将AppID、AppKey、Rest API服务器地址复制到themes/_config.yml
 ```
 
-#### 评论功能
+## 评论功能
 
 使用[Valine](https://valine.js.org/)，前提是主题支持：
 
@@ -262,7 +262,7 @@ leancloud,创建应用(开发版)
 将AppID、AppKey复制到themes/_config.yml
 ```
 
-#### 侧边目录
+## 侧边目录
 
 zhaoo没有支持侧边目录，需要自己添加代码，使用hexo官方的toc函数
 
@@ -275,7 +275,7 @@ zhaoo没有支持侧边目录，需要自己添加代码，使用hexo官方的to
 	  <%- toc(page.content, {
 	    class: 'post-toc',
 		list_number: false,
-        max_depth: '3',
+        max_depth: '6',
 	    min_depth: '1'}) %>
 	</nav>
 </aside>
@@ -286,26 +286,25 @@ zhaoo没有支持侧边目录，需要自己添加代码，使用hexo官方的to
 ```
 .post-widget
   float right
-  width 20%
-  padding-left 30px
+  width 15%
+  padding-left 10px
   min-hidden 1px
-
 .toc-article.fixed
   top 76px
   bottom 140px
   overflow-y auto
- 
 .toc-article
   position fixed
   overflow-x hidden
-  width 20%
+.toc-title
+  padding-left 20px
 ```
 
 下一步计划，目录跟随页面高亮显示当前位置标题……参考[Hexo折腾笔记](https://unnamed42.github.io/2016-09-10-Hexo%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0.htm)
 
 
 
-#### SEO优化
+## SEO优化
 
 >搜索引擎优化（Search Engine Optimization,SEO），是一种通过了解搜索引擎的运作规则来调整网站，以及提高目的网站在有关搜索引擎内排名的方式。
 
@@ -333,7 +332,7 @@ sitemap:
 
 
 
-## 参考教程
+# 参考教程
 
 > [hexo官方文档](https://hexo.io/zh-cn/docs/)
 >
