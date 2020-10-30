@@ -1133,8 +1133,8 @@ body ul {
 }
 .post-widget {
   float: right;
-  width: 20%;
-  padding-left: 30px;
+  width: 15%;
+  padding-left: 10px;
   min-hidden: 1px;
 }
 .toc-article.fixed {
@@ -1145,10 +1145,12 @@ body ul {
 .toc-article {
   position: fixed;
   overflow-x: hidden;
-  width: 20%;
+}
+.toc-title {
+  padding-left: 20px;
 }
 .article {
-  width: 80%;
+  width: 85%;
 }
 .article .wrap {
   margin: 0 auto;
