@@ -116,7 +116,7 @@ gitalk:
 valine:
   appId: C1IH3DfcmYPQ1T2Ox2nh15Xt-gzGzoHsz
   appKey: tRi9LbD7i7Gdlj8fYrUXJK6S
-  placeholder: Author
+  placeholder: write comment content... 
   avatar: mp
   pageSize: 10
   lang: zh-CN
@@ -178,7 +178,7 @@ seo:
 # Analytics
 analytics:
   baidu: #id
-  google: #id
+  google: G-0FZTGJZNYS #id
   tencent: #id
   cnzz: #id
 
