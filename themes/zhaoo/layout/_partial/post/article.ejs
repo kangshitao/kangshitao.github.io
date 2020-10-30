@@ -1,14 +1,18 @@
+<aside class="post-widget">
+  <nav id="toc" class="toc-article fixed">
+	<strong class="toc-title">文章目录</strong>
+	  <%- toc(page.content, {
+	    class: 'post-toc',
+		list_number: false,
+        max_depth: '3',
+	    min_depth: '1'}) %>
+	</nav>
+</aside>
+
 <article class="article">
   <div class="wrap">
     <%- partial('_partial/post/head') %>
     <section class="main">
-	  
-	  <%- toc(page.content, {
-        class: 'post-toc',
-        list_number: false,
-		max_depth: '3',
-		min_depth: '1'}) %>
-	
       <section class="content">
         <%- page.more %>
       </section>

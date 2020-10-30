@@ -262,6 +262,49 @@ leancloud,创建应用(开发版)
 将AppID、AppKey复制到themes/_config.yml
 ```
 
+#### 侧边目录
+
+zhaoo没有支持侧边目录，需要自己添加代码，使用hexo官方的toc函数
+
+在`themes\zhaoo\layout\_partial\post\article.ejs`中，最前面加以下代码：
+
+```
+<aside class="post-widget">
+  <nav id="toc" class="toc-article fixed">
+	<strong class="toc-title">文章目录</strong>
+	  <%- toc(page.content, {
+	    class: 'post-toc',
+		list_number: false,
+        max_depth: '3',
+	    min_depth: '1'}) %>
+	</nav>
+</aside>
+```
+
+然后在`themes\zhaoo\source\css\_partial\post.styl`中，最前面添加以下代码：
+
+```
+.post-widget
+  float right
+  width 20%
+  padding-left 30px
+  min-hidden 1px
+
+.toc-article.fixed
+  top 76px
+  bottom 140px
+  overflow-y auto
+ 
+.toc-article
+  position fixed
+  overflow-x hidden
+  width 20%
+```
+
+下一步计划，目录跟随页面高亮显示当前位置标题……参考[Hexo折腾笔记](https://unnamed42.github.io/2016-09-10-Hexo%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0.htm)
+
+
+
 #### SEO优化
 
 >搜索引擎优化（Search Engine Optimization,SEO），是一种通过了解搜索引擎的运作规则来调整网站，以及提高目的网站在有关搜索引擎内排名的方式。
