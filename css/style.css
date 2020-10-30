@@ -1131,8 +1131,26 @@ body ul {
   font-size: 1em;
   margin-right: 5px;
 }
+.post-widget {
+  float: right;
+  width: 20%;
+  padding-left: 30px;
+  min-hidden: 1px;
+}
+.toc-article.fixed {
+  top: 76px;
+  bottom: 140px;
+  overflow-y: auto;
+}
+.toc-article {
+  position: fixed;
+  overflow-x: hidden;
+  width: 20%;
+}
+.article {
+  width: 80%;
+}
 .article .wrap {
-  max-width: 700px;
   margin: 0 auto;
   margin-top: 70px;
   box-shadow: 0 5px 40px -1px rgba(2,10,18,0.11);
