@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://kangshitao.github.io/2020/10/31/git/</loc>
+    
+    <lastmod>2020-10-31</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://kangshitao.github.io/2020/10/25/BlogCreatProcess/</loc>
     
     <lastmod>2020-10-30</lastmod>
@@ -46,7 +53,7 @@
 
   <url>
     <loc>http://kangshitao.github.io/</loc>
-    <lastmod>2020-10-30</lastmod>
+    <lastmod>2020-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -54,28 +61,35 @@
   
   <url>
     <loc>http://kangshitao.github.io/tags/hexo/</loc>
-    <lastmod>2020-10-30</lastmod>
+    <lastmod>2020-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://kangshitao.github.io/tags/blog/</loc>
-    <lastmod>2020-10-30</lastmod>
+    <lastmod>2020-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://kangshitao.github.io/tags/conda/</loc>
-    <lastmod>2020-10-30</lastmod>
+    <lastmod>2020-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://kangshitao.github.io/tags/Markdown/</loc>
-    <lastmod>2020-10-30</lastmod>
+    <lastmod>2020-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://kangshitao.github.io/tags/Git/</loc>
+    <lastmod>2020-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -84,7 +98,7 @@
   
   <url>
     <loc>http://kangshitao.github.io/categories/%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2020-10-30</lastmod>
+    <lastmod>2020-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
