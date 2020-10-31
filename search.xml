@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>使用Hexo搭建博客过程</title>
+    <title>建立Hexo个人博客</title>
     <url>/2020/10/25/BlogCreatProcess/</url>
     <content><![CDATA[<blockquote>
-<p>使用hexo和github.pages搭建博客</p>
+<p>使用hexo和github.pages搭建博客，主题为<a href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p>
 </blockquote>
 <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>github创建名为username.github.io的repository</p>
 <p>安装git</p>
@@ -64,11 +64,19 @@
 <h1 id="图床"><a href="#图床" class="headerlink" title="图床"></a>图床</h1><p>众所周知，github是万能的，使用<a href="https://picgo.github.io/PicGo-Doc/">PigGo</a>和Github搭建个人图床，参考<a href="https://picgo.github.io/PicGo-Doc/zh/guide/#%E5%90%AC%E8%AF%B4%E4%BD%A0%E4%B9%9F%E6%83%B3%E7%94%A8picgo">PigGo官方文档</a></p>
 <h2 id="新建github项目"><a href="#新建github项目" class="headerlink" title="新建github项目"></a>新建github项目</h2><p>新建github项目用来存放图片，并生成token：</p>
 <figure class="highlight xl"><table><tbody><tr><td class="code"><pre><code class="hljs xl"><span class="hljs-function"><span class="hljs-title">github</span>头像-&gt;</span>S<span class="hljs-function"><span class="hljs-title">ettings</span>-&gt;</span>D<span class="hljs-function"><span class="hljs-title">eveloper</span> settings-&gt;</span>Generate new token<br>将repo选项打勾<br></code></pre></td></tr></tbody></table></figure>
-<h2 id="配置PicGo"><a href="#配置PicGo" class="headerlink" title="配置PicGo"></a>配置PicGo</h2><p><img src="https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/blogcreatprocess_1.png" alt=""></p>
-<p>然后点击确定，并设置为默认图床</p>
+<h2 id="配置PicGo"><a href="#配置PicGo" class="headerlink" title="配置PicGo"></a>配置PicGo</h2><p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/blogcreatprocess_1.png" alt="1"></p>
+<p>然后点击确定，并设置为默认图床。</p>
+<p>自定义域名可以按照图中的设置，也可以使用别的自定义域名。第二种域名方式就是使用<a href="https://en.wikipedia.org/wiki/Content_delivery_network">CDN</a>加速的方法，CDN(Content Delivery Network)是指内容分发网络，也称为内容传送网络。</p>
+<p><a href="https://www.jsdelivr.com/?docs=gh">jsDelivr</a>是一种免费的CDN加速产品，可以加速Github和NPM的资源，其中使用jsDelivr的方法访问Github资源只需要将链接改为以下格式：</p>
+<figure class="highlight awk"><table><tbody><tr><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//</span>cdn.jsdelivr.net<span class="hljs-regexp">/gh/u</span>sername<span class="hljs-regexp">/repository@version/</span>file   <br><span class="hljs-comment"># 其中的version指的是仓库版本，如果没有release版本，也可以使用分支名称</span><br></code></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>jsDelivr的更多用法可以参考官方文档</p>
+</blockquote>
+<p>使用jsDelivr加速的自定义域名填写内容如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/blogcreatprocess_2.png" alt="2"></p>
 <h2 id="上传图片"><a href="#上传图片" class="headerlink" title="上传图片"></a>上传图片</h2><p>将图片拖入上传区，上传成功后会自动在剪切板生成图片链接。</p>
 <h2 id="其他设置"><a href="#其他设置" class="headerlink" title="其他设置"></a>其他设置</h2><p>其他参数设置可根据个人喜好进行设置：</p>
-<p><img src="https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/blogcreatprocess_2.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/blogcreatprocess_3.png" alt="3"></p>
 <h2 id="图片上传失败问题"><a href="#图片上传失败问题" class="headerlink" title="图片上传失败问题"></a>图片上传失败问题</h2><p>由于某些原因，github当作图库不是很稳定，时好时坏也是正常现象。</p>
 <p>参考<a href="https://blog.csdn.net/TalesOV/article/details/104450037?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-5.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-5.channel_param">PicGo踩坑记</a></p>
 <ul>
@@ -77,8 +85,11 @@
 <li>间歇性上传失败的话，可以将server的开关状态切换一下</li>
 </ul>
 <p>另外，有条件的可以使用全局代理<span class="github-emoji"><span>✈</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2708.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="访问量统计"><a href="#访问量统计" class="headerlink" title="访问量统计"></a>访问量统计</h2><p>使用<a href="https://leancloud.cn/">leancloud</a>，前提是主题支持：</p>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>主题的其他设置可以参考<a href="https://www.izhaoo.com/2020/05/05/hexo-theme-zhaoo-doc/">zhaoo主题文档</a>，这里只记录一部分</p>
+<h2 id="访问量统计"><a href="#访问量统计" class="headerlink" title="访问量统计"></a>访问量统计</h2><p>使用<a href="https://leancloud.cn/">leancloud</a>，这里的统计是每篇文章的访问量，zhaoo主题支持leancloud，只需要按要求填写即可：</p>
 <figure class="highlight monkey"><table><tbody><tr><td class="code"><pre><code class="hljs monkey">进入leancloud，创建应用(开发版)<br>创建<span class="hljs-class"><span class="hljs-keyword">Class</span>，<span class="hljs-title">ACL</span>权限选择无限制</span><br>打开设置-应用keys<br>将AppID、AppKey、Rest API服务器地址复制到themes/_config.yml<br></code></pre></td></tr></tbody></table></figure>
+<p>对于网站的访问量统计，使用<a href="http://busuanzi.ibruce.info/">卜蒜子</a>，在<code>themes\zhaoo\layout\_partial\footer.ejs</code>中合适的位置加入以下代码，其中的字体显示内容和风格可以自由设置：</p>
+<figure class="highlight django"><table><tbody><tr><td class="code"><pre><code class="hljs django"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">async</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"</span>&lt;/<span class="hljs-attr">script</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"busuanzi_container_site_pv"</span>&gt;</span></span><br><span class="xml">  总浏览量：<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"busuanzi_value_site_pv"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"font-size:12px;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> 次</span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"busuanzi_container_site_uv"</span> &gt;</span></span><br><span class="xml">  总访客数：<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"busuanzi_value_site_uv"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"font-size:12px;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>人</span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br></code></pre></td></tr></tbody></table></figure>
 <h2 id="评论功能"><a href="#评论功能" class="headerlink" title="评论功能"></a>评论功能</h2><p>使用<a href="https://valine.js.org/">Valine</a>，前提是主题支持：</p>
 <figure class="highlight monkey"><table><tbody><tr><td class="code"><pre><code class="hljs monkey">leancloud,创建应用(开发版)<br>创建<span class="hljs-class"><span class="hljs-keyword">Class</span>，配置默认</span><br>打开设置-应用keys<br>将AppID、AppKey复制到themes/_config.yml<br></code></pre></td></tr></tbody></table></figure>
 <h2 id="侧边目录"><a href="#侧边目录" class="headerlink" title="侧边目录"></a>侧边目录</h2><p>zhaoo没有支持侧边目录，需要自己添加代码，使用hexo官方的toc函数</p>
@@ -100,7 +111,7 @@
 </blockquote>
 ]]></content>
       <categories>
-        <category>教程</category>
+        <category>博客</category>
       </categories>
       <tags>
         <tag>hexo</tag>
@@ -108,20 +119,116 @@
       </tags>
   </entry>
   <entry>
-    <title>conda常用命令</title>
+    <title>Git命令</title>
+    <url>/2020/10/31/git/</url>
+    <content><![CDATA[<hr>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Git">Git</a>是一个开源的分布式版本控制系统，用于在软件开发过程中跟踪源代码的变化。</p>
+<p>本文参考：</p>
+<ul>
+<li><p><a href="https://www.liaoxuefeng.com/wiki/896043488029600">Git教程-廖雪峰的官方网站</a></p>
+</li>
+<li><p><a href="https://git-scm.com/docs">Git官方文档</a></p>
+</li>
+<li><p><a href="https://gitee.com/liaoxuefeng/learn-java/raw/master/teach/git-cheatsheet.pdf">Git-cheatsheet</a></p>
+</li>
+</ul>
+</blockquote>
+<h1 id="基础指令"><a href="#基础指令" class="headerlink" title="基础指令"></a>基础指令</h1><p>在相关文件目录下，右键打开Git，其中Git Bash Here为命令行窗口，Git GUI Here为GUI界面，这里主要是针对命令行窗口。</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> mkdir learngit	<span class="hljs-comment"># 创建learngit文件夹     $ torch xx.txt  表示创建xx.txt文件</span><br><span class="hljs-variable">$</span> <span class="hljs-built_in">cd</span> learngit	<span class="hljs-comment"># 进入文件夹</span><br><span class="hljs-variable">$</span> git init    <span class="hljs-comment"># 将当前文件夹初始化为Git仓库</span><br></code></pre></td></tr></tbody></table></figure>
+<figure class="highlight powershell"><table><tbody><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> git add &lt;file&gt;  <span class="hljs-comment">#　添加特定文件</span><br><span class="hljs-variable">$</span> git add .     <span class="hljs-comment"># 添加所有改动的文件</span><br><span class="hljs-variable">$</span> git commit <span class="hljs-literal">-m</span> <span class="hljs-string">'提交说明'</span>	<span class="hljs-comment"># 提交当前改动，提交说明要写</span><br><span class="hljs-variable">$</span> git push origin master  <span class="hljs-comment"># 推送到远程库的origin master分支，默认为origin master</span><br><span class="hljs-variable">$</span> git status   <span class="hljs-comment"># 查看当前状态，比如有哪些未提交文件等</span><br><span class="hljs-variable">$</span> git <span class="hljs-built_in">diff</span> 		<span class="hljs-comment"># 查看具体修改了什么内容，即查看working tree和index的区别</span><br><span class="hljs-variable">$</span> git <span class="hljs-built_in">diff</span> -<span class="hljs-literal">-cached</span>    <span class="hljs-comment"># 查看暂存区和最后一次commit的差异</span><br><span class="hljs-variable">$</span> git <span class="hljs-built_in">diff</span> HEAD		<span class="hljs-comment"># 查看工作区和最后一次commit的差异</span><br></code></pre></td></tr></tbody></table></figure>
+<h1 id="工作区和暂存区"><a href="#工作区和暂存区" class="headerlink" title="工作区和暂存区"></a>工作区和暂存区</h1><ul>
+<li><strong>工作区</strong>(working directory)是本地电脑看到的一个目录，比如learngit文件夹，或者说是项目文件夹。</li>
+<li>工作区中有.git隐藏文件夹，为Git的版本库，其中包括最重要的<strong>暂存区</strong>(stage/index)。Git会自动创建一个分支master，以及指向master的指针HEAD</li>
+<li>add操作是将文件添加到暂存区，commit操作将暂存区的所有内容提交到当前分支(仓库)，push操作将本地仓库文件推送到远程仓库。</li>
+</ul>
+<h1 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h1><figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> git <span class="hljs-built_in">log</span>		<span class="hljs-comment"># 查看提交记录</span></span><br><span class="hljs-meta">$</span><span class="bash"> git <span class="hljs-built_in">log</span> --pretty=oneline		<span class="hljs-comment"># 简化查看提交记录信息，只显示commit id和提交说明</span></span><br><span class="hljs-meta">$</span><span class="bash"> git restore --hard HEAD^  <span class="hljs-comment"># 回退到上个commit版本，两个^^则表示回退到上上个版本，~n表示n个版本</span></span><br><span class="hljs-meta">$</span><span class="bash"> git restore --hard &lt;commit id&gt;  <span class="hljs-comment"># 回到指定id的版本，id只需要前几位字符，能区分出不同commit即可</span></span><br><span class="hljs-meta">$</span><span class="bash"> git reflog		<span class="hljs-comment"># 查看历史commit id变化情况，方便找到想要回到的版本</span></span><br><span class="hljs-meta">$</span><span class="bash"> git <span class="hljs-built_in">log</span> --graph --pretty=oneline --abbrew-commit	<span class="hljs-comment"># 用图形显示提交记录</span></span><br></code></pre></td></tr></tbody></table></figure>
+<h1 id="管理修改"><a href="#管理修改" class="headerlink" title="管理修改"></a>管理修改</h1><blockquote>
+<p>Git管理的是修改，而不是文件</p>
+</blockquote>
+<p>使用add命令添加文件后，如果再次修改，此时提交是不包括第二次修改的。也就是说，每次修改之后都要add之后才能将修改提交到仓库。</p>
+<h1 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h1><p>想要撤销修改的话，要根据不同的情况采取不同的操作：</p>
+<ul>
+<li><strong>没有git add 时</strong>，使用<code>git restore --&lt;file&gt;</code>命令，file修改后没有放到暂存区，使用此命令回到版本库状态；或者修改了已经添加到暂存区的文件，修改为还没有add，使用此命令可以回退到第一次添加时的状态。总之，restore 操作让文件回到最近一次commit或者add时的状态。</li>
+<li><strong>已经git add到暂存区</strong>，使用<code>git restore HEAD &lt;file&gt;</code>，将暂存区的修改撤销，重新放回工作区</li>
+<li><strong>已经commit到版本库</strong>，使用<code>git restore --hard HEAD^</code>回退版本，或者使用回退到指定commit id</li>
+<li><strong>已经push到远程仓库</strong>，没救了:(</li>
+</ul>
+<h1 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h1><p>使用<code>rm &lt;file&gt;</code>指令或者其他方法删除文件后，工作区和仓库文件不一致，这时：</p>
+<ul>
+<li>如果确定是删除文件，则继续下一步操作即可，<code>git commit -m 'xxx'</code>指令，提交删除，会删除仓库文件</li>
+<li>如果是误删，此时仓库还有文件，使用<code>git restore --&lt;file&gt;</code>恢复即可</li>
+</ul>
+<h1 id="添加远程库"><a href="#添加远程库" class="headerlink" title="添加远程库"></a>添加远程库</h1><p>在github上创建完仓库(repository)之后，在本地配置好之后，使用push指令可以将本地仓库到远程仓库。前提要求是本地仓库是git仓库，即有init初始化处理、commit等操作。此外，还需要Git配置好SSH环境，参考<a href="https://git-scm.com/book/zh/v2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-%E7%94%9F%E6%88%90-SSH-%E5%85%AC%E9%92%A5">教程</a>。</p>
+<p>本地修改首先提交到本地仓库(无需Internet)，然后push到远程：</p>
+<figure class="highlight avrasm"><table><tbody><tr><td class="code"><pre><code class="hljs avrasm">$ git remote <span class="hljs-keyword">add</span> origin git@github.com:&lt;path&gt;   	<span class="hljs-meta"># 第一次推送时，需要先关联远程库</span><br>$ git <span class="hljs-keyword">push</span> -u origin master     <span class="hljs-meta"># 第一次push，需要添加-u参数</span><br>$ git <span class="hljs-keyword">push</span> 或者git <span class="hljs-keyword">push</span> origin master  <span class="hljs-meta"># 如果不是第一次push，则无需-u参数，也可以推送到指定分支</span><br></code></pre></td></tr></tbody></table></figure>
+<h1 id="从远程库克隆"><a href="#从远程库克隆" class="headerlink" title="从远程库克隆"></a>从远程库克隆</h1><p>SSH方式：</p>
+<figure class="highlight crmsh"><table><tbody><tr><td class="code"><pre><code class="hljs crmsh">$ git <span class="hljs-keyword">clone</span> <span class="hljs-title">git</span>@github.com:<span class="hljs-tag">&lt;path&gt;</span>    <span class="hljs-comment"># 后面的地址可以在github上直接复制</span><br></code></pre></td></tr></tbody></table></figure>
+<p>http方式：</p>
+<figure class="highlight crmsh"><table><tbody><tr><td class="code"><pre><code class="hljs crmsh">$ git <span class="hljs-keyword">clone</span> <span class="hljs-title">https</span>://github.com/<span class="hljs-tag">&lt;path&gt;</span>   <span class="hljs-comment"># 同样，地址可以从github直接复制      </span><br></code></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>http方式的速度比较慢，ssh方式速度比较快</p>
+</blockquote>
+<h1 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h1><h2 id="创建与分支合并"><a href="#创建与分支合并" class="headerlink" title="创建与分支合并"></a>创建与分支合并</h2><figure class="highlight powershell"><table><tbody><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> git branch   <span class="hljs-comment"># 查看分支</span><br><span class="hljs-variable">$</span> git branch &lt;name&gt;   <span class="hljs-comment"># 创建分支</span><br><span class="hljs-variable">$</span> git checkout &lt;name&gt; 或 git <span class="hljs-keyword">switch</span> &lt;name&gt;  <span class="hljs-comment"># 切换分支</span><br><span class="hljs-variable">$</span> git checkout <span class="hljs-literal">-b</span> &lt;name&gt; 或 git <span class="hljs-keyword">switch</span> <span class="hljs-literal">-c</span> &lt;name&gt;   <span class="hljs-comment"># 创建并切换分支</span><br><span class="hljs-variable">$</span> git merge &lt;name&gt;   <span class="hljs-comment"># 合并指定分支到当前分支</span><br><span class="hljs-variable">$</span> git branch <span class="hljs-literal">-d</span> &lt;name&gt;  <span class="hljs-comment"># 删除指定分支</span><br></code></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>Git合并、删除、创建分支的速度非常快，鼓励用分支完成任务再合并，这样过程更安全</p>
+</blockquote>
+<h2 id="分支管理策略"><a href="#分支管理策略" class="headerlink" title="分支管理策略"></a>分支管理策略</h2><p>分支合并时，Git优先用Fastforward模式，这种模式下，删除分支后，会丢掉分支信息。</p>
+<p>如果强制禁用Fastforward模式，Git会在merge时生成新的commit，并且在分支历史记录可以看到分支信息：</p>
+<figure class="highlight gams"><table><tbody><tr><td class="code"><pre><code class="hljs gams"><span class="hljs-symbol">$</span> git merge --<span class="hljs-keyword">no</span>-ff -m <span class="hljs-string">'commit information'</span> &lt;brach name&gt;<br># 因为<span class="hljs-keyword">no</span>-ff合并要创建新的commit，所以使用-m参数加上提交说明<br></code></pre></td></tr></tbody></table></figure>
+<p>团队开发中，master分支仅用于发布新版本，日常开发在各自的分支上。</p>
+<blockquote>
+<p>2020.10.1起，github默认主分支改名为main，不再是master</p>
+</blockquote>
+<h2 id="bug分支"><a href="#bug分支" class="headerlink" title="bug分支"></a>bug分支</h2><p>当在dev分支工作时，需要临时修复master上一个bug，需要创建临时bug分支，修复、合并，删除分支。</p>
+<p>如果dev分支的工作未完成，可以使用<code>$ git stash</code>命令保留现场。</p>
+<figure class="highlight elixir"><table><tbody><tr><td class="code"><pre><code class="hljs elixir"><span class="hljs-variable">$ </span>git stash apply stash@{xxx}   <span class="hljs-comment"># 有多个stash是，恢复指定的stash，stash不删除</span><br><span class="hljs-variable">$ </span>git stash pop   <span class="hljs-comment"># 恢复stash同时删掉stash内容</span><br><span class="hljs-variable">$ </span>git stash list   <span class="hljs-comment"># 查看stash列表</span><br><span class="hljs-variable">$ </span>git cherry-pick &lt;commit id&gt;  <span class="hljs-comment"># 用于将某个提交复制到当前分支</span><br></code></pre></td></tr></tbody></table></figure>
+<h2 id="Feature分支"><a href="#Feature分支" class="headerlink" title="Feature分支"></a>Feature分支</h2><p>项目中开发新功能/特征，最好用新的分支，每个功能一个feature分支，在上面开发，完成后，合并，最后删除feature分支。</p>
+<p>如果feature分支还未合并，就需要删除掉，需要使用-D参数强行删除：</p>
+<figure class="highlight mipsasm"><table><tbody><tr><td class="code"><pre><code class="hljs mipsasm">$ git <span class="hljs-keyword">branch </span>-D &lt;<span class="hljs-keyword">branch-name&gt; </span>  <span class="hljs-comment"># 强行删除一个指定的未merge的分支</span><br></code></pre></td></tr></tbody></table></figure>
+<h2 id="多人协作"><a href="#多人协作" class="headerlink" title="多人协作"></a>多人协作</h2><p>多人协作的工作模式：</p>
+<ul>
+<li><p>用<code>$ git push origin &lt;branch-name&gt;</code>推送自己的修改</p>
+</li>
+<li><p>如果推送失败，则因为远程分支比自己的分支更新，需要使用<code>$ git pull</code>命令合并，此命令会自动合并，如果pull请求之后提示‘no stracking information’，说明本地分支和远程分支的链接关系没有创建，使用以下命令：</p>
+<figure class="highlight mipsasm"><table><tbody><tr><td class="code"><pre><code class="hljs mipsasm">$ git <span class="hljs-keyword">branch </span>--set-upstream-to=<span class="hljs-keyword">origin/dev </span>&lt;本地<span class="hljs-keyword">branch&gt;</span><br><span class="hljs-keyword"># </span>设置本地分支和远程<span class="hljs-keyword">origin/dev分支的链接</span><br></code></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>如果合并有冲突，则需要解决冲突，然后提交，push</p>
+</li>
+<li><p>如果没有冲突或者解决掉冲突后，则使用<code>$ git push origin &lt;branch name&gt;</code>推送到远程指定分支</p>
+</li>
+</ul>
+<p>命令总结：</p>
+<figure class="highlight mipsasm"><table><tbody><tr><td class="code"><pre><code class="hljs mipsasm">$ git remote   <span class="hljs-comment"># 查看远程信息</span><br>$ git remote -v  <span class="hljs-comment"># 查看远程库的详细信息</span><br>$ git <span class="hljs-keyword">switch </span>-c &lt;<span class="hljs-keyword">branch-name&gt; </span><span class="hljs-keyword">origin/&lt;remote-branch-name&gt; </span> <span class="hljs-comment"># 从本地创建和远程对应的分支</span><br>$ git <span class="hljs-keyword">branch </span>--set-upstream-to=<span class="hljs-keyword">origin/dev </span>&lt;本地<span class="hljs-keyword">branch&gt; </span> <span class="hljs-comment"># 将本地分支与远程origin/dev分支链接</span><br></code></pre></td></tr></tbody></table></figure>
+<h2 id="Rebase"><a href="#Rebase" class="headerlink" title="Rebase"></a>Rebase</h2><figure class="highlight elixir"><table><tbody><tr><td class="code"><pre><code class="hljs elixir"><span class="hljs-variable">$ </span>git rebase    <span class="hljs-comment"># 把分叉的提交历史“整理”成一条直线，看上去更直观，缺点是本地的分叉提交会被修改</span><br></code></pre></td></tr></tbody></table></figure>
+<h1 id="标签管理"><a href="#标签管理" class="headerlink" title="标签管理"></a>标签管理</h1><p>标签(tag)也是版本库的一个快照，是指向某个commit的指针，tag比直接使用commit更方便。因此，可以使用tag作为版本号。</p>
+<h2 id="创建标签"><a href="#创建标签" class="headerlink" title="创建标签"></a>创建标签</h2><figure class="highlight crmsh"><table><tbody><tr><td class="code"><pre><code class="hljs crmsh">$ git <span class="hljs-keyword">tag</span> <span class="hljs-title">v1</span>.<span class="hljs-number">0</span>  <span class="hljs-comment"># 给当前最新的commit添加标签v1.0</span><br>$ git <span class="hljs-keyword">tag</span> <span class="hljs-title">&lt;tag-name</span>&gt; <span class="hljs-tag">&lt;commit-id&gt;</span>  <span class="hljs-comment"># 给特定的commit添加标签</span><br>$ git <span class="hljs-keyword">tag</span>    <span class="hljs-title"># 查看所有标签</span><br><span class="hljs-title">$</span> git show v1.<span class="hljs-number">0</span>   <span class="hljs-comment"># 显示标签v1.0的详细信息</span><br>$ git <span class="hljs-keyword">tag</span> <span class="hljs-title">-a</span> <span class="hljs-tag">&lt;tag-name&gt;</span> -m '说明' <span class="hljs-tag">&lt;commit-id&gt;</span>		<span class="hljs-comment"># 为特定commit添加标签并添加说明信息</span><br>  <span class="hljs-comment"># 这里的-a 用来指定标签名，-m指定说明文字</span><br></code></pre></td></tr></tbody></table></figure>
+<p>标签不会随着push推送到远程仓库，使用以下命令将tag信息push到远程：</p>
+<figure class="highlight avrasm"><table><tbody><tr><td class="code"><pre><code class="hljs avrasm">$ git <span class="hljs-keyword">push</span> origin &lt;tagname&gt;   <span class="hljs-meta"># 推送单个标签</span><br>$ git <span class="hljs-keyword">push</span> origin --tags     <span class="hljs-meta"># 推送所有标签</span><br></code></pre></td></tr></tbody></table></figure>
+<h2 id="操作标签"><a href="#操作标签" class="headerlink" title="操作标签"></a>操作标签</h2><figure class="highlight elixir"><table><tbody><tr><td class="code"><pre><code class="hljs elixir"><span class="hljs-variable">$ </span>git tag -d &lt;tag-name&gt;		<span class="hljs-comment"># 删除一个指定的本地标签</span><br><span class="hljs-variable">$ </span>git push origin <span class="hljs-symbol">:refs/tags/&lt;tag-name&gt;</span>    <span class="hljs-comment"># 删除远程仓库的指定标签</span><br></code></pre></td></tr></tbody></table></figure>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Conda</title>
     <url>/2020/10/28/conda/</url>
     <content><![CDATA[<blockquote>
-<p>conda是一个开源的软件包管理系统和环境管理系统，用于安装多个版本的软件包及其依赖关系，并在它们之间轻松切换。</p>
+<p>Conda是一个开源的软件包管理系统和环境管理系统，用于安装多个版本的软件包及其依赖关系，并在它们之间轻松切换。</p>
 <p><a href="https://www.anaconda.com/">Anaconda</a>是一个开源的Python发行版本，包含了conda、python等180多个科学包及其依赖项。</p>
 <p><a href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a>是最小的conda安装环境，只包含最基本的内容——python和conda，以及相关的必须依赖项。</p>
 </blockquote>
 <hr>
 <blockquote>
-<p><strong>参考文档：官方<a href="https://docs.conda.io/projects/conda/en/latest/commands.html">conda命令参考</a></strong></p>
+<p><strong>参考文档：官方<a href="https://docs.conda.io/projects/conda/en/latest/commands.html">Conda命令参考</a></strong></p>
 </blockquote>
 <h1 id="Conda-指令"><a href="#Conda-指令" class="headerlink" title="Conda 指令"></a>Conda 指令</h1><h2 id="查看指令"><a href="#查看指令" class="headerlink" title="查看指令"></a>查看指令</h2><figure class="highlight crmsh"><table><tbody><tr><td class="code"><pre><code class="hljs crmsh">conda -V 或 conda --<span class="hljs-keyword">version</span>	<span class="hljs-comment"># 查看conda版本</span><br></code></pre></td></tr></tbody></table></figure>
 <figure class="highlight nginx"><table><tbody><tr><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">conda</span> env list 或 conda <span class="hljs-literal">info</span> --envs  <span class="hljs-comment"># 查看存在哪些虚拟环境</span><br></code></pre></td></tr></tbody></table></figure>
-<h2 id="更新conda"><a href="#更新conda" class="headerlink" title="更新conda"></a>更新conda</h2><figure class="highlight nginx"><table><tbody><tr><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">conda</span> update conda  <span class="hljs-comment"># 检查并更新当前conda</span><br></code></pre></td></tr></tbody></table></figure>
+<h2 id="更新Conda"><a href="#更新Conda" class="headerlink" title="更新Conda"></a>更新Conda</h2><figure class="highlight nginx"><table><tbody><tr><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">conda</span> update conda  <span class="hljs-comment"># 检查并更新当前conda</span><br></code></pre></td></tr></tbody></table></figure>
 <h2 id="创建虚拟环境"><a href="#创建虚拟环境" class="headerlink" title="创建虚拟环境"></a>创建虚拟环境</h2><figure class="highlight sas"><table><tbody><tr><td class="code"><pre><code class="hljs sas">conda <span class="hljs-meta">create</span> -n [env_name] python=<span class="hljs-meta">x</span>.<span class="hljs-meta">x</span>	# 创建python版本号为<span class="hljs-meta">x</span>.<span class="hljs-meta">x</span>的虚拟环境<br></code></pre></td></tr></tbody></table></figure>
 <h2 id="激活-切换虚拟环境"><a href="#激活-切换虚拟环境" class="headerlink" title="激活/切换虚拟环境"></a>激活/切换虚拟环境</h2><figure class="highlight apache"><table><tbody><tr><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Windows</span>： activate<span class="hljs-meta"> [env_name]</span><br><span class="hljs-attribute">Linux</span>: source activate<span class="hljs-meta"> [env_name]</span><br></code></pre></td></tr></tbody></table></figure>
 <h2 id="关闭-退出虚拟环境"><a href="#关闭-退出虚拟环境" class="headerlink" title="关闭/退出虚拟环境"></a>关闭/退出虚拟环境</h2><figure class="highlight applescript"><table><tbody><tr><td class="code"><pre><code class="hljs applescript">conda deactivate  <span class="hljs-comment">#　退出当前虚拟环境</span><br><span class="hljs-built_in">activate</span> [env_name]  <span class="hljs-comment"># 切换到其他环境，也相当于关闭当前环境</span><br></code></pre></td></tr></tbody></table></figure>
@@ -138,18 +245,18 @@
         <category>教程</category>
       </categories>
       <tags>
-        <tag>conda</tag>
+        <tag>Conda</tag>
       </tags>
   </entry>
   <entry>
-    <title>Markdown基础教程</title>
+    <title>Markdown</title>
     <url>/2020/10/25/markdown/</url>
     <content><![CDATA[<p><em>本文作为 Markdown基础语法教程，同时作为个人笔记 &amp;练习。使用 Typora工具，语法可能略有不同，以实际平台为准</em></p>
 <h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><p>Markdown标题有两种格式</p>
 <h2 id="使用-和-标记一级和二级标签"><a href="#使用-和-标记一级和二级标签" class="headerlink" title="使用 = 和 - 标记一级和二级标签"></a>使用 = 和 - 标记一级和二级标签</h2><p>语法如下：</p>
 <figure class="highlight asciidoc"><table><tbody><tr><td class="code"><pre><code class="hljs asciidoc">一级标题<br>=====<br><br>二级标题<br>-----<br></code></pre></td></tr></tbody></table></figure>
 <p>效果如下：</p>
-<p><img src="https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/markdown_1.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_1.png" alt="1"></p>
 <h2 id="使用-号标记"><a href="#使用-号标记" class="headerlink" title="使用#号标记"></a>使用#号标记</h2><p>语法如下：</p>
 <figure class="highlight clean"><table><tbody><tr><td class="code"><pre><code class="hljs clean"># 一级标题<br>## 二级标题<br>### 三级标题<br>#### 四级标题<br>##### 五级标题<br>###### 六级标题<br></code></pre></td></tr></tbody></table></figure>
 <blockquote>
@@ -167,22 +274,22 @@
 <h2 id="无序列表："><a href="#无序列表：" class="headerlink" title="无序列表："></a>无序列表：</h2><p>无序列表有三种写法，<code>+</code> 或<code>-</code>或<code>*</code>后加空格即可：</p>
 <figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">+</span> 第一项<br><span class="hljs-bullet">*</span> 第一项<br><span class="hljs-bullet">-</span> 第一项<br></code></pre></td></tr></tbody></table></figure>
 <p>显示效果：</p>
-<p><img src="https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/markdown_2.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_2.png" alt="2"></p>
 <h2 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h2><p>有序列表使用数字和<code>.</code>再加上空格即可：</p>
 <figure class="highlight angelscript"><table><tbody><tr><td class="code"><pre><code class="hljs angelscript"><span class="hljs-number">1.</span> 第一项<br><span class="hljs-number">2.</span> 第二项<br><span class="hljs-number">3.</span> 第三项<br></code></pre></td></tr></tbody></table></figure>
 <p>显示效果：</p>
-<p><img src="https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/markdown_3.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_3.png" alt="3"></p>
 <h2 id="列表嵌套"><a href="#列表嵌套" class="headerlink" title="列表嵌套"></a>列表嵌套</h2><p>列表嵌套需要在子列表选项前加四个空格：</p>
 <figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">1.</span> 第一项：<br><span class="hljs-bullet">    -</span> 第一项的第一个元素<br><span class="hljs-bullet">    -</span> 第一项的第二个元素<br><span class="hljs-bullet">2.</span> 第二项：<br><span class="hljs-bullet">    -</span> 第二项的第一个元素<br><span class="hljs-bullet">    -</span> 第二项的第二个元素<br></code></pre></td></tr></tbody></table></figure>
 <p>显示效果：</p>
-<p><img src="https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/markdown_4.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_4.png" alt="4"></p>
 <blockquote>
 <p>Typora中，子列表选项前不加空格也可以。</p>
 </blockquote>
 <h1 id="插入区块和分隔线"><a href="#插入区块和分隔线" class="headerlink" title="插入区块和分隔线"></a>插入区块和分隔线</h1><h2 id="区块"><a href="#区块" class="headerlink" title="区块"></a>区块</h2><p>Markdown的区块引用是在段落开头使用<code>&gt;</code> 号和空格：</p>
 <figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-quote">&gt; 区块引用</span><br></code></pre></td></tr></tbody></table></figure>
 <p>显示效果：</p>
-<p><img src="https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/markdown_5.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_5.png" alt="5"></p>
 <p>另外，区块引用也可以像列表一样嵌套，一个<code>&gt;</code> 表示第一层，两个<code>&gt;</code> 表示第二层，以此类推：</p>
 <figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><code class="hljs ruby">&gt; 第一层<br><span class="hljs-meta">&gt;&gt;</span> 第二层<br><span class="hljs-meta">&gt;&gt;</span>&gt; 第三层<br></code></pre></td></tr></tbody></table></figure>
 <p>区块中也可以使用列表，同样，列表中也可以使用区块。</p>
@@ -289,7 +396,7 @@
 <h2 id="插入流程图"><a href="#插入流程图" class="headerlink" title="插入流程图"></a>插入流程图</h2><p>Typora插入横向流程图：</p>
 <figure class="highlight coq"><table><tbody><tr><td class="code"><pre><code class="hljs coq">​```mermaid<br>graph LR<br>A[方形] --&gt;B(圆角)<br>    B --&gt; C{条件a}<br>    C --&gt;|<span class="hljs-type">a</span>=<span class="hljs-number">1</span>| <span class="hljs-type">D</span>[结果<span class="hljs-number">1</span>]<br>    C --&gt;|<span class="hljs-type">a</span>=<span class="hljs-number">2</span>| <span class="hljs-type">E</span>[结果<span class="hljs-number">2</span>]<br>    F[横向流程图]<br>​```<br></code></pre></td></tr></tbody></table></figure>
 <p>效果如下：</p>
-<p><img src="https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/markdown_6.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_6.png" alt="6"></p>
 <blockquote>
 <p>更多类型的流程图、顺序图等可以参考：<a href="https://jingyan.baidu.com/article/48b558e3035d9a7f38c09aeb.html">typora画流程图、时序图(顺序图)、甘特图</a></p>
 </blockquote>
@@ -306,102 +413,6 @@
       </categories>
       <tags>
         <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git命令</title>
-    <url>/2020/10/31/git/</url>
-    <content><![CDATA[<hr>
-<blockquote>
-<p><a href="https://en.wikipedia.org/wiki/Git">Git</a>是一个开源的分布式版本控制系统，用于在软件开发过程中跟踪源代码的变化。</p>
-<p>本文参考：</p>
-<ul>
-<li><p><a href="https://www.liaoxuefeng.com/wiki/896043488029600">Git教程-廖雪峰的官方网站</a></p>
-</li>
-<li><p><a href="https://git-scm.com/docs">Git官方文档</a></p>
-</li>
-<li><p><a href="https://gitee.com/liaoxuefeng/learn-java/raw/master/teach/git-cheatsheet.pdf">Git-cheatsheet</a></p>
-</li>
-</ul>
-</blockquote>
-<h1 id="基础指令"><a href="#基础指令" class="headerlink" title="基础指令"></a>基础指令</h1><p>在相关文件目录下，右键打开Git，其中Git Bash Here为命令行窗口，Git GUI Here为GUI界面，这里主要是针对命令行窗口。</p>
-<figure class="highlight powershell"><table><tbody><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> mkdir learngit	<span class="hljs-comment"># 创建learngit文件夹     $ torch xx.txt  表示创建xx.txt文件</span><br><span class="hljs-variable">$</span> <span class="hljs-built_in">cd</span> learngit	<span class="hljs-comment"># 进入文件夹</span><br><span class="hljs-variable">$</span> git init    <span class="hljs-comment"># 将当前文件夹初始化为Git仓库</span><br></code></pre></td></tr></tbody></table></figure>
-<figure class="highlight powershell"><table><tbody><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> git add &lt;file&gt;  <span class="hljs-comment">#　添加特定文件</span><br><span class="hljs-variable">$</span> git add .     <span class="hljs-comment"># 添加所有改动的文件</span><br><span class="hljs-variable">$</span> git commit <span class="hljs-literal">-m</span> <span class="hljs-string">'提交说明'</span>	<span class="hljs-comment"># 提交当前改动，提交说明要写</span><br><span class="hljs-variable">$</span> git push origin master  <span class="hljs-comment"># 推送到远程库的origin master分支，默认为origin master</span><br><span class="hljs-variable">$</span> git status   <span class="hljs-comment"># 查看当前状态，比如有哪些未提交文件等</span><br><span class="hljs-variable">$</span> git <span class="hljs-built_in">diff</span> 		<span class="hljs-comment"># 查看具体修改了什么内容，即查看working tree和index的区别</span><br><span class="hljs-variable">$</span> git <span class="hljs-built_in">diff</span> -<span class="hljs-literal">-cached</span>    <span class="hljs-comment"># 查看暂存区和最后一次commit的差异</span><br><span class="hljs-variable">$</span> git <span class="hljs-built_in">diff</span> HEAD		<span class="hljs-comment"># 查看工作区和最后一次commit的差异</span><br></code></pre></td></tr></tbody></table></figure>
-<h1 id="工作区和暂存区"><a href="#工作区和暂存区" class="headerlink" title="工作区和暂存区"></a>工作区和暂存区</h1><ul>
-<li><strong>工作区</strong>(working directory)是本地电脑看到的一个目录，比如learngit文件夹，或者说是项目文件夹。</li>
-<li>工作区中有.git隐藏文件夹，为Git的版本库，其中包括最重要的<strong>暂存区</strong>(stage/index)。Git会自动创建一个分支master，以及指向master的指针HEAD</li>
-<li>add操作是将文件添加到暂存区，commit操作将暂存区的所有内容提交到当前分支(仓库)，push操作将本地仓库文件推送到远程仓库。</li>
-</ul>
-<h1 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h1><figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> git <span class="hljs-built_in">log</span>		<span class="hljs-comment"># 查看提交记录</span></span><br><span class="hljs-meta">$</span><span class="bash"> git <span class="hljs-built_in">log</span> --pretty=oneline		<span class="hljs-comment"># 简化查看提交记录信息，只显示commit id和提交说明</span></span><br><span class="hljs-meta">$</span><span class="bash"> git restore --hard HEAD^  <span class="hljs-comment"># 回退到上个commit版本，两个^^则表示回退到上上个版本，~n表示n个版本</span></span><br><span class="hljs-meta">$</span><span class="bash"> git restore --hard &lt;commit id&gt;  <span class="hljs-comment"># 回到指定id的版本，id只需要前几位字符，能区分出不同commit即可</span></span><br><span class="hljs-meta">$</span><span class="bash"> git reflog		<span class="hljs-comment"># 查看历史commit id变化情况，方便找到想要回到的版本</span></span><br><span class="hljs-meta">$</span><span class="bash"> git <span class="hljs-built_in">log</span> --graph --pretty=oneline --abbrew-commit	<span class="hljs-comment"># 用图形显示提交记录</span></span><br></code></pre></td></tr></tbody></table></figure>
-<h1 id="管理修改"><a href="#管理修改" class="headerlink" title="管理修改"></a>管理修改</h1><blockquote>
-<p>Git管理的是修改，而不是文件</p>
-</blockquote>
-<p>使用add命令添加文件后，如果再次修改，此时提交是不包括第二次修改的。也就是说，每次修改之后都要add之后才能将修改提交到仓库。</p>
-<h1 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h1><p>想要撤销修改的话，要根据不同的情况采取不同的操作：</p>
-<ul>
-<li><strong>没有git add 时</strong>，使用<code>git restore --&lt;file&gt;</code>命令，file修改后没有放到暂存区，使用此命令回到版本库状态；或者修改了已经添加到暂存区的文件，修改为还没有add，使用此命令可以回退到第一次添加时的状态。总之，restore 操作让文件回到最近一次commit或者add时的状态。</li>
-<li><strong>已经git add到暂存区</strong>，使用<code>git restore HEAD &lt;file&gt;</code>，将暂存区的修改撤销，重新放回工作区</li>
-<li><strong>已经commit到版本库</strong>，使用<code>git restore --hard HEAD^</code>回退版本，或者使用回退到指定commit id</li>
-<li><strong>已经push到远程仓库</strong>，没救了:(</li>
-</ul>
-<h1 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h1><p>使用<code>rm &lt;file&gt;</code>指令或者其他方法删除文件后，工作区和仓库文件不一致，这时：</p>
-<ul>
-<li>如果确定是删除文件，则继续下一步操作即可，<code>git commit -m 'xxx'</code>指令，提交删除，会删除仓库文件</li>
-<li>如果是误删，此时仓库还有文件，使用<code>git restore --&lt;file&gt;</code>恢复即可</li>
-</ul>
-<h1 id="添加远程库"><a href="#添加远程库" class="headerlink" title="添加远程库"></a>添加远程库</h1><p>在github上创建完仓库(repository)之后，在本地配置好之后，使用push指令可以将本地仓库到远程仓库。前提要求是本地仓库是git仓库，即有init初始化处理、commit等操作。此外，还需要Git配置好SSH环境，参考<a href="https://git-scm.com/book/zh/v2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-%E7%94%9F%E6%88%90-SSH-%E5%85%AC%E9%92%A5">教程</a>。</p>
-<p>本地修改首先提交到本地仓库(无需Internet)，然后push到远程：</p>
-<figure class="highlight avrasm"><table><tbody><tr><td class="code"><pre><code class="hljs avrasm">$ git remote <span class="hljs-keyword">add</span> origin git@github.com:&lt;path&gt;   	<span class="hljs-meta"># 第一次推送时，需要先关联远程库</span><br>$ git <span class="hljs-keyword">push</span> -u origin master     <span class="hljs-meta"># 第一次push，需要添加-u参数</span><br>$ git <span class="hljs-keyword">push</span> 或者git <span class="hljs-keyword">push</span> origin master  <span class="hljs-meta"># 如果不是第一次push，则无需-u参数，也可以推送到指定分支</span><br></code></pre></td></tr></tbody></table></figure>
-<h1 id="从远程库克隆"><a href="#从远程库克隆" class="headerlink" title="从远程库克隆"></a>从远程库克隆</h1><p>SSH方式：</p>
-<figure class="highlight crmsh"><table><tbody><tr><td class="code"><pre><code class="hljs crmsh">$ git <span class="hljs-keyword">clone</span> <span class="hljs-title">git</span>@github.com:<span class="hljs-tag">&lt;path&gt;</span>    <span class="hljs-comment"># 后面的地址可以在github上直接复制</span><br></code></pre></td></tr></tbody></table></figure>
-<p>http方式：</p>
-<figure class="highlight crmsh"><table><tbody><tr><td class="code"><pre><code class="hljs crmsh">$ git <span class="hljs-keyword">clone</span> <span class="hljs-title">https</span>://github.com/<span class="hljs-tag">&lt;path&gt;</span>   <span class="hljs-comment"># 同样，地址可以从github直接复制      </span><br></code></pre></td></tr></tbody></table></figure>
-<blockquote>
-<p>http方式的速度比较慢，ssh方式速度比较快</p>
-</blockquote>
-<h1 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h1><h2 id="创建与分支合并"><a href="#创建与分支合并" class="headerlink" title="创建与分支合并"></a>创建与分支合并</h2><figure class="highlight powershell"><table><tbody><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> git branch   <span class="hljs-comment"># 查看分支</span><br><span class="hljs-variable">$</span> git branch &lt;name&gt;   <span class="hljs-comment"># 创建分支</span><br><span class="hljs-variable">$</span> git checkout &lt;name&gt; 或 git <span class="hljs-keyword">switch</span> &lt;name&gt;  <span class="hljs-comment"># 切换分支</span><br><span class="hljs-variable">$</span> git checkout <span class="hljs-literal">-b</span> &lt;name&gt; 或 git <span class="hljs-keyword">switch</span> <span class="hljs-literal">-c</span> &lt;name&gt;   <span class="hljs-comment"># 创建并切换分支</span><br><span class="hljs-variable">$</span> git merge &lt;name&gt;   <span class="hljs-comment"># 合并指定分支到当前分支</span><br><span class="hljs-variable">$</span> git branch <span class="hljs-literal">-d</span> &lt;name&gt;  <span class="hljs-comment"># 删除指定分支</span><br></code></pre></td></tr></tbody></table></figure>
-<blockquote>
-<p>Git合并、删除、创建分支的速度非常快，鼓励用分支完成任务再合并，这样过程更安全</p>
-</blockquote>
-<h2 id="分支管理策略"><a href="#分支管理策略" class="headerlink" title="分支管理策略"></a>分支管理策略</h2><p>分支合并时，Git优先用Fastforward模式，这种模式下，删除分支后，会丢掉分支信息。</p>
-<p>如果强制禁用Fastforward模式，Git会在merge时生成新的commit，并且在分支历史记录可以看到分支信息：</p>
-<figure class="highlight gams"><table><tbody><tr><td class="code"><pre><code class="hljs gams"><span class="hljs-symbol">$</span> git merge --<span class="hljs-keyword">no</span>-ff -m <span class="hljs-string">'commit information'</span> &lt;brach name&gt;<br># 因为<span class="hljs-keyword">no</span>-ff合并要创建新的commit，所以使用-m参数加上提交说明<br></code></pre></td></tr></tbody></table></figure>
-<p>团队开发中，master分支仅用于发布新版本，日常开发在各自的分支上。</p>
-<blockquote>
-<p>2020.10.1起，github默认主分支改名为main，不再是master</p>
-</blockquote>
-<h2 id="bug分支"><a href="#bug分支" class="headerlink" title="bug分支"></a>bug分支</h2><p>当在dev分支工作时，需要临时修复master上一个bug，需要创建临时bug分支，修复、合并，删除分支。</p>
-<p>如果dev分支的工作未完成，可以使用<code>$ git stash</code>命令保留现场。</p>
-<figure class="highlight elixir"><table><tbody><tr><td class="code"><pre><code class="hljs elixir"><span class="hljs-variable">$ </span>git stash apply stash@{xxx}   <span class="hljs-comment"># 有多个stash是，恢复指定的stash，stash不删除</span><br><span class="hljs-variable">$ </span>git stash pop   <span class="hljs-comment"># 恢复stash同时删掉stash内容</span><br><span class="hljs-variable">$ </span>git stash list   <span class="hljs-comment"># 查看stash列表</span><br><span class="hljs-variable">$ </span>git cherry-pick &lt;commit id&gt;  <span class="hljs-comment"># 用于将某个提交复制到当前分支</span><br></code></pre></td></tr></tbody></table></figure>
-<h2 id="Feature分支"><a href="#Feature分支" class="headerlink" title="Feature分支"></a>Feature分支</h2><p>项目中开发新功能/特征，最好用新的分支，每个功能一个feature分支，在上面开发，完成后，合并，最后删除feature分支。</p>
-<p>如果feature分支还未合并，就需要删除掉，需要使用-D参数强行删除：</p>
-<figure class="highlight mipsasm"><table><tbody><tr><td class="code"><pre><code class="hljs mipsasm">$ git <span class="hljs-keyword">branch </span>-D &lt;<span class="hljs-keyword">branch-name&gt; </span>  <span class="hljs-comment"># 强行删除一个指定的未merge的分支</span><br></code></pre></td></tr></tbody></table></figure>
-<h2 id="多人协作"><a href="#多人协作" class="headerlink" title="多人协作"></a>多人协作</h2><p>多人协作的工作模式：</p>
-<ul>
-<li><p>用<code>$ git push origin &lt;branch-name&gt;</code>推送自己的修改</p>
-</li>
-<li><p>如果推送失败，则因为远程分支比自己的分支更新，需要使用<code>$ git pull</code>命令合并，此命令会自动合并，如果pull请求之后提示‘no stracking information’，说明本地分支和远程分支的链接关系没有创建，使用以下命令：</p>
-<figure class="highlight mipsasm"><table><tbody><tr><td class="code"><pre><code class="hljs mipsasm">$ git <span class="hljs-keyword">branch </span>--set-upstream-to=<span class="hljs-keyword">origin/dev </span>&lt;本地<span class="hljs-keyword">branch&gt;</span><br><span class="hljs-keyword"># </span>设置本地分支和远程<span class="hljs-keyword">origin/dev分支的链接</span><br></code></pre></td></tr></tbody></table></figure>
-</li>
-<li><p>如果合并有冲突，则需要解决冲突，然后提交，push</p>
-</li>
-<li><p>如果没有冲突或者解决掉冲突后，则使用<code>$ git push origin &lt;branch name&gt;</code>推送到远程指定分支</p>
-</li>
-</ul>
-<p>命令总结：</p>
-<figure class="highlight mipsasm"><table><tbody><tr><td class="code"><pre><code class="hljs mipsasm">$ git remote   <span class="hljs-comment"># 查看远程信息</span><br>$ git remote -v  <span class="hljs-comment"># 查看远程库的详细信息</span><br>$ git <span class="hljs-keyword">switch </span>-c &lt;<span class="hljs-keyword">branch-name&gt; </span><span class="hljs-keyword">origin/&lt;remote-branch-name&gt; </span> <span class="hljs-comment"># 从本地创建和远程对应的分支</span><br>$ git <span class="hljs-keyword">branch </span>--set-upstream-to=<span class="hljs-keyword">origin/dev </span>&lt;本地<span class="hljs-keyword">branch&gt; </span> <span class="hljs-comment"># 将本地分支与远程origin/dev分支链接</span><br></code></pre></td></tr></tbody></table></figure>
-<h2 id="Rebase"><a href="#Rebase" class="headerlink" title="Rebase"></a>Rebase</h2><figure class="highlight elixir"><table><tbody><tr><td class="code"><pre><code class="hljs elixir"><span class="hljs-variable">$ </span>git rebase    <span class="hljs-comment"># 把分叉的提交历史“整理”成一条直线，看上去更直观，缺点是本地的分叉提交会被修改</span><br></code></pre></td></tr></tbody></table></figure>
-<h1 id="标签管理"><a href="#标签管理" class="headerlink" title="标签管理"></a>标签管理</h1><p>标签(tag)也是版本库的一个快照，是指向某个commit的指针，tag比直接使用commit更方便。因此，可以使用tag作为版本号。</p>
-<h2 id="创建标签"><a href="#创建标签" class="headerlink" title="创建标签"></a>创建标签</h2><figure class="highlight crmsh"><table><tbody><tr><td class="code"><pre><code class="hljs crmsh">$ git <span class="hljs-keyword">tag</span> <span class="hljs-title">v1</span>.<span class="hljs-number">0</span>  <span class="hljs-comment"># 给当前最新的commit添加标签v1.0</span><br>$ git <span class="hljs-keyword">tag</span> <span class="hljs-title">&lt;tag-name</span>&gt; <span class="hljs-tag">&lt;commit-id&gt;</span>  <span class="hljs-comment"># 给特定的commit添加标签</span><br>$ git <span class="hljs-keyword">tag</span>    <span class="hljs-title"># 查看所有标签</span><br><span class="hljs-title">$</span> git show v1.<span class="hljs-number">0</span>   <span class="hljs-comment"># 显示标签v1.0的详细信息</span><br>$ git <span class="hljs-keyword">tag</span> <span class="hljs-title">-a</span> <span class="hljs-tag">&lt;tag-name&gt;</span> -m '说明' <span class="hljs-tag">&lt;commit-id&gt;</span>		<span class="hljs-comment"># 为特定commit添加标签并添加说明信息</span><br>  <span class="hljs-comment"># 这里的-a 用来指定标签名，-m指定说明文字</span><br></code></pre></td></tr></tbody></table></figure>
-<p>标签不会随着push推送到远程仓库，使用以下命令将tag信息push到远程：</p>
-<figure class="highlight avrasm"><table><tbody><tr><td class="code"><pre><code class="hljs avrasm">$ git <span class="hljs-keyword">push</span> origin &lt;tagname&gt;   <span class="hljs-meta"># 推送单个标签</span><br>$ git <span class="hljs-keyword">push</span> origin --tags     <span class="hljs-meta"># 推送所有标签</span><br></code></pre></td></tr></tbody></table></figure>
-<h2 id="操作标签"><a href="#操作标签" class="headerlink" title="操作标签"></a>操作标签</h2><figure class="highlight elixir"><table><tbody><tr><td class="code"><pre><code class="hljs elixir"><span class="hljs-variable">$ </span>git tag -d &lt;tag-name&gt;		<span class="hljs-comment"># 删除一个指定的本地标签</span><br><span class="hljs-variable">$ </span>git push origin <span class="hljs-symbol">:refs/tags/&lt;tag-name&gt;</span>    <span class="hljs-comment"># 删除远程仓库的指定标签</span><br></code></pre></td></tr></tbody></table></figure>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
       </tags>
   </entry>
 </search>

@@ -7,7 +7,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Markdown基础教程 - Live And Learn</title>
+  <title>Markdown - Live And Learn</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google-site-verification" content="hYGeBDrUxqrEbiMSzoMK8p_p_-Njub7GwE33WsytCSo" />
@@ -17,7 +17,7 @@
   
   <meta name="description" content="本文作为 Markdown基础语法教程，同时作为个人笔..."> 
   
-  <meta name="author" content="康仕涛"> 
+  <meta name="author" content="Kangshitao"> 
 
   
     <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
@@ -73,8 +73,8 @@
       },
       donate: {
         enable: true,
-        alipay: '/images/theme/alipay.jpg',
-        wechat: '/images/theme/wechat.jpg'
+        alipay: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg',
+        wechat: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/wechat.jpg'
       },
       motto: {
         api: '',
@@ -110,7 +110,7 @@
 
 <nav class="navbar">
   <div class="left"></div>
-  <div class="center">Markdown基础教程</div>
+  <div class="center">Markdown</div>
   <div class="right">
     <i class="iconfont iconmenu j-navbar-menu"></i>
   </div>
@@ -164,15 +164,15 @@
 <article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="/images/theme/post_image/5.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
-    <h1 class="head-title">Markdown基础教程</h1>
+    <h1 class="head-title">Markdown</h1>
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 25, 2020</span
         class="post-info-item">
       
       <span class="post-info-item"><i class="iconfont iconeye"></i><span id="/2020/10/25/markdown/"
-          class="leancloud" data-flag-title="Markdown基础教程"></span></span>
+          class="leancloud" data-flag-title="Markdown"></span></span>
       
       <span class="post-info-item"><i class="iconfont iconfont-size"></i>2690</span>
     </div>
@@ -185,7 +185,7 @@
 <h2 id="使用-和-标记一级和二级标签"><a href="#使用-和-标记一级和二级标签" class="headerlink" title="使用 = 和 - 标记一级和二级标签"></a>使用 = 和 - 标记一级和二级标签</h2><p>语法如下：</p>
 <figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc">一级标题<br>=====<br><br>二级标题<br>-----<br></code></pre></td></tr></table></figure>
 <p>效果如下：</p>
-<p><img   class="lazyload" data-original="https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/markdown_1.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt=""></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_1.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="1"></p>
 <h2 id="使用-号标记"><a href="#使用-号标记" class="headerlink" title="使用#号标记"></a>使用#号标记</h2><p>语法如下：</p>
 <figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs clean"># 一级标题<br>## 二级标题<br>### 三级标题<br>#### 四级标题<br>##### 五级标题<br>###### 六级标题<br></code></pre></td></tr></table></figure>
 <blockquote>
@@ -203,22 +203,22 @@
 <h2 id="无序列表："><a href="#无序列表：" class="headerlink" title="无序列表："></a>无序列表：</h2><p>无序列表有三种写法，<code>+</code> 或<code>-</code>或<code>*</code>后加空格即可：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">+</span> 第一项<br><span class="hljs-bullet">*</span> 第一项<br><span class="hljs-bullet">-</span> 第一项<br></code></pre></td></tr></table></figure>
 <p>显示效果：</p>
-<p><img   class="lazyload" data-original="https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/markdown_2.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt=""></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_2.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="2"></p>
 <h2 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h2><p>有序列表使用数字和<code>.</code>再加上空格即可：</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-number">1.</span> 第一项<br><span class="hljs-number">2.</span> 第二项<br><span class="hljs-number">3.</span> 第三项<br></code></pre></td></tr></table></figure>
 <p>显示效果：</p>
-<p><img   class="lazyload" data-original="https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/markdown_3.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt=""></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_3.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="3"></p>
 <h2 id="列表嵌套"><a href="#列表嵌套" class="headerlink" title="列表嵌套"></a>列表嵌套</h2><p>列表嵌套需要在子列表选项前加四个空格：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">1.</span> 第一项：<br><span class="hljs-bullet">    -</span> 第一项的第一个元素<br><span class="hljs-bullet">    -</span> 第一项的第二个元素<br><span class="hljs-bullet">2.</span> 第二项：<br><span class="hljs-bullet">    -</span> 第二项的第一个元素<br><span class="hljs-bullet">    -</span> 第二项的第二个元素<br></code></pre></td></tr></table></figure>
 <p>显示效果：</p>
-<p><img   class="lazyload" data-original="https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/markdown_4.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt=""></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_4.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="4"></p>
 <blockquote>
 <p>Typora中，子列表选项前不加空格也可以。</p>
 </blockquote>
 <h1 id="插入区块和分隔线"><a href="#插入区块和分隔线" class="headerlink" title="插入区块和分隔线"></a>插入区块和分隔线</h1><h2 id="区块"><a href="#区块" class="headerlink" title="区块"></a>区块</h2><p>Markdown的区块引用是在段落开头使用<code>&gt;</code> 号和空格：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-quote">&gt; 区块引用</span><br></code></pre></td></tr></table></figure>
 <p>显示效果：</p>
-<p><img   class="lazyload" data-original="https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/markdown_5.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt=""></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_5.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="5"></p>
 <p>另外，区块引用也可以像列表一样嵌套，一个<code>&gt;</code> 表示第一层，两个<code>&gt;</code> 表示第二层，以此类推：</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs ruby">&gt; 第一层<br><span class="hljs-meta">&gt;&gt;</span> 第二层<br><span class="hljs-meta">&gt;&gt;</span>&gt; 第三层<br></code></pre></td></tr></table></figure>
 <p>区块中也可以使用列表，同样，列表中也可以使用区块。</p>
@@ -325,7 +325,7 @@
 <h2 id="插入流程图"><a href="#插入流程图" class="headerlink" title="插入流程图"></a>插入流程图</h2><p>Typora插入横向流程图：</p>
 <figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs coq">​```mermaid<br>graph LR<br>A[方形] --&gt;B(圆角)<br>    B --&gt; C&#123;条件a&#125;<br>    C --&gt;|<span class="hljs-type">a</span>=<span class="hljs-number">1</span>| <span class="hljs-type">D</span>[结果<span class="hljs-number">1</span>]<br>    C --&gt;|<span class="hljs-type">a</span>=<span class="hljs-number">2</span>| <span class="hljs-type">E</span>[结果<span class="hljs-number">2</span>]<br>    F[横向流程图]<br>​```<br></code></pre></td></tr></table></figure>
 <p>效果如下：</p>
-<p><img   class="lazyload" data-original="https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/markdown_6.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt=""></p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_6.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="6"></p>
 <blockquote>
 <p>更多类型的流程图、顺序图等可以参考：<a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/48b558e3035d9a7f38c09aeb.html">typora画流程图、时序图(顺序图)、甘特图</a></p>
 </blockquote>
@@ -340,10 +340,19 @@
       </section>
       <section class="extra">
         
+        <ul class="copyright">
+  
+  <li><strong>本文作者：</strong>Kangshitao</li>
+  <li><strong>本文链接：</strong><a href="http://kangshitao.github.io/2020/10/25/markdown/index.html">http://kangshitao.github.io/2020/10/25/markdown/index.html</a></li>
+  <li><strong>版权声明：</strong>本博客所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+      rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处</li>
+  
+</ul>
+        
         
         <section class="donate">
   <div class="qrcode">
-    <img   class="lazyload" data-original="/images/theme/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+    <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
   </div>
   <div class="icon">
     <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
@@ -357,7 +366,7 @@
         
 <nav class="nav">
   
-    <a href="/2020/10/25/BlogCreatProcess/"><i class="iconfont iconleft"></i>使用Hexo搭建博客过程</a>
+    <a href="/2020/10/25/BlogCreatProcess/"><i class="iconfont iconleft"></i>建立Hexo个人博客</a>
   
   
 </nav>
@@ -442,7 +451,17 @@
     </a>
     
   </div>
-  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  <div class="footer-copyright">
+    <p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p>
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">
+	  总浏览量：<span id="busuanzi_value_site_pv" style="font-size:12px;"></span> 次
+	</span>
+    <span id="busuanzi_container_site_uv" >
+	  总访客数：<span id="busuanzi_value_site_uv" style="font-size:12px;"></span>人
+	</span>
+  </div>
+
 </footer>
   
       <div class="fab fab-plus">

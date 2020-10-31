@@ -7,7 +7,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Live And Learn</title>
+  <title>博客 - Live And Learn</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google-site-verification" content="hYGeBDrUxqrEbiMSzoMK8p_p_-Njub7GwE33WsytCSo" />
@@ -16,7 +16,7 @@
   
   
   
-  <meta name="author" content="康仕涛"> 
+  <meta name="author" content="Kangshitao"> 
 
   
     <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
@@ -63,7 +63,7 @@
     var CONFIG = window.CONFIG || {};
     var ZHAOO = window.ZHAOO || {};
     CONFIG = {
-      isHome: true,
+      isHome: false,
       fancybox: true,
       pjax: false,
       lazyload: {
@@ -72,8 +72,8 @@
       },
       donate: {
         enable: true,
-        alipay: '/images/theme/alipay.jpg',
-        wechat: '/images/theme/wechat.jpg'
+        alipay: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg',
+        wechat: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/wechat.jpg'
       },
       motto: {
         api: '',
@@ -106,6 +106,14 @@
   <div class="loading"></div>
   
 
+
+<nav class="navbar">
+  <div class="left"></div>
+  <div class="center">分类</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
 
   <nav class="menu">
   <div class="menu-wrap">
@@ -144,75 +152,23 @@
   </div>
 </nav>
   <main id="main">
-  
-    <div class="preview">
-  <nav class="navbar j-navbar-menu">
-    <i class="iconfont iconmenu"></i>
-  </nav>
-  <div class="preview-image">
-    <h2 class="preview-motto" id="motto"></h2>
-    <!-- <span class="preview-cursor">|</span> -->
-    
-    <div class="preview-overlay">
-      <svg class="preview-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-        <defs>
-          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-        </defs>
-        <g class="preview-parallax">
-          <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
-          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
-          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
-          <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
-        </g>
-      </svg>
-    </div>
-    
-  </div>
-  <div class="preview-scroll">
-    <a href="#container" class="smooth-scroll"><i class="iconfont iconMouse"></i></a>
-  </div>
-</div>
-  
-  <div class="container" id="container">
-    <section class="row post">
-  
-  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <a href="/2020/10/25/markdown/" class="post-image">
-      <img   class="lazyload" data-original="/images/theme/post_image/5.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <h3 class="post-title"><a href="/2020/10/25/markdown/">Markdown基础教程</a></h3>
-      
-      
-      
-      <div class="post-excerpt">
-        <p class="substr-3">本文作为 Markdown基础语法教程，同时作为个人笔记 &amp;练习。使用 Typora工具，语法可能略有不同，以实际平台为准
-标题Markdown标题有两种格式
-使用 = 和 - 标记一级...</p>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 25, 2020</span
-          class="post-info-item">
+  <section class="archive">
+    <div class="archive-container">
+      <div class="archive-post">
+        <h3 class="archive-total"># 博客</h3>
         
-        <span class="post-info-item"><i class="iconfont iconeye"></i><span id="/2020/10/25/markdown/"
-            class="leancloud" data-flag-title="Markdown基础教程"></span></span>
         
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>2690</span>
+        
+        <h3 class="archive-year">2020</h3>
+        
+        <div class="archive-item">
+          <a class="archive-date" href="/2020/10/25/BlogCreatProcess/">10/25</a>
+          <a class="archive-title" href="/2020/10/25/BlogCreatProcess/">建立Hexo个人博客</a>
+        </div>
+        
       </div>
     </div>
-  </div>
-</div>
-  
-</section>
-    <section class="paginator">
-  
-  <a class="extend prev" rel="prev" href="/">&lt;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  
-</section>
-  </div>
+  </section>
 </main>
   <footer class="footer">
   <div class="footer-social">
@@ -254,7 +210,17 @@
     </a>
     
   </div>
-  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  <div class="footer-copyright">
+    <p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p>
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">
+	  总浏览量：<span id="busuanzi_value_site_pv" style="font-size:12px;"></span> 次
+	</span>
+    <span id="busuanzi_container_site_uv" >
+	  总访客数：<span id="busuanzi_value_site_uv" style="font-size:12px;"></span>人
+	</span>
+  </div>
+
 </footer>
   
       <div class="fab fab-plus">
