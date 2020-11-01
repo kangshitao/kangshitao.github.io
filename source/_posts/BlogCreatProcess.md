@@ -1,12 +1,13 @@
 ---
-title: 使用Hexo搭建博客过程
+title: 建立Hexo个人博客
+excerpt: 记录本博客的创建和功能完善的过程
 date: 2020-10-25 19:15:21
 mathjax: true
 tags: ['hexo','blog']
-categories: 教程
+categories: 博客
 ---
 
-> 使用hexo和github.pages搭建博客
+> 使用hexo和github.pages搭建博客，主题为[zhaoo](https://github.com/izhaoo/hexo-theme-zhaoo)
 
 # 准备工作
 
@@ -212,9 +213,24 @@ github头像->Settings->Developer settings->Generate new token
 
 ## 配置PicGo
 
-![](https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/blogcreatprocess_1.png)
+![1](https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/blogcreatprocess_1.png)
 
-然后点击确定，并设置为默认图床
+然后点击确定，并设置为默认图床。
+
+自定义域名可以按照图中的设置，也可以使用别的自定义域名。第二种域名方式就是使用[CDN](https://en.wikipedia.org/wiki/Content_delivery_network)加速的方法，CDN(Content Delivery Network)是指内容分发网络，也称为内容传送网络。
+
+[jsDelivr](https://www.jsdelivr.com/?docs=gh)是一种免费的CDN加速产品，可以加速Github和NPM的资源，其中使用jsDelivr的方法访问Github资源只需要将链接改为以下格式：
+
+```
+https://cdn.jsdelivr.net/gh/username/repository@version/file   
+# 其中的version指的是仓库版本，如果没有release版本，也可以使用分支名称
+```
+
+> jsDelivr的更多用法可以参考官方文档
+
+使用jsDelivr加速的自定义域名填写内容如下：
+
+![2](https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/blogcreatprocess_2.png)
 
 ## 上传图片
 
@@ -224,7 +240,7 @@ github头像->Settings->Developer settings->Generate new token
 
 其他参数设置可根据个人喜好进行设置：
 
-![](https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/blogcreatprocess_2.png)
+![3](https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/blogcreatprocess_3.png)
 
 ## 图片上传失败问题
 
@@ -240,15 +256,29 @@ github头像->Settings->Developer settings->Generate new token
 
 # 其他
 
+主题的其他设置可以参考[zhaoo主题文档](https://www.izhaoo.com/2020/05/05/hexo-theme-zhaoo-doc/)，这里只记录一部分
+
 ## 访问量统计
 
-使用[leancloud](https://leancloud.cn/)，前提是主题支持：
+使用[leancloud](https://leancloud.cn/)，这里的统计是每篇文章的访问量，zhaoo主题支持leancloud，只需要按要求填写即可：
 
 ```
 进入leancloud，创建应用(开发版)
 创建Class，ACL权限选择无限制
 打开设置-应用keys
 将AppID、AppKey、Rest API服务器地址复制到themes/_config.yml
+```
+
+对于网站的访问量统计，使用[卜蒜子](http://busuanzi.ibruce.info/)，在`themes\zhaoo\layout\_partial\footer.ejs`中合适的位置加入以下代码，其中的字体显示内容和风格可以自由设置：
+
+```
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"</script>
+<span id="busuanzi_container_site_pv">
+  总浏览量：<span id="busuanzi_value_site_pv" style="font-size:12px;"></span> 次
+</span>
+<span id="busuanzi_container_site_uv" >
+  总访客数：<span id="busuanzi_value_site_uv" style="font-size:12px;"></span>人
+</span>
 ```
 
 ## 评论功能
@@ -319,8 +349,6 @@ sitemap:
   path: sitemap.xml
 3、部署之后可以去google search console测试。
 ```
-
-
 
 
 

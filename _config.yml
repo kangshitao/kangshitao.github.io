@@ -7,7 +7,7 @@ title: Live And Learn
 subtitle: ''
 description: ''
 keywords:
-author: 康仕涛
+author: Kangshitao
 language: zh-CN
 timezone: ''
 
@@ -63,7 +63,7 @@ prismjs:
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
   path: ''
-  per_page: 3
+  per_page: 9
   order_by: -date
 
 # Category & Tag
@@ -116,6 +116,17 @@ githubEmojis:
   inject: true
   styles:
   customEmojis:
+
+#RSS插件
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date
 
 # 搜索插件
 search:

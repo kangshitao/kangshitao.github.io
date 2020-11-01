@@ -1,23 +1,22 @@
 ---
-title: conda常用命令
+title: Conda
+excerpt: Conda常用命令介绍
 mathjax: true
 categories:
   - 教程
 tags:
-  - conda
+  - Conda
 date: 2020-10-28 21:53:39
 ---
 
-
-
-> conda是一个开源的软件包管理系统和环境管理系统，用于安装多个版本的软件包及其依赖关系，并在它们之间轻松切换。
+> Conda是一个开源的软件包管理系统和环境管理系统，用于安装多个版本的软件包及其依赖关系，并在它们之间轻松切换。
 >
 > [Anaconda](https://www.anaconda.com/)是一个开源的Python发行版本，包含了conda、python等180多个科学包及其依赖项。
 >
 > [Miniconda](https://docs.conda.io/en/latest/miniconda.html)是最小的conda安装环境，只包含最基本的内容——python和conda，以及相关的必须依赖项。
 
 ---
-> **参考文档：官方[conda命令参考](https://docs.conda.io/projects/conda/en/latest/commands.html)**
+> **参考文档：官方[Conda命令参考](https://docs.conda.io/projects/conda/en/latest/commands.html)**
 
 # Conda 指令
 
@@ -31,7 +30,7 @@ conda -V 或 conda --version	# 查看conda版本
 conda env list 或 conda info --envs  # 查看存在哪些虚拟环境
 ```
 
-## 更新conda
+## 更新Conda
 
 ```
 conda update conda  # 检查并更新当前conda

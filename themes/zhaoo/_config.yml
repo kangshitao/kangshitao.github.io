@@ -22,7 +22,8 @@ favicon:
 preview:
   enable: true
   model: wave  #cloud
-  welcome_image: /images/theme/welcome-image.jpg
+  welcome_image: https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/welcome-image.jpg
+
   motto:
     default: 心之所向，素履以往
     color: '#000000'
@@ -67,18 +68,19 @@ gray:
 
 # Post image
 post_image:
-  random: local  #galleries
+  random: local  #从本地图库随机
   default: /images/theme/post_image/5.jpg
 
 # Donate
 donate:
   enable: true
-  alipay: /images/theme/alipay.jpg
-  wechat: /images/theme/wechat.jpg
+  alipay: https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg
+  wechat: https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/wechat.jpg
+
 
 # Copyright
 post_copyright:
-  enable: false
+  enable: true
 
 # Carrier（copy article with one click）
 carrier:

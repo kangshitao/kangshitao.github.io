@@ -1,5 +1,6 @@
 ---
 title: Git命令
+excerpt: Git基础教程和常用指令
 mathjax: true
 categories:
   - 教程

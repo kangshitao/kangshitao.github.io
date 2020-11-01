@@ -1,5 +1,6 @@
 ---
-title: Markdown基础教程
+title: Markdown
+excerpt: Markdown基本语法介绍
 date: 2020-10-25 16:19:14
 mathjax: true
 tags: Markdown
@@ -28,7 +29,7 @@ Markdown标题有两种格式
 
 效果如下：
 
-![](https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/markdown_1.png)
+![1](https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_1.png)
 
 ## 使用#号标记
 
@@ -90,7 +91,7 @@ Markdown支持无序列表和有序列表。
 
 显示效果：
 
-![](https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/markdown_2.png)
+![2](https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_2.png)
 
 ## 有序列表
 
@@ -104,7 +105,7 @@ Markdown支持无序列表和有序列表。
 
 显示效果：
 
-![](https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/markdown_3.png)
+![3](https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_3.png)
 
 ## 列表嵌套
 
@@ -121,7 +122,7 @@ Markdown支持无序列表和有序列表。
 
 显示效果：
 
-![](https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/markdown_4.png)
+![4](https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_4.png)
 > Typora中，子列表选项前不加空格也可以。
 
 # 插入区块和分隔线
@@ -136,7 +137,7 @@ Markdown的区块引用是在段落开头使用`>` 号和空格：
 
 显示效果：
 
-![](https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/markdown_5.png)
+![5](https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_5.png)
 
 另外，区块引用也可以像列表一样嵌套，一个`>` 表示第一层，两个`>` 表示第二层，以此类推：
 
@@ -346,7 +347,7 @@ A[方形] -->B(圆角)
 
 效果如下：
 
-![](https://raw.githubusercontent.com/kangshitao/BlogPicture/main/img/markdown_6.png)
+![6](https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_6.png)
 
 > 更多类型的流程图、顺序图等可以参考：[typora画流程图、时序图(顺序图)、甘特图](https://jingyan.baidu.com/article/48b558e3035d9a7f38c09aeb.html)
 
