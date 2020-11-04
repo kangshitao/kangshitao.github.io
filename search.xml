@@ -215,7 +215,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Conda</title>
+    <title>Conda基础命令</title>
     <url>/2020/10/28/conda/</url>
     <content><![CDATA[<blockquote>
 <p>Conda是一个开源的软件包管理系统和环境管理系统，用于安装多个版本的软件包及其依赖关系，并在它们之间轻松切换。</p>
@@ -249,7 +249,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Markdown</title>
+    <title>Markdown简单教程</title>
     <url>/2020/10/25/markdown/</url>
     <content><![CDATA[<p><em>本文作为 Markdown基础语法教程，同时作为个人笔记 &amp;练习。使用 Typora工具，语法可能略有不同，以实际平台为准</em></p>
 <h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><p>Markdown标题有两种格式</p>
