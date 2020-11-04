@@ -7,6 +7,7 @@ categories:
 tags:
   - Conda
 date: 2020-10-28 21:53:39
+keywords: conda,conda指令
 ---
 
 > Conda是一个开源的软件包管理系统和环境管理系统，用于安装多个版本的软件包及其依赖关系，并在它们之间轻松切换。

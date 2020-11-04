@@ -5,6 +5,8 @@ date: 2020-10-25 19:15:21
 mathjax: true
 tags: ['hexo','blog']
 categories: 博客
+keywords: hexo-blog,个人博客搭建，zhaoo
+top: 10
 ---
 
 > 使用hexo和github.pages搭建博客，主题为[zhaoo](https://github.com/izhaoo/hexo-theme-zhaoo)
@@ -197,6 +199,8 @@ hexo clean
 hexo g
 hexo s
 ```
+
+> 弄完才发现，主题作者添加了公式渲染的说明，方法简单快捷，可以[参考](https://www.izhaoo.com/2020/05/05/hexo-theme-zhaoo-doc/#%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F)
 
 # 图床
 

@@ -5,8 +5,8 @@
 # Site
 title: Live And Learn
 subtitle: ''
-description: ''
-keywords:
+description: '记录学习过程'
+keywords: hexo-blog,live and learn,kangshitao
 author: Kangshitao
 language: zh-CN
 timezone: ''
@@ -138,3 +138,8 @@ search:
 # 站点地图
 sitemap:
   path: sitemap.xml
+  
+# mathjax公式插件
+mathjax:
+  inlineQuote: ['']
+  blockQuote: ['MATHJAX-SSR-0']
