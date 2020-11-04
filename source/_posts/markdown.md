@@ -1,5 +1,5 @@
 ---
-title: Markdown
+title: Markdown简单教程
 excerpt: Markdown基本语法介绍
 date: 2020-10-25 16:19:14
 mathjax: true

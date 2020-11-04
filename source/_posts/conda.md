@@ -1,5 +1,5 @@
 ---
-title: Conda
+title: Conda基础命令
 excerpt: Conda常用命令介绍
 mathjax: true
 categories:
