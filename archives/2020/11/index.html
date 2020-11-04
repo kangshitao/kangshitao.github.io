@@ -336,6 +336,11 @@
     }
 
     $(function () {
+	  {% if page.layout === 'post' %}
+        const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+        if (localhost.test(document.URL)) {
+          return;
+        }
       const Counter = AV.Object.extend("Counter");
       addCount(Counter);
       showCount(Counter);
