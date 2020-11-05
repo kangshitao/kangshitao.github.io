@@ -167,7 +167,7 @@ Git是一个开源的分布式版本控制系统，用于在软件开...">
 <article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_6.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">Git命令</h1>
     <div class="head-info">
@@ -177,7 +177,7 @@ Git是一个开源的分布式版本控制系统，用于在软件开...">
       <span class="post-info-item"><i class="iconfont iconeye"></i><span id="/2020/10/31/git/"
           class="leancloud" data-flag-title="Git命令"></span></span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>4628</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>4631</span>
     </div>
   </div>
 </section>
@@ -197,7 +197,7 @@ Git是一个开源的分布式版本控制系统，用于在软件开...">
 </ul>
 </blockquote>
 <h1 id="基础指令"><a href="#基础指令" class="headerlink" title="基础指令"></a>基础指令</h1><p>在相关文件目录下，右键打开Git，其中Git Bash Here为命令行窗口，Git GUI Here为GUI界面，这里主要是针对命令行窗口。</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> mkdir learngit	<span class="hljs-comment"># 创建learngit文件夹     $ torch xx.txt  表示创建xx.txt文件</span><br><span class="hljs-variable">$</span> <span class="hljs-built_in">cd</span> learngit	<span class="hljs-comment"># 进入文件夹</span><br><span class="hljs-variable">$</span> git init    <span class="hljs-comment"># 将当前文件夹初始化为Git仓库</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> mkdir learngit	<span class="hljs-comment"># 创建learngit文件夹     </span><br><span class="hljs-variable">$</span> torch xx.txt  表示创建xx.txt文件<br><span class="hljs-variable">$</span> <span class="hljs-built_in">cd</span> learngit	<span class="hljs-comment"># 进入文件夹</span><br><span class="hljs-variable">$</span> git init    <span class="hljs-comment"># 将当前文件夹初始化为Git仓库</span><br></code></pre></td></tr></table></figure>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> git add &lt;file&gt;  <span class="hljs-comment">#　添加特定文件</span><br><span class="hljs-variable">$</span> git add .     <span class="hljs-comment"># 添加所有改动的文件</span><br><span class="hljs-variable">$</span> git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&#x27;提交说明&#x27;</span>	<span class="hljs-comment"># 提交当前改动，提交说明要写</span><br><span class="hljs-variable">$</span> git push origin master  <span class="hljs-comment"># 推送到远程库的origin master分支，默认为origin master</span><br><span class="hljs-variable">$</span> git status   <span class="hljs-comment"># 查看当前状态，比如有哪些未提交文件等</span><br><span class="hljs-variable">$</span> git <span class="hljs-built_in">diff</span> 		<span class="hljs-comment"># 查看具体修改了什么内容，即查看working tree和index的区别</span><br><span class="hljs-variable">$</span> git <span class="hljs-built_in">diff</span> -<span class="hljs-literal">-cached</span>    <span class="hljs-comment"># 查看暂存区和最后一次commit的差异</span><br><span class="hljs-variable">$</span> git <span class="hljs-built_in">diff</span> HEAD		<span class="hljs-comment"># 查看工作区和最后一次commit的差异</span><br></code></pre></td></tr></table></figure>
 <h1 id="工作区和暂存区"><a href="#工作区和暂存区" class="headerlink" title="工作区和暂存区"></a>工作区和暂存区</h1><ul>
 <li><strong>工作区</strong>(working directory)是本地电脑看到的一个目录，比如learngit文件夹，或者说是项目文件夹。</li>
@@ -253,8 +253,10 @@ Git是一个开源的分布式版本控制系统，用于在软件开...">
 <li><p>用<code>$ git push origin &lt;branch-name&gt;</code>推送自己的修改</p>
 </li>
 <li><p>如果推送失败，则因为远程分支比自己的分支更新，需要使用<code>$ git pull</code>命令合并，此命令会自动合并，如果pull请求之后提示‘no stracking information’，说明本地分支和远程分支的链接关系没有创建，使用以下命令：</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">$ git <span class="hljs-keyword">branch </span>--set-upstream-to=<span class="hljs-keyword">origin/dev </span>&lt;本地<span class="hljs-keyword">branch&gt;</span><br><span class="hljs-keyword"># </span>设置本地分支和远程<span class="hljs-keyword">origin/dev分支的链接</span><br></code></pre></td></tr></table></figure>
 </li>
+</ul>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">$ git <span class="hljs-keyword">branch </span>--set-upstream-to=<span class="hljs-keyword">origin/dev </span>&lt;本地<span class="hljs-keyword">branch&gt;</span><br><span class="hljs-keyword"># </span>设置本地分支和远程<span class="hljs-keyword">origin/dev分支的链接</span><br></code></pre></td></tr></table></figure>
+<ul>
 <li><p>如果合并有冲突，则需要解决冲突，然后提交，push</p>
 </li>
 <li><p>如果没有冲突或者解决掉冲突后，则使用<code>$ git push origin &lt;branch name&gt;</code>推送到远程指定分支</p>

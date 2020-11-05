@@ -1133,7 +1133,7 @@ body ul {
 }
 .post-widget {
   float: right;
-  width: 15%;
+  width: 20%;
   padding-left: 10px;
   min-hidden: 1px;
 }
@@ -1150,7 +1150,7 @@ body ul {
   padding-left: 20px;
 }
 .article {
-  width: 85%;
+  width: 80%;
 }
 .article .wrap {
   margin: 0 auto;
