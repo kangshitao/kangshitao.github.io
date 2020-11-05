@@ -28,7 +28,8 @@ keywords: Git,git教程,版本控制系统
 在相关文件目录下，右键打开Git，其中Git Bash Here为命令行窗口，Git GUI Here为GUI界面，这里主要是针对命令行窗口。
 
 ```
-$ mkdir learngit	# 创建learngit文件夹     $ torch xx.txt  表示创建xx.txt文件
+$ mkdir learngit	# 创建learngit文件夹     
+$ torch xx.txt  表示创建xx.txt文件
 $ cd learngit	# 进入文件夹
 $ git init    # 将当前文件夹初始化为Git仓库
 ```
@@ -174,10 +175,10 @@ $ git branch -D <branch-name>   # 强行删除一个指定的未merge的分支
 
 - 如果推送失败，则因为远程分支比自己的分支更新，需要使用`$ git pull`命令合并，此命令会自动合并，如果pull请求之后提示‘no stracking information’，说明本地分支和远程分支的链接关系没有创建，使用以下命令：
 
-  ```
-  $ git branch --set-upstream-to=origin/dev <本地branch>
-  # 设置本地分支和远程origin/dev分支的链接
-  ```
+```
+$ git branch --set-upstream-to=origin/dev <本地branch>
+# 设置本地分支和远程origin/dev分支的链接
+```
 
 - 如果合并有冲突，则需要解决冲突，然后提交，push
 
