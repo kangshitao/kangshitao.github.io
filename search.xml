@@ -547,7 +547,7 @@
 </g>
 </svg>是图中的边集合，包括<strong>satellite连接</strong>(图2中实线)和<strong>star连接</strong>(图2中虚线)两种有向边：</p>
 <ul>
-<li><strong>Satellite connections</strong>：satellite连接用来传递session中的相邻item间的信息。论文中使用GGNN为例，实现相邻节点之间的信息传播，并且按照satellite边构建输入和输出矩阵，例如对于session <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="26.396ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 11364.8 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<li><p><strong>Satellite connections</strong>：satellite连接用来传递session中的相邻item间的信息。论文中使用GGNN为例，实现相邻节点之间的信息传播，并且按照satellite边构建输入和输出矩阵，例如对于session <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="26.396ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 11364.8 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">S=\{x_2,x_3,x_5,x_4,x_5,x_7\}</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJMATHI-53" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path>
@@ -597,9 +597,15 @@
 </g>
  <use xlink:href="#E1-MJMAIN-7D" x="10864" y="0"></use>
 </g>
-</svg>，构建的输入输出矩阵如图3：</li>
+</svg>，构建的输入输出矩阵如图3：</p>
+<div align="center">
+    <img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_2.png" style="width:50%; height:50%">
+</div>
+
+
+
+</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_2.png" alt="2" style="zoom:50%;"></p>
 <ul>
 <li><strong>Star connections</strong>：受<a href="https://arxiv.org/abs/1902.09113">Star-Transformer</a>模型启发，在图中添加Star节点，构建星型图。star节点和satellite节点之间的边就是Star连接，如图2，Star连接是双向边，分别代表两种信息传递方向，更新两种节点。一方面，以star节点作为中间节点，非相邻的item之间能够以two-hop的方式进行信息传播，来更新satellite节点。另一方面，另一个方向的边能够用来考虑所有satellite节点的信息，生成准确的star节点表示。</li>
 </ul>
@@ -1197,7 +1203,10 @@ a_i^l = Concat(\mathbf{A}_i^I([\mathbf{x}_1^{l-1},\mathbf{x}_2^{l-1},\ldots,\mat
  <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-73" x="859" y="-213"></use>
 </g>
 </svg>)​。将以上步骤用算法流程表示：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_3.jpg" alt="3"></p>
+<div align="center">
+    <img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_3.jpg">
+</div>
+
 <h2 id="Session表示和预测"><a href="#Session表示和预测" class="headerlink" title="Session表示和预测"></a>Session表示和预测</h2><p>将<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="10.54ex" height="2.676ex" style="vertical-align: -0.338ex;" viewBox="0 -1006.6 4538 1152.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\mathbf{h}^l \in \mathbb{R}^{d\times m}</title>
 <defs aria-hidden="true">
@@ -1507,14 +1516,29 @@ L(\hat{\mathbf{y}})=-\sum\limits_{i=1}^{|V|} \mathbf{y}_i \log(\hat{\mathbf{y}}_
 </svg>个item是给定session的目标item。</p>
 <h1 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h1><p>实验数据和处理方式同SRGNN、NARM等模型，并且同样使用了数据增强的方法，具体细节见原文。</p>
 <p>实验数据：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_4.png" alt="4"></p>
+<div align="center">
+    <img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_4.png">
+</div>
+
 <p>评估指标使用Precision和MRR。</p>
-<h1 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h1><h2 id="与SOTA模型对比"><a href="#与SOTA模型对比" class="headerlink" title="与SOTA模型对比"></a>与SOTA模型对比</h2><p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_5.png" alt="5"></p>
+<h1 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h1><h2 id="与SOTA模型对比"><a href="#与SOTA模型对比" class="headerlink" title="与SOTA模型对比"></a>与SOTA模型对比</h2><div align="center">
+    <img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_5.png">
+</div>
+
 <h2 id="SGNN网络的作用"><a href="#SGNN网络的作用" class="headerlink" title="SGNN网络的作用"></a>SGNN网络的作用</h2><p>分别用自注意力网络(SAT)和门控图神经网络(GGNN)代替SGNN：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_6.png" alt="6"></p>
+<div align="center">
+    <img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_6.png">
+</div>
+
 <h2 id="HN网络层的作用"><a href="#HN网络层的作用" class="headerlink" title="HN网络层的作用"></a>HN网络层的作用</h2><p>不同层数的HN网络的作用</p>
-<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_7.png" alt="7"></p>
-<h2 id="Session长度的影响"><a href="#Session长度的影响" class="headerlink" title="Session长度的影响"></a>Session长度的影响</h2><p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_8.png" alt="8"></p>
+<div align="center">
+    <img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_7.png">
+</div>
+
+<h2 id="Session长度的影响"><a href="#Session长度的影响" class="headerlink" title="Session长度的影响"></a>Session长度的影响</h2><div align="center">
+    <img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_8.png">
+</div>
+
 <h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>本文提出了SGNN-HN模型，一方面解决了一般GNN模型不能考虑高阶信息转换的问题，另一方面解决了GNN模型容易过拟合的问题。</p>
 ]]></content>
       <categories>
