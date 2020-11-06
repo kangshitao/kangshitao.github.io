@@ -64,7 +64,11 @@ ${\Large\varepsilon}_s$是图中的边集合，包括**satellite连接**(图2中
 
 - **Satellite connections**：satellite连接用来传递session中的相邻item间的信息。论文中使用GGNN为例，实现相邻节点之间的信息传播，并且按照satellite边构建输入和输出矩阵，例如对于session $S=\{x_2,x_3,x_5,x_4,x_5,x_7\}$，构建的输入输出矩阵如图3：
 
-<img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_2.png" alt="2" style="zoom:50%;" />
+  <div align='center'>
+      <img src='https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_2.png' style='width:50%; height:50%'/>
+  </div>
+
+  
 
 - **Star connections**：受[Star-Transformer](https://arxiv.org/abs/1902.09113)模型启发，在图中添加Star节点，构建星型图。star节点和satellite节点之间的边就是Star连接，如图2，Star连接是双向边，分别代表两种信息传递方向，更新两种节点。一方面，以star节点作为中间节点，非相邻的item之间能够以two-hop的方式进行信息传播，来更新satellite节点。另一方面，另一个方向的边能够用来考虑所有satellite节点的信息，生成准确的star节点表示。
 
@@ -159,7 +163,9 @@ $\mathbf{W}_g \in \mathbb{R}^{d\times2d}$。
 
 HN网络处理之后，得到satellite节点和star节点的最终表示$\mathbf{h}^f$和$\mathbf{x}_s^L$(简写为$\mathbf{x}_s$)​。将以上步骤用算法流程表示：
 
-![3](https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_3.jpg)
+<div align='center'>
+    <img src='https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_3.jpg'/>
+</div>
 
 ##  Session表示和预测
 
@@ -209,7 +215,9 @@ $\mathbf{y}_i \in \mathbf{y}$，$\mathbf{y}$是one-hot向量，$\mathbf{y}_i=1$�
 
 实验数据：
 
-![4](https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_4.png)
+<div align='center'>
+    <img src='https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_4.png'/>
+</div>
 
 评估指标使用Precision和MRR。
 
@@ -217,23 +225,31 @@ $\mathbf{y}_i \in \mathbf{y}$，$\mathbf{y}$是one-hot向量，$\mathbf{y}_i=1$�
 
 ## 与SOTA模型对比
 
-![5](https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_5.png)
+<div align='center'>
+    <img src='https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_5.png'/>
+</div>
 
 ## SGNN网络的作用
 
 分别用自注意力网络(SAT)和门控图神经网络(GGNN)代替SGNN：
 
-![6](https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_6.png)
+<div align='center'>
+    <img src='https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_6.png'/>
+</div>
 
 ## HN网络层的作用
 
 不同层数的HN网络的作用
 
-![7](https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_7.png)
+<div align='center'>
+    <img src='https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_7.png'/>
+</div>
 
 ## Session长度的影响
 
-![8](https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_8.png)
+<div align='center'>
+    <img src='https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_8.png'/>
+</div>
 
 # 结论
 
