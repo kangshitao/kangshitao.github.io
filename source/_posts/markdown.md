@@ -318,7 +318,7 @@ Markdown支持部分html标签，比如：`<kbd>`、`<b>`、`<i>`、`<em>`、`<s
 
 使用两个美元符号`$$`将TeX或LaTeX格式的数字公式包裹，即可插入公式：
 
-> 由于渲染器的问题，两个花括号中间必须要有个空格
+> 更多Markdown公式表示方法参考：[Cmd Markdown公式指导手册](https://ericp.cn/cmd)
 
 ```
 $

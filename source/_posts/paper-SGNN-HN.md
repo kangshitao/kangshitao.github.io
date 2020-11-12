@@ -7,6 +7,7 @@ tags:
   - SBRS
   - paper
   - GNN
+  - 深度学习
 keywords: 会话推荐,SGNN-HN,GNN,star graph neural networks,session
 date: 2020-11-05 20:19:11
 ---
@@ -69,7 +70,6 @@ ${\Large\varepsilon}_s$是图中的边集合，包括**satellite连接**(图2中
   </div>
 
   
-
 - **Star connections**：受[Star-Transformer](https://arxiv.org/abs/1902.09113)模型启发，在图中添加Star节点，构建星型图。star节点和satellite节点之间的边就是Star连接，如图2，Star连接是双向边，分别代表两种信息传递方向，更新两种节点。一方面，以star节点作为中间节点，非相邻的item之间能够以two-hop的方式进行信息传播，来更新satellite节点。另一方面，另一个方向的边能够用来考虑所有satellite节点的信息，生成准确的star节点表示。
 
 本文模型使用门控网络控制分别从邻居节点和star节点获取信息量的多少。
@@ -239,12 +239,11 @@ $\mathbf{y}_i \in \mathbf{y}$，$\mathbf{y}$是one-hot向量，$\mathbf{y}_i=1$�
 
 ## HN网络层的作用
 
-不同层数的HN网络的作用
+HN网络对于不同数量GNN层的作用：
 
 <div align='center'>
     <img src='https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_7.png'/>
 </div>
-
 ## Session长度的影响
 
 <div align='center'>
