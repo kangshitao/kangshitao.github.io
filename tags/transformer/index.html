@@ -7,7 +7,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Live And Learn</title>
+  <title>transformer - Live And Learn</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google-site-verification" content="hYGeBDrUxqrEbiMSzoMK8p_p_-Njub7GwE33WsytCSo" />
@@ -65,7 +65,7 @@
     var CONFIG = window.CONFIG || {};
     var ZHAOO = window.ZHAOO || {};
     CONFIG = {
-      isHome: true,
+      isHome: false,
       fancybox: true,
       pjax: false,
       lazyload: {
@@ -109,6 +109,14 @@
   
 
 
+<nav class="navbar">
+  <div class="left"></div>
+  <div class="center">标签</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
   <nav class="menu">
   <div class="menu-wrap">
     <div class="menu-close">
@@ -146,212 +154,23 @@
   </div>
 </nav>
   <main id="main">
-  
-    <div class="preview">
-  <nav class="navbar j-navbar-menu">
-    <i class="iconfont iconmenu"></i>
-  </nav>
-  <div class="preview-image">
-    <h2 class="preview-motto" id="motto"></h2>
-    <!-- <span class="preview-cursor">|</span> -->
-    
-    <div class="preview-overlay">
-      <svg class="preview-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-        <defs>
-          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-        </defs>
-        <g class="preview-parallax">
-          <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
-          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
-          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
-          <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
-        </g>
-      </svg>
-    </div>
-    
-  </div>
-  <div class="preview-scroll">
-    <a href="#container" class="smooth-scroll"><i class="iconfont iconMouse"></i></a>
-  </div>
-</div>
-  
-  <div class="container" id="container">
-    <section class="row post">
-  
-  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <div class="post-top">
-      <div>置顶</div>
-    </div>
-    
-    <a href="/2020/10/25/BlogCreatProcess/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <h3 class="post-title"><a href="/2020/10/25/BlogCreatProcess/">建立Hexo个人博客</a></h3>
-      
-      
-      
-      <div class="post-excerpt">
-        <p class="substr-3">记录本博客的创建和功能完善的过程</p>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 25, 2020</span
-          class="post-info-item">
+  <section class="archive">
+    <div class="archive-container">
+      <div class="archive-post">
+        <h2 class="archive-total"># transformer</h2>
         
-        <span class="post-info-item"><i class="iconfont iconeye"></i><span id="/2020/10/25/BlogCreatProcess/"
-            class="leancloud" data-flag-title="建立Hexo个人博客"></span></span>
         
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>5198</span>
+        
+        <h3 class="archive-year">2020</h3>
+        
+        <div class="archive-item">
+          <a class="archive-date" href="/2020/11/15/transformer/">11/15</a>
+          <a class="archive-title" href="/2020/11/15/transformer/">自注意力和Transformer</a>
+        </div>
+        
       </div>
     </div>
-  </div>
-</div>
-  
-  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <a href="/2020/11/15/transformer/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_15.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <h3 class="post-title"><a href="/2020/11/15/transformer/">自注意力和Transformer</a></h3>
-      
-      
-      
-      <div class="post-excerpt">
-        <p class="substr-3">自注意力机制和Transformer详解</p>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>十一月 15, 2020</span
-          class="post-info-item">
-        
-        <span class="post-info-item"><i class="iconfont iconeye"></i><span id="/2020/11/15/transformer/"
-            class="leancloud" data-flag-title="自注意力和Transformer"></span></span>
-        
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>359</span>
-      </div>
-    </div>
-  </div>
-</div>
-  
-  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <a href="/2020/11/12/attention/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_7.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <h3 class="post-title"><a href="/2020/11/12/attention/">Attention总结</a></h3>
-      
-      
-      
-      <div class="post-excerpt">
-        <p class="substr-3">注意力机制总结</p>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>十一月 12, 2020</span
-          class="post-info-item">
-        
-        <span class="post-info-item"><i class="iconfont iconeye"></i><span id="/2020/11/12/attention/"
-            class="leancloud" data-flag-title="Attention总结"></span></span>
-        
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>4683</span>
-      </div>
-    </div>
-  </div>
-</div>
-  
-  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <a href="/2020/11/05/paper-SGNN-HN/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_1.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <h3 class="post-title"><a href="/2020/11/05/paper-SGNN-HN/">论文阅读-Star Graph Neural Networks for Session-based Recommendation</a></h3>
-      
-      
-      
-      <div class="post-excerpt">
-        <p class="substr-3">2020,CIKM,使用星型GNN的基于会话的推荐系统</p>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>十一月 05, 2020</span
-          class="post-info-item">
-        
-        <span class="post-info-item"><i class="iconfont iconeye"></i><span id="/2020/11/05/paper-SGNN-HN/"
-            class="leancloud" data-flag-title="论文阅读-Star Graph Neural Networks for Session-based Recommendation"></span></span>
-        
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>8587</span>
-      </div>
-    </div>
-  </div>
-</div>
-  
-  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <a href="/2020/11/01/RegularExpression/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_10.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <h3 class="post-title"><a href="/2020/11/01/RegularExpression/">Python正则表达式</a></h3>
-      
-      
-      
-      <div class="post-excerpt">
-        <p class="substr-3">正则表达式的基础语法以及Python中re库的使用方法介绍</p>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>十一月 01, 2020</span
-          class="post-info-item">
-        
-        <span class="post-info-item"><i class="iconfont iconeye"></i><span id="/2020/11/01/RegularExpression/"
-            class="leancloud" data-flag-title="Python正则表达式"></span></span>
-        
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>3111</span>
-      </div>
-    </div>
-  </div>
-</div>
-  
-  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <a href="/2020/10/31/git/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <h3 class="post-title"><a href="/2020/10/31/git/">Git命令</a></h3>
-      
-      
-      
-      <div class="post-excerpt">
-        <p class="substr-3">Git基础教程和常用指令</p>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 31, 2020</span
-          class="post-info-item">
-        
-        <span class="post-info-item"><i class="iconfont iconeye"></i><span id="/2020/10/31/git/"
-            class="leancloud" data-flag-title="Git命令"></span></span>
-        
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>4631</span>
-      </div>
-    </div>
-  </div>
-</div>
-  
-</section>
-    <section class="paginator">
-  
-  <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">&gt;</a>
-  
-</section>
-  </div>
+  </section>
 </main>
   <footer class="footer">
   <div class="footer-social">
