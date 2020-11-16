@@ -5,6 +5,7 @@
     <url>/2020/10/25/BlogCreatProcess/</url>
     <content><![CDATA[<blockquote>
 <p>使用hexo和github.pages搭建博客，主题为<a href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p>
+<p>由于不同主题的配置不同，所以配置方式可能有所不同，建议先阅读各自主题的使用说明文档。zhaoo主题一直在更新，功能也在完善，一些配置方法也变得更简单了，本文的一些早期的配置方法就没必要了，但是作为记录，方法还是保留了下来。关于哪些需要自己添加，哪些仅需要修改config文件，请参考zhaoo主题作者<a href="https://www.izhaoo.com/">博客</a></p>
 </blockquote>
 <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>github创建名为username.github.io的repository</p>
 <p>安装git</p>
@@ -144,9 +145,17 @@
 </ul>
 <p>另外，有条件的可以使用全局代理<span class="github-emoji"><span>✈</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2708.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
 <h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>主题的其他设置可以参考<a href="https://www.izhaoo.com/2020/05/05/hexo-theme-zhaoo-doc/">zhaoo主题文档</a>，这里只记录一部分</p>
-<h2 id="访问量统计"><a href="#访问量统计" class="headerlink" title="访问量统计"></a>访问量统计</h2><p>使用<a href="https://leancloud.cn/">leancloud</a>，这里的统计是每篇文章的访问量，zhaoo主题支持leancloud，只需要按要求填写即可：</p>
+<h2 id="访问量统计"><a href="#访问量统计" class="headerlink" title="访问量统计"></a>访问量统计</h2><ol>
+<li>使用<a href="https://leancloud.cn/">leancloud</a>，这里的统计是每篇文章的访问量，zhaoo主题支持leancloud，只需要按要求填写即可：</li>
+</ol>
 <figure class="highlight monkey"><table><tbody><tr><td class="code"><pre><code class="hljs monkey">进入leancloud，创建应用(开发版)<br>创建<span class="hljs-class"><span class="hljs-keyword">Class</span>，<span class="hljs-title">ACL</span>权限选择无限制</span><br>打开设置-应用keys<br>将AppID、AppKey、Rest API服务器地址复制到themes/_config.yml<br></code></pre></td></tr></tbody></table></figure>
-<p>对于网站的访问量统计，使用<a href="http://busuanzi.ibruce.info/">卜蒜子</a>，在<code>themes\zhaoo\layout\_partial\footer.ejs</code>中合适的位置加入以下代码，其中的字体显示内容和风格可以自由设置：</p>
+<blockquote>
+<p>如果想设置本地访问不增加访问次数，则在<code>themes\zhaoo\layout\_partial\common\visitors.ejs</code>路径下，将<code>function</code>函数内容修改为：</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript">$(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{<br>	  <span class="hljs-keyword">const</span> Counter = AV.Object.extend(<span class="hljs-string">"Counter"</span>);<br>	  showCount(Counter);<br>      <span class="hljs-keyword">const</span> localhost = <span class="hljs-regexp">/http\:\/\/localhost|http\:\/\/127.0.0.1|http\:\/\/0.0.0.0/</span>;<br>      <span class="hljs-keyword">if</span> (localhost.test(<span class="hljs-built_in">document</span>.URL)) {<br>	    <span class="hljs-keyword">return</span>;<br>	  }<br>	  addCount(Counter);<br>    }<br></code></pre></td></tr></tbody></table></figure>
+</blockquote>
+<ol>
+<li>对于网站的访问量统计，使用<a href="http://busuanzi.ibruce.info/">卜蒜子</a>，在<code>themes\zhaoo\layout\_partial\footer.ejs</code>中合适的位置加入以下代码，其中的字体显示内容和风格可以自由设置：</li>
+</ol>
 <figure class="highlight django"><table><tbody><tr><td class="code"><pre><code class="hljs django"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">async</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"</span>&lt;/<span class="hljs-attr">script</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"busuanzi_container_site_pv"</span>&gt;</span></span><br><span class="xml">  总浏览量：<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"busuanzi_value_site_pv"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"font-size:12px;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> 次</span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"busuanzi_container_site_uv"</span> &gt;</span></span><br><span class="xml">  总访客数：<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"busuanzi_value_site_uv"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"font-size:12px;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>人</span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br></code></pre></td></tr></tbody></table></figure>
 <h2 id="评论功能"><a href="#评论功能" class="headerlink" title="评论功能"></a>评论功能</h2><p>使用<a href="https://valine.js.org/">Valine</a>，前提是主题支持：</p>
 <figure class="highlight monkey"><table><tbody><tr><td class="code"><pre><code class="hljs monkey">leancloud,创建应用(开发版)<br>创建<span class="hljs-class"><span class="hljs-keyword">Class</span>，配置默认</span><br>打开设置-应用keys<br>将AppID、AppKey复制到themes/_config.yml<br></code></pre></td></tr></tbody></table></figure>
