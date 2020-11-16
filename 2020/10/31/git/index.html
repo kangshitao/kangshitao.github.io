@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" color-mode=light>
+<html lang="zh-CN">
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -10,6 +10,7 @@
   <title>Git命令 - Live And Learn</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google-site-verification" content="hYGeBDrUxqrEbiMSzoMK8p_p_-Njub7GwE33WsytCSo" />
   <meta name="google" content="notranslate" />
 
   
@@ -44,30 +45,22 @@ Git是一个开源的分布式版本控制系统，用于在软件开...">
 
   
   
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_s6x2xcokxrl.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_h1619vhl1nr.css">
 
   
 
   
   
   
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
 
   
 
   
   
   
-  
-  
-<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
 
-  
-  
-  
-<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
-
-  
   
 
   <script>
@@ -79,43 +72,28 @@ Git是一个开源的分布式版本控制系统，用于在软件开...">
       pjax: false,
       lazyload: {
         enable: true,
-        only_post: 'false',
-        loading: '/images/theme/loading.gif'
+        loadingImage: '',
       },
       donate: {
         enable: true,
         alipay: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg',
         wechat: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/wechat.jpg'
       },
+      motto: {
+        api: '',
+        default: '心之所向，素履以往'
+      },
       galleries: {
         enable: true
       },
       fab: {
         enable: true,
-        always_show: false
+        alwaysShow: false
       },
       carrier: {
         enable: true
       },
       daovoice: {
-        enable: false
-      },
-      preview: {
-        background: {
-          default: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/welcome-image.jpg',
-          api: ''
-        },
-        motto: {
-          default: '心之所向，素履以往',
-          api: 'https://v1.hitokoto.cn/?encode=text&c=d'
-        },
-      },
-      qrcode: {
-        enable: true,
-        type: 'url',
-        image: '',
-      },
-      toc: {
         enable: true
       }
     }
@@ -134,21 +112,11 @@ Git是一个开源的分布式版本控制系统，用于在软件开...">
 
 
 <nav class="navbar">
-  <div class="left">
-    
-      <i class="iconfont iconqrcode j-navbar-qrcode"></i>
-    
-    
-      <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
-    
-  </div>
+  <div class="left"></div>
   <div class="center">Git命令</div>
   <div class="right">
     <i class="iconfont iconmenu j-navbar-menu"></i>
   </div>
-  
-    <div id="qrcode-navbar"></div>
-  
 </nav>
 
   <nav class="menu">
@@ -188,13 +156,18 @@ Git是一个开源的分布式版本控制系统，用于在软件开...">
   </div>
 </nav>
   <main id="main">
-  <div class="article-wrap">
-    <div class="row container">
-      <div class="col-xl-3"></div>
-      <div class="col-xl-6"><article class="article">
+  <div class="container" id="container">
+    <aside class="post-widget">
+  <nav id="toc" class="toc-article fixed">
+	<strong class="toc-title">文章目录</strong>
+	  <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4"><span class="post-toc-text">基础指令</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E6%9A%82%E5%AD%98%E5%8C%BA"><span class="post-toc-text">工作区和暂存区</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80"><span class="post-toc-text">版本回退</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E7%AE%A1%E7%90%86%E4%BF%AE%E6%94%B9"><span class="post-toc-text">管理修改</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E6%92%A4%E9%94%80%E4%BF%AE%E6%94%B9"><span class="post-toc-text">撤销修改</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6"><span class="post-toc-text">删除文件</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E6%B7%BB%E5%8A%A0%E8%BF%9C%E7%A8%8B%E5%BA%93"><span class="post-toc-text">添加远程库</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E4%BB%8E%E8%BF%9C%E7%A8%8B%E5%BA%93%E5%85%8B%E9%9A%86"><span class="post-toc-text">从远程库克隆</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86"><span class="post-toc-text">分支管理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%88%86%E6%94%AF%E5%90%88%E5%B9%B6"><span class="post-toc-text">创建与分支合并</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86%E7%AD%96%E7%95%A5"><span class="post-toc-text">分支管理策略</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#bug%E5%88%86%E6%94%AF"><span class="post-toc-text">bug分支</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Feature%E5%88%86%E6%94%AF"><span class="post-toc-text">Feature分支</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%A4%9A%E4%BA%BA%E5%8D%8F%E4%BD%9C"><span class="post-toc-text">多人协作</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Rebase"><span class="post-toc-text">Rebase</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86"><span class="post-toc-text">标签管理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%88%9B%E5%BB%BA%E6%A0%87%E7%AD%BE"><span class="post-toc-text">创建标签</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%93%8D%E4%BD%9C%E6%A0%87%E7%AD%BE"><span class="post-toc-text">操作标签</span></a></li></ol></li></ol>
+	</nav>
+</aside>
+
+<article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_11.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">Git命令</h1>
     <div class="head-info">
@@ -204,7 +177,7 @@ Git是一个开源的分布式版本控制系统，用于在软件开...">
       <span class="post-info-item"><i class="iconfont iconeye"></i><span id="/2020/10/31/git/"
           class="leancloud" data-flag-title="Git命令"></span></span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>4631</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>4607</span>
     </div>
   </div>
 </section>
@@ -231,22 +204,22 @@ Git是一个开源的分布式版本控制系统，用于在软件开...">
 <li>工作区中有.git隐藏文件夹，为Git的版本库，其中包括最重要的<strong>暂存区</strong>(stage/index)。Git会自动创建一个分支master，以及指向master的指针HEAD</li>
 <li>add操作是将文件添加到暂存区，commit操作将暂存区的所有内容提交到当前分支(仓库)，push操作将本地仓库文件推送到远程仓库。</li>
 </ul>
-<h1 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> git <span class="hljs-built_in">log</span>		<span class="hljs-comment"># 查看提交记录</span></span><br><span class="hljs-meta">$</span><span class="bash"> git <span class="hljs-built_in">log</span> --pretty=oneline		<span class="hljs-comment"># 简化查看提交记录信息，只显示commit id和提交说明</span></span><br><span class="hljs-meta">$</span><span class="bash"> git restore --hard HEAD^  <span class="hljs-comment"># 回退到上个commit版本，两个^^则表示回退到上上个版本，~n表示n个版本</span></span><br><span class="hljs-meta">$</span><span class="bash"> git restore --hard &lt;commit id&gt;  <span class="hljs-comment"># 回到指定id的版本，id只需要前几位字符，能区分出不同commit即可</span></span><br><span class="hljs-meta">$</span><span class="bash"> git reflog		<span class="hljs-comment"># 查看历史commit id变化情况，方便找到想要回到的版本</span></span><br><span class="hljs-meta">$</span><span class="bash"> git <span class="hljs-built_in">log</span> --graph --pretty=oneline --abbrew-commit	<span class="hljs-comment"># 用图形显示提交记录</span></span><br></code></pre></td></tr></table></figure>
+<h1 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> git <span class="hljs-built_in">log</span>		<span class="hljs-comment"># 查看提交记录</span></span><br><span class="hljs-meta">$</span><span class="bash"> git <span class="hljs-built_in">log</span> --pretty=oneline		<span class="hljs-comment"># 简化查看提交记录信息，只显示commit id和提交说明</span></span><br><span class="hljs-meta">$</span><span class="bash"> git reset --hard HEAD^  <span class="hljs-comment"># 回退到上个commit版本，两个^^则表示回退到上上个版本，~n表示n个版本</span></span><br><span class="hljs-meta">$</span><span class="bash"> git reset --hard &lt;commit id&gt;  <span class="hljs-comment"># 回到指定id的版本，id只需要前几位字符，能区分出不同commit即可</span></span><br><span class="hljs-meta">$</span><span class="bash"> git reflog		<span class="hljs-comment"># 查看历史commit id变化情况，方便找到想要回到的版本</span></span><br><span class="hljs-meta">$</span><span class="bash"> git <span class="hljs-built_in">log</span> --graph --pretty=oneline --abbrew-commit	<span class="hljs-comment"># 用图形显示提交记录</span></span><br></code></pre></td></tr></table></figure>
 <h1 id="管理修改"><a href="#管理修改" class="headerlink" title="管理修改"></a>管理修改</h1><blockquote>
 <p>Git管理的是修改，而不是文件</p>
 </blockquote>
 <p>使用add命令添加文件后，如果再次修改，此时提交是不包括第二次修改的。也就是说，每次修改之后都要add之后才能将修改提交到仓库。</p>
 <h1 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h1><p>想要撤销修改的话，要根据不同的情况采取不同的操作：</p>
 <ul>
-<li><strong>没有git add 时</strong>，使用<code>git restore --&lt;file&gt;</code>命令，file修改后没有放到暂存区，使用此命令回到版本库状态；或者修改了已经添加到暂存区的文件，修改为还没有add，使用此命令可以回退到第一次添加时的状态。总之，restore 操作让文件回到最近一次commit或者add时的状态。</li>
-<li><strong>已经git add到暂存区</strong>，使用<code>git restore HEAD &lt;file&gt;</code>，将暂存区的修改撤销，重新放回工作区</li>
-<li><strong>已经commit到版本库</strong>，使用<code>git restore --hard HEAD^</code>回退版本，或者使用回退到指定commit id</li>
+<li><strong>没有git add 时</strong>，使用<code>git checkout--&lt;file&gt;</code>命令，file修改后没有放到暂存区，使用此命令回到版本库状态；如果是添加到暂存区后再修改，使用此命令可以回退没修改时的状态。总之，checkout操作让文件回到最近一次commit或者add时的状态。</li>
+<li><strong>已经git add到暂存区</strong>，使用<code>git reset HEAD &lt;file&gt;</code>，将暂存区的修改撤销，重新放回工作区</li>
+<li><strong>已经commit到版本库</strong>，使用<code>git reset --hard HEAD^</code>回退版本，或者使用回退到指定commit id</li>
 <li><strong>已经push到远程仓库</strong>，没救了:(</li>
 </ul>
 <h1 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h1><p>使用<code>rm &lt;file&gt;</code>指令或者其他方法删除文件后，工作区和仓库文件不一致，这时：</p>
 <ul>
 <li>如果确定是删除文件，则继续下一步操作即可，<code>git commit -m &#39;xxx&#39;</code>指令，提交删除，会删除仓库文件</li>
-<li>如果是误删，此时仓库还有文件，使用<code>git restore --&lt;file&gt;</code>恢复即可</li>
+<li>如果是误删，此时仓库还有文件，使用<code>git checkout--&lt;file&gt;</code>恢复即可</li>
 </ul>
 <h1 id="添加远程库"><a href="#添加远程库" class="headerlink" title="添加远程库"></a>添加远程库</h1><p>在github上创建完仓库(repository)之后，在本地配置好之后，使用push指令可以将本地仓库到远程仓库。前提要求是本地仓库是git仓库，即有init初始化处理、commit等操作。此外，还需要Git配置好SSH环境，参考<a target="_blank" rel="noopener" href="https://git-scm.com/book/zh/v2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-%E7%94%9F%E6%88%90-SSH-%E5%85%AC%E9%92%A5">教程</a>。</p>
 <p>本地修改首先提交到本地仓库(无需Internet)，然后push到远程：</p>
@@ -306,13 +279,13 @@ Git是一个开源的分布式版本控制系统，用于在软件开...">
   <li><strong>本文作者：</strong>Kangshitao</li>
   <li><strong>本文链接：</strong><a href="http://kangshitao.github.io/2020/10/31/git/index.html">http://kangshitao.github.io/2020/10/31/git/index.html</a></li>
   <li><strong>版权声明：</strong>本博客所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
-      rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处！</li>
+      rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处</li>
   
 </ul>
         
         
         <section class="donate">
-  <div id="qrcode-donate">
+  <div class="qrcode">
     <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
   </div>
   <div class="icon">
@@ -371,16 +344,7 @@ Git是一个开源的分布式版本控制系统，用于在软件开...">
       
     </section>
   </div>
-</article></div>
-      <div class="col-xl-3">
-        
-          <aside class="toc-wrap">
-  <h3 class="toc-title">文章目录：</h3>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4"><span class="toc-text">基础指令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E6%9A%82%E5%AD%98%E5%8C%BA"><span class="toc-text">工作区和暂存区</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80"><span class="toc-text">版本回退</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%A1%E7%90%86%E4%BF%AE%E6%94%B9"><span class="toc-text">管理修改</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%92%A4%E9%94%80%E4%BF%AE%E6%94%B9"><span class="toc-text">撤销修改</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6"><span class="toc-text">删除文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E8%BF%9C%E7%A8%8B%E5%BA%93"><span class="toc-text">添加远程库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8E%E8%BF%9C%E7%A8%8B%E5%BA%93%E5%85%8B%E9%9A%86"><span class="toc-text">从远程库克隆</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86"><span class="toc-text">分支管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%88%86%E6%94%AF%E5%90%88%E5%B9%B6"><span class="toc-text">创建与分支合并</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86%E7%AD%96%E7%95%A5"><span class="toc-text">分支管理策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bug%E5%88%86%E6%94%AF"><span class="toc-text">bug分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Feature%E5%88%86%E6%94%AF"><span class="toc-text">Feature分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E4%BA%BA%E5%8D%8F%E4%BD%9C"><span class="toc-text">多人协作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rebase"><span class="toc-text">Rebase</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86"><span class="toc-text">标签管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%A0%87%E7%AD%BE"><span class="toc-text">创建标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%A0%87%E7%AD%BE"><span class="toc-text">操作标签</span></a></li></ol></li></ol>
-</aside>
-        
-      </div>
-    </div>
+</article>
   </div>
 </main>
   <footer class="footer">
@@ -391,7 +355,7 @@ Git是一个开源的分布式版本控制系统，用于在软件开...">
     
     
     <a href="tencent://message/?Menu=yes&uin=1574716653 " target="_blank" onMouseOver="this.style.color= '#12B7F5'"
-      onMouseOut="this.style.color=''">
+      onMouseOut="this.style.color='#33333D'">
       <i class="iconfont footer-social-item  iconQQ "></i>
     </a>
     
@@ -400,7 +364,7 @@ Git是一个开源的分布式版本控制系统，用于在软件开...">
     
     
     <a href="javascript:; " target="_blank" onMouseOver="this.style.color= '#09BB07'"
-      onMouseOut="this.style.color=''">
+      onMouseOut="this.style.color='#33333D'">
       <i class="iconfont footer-social-item  iconwechat-fill "></i>
     </a>
     
@@ -409,7 +373,7 @@ Git是一个开源的分布式版本控制系统，用于在软件开...">
     
     
     <a href="https://github.com/kangshitao " target="_blank" onMouseOver="this.style.color= '#24292E'"
-      onMouseOut="this.style.color=''">
+      onMouseOut="this.style.color='#33333D'">
       <i class="iconfont footer-social-item  icongithub-fill "></i>
     </a>
     
@@ -417,8 +381,8 @@ Git是一个开源的分布式版本控制系统，用于在软件开...">
     
     
     
-    <a href="mailto:1574716653@qq.com " target="_blank" onMouseOver="this.style.color='#FF3B00'"
-      onMouseOut="this.style.color=''">
+    <a href="mailto:1574716653@qq.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
       <i class="iconfont footer-social-item  iconmail"></i>
     </a>
     
@@ -440,16 +404,16 @@ Git是一个开源的分布式版本控制系统，用于在软件开...">
     <i class="iconfont iconplus"></i>
   </div>
   
+  <div class="fab fab-daovoice">
+    <i class="iconfont iconcomment"></i>
+  </div>
   
   <div class="fab fab-up">
     <i class="iconfont iconcaret-up"></i>
   </div>
   
-  
-    
-<script src="/js/color-mode.js"></script>
-
-  
+  <!-- 页面点击小红心 -->
+  <script type="text/javascript" src="/js/loveclick.js"></script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
@@ -482,21 +446,16 @@ Git是一个开源的分布式版本控制系统，用于在软件开...">
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 
 
-
-
-
-
-
-
-<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 
 
 
 
 <script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
 <script src="/js/script.js"></script>
 
 
@@ -538,11 +497,33 @@ Git是一个开源的分布式版本控制系统，用于在软件开...">
 	  }
 	  addCount(Counter);
     });
-    
   });
 </script>
 
 
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i["DaoVoiceObject"] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    a.charset = "utf-8";
+    m.parentNode.insertBefore(a, m)
+  })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+    "//widget.daovoice.io/widget/0f81ff2f.js", "daovoice")
+  daovoice('init', {
+    app_id: "abcdefg"
+  }, {
+    launcher: {
+      disableLauncherIcon: true,
+    },
+  });
+  daovoice('update');
+</script>
 
 
 
@@ -560,6 +541,16 @@ Git是一个开源的分布式版本控制系统，用于在软件开...">
   })();
 </script>
 
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
 
 
 

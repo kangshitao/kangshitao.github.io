@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" color-mode=light>
+<html lang="zh-CN">
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -10,6 +10,7 @@
   <title>Live And Learn</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google-site-verification" content="hYGeBDrUxqrEbiMSzoMK8p_p_-Njub7GwE33WsytCSo" />
   <meta name="google" content="notranslate" />
 
   
@@ -42,30 +43,22 @@
 
   
   
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_s6x2xcokxrl.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_h1619vhl1nr.css">
 
   
 
   
   
   
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
 
   
 
   
   
   
-  
-  
-<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
 
-  
-  
-  
-<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
-
-  
   
 
   <script>
@@ -77,43 +70,28 @@
       pjax: false,
       lazyload: {
         enable: true,
-        only_post: 'false',
-        loading: '/images/theme/loading.gif'
+        loadingImage: '',
       },
       donate: {
         enable: true,
         alipay: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg',
         wechat: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/wechat.jpg'
       },
+      motto: {
+        api: '',
+        default: '心之所向，素履以往'
+      },
       galleries: {
         enable: true
       },
       fab: {
         enable: true,
-        always_show: false
+        alwaysShow: false
       },
       carrier: {
         enable: true
       },
       daovoice: {
-        enable: false
-      },
-      preview: {
-        background: {
-          default: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/welcome-image.jpg',
-          api: ''
-        },
-        motto: {
-          default: '心之所向，素履以往',
-          api: 'https://v1.hitokoto.cn/?encode=text&c=d'
-        },
-      },
-      qrcode: {
-        enable: true,
-        type: 'url',
-        image: '',
-      },
-      toc: {
         enable: true
       }
     }
@@ -174,7 +152,7 @@
     <i class="iconfont iconmenu"></i>
   </nav>
   <div class="preview-image">
-    <h2 class="preview-motto" id="motto">心之所向，素履以往</h2>
+    <h2 class="preview-motto" id="motto"></h2>
     <!-- <span class="preview-cursor">|</span> -->
     
     <div class="preview-overlay">
@@ -184,10 +162,10 @@
           <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
         </defs>
         <g class="preview-parallax">
-          <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(var(--color-background), 0.7" />
-          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(var(--color-background), 0.5)" />
-          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(var(--color-background), 0.3)" />
-          <use xlink:href="#gentle-wave" x="48" y="7" fill="rgb(var(--color-background))" />
+          <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+          <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
         </g>
       </svg>
     </div>
@@ -209,17 +187,15 @@
     </div>
     
     <a href="/2020/10/25/BlogCreatProcess/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_6.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_5.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <div class="post-content-wrap">
-        <h3 class="post-title"><a href="/2020/10/25/BlogCreatProcess/" title="建立Hexo个人博客" >建立Hexo个人博客</a></h3>
-        
-        
-        
-        <div class="post-excerpt">
-          <p class="substr-3">记录本博客的创建和功能完善的过程</p>
-        </div>
+      <h3 class="post-title"><a href="/2020/10/25/BlogCreatProcess/">建立Hexo个人博客</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">记录本博客的创建和功能完善的过程</p>
       </div>
       <div class="post-info">
         <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 25, 2020</span
@@ -228,58 +204,25 @@
         <span class="post-info-item"><i class="iconfont iconeye"></i><span id="/2020/10/25/BlogCreatProcess/"
             class="leancloud" data-flag-title="建立Hexo个人博客"></span></span>
         
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>5707</span>
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>5198</span>
       </div>
     </div>
   </div>
 </div>
-
-  
-  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <a href="/2020/11/15/transformer/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <div class="post-content-wrap">
-        <h3 class="post-title"><a href="/2020/11/15/transformer/" title="自注意力和Transformer" >自注意力和Transformer</a></h3>
-        
-        
-        
-        <div class="post-excerpt">
-          <p class="substr-3">自注意力机制和Transformer详解</p>
-        </div>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>十一月 15, 2020</span
-          class="post-info-item">
-        
-        <span class="post-info-item"><i class="iconfont iconeye"></i><span id="/2020/11/15/transformer/"
-            class="leancloud" data-flag-title="自注意力和Transformer"></span></span>
-        
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>359</span>
-      </div>
-    </div>
-  </div>
-</div>
-
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
     <a href="/2020/11/12/attention/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_13.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_1.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <div class="post-content-wrap">
-        <h3 class="post-title"><a href="/2020/11/12/attention/" title="Attention总结" >Attention总结</a></h3>
-        
-        
-        
-        <div class="post-excerpt">
-          <p class="substr-3">注意力机制总结</p>
-        </div>
+      <h3 class="post-title"><a href="/2020/11/12/attention/">Attention总结</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">注意力机制总结</p>
       </div>
       <div class="post-info">
         <span class="post-info-item"><i class="iconfont iconcalendar"></i>十一月 12, 2020</span
@@ -293,23 +236,20 @@
     </div>
   </div>
 </div>
-
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
     <a href="/2020/11/05/paper-SGNN-HN/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_2.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_12.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <div class="post-content-wrap">
-        <h3 class="post-title"><a href="/2020/11/05/paper-SGNN-HN/" title="论文阅读-Star Graph Neural Networks for Session-based Recommendation" >论文阅读-Star Graph Neural Networks for Session-based Recommendation</a></h3>
-        
-        
-        
-        <div class="post-excerpt">
-          <p class="substr-3">2020,CIKM,使用星型GNN的基于会话的推荐系统</p>
-        </div>
+      <h3 class="post-title"><a href="/2020/11/05/paper-SGNN-HN/">论文阅读-Star Graph Neural Networks for Session-based Recommendation</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">2020,CIKM,使用星型GNN的基于会话的推荐系统</p>
       </div>
       <div class="post-info">
         <span class="post-info-item"><i class="iconfont iconcalendar"></i>十一月 05, 2020</span
@@ -323,23 +263,20 @@
     </div>
   </div>
 </div>
-
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
     <a href="/2020/11/01/RegularExpression/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_13.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_11.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <div class="post-content-wrap">
-        <h3 class="post-title"><a href="/2020/11/01/RegularExpression/" title="Python正则表达式" >Python正则表达式</a></h3>
-        
-        
-        
-        <div class="post-excerpt">
-          <p class="substr-3">正则表达式的基础语法以及Python中re库的使用方法介绍</p>
-        </div>
+      <h3 class="post-title"><a href="/2020/11/01/RegularExpression/">Python正则表达式</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">正则表达式的基础语法以及Python中re库的使用方法介绍</p>
       </div>
       <div class="post-info">
         <span class="post-info-item"><i class="iconfont iconcalendar"></i>十一月 01, 2020</span
@@ -353,23 +290,20 @@
     </div>
   </div>
 </div>
-
   
   <div class="col-lg-4 col-md-6 col-sm-12 post-item">
   <div class="post-wrap">
     
     <a href="/2020/10/31/git/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_3.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_14.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
-      <div class="post-content-wrap">
-        <h3 class="post-title"><a href="/2020/10/31/git/" title="Git命令" >Git命令</a></h3>
-        
-        
-        
-        <div class="post-excerpt">
-          <p class="substr-3">Git基础教程和常用指令</p>
-        </div>
+      <h3 class="post-title"><a href="/2020/10/31/git/">Git命令</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">Git基础教程和常用指令</p>
       </div>
       <div class="post-info">
         <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 31, 2020</span
@@ -378,17 +312,68 @@
         <span class="post-info-item"><i class="iconfont iconeye"></i><span id="/2020/10/31/git/"
             class="leancloud" data-flag-title="Git命令"></span></span>
         
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>4631</span>
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>4607</span>
       </div>
     </div>
   </div>
 </div>
-
+  
+  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
+    <a href="/2020/10/28/conda/" class="post-image">
+      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_6.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <h3 class="post-title"><a href="/2020/10/28/conda/">Conda基础命令</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">Conda常用命令介绍</p>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 28, 2020</span
+          class="post-info-item">
+        
+        <span class="post-info-item"><i class="iconfont iconeye"></i><span id="/2020/10/28/conda/"
+            class="leancloud" data-flag-title="Conda基础命令"></span></span>
+        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>1302</span>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
+    <a href="/2020/10/25/markdown/" class="post-image">
+      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_4.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <h3 class="post-title"><a href="/2020/10/25/markdown/">Markdown简单教程</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">Markdown基本语法介绍</p>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 25, 2020</span
+          class="post-info-item">
+        
+        <span class="post-info-item"><i class="iconfont iconeye"></i><span id="/2020/10/25/markdown/"
+            class="leancloud" data-flag-title="Markdown简单教程"></span></span>
+        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>2748</span>
+      </div>
+    </div>
+  </div>
+</div>
   
 </section>
     <section class="paginator">
-  
-  <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">&gt;</a>
   
 </section>
   </div>
@@ -401,7 +386,7 @@
     
     
     <a href="tencent://message/?Menu=yes&uin=1574716653 " target="_blank" onMouseOver="this.style.color= '#12B7F5'"
-      onMouseOut="this.style.color=''">
+      onMouseOut="this.style.color='#33333D'">
       <i class="iconfont footer-social-item  iconQQ "></i>
     </a>
     
@@ -410,7 +395,7 @@
     
     
     <a href="javascript:; " target="_blank" onMouseOver="this.style.color= '#09BB07'"
-      onMouseOut="this.style.color=''">
+      onMouseOut="this.style.color='#33333D'">
       <i class="iconfont footer-social-item  iconwechat-fill "></i>
     </a>
     
@@ -419,7 +404,7 @@
     
     
     <a href="https://github.com/kangshitao " target="_blank" onMouseOver="this.style.color= '#24292E'"
-      onMouseOut="this.style.color=''">
+      onMouseOut="this.style.color='#33333D'">
       <i class="iconfont footer-social-item  icongithub-fill "></i>
     </a>
     
@@ -427,8 +412,8 @@
     
     
     
-    <a href="mailto:1574716653@qq.com " target="_blank" onMouseOver="this.style.color='#FF3B00'"
-      onMouseOut="this.style.color=''">
+    <a href="mailto:1574716653@qq.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
       <i class="iconfont footer-social-item  iconmail"></i>
     </a>
     
@@ -450,16 +435,16 @@
     <i class="iconfont iconplus"></i>
   </div>
   
+  <div class="fab fab-daovoice">
+    <i class="iconfont iconcomment"></i>
+  </div>
   
   <div class="fab fab-up">
     <i class="iconfont iconcaret-up"></i>
   </div>
   
-  
-    
-<script src="/js/color-mode.js"></script>
-
-  
+  <!-- 页面点击小红心 -->
+  <script type="text/javascript" src="/js/loveclick.js"></script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
@@ -492,21 +477,16 @@
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 
 
-
-
-
-
-
-
-<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 
 
 
 
 <script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
 <script src="/js/script.js"></script>
 
 
@@ -548,11 +528,33 @@
 	  }
 	  addCount(Counter);
     });
-    
   });
 </script>
 
 
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i["DaoVoiceObject"] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    a.charset = "utf-8";
+    m.parentNode.insertBefore(a, m)
+  })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+    "//widget.daovoice.io/widget/0f81ff2f.js", "daovoice")
+  daovoice('init', {
+    app_id: "abcdefg"
+  }, {
+    launcher: {
+      disableLauncherIcon: true,
+    },
+  });
+  daovoice('update');
+</script>
 
 
 
@@ -570,6 +572,16 @@
   })();
 </script>
 
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
 
 
 

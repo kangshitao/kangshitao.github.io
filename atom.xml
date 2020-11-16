@@ -6,7 +6,7 @@
   <link href="http://kangshitao.github.io/atom.xml" rel="self"/>
   
   <link href="http://kangshitao.github.io/"/>
-  <updated>2020-11-15T03:31:47.623Z</updated>
+  <updated>2020-11-12T14:36:01.985Z</updated>
   <id>http://kangshitao.github.io/</id>
   
   <author>
@@ -15,29 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>自注意力和Transformer</title>
-    <link href="http://kangshitao.github.io/2020/11/15/transformer/"/>
-    <id>http://kangshitao.github.io/2020/11/15/transformer/</id>
-    <published>2020-11-15T03:31:47.000Z</published>
-    <updated>2020-11-15T03:31:47.623Z</updated>
-    
-    
-    <summary type="html">自注意力机制和Transformer详解</summary>
-    
-    
-    
-    <category term="深度学习" scheme="http://kangshitao.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="Attention" scheme="http://kangshitao.github.io/tags/Attention/"/>
-    
-    <category term="深度学习" scheme="http://kangshitao.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="transformer" scheme="http://kangshitao.github.io/tags/transformer/"/>
-    
-  </entry>
   
   <entry>
     <title>Attention总结</title>
@@ -65,7 +42,7 @@
     <link href="http://kangshitao.github.io/2020/11/05/paper-SGNN-HN/"/>
     <id>http://kangshitao.github.io/2020/11/05/paper-SGNN-HN/</id>
     <published>2020-11-05T12:19:11.000Z</published>
-    <updated>2020-11-15T03:32:27.421Z</updated>
+    <updated>2020-11-16T12:36:55.849Z</updated>
     
     
     <summary type="html">2020,CIKM,使用星型GNN的基于会话的推荐系统</summary>
@@ -74,8 +51,6 @@
     
     <category term="论文笔记" scheme="http://kangshitao.github.io/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
     
-    
-    <category term="Attention" scheme="http://kangshitao.github.io/tags/Attention/"/>
     
     <category term="深度学习" scheme="http://kangshitao.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
@@ -113,7 +88,7 @@
     <link href="http://kangshitao.github.io/2020/10/31/git/"/>
     <id>http://kangshitao.github.io/2020/10/31/git/</id>
     <published>2020-10-31T04:00:43.000Z</published>
-    <updated>2020-11-05T12:30:05.719Z</updated>
+    <updated>2020-11-16T12:46:22.100Z</updated>
     
     
     <summary type="html">Git基础教程和常用指令</summary>
@@ -151,7 +126,7 @@
     <link href="http://kangshitao.github.io/2020/10/25/BlogCreatProcess/"/>
     <id>http://kangshitao.github.io/2020/10/25/BlogCreatProcess/</id>
     <published>2020-10-25T11:15:21.000Z</published>
-    <updated>2020-11-16T10:49:11.075Z</updated>
+    <updated>2020-11-16T12:36:55.840Z</updated>
     
     
     <summary type="html">记录本博客的创建和功能完善的过程</summary>

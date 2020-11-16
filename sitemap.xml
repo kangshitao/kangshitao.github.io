@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://kangshitao.github.io/2020/10/25/BlogCreatProcess/</loc>
+    <loc>http://kangshitao.github.io/2020/10/31/git/</loc>
     
     <lastmod>2020-11-16</lastmod>
     
@@ -11,14 +11,14 @@
   <url>
     <loc>http://kangshitao.github.io/2020/11/05/paper-SGNN-HN/</loc>
     
-    <lastmod>2020-11-15</lastmod>
+    <lastmod>2020-11-16</lastmod>
     
   </url>
   
   <url>
-    <loc>http://kangshitao.github.io/2020/11/15/transformer/</loc>
+    <loc>http://kangshitao.github.io/2020/10/25/BlogCreatProcess/</loc>
     
-    <lastmod>2020-11-15</lastmod>
+    <lastmod>2020-11-16</lastmod>
     
   </url>
   
@@ -33,13 +33,6 @@
     <loc>http://kangshitao.github.io/2020/10/25/markdown/</loc>
     
     <lastmod>2020-11-11</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://kangshitao.github.io/2020/10/31/git/</loc>
-    
-    <lastmod>2020-11-05</lastmod>
     
   </url>
   
@@ -166,13 +159,6 @@
   
   <url>
     <loc>http://kangshitao.github.io/tags/GNN/</loc>
-    <lastmod>2020-11-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://kangshitao.github.io/tags/transformer/</loc>
     <lastmod>2020-11-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
