@@ -8,8 +8,9 @@
   <% if (theme.fab.enable) { %>
     <%- partial('_partial/common/fab') %>
   <% } %>
-  <!-- 页面点击小红心 -->
-  <script type="text/javascript" src="/js/loveclick.js"></script>
+  <% if (theme.color_mode.enable) { %>
+    <%- js('js/color-mode') %>
+  <% } %>
 </body>
 <%- partial('_partial/script') %>
 </html>

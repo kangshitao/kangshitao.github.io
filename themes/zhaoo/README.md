@@ -30,29 +30,39 @@
 ## 预览
 
 - [zhaoo's Blog](https://www.izhaoo.com)
-- [CodeGorgeous](https://codegorgeous.github.io/)
-- [你好我是王日天@](http://www.rt95.ink/)
-- [卞卞不是便便](https://www.bianxr.com/)
+- [Handwer's Blog](https://blog.handwer-std.top/)
+- [Mtaun](https://mtaun.top/)
+- [杨云召](https://flywith24.gitee.io/)
+- [汐语](https://xywangb.cn/)
+- [Meizi's Blog](http://www.meizia.net/)
+- [kilic の 部落格](https://kilicmu.github.io/)
+- [Hexo](https://www.actor360.xyz/)
+- [Live And Learn](https://kangshitao.github.io/)
 - [Yin Blog](http://xuzhimo.top/)
+- [CodeGorgeous](https://codegorgeous.github.io/)
+- [卞卞不是便便](https://www.bianxr.com/)
+- [你好我是王日天@](http://www.rt95.ink/)
+- [iaosee's Blog](https://www.iaosee.com/)
+- [少年民仔](https://www.feminzai.com/)
 
 （如果您正在使用 zhaoo 主题，欢迎展示您的博客哦，只需在 `README.md` 文件中加入您的博客，提交 PR 即可。）
 
 ## 特性
 
-- [x] 简约 & 响应式 & 动效
-- [x] `ZUI (zhaoo UI)` 支持（建设中）
+- [x] 设计理念：简约 & 响应式 & 动效
+- [x] 评论：`Gitalk`、`Valine`、`畅言`
+- [x] 反馈：[DaoVoice](http://www.daovoice.io/)、[腾讯兔小巢](https://txc.qq.com/)
+- [x] 统计：`LeanCloud`、`百度`、`CNZZ`、`谷歌` 及 SEO优化
+- [x] 深色模式
+- [x] 格言，支持接入 [一言](https://hitokoto.cn/)、[今日诗词](https://www.jinrishici.com/) 等第三方动态格言
+- [x] 预览图，支持接入 [Unsplash](https://unsplash.com/)、[必应每日图片](https://cn.bing.com/) 等第三方动态图片
+- [x] 相册，支持瀑布流加载
 - [x] `highlight` 代码高亮
-- [x] `Gitalk`、`Valine`、`畅言` 评论
-- [x] `DaoVoice` 即时通讯 
 - [x] `FancyBox` 图片灯箱
 - [x] `Pjax` 无刷新加载
 - [x] `lazyload` 图片懒加载
-- [x] `LeanCloud` 统计访问量
 - [x] `支付宝、微信` 打赏
-- [x] 相册页面，图片支持瀑布流加载（`justifiedGallery`）
-- [x] 格言，可配合插件 `hexo-plug-motto` 实现动态格言
-- [x] `百度`、`CNZZ`、`谷歌` 站长统计 及 SEO优化
-- [x] 定制 `主题风格`、`CDN`、`埋点脚本`、`社交链接`、`版权说明` 等
+- [x] 定制 `主题风格`、`CDN`、`埋点脚本`、`社交链接`、`版权说明`、`二维码` 等
 
 ## 截图
 
@@ -63,6 +73,8 @@
 ![文章](./screenshots/article.png)
 
 ![相册](./screenshots/galleries.png)
+
+![菜单](./screenshots/menu.png)
 
 ## 安装
 
@@ -132,6 +144,11 @@ $ git pull
 
 * 小程序：[hexo-weapp-zhaoo](https://github.com/izhaoo/hexo-weapp-zhaoo) (为 Hexo 定制的博客小程序)
 * 插件：[hexo-generator-restful](https://github.com/izhaoo/hexo-generator-restful) (Hexo RESTful 接口)
+* 交流群：550262893
+
+## 趋势
+
+[![趋势](https://starchart.cc/izhaoo/hexo-theme-zhaoo.svg)](https://starchart.cc/izhaoo/hexo-theme-zhaoo)
 
 ## 协议
 

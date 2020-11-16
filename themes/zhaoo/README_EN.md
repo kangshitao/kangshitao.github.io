@@ -30,29 +30,39 @@
 ## Rreview
 
 - [zhaoo's Blog](https://www.izhaoo.com)
-- [CodeGorgeous](https://codegorgeous.github.io/)
-- [你好我是王日天@](http://www.rt95.ink/)
-- [卞卞不是便便](https://www.bianxr.com/)
+- [Handwer's Blog](https://blog.handwer-std.top/)
+- [Mtaun](https://mtaun.top/)
+- [杨云召](https://flywith24.gitee.io/)
+- [汐语](https://xywangb.cn/)
+- [Meizi's Blog](http://www.meizia.net/)
+- [kilic の 部落格](https://kilicmu.github.io/)
+- [Hexo](https://www.actor360.xyz/)
+- [Live And Learn](https://kangshitao.github.io/)
 - [Yin Blog](http://xuzhimo.top/)
+- [CodeGorgeous](https://codegorgeous.github.io/)
+- [卞卞不是便便](https://www.bianxr.com/)
+- [你好我是王日天@](http://www.rt95.ink/)
+- [iaosee's Blog](https://www.iaosee.com/)
+- [少年民仔](https://www.feminzai.com/)
 
 （If you are using the zhaoo theme, welcome to show your blog, just add your blog to the `README.md` and PR.）
 
 ## Characteristic
 
-- [x] Simple & Responsive & Animation
-- [x] `ZUI (zhaoo UI)` (building)
+- [x] Design concept: Simple & Responsive & Animation
+- [x] Comment: `Gitalk`、`Valine`、`ChangYan`
+- [x] Feedback: [DaoVoice](http://www.daovoice.io/)、[Tencent Chao](https://txc.qq.com/)
+- [x] Analytics: `LeanCloud`、`Baidu`、`CNZZ`、`google` and SEO
+- [x] Dark scheme
+- [x] Motto, support [Hitokoto](https://hitokoto.cn/)、[Poems Today](https://www.jinrishici.com/) and another dynamic mottos
+- [x] Preview，support [Unsplash](https://unsplash.com/)、[Bing Pictures](https://cn.bing.com/) and another dynamic pictures
+- [x] Galleries, pictures support waterfall
 - [x] `highlight` code highlighting
-- [x] `Gitalk`、`Valine`、`ChangYan` comment
-- [x] `DaoVoice` IM
 - [x] `FancyBox` lightbox
 - [x] `Pjax`
 - [x] `lazyload`
-- [x] `LeanCloud` statistical pv & uv
 - [x] `Alipay, Wechat` donate
-- [x] Galleries, pictures support waterfall (`justifiedGallery`)
-- [x] Motto, can use plugin `hexo-plug-motto`to achieve dynamic motto
-- [x] `Baidu`、`CNZZ`、`google` analytics and SEO
-- [x] Customized `Theme Style`、`CDN`、`Embedded Script`、`Social Link`、`Copyright` and more
+- [x] Customized `Theme Style`、`CDN`、`Embedded Script`、`Social Link`、`Copyright`、`QRCode` and more
 
 ## Screenshots
 
@@ -63,6 +73,8 @@
 ![article](./screenshots/article.png)
 
 ![galleries](./screenshots/galleries.png)
+
+![menu](./screenshots/menu.png)
 
 ## Install
 
@@ -130,8 +142,13 @@ $ git pull
 
 ## Related
 
-* Weapp：[hexo-weapp-zhaoo](https://github.com/izhaoo/hexo-weapp-zhaoo) (Weapp for Hexo)
-* Plugin：[hexo-generator-restful](https://github.com/izhaoo/hexo-generator-restful) (RESTful API for Hexo)
+* Weapp: [hexo-weapp-zhaoo](https://github.com/izhaoo/hexo-weapp-zhaoo) (Weapp for Hexo)
+* Plugin: [hexo-generator-restful](https://github.com/izhaoo/hexo-generator-restful) (RESTful API for Hexo)
+* Exchange group: 550262893
+
+## Stargazers
+
+[![Stargazers over time](https://starchart.cc/izhaoo/hexo-theme-zhaoo.svg)](https://starchart.cc/izhaoo/hexo-theme-zhaoo)
 
 ## License
 

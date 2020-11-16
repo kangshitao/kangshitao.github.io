@@ -5,7 +5,7 @@ tags: [Hexo, 主题]
 keywords: hexo-theme-zhaoo, zhaoo, hexo, 主题, 使用文档, document
 categories:
 - 项目
-image: https://pic.izhaoo.com/20200421200902.jpg
+image: /images/theme/post-image.jpg
 top: 10
 ---
 
@@ -137,7 +137,7 @@ copyright: <p>Copyright© 2019-2020 | <a target="_blank" href="https://www.izhao
 ```markdown
 ---
 title: zhaoo - 主题使用文档
-image: https://pic.izhaoo.com/20200421200902.jpg  #设置图床图片
+image: /images/theme/post-image.jpg  #设置图床图片
 ---
 ```
 
@@ -211,7 +211,7 @@ color:
 1. 在主题配置文件中配置 `menu` 项，用 `||` 将内容分割为两部分，前面部分为页面URL，后面部分为菜单中显示的名字，示例如下：
 
    ```yml
-    menu:
+  menu:
     home: / || 首页
     galleries: /galleries || 摄影
     archives: /archives || 归档
@@ -355,35 +355,35 @@ menu:
 
 4. 在主题配置文件开启相册功能：
 
-​```yml
+```yml
 galleries:
   enable: true  #开启相册
   title: 相册  #相册标题
   subtitle: Galleries  #相册副标题
-  ```
+```
 
 5. 在 `/data` 目录下新建 `galleries.json` 文件，创建分目录相册及图片内容：
 
 ```json
 [{
   "name": "colorful",  //相册名称
-  "cover": "https://pic.izhaoo.com/2020050242.jpg",  //相册封面
+  "cover": "/images/theme/post-image.jpg",  //相册封面
   "description": "君未看花时，花与君同寂；君来看花日，花色一时明。",  //相册介绍
   "photos": [  //图片内容
-    "https://pic.izhaoo.com/2014031601.jpg",
-    "https://pic.izhaoo.com/2017071602.jpg",
-    "https://pic.izhaoo.com/2017071603.jpg",
-    "https://pic.izhaoo.com/2017072104.jpg"
+    "/images/theme/post-image.jpg",
+    "/images/theme/post-image.jpg",
+    "/images/theme/post-image.jpg",
+    "/images/theme/post-image.jpg"
   ]
 }, {
   "name": "记事",
-  "cover": "https://pic.izhaoo.com/20200228081718.jpg",
+  "cover": "/images/theme/post-image.jpg",
   "description": "翻开随身携带的记事本，写着许多事都是关于你。",
   "photos": [
-    "https://pic.izhaoo.com/20200421201200.jpg",
-    "https://pic.izhaoo.com/20200305030152.jpg",
-    "https://pic.izhaoo.com/20191211065241.jpg",
-    "https://pic.izhaoo.com/20200228081718.jpg"
+    "/images/theme/post-image.jpg",
+    "/images/theme/post-image.jpg",
+    "/images/theme/post-image.jpg",
+    "/images/theme/post-image.jpg"
   ]
 }]
 ```
@@ -399,13 +399,13 @@ layout: "gallery"
 
 步骤可能有点难以理解，最后放几张截图，比较直观：
 
-![gallery-1](https://pic.izhaoo.com/20200722185650.jpg)
+![gallery-1](/images/theme/post-image.jpg)
 
-![gallery-2](https://pic.izhaoo.com/20200722185721.jpg)
+![gallery-2](/images/theme/post-image.jpg)
 
-![gallery-3](https://pic.izhaoo.com/20200722185814.jpg)
+![gallery-3](/images/theme/post-image.jpg)
 
-![gallery-4](https://pic.izhaoo.com/20200722185829.jpg)
+![gallery-4](/images/theme/post-image.jpg)
 
 博客主题项目中我也更新了一些栗子，可以参考一下。
 
@@ -451,7 +451,7 @@ layout: "gallery"
   keywords: hexo-theme-zhaoo, zhaoo, hexo, 主题, 使用文档, document
   categories:
   - 项目
-  image: https://pic.izhaoo.com/20200421200902.jpg
+  image: /images/theme/post-image.jpg
   top: 10  #添加该字段
   ---
   ```
@@ -525,7 +525,7 @@ vendors:
   ```
 
   可以在 [highlight.js](https://highlightjs.org/) 官方网站预览样式，挑选自己喜欢的样式模式，再到 `BootCDN` 复制对应的 `CSS` 链接即可。
-
+  
   也可以直接下载 `CSS` 文件 ，放到 `/source/lib/highlight` 中，这样的的话 `CDN` 配置需要留空。
 
 ##### 无刷新加载（Pjax）

@@ -19,7 +19,7 @@ var description = '';
 %>
 
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="<%= config.language %>" <%= theme.color_mode.enable ? `color-mode=light` : '' %>>
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -28,7 +28,6 @@ var description = '';
   <title><%= page_title() %></title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="google-site-verification" content="hYGeBDrUxqrEbiMSzoMK8p_p_-Njub7GwE33WsytCSo" />
   <meta name="google" content="notranslate" />
 
   <% if (keywords) { %>
@@ -68,9 +67,12 @@ var description = '';
   <%- css('lib/fancybox/fancybox.css')%>
   <% }} %>
 
-  <% if(theme.highlight){ %>
+  <% if(theme.highlight.enable){ %>
   <% if(theme.vendors.highlight_css){ %>
-  <%- css(theme.vendors.highlight_css) %>
+  <% for (i in theme.highlight.style) { %>
+  <% style = theme.highlight.style[i].toLowerCase().replace(/(?<!([0-9]))\s(?!([0-9]))/g, '-').replace(/\s/g, '') %>
+  <%- css({href: theme.vendors.highlight_css + style + '.min.css', name: 'highlight-style', mode: i}) %>
+  <% } %>
   <% }else{ %>
   <%- css('lib/highlight/a11y-dark.css')%>
   <% }} %>
@@ -84,29 +86,44 @@ var description = '';
       pjax: <%= theme.pjax %>,
       lazyload: {
         enable: <%= theme.lazyload.enable %>,
-        loadingImage: '<%= theme.lazyload.loadingImage %>',
+        only_post: '<%= theme.lazyload.only_post %>',
+        loading: '<%= theme.lazyload.loading %>'
       },
       donate: {
         enable: <%= theme.donate.enable %>,
         alipay: '<%= theme.donate.alipay %>',
         wechat: '<%= theme.donate.wechat %>'
       },
-      motto: {
-        api: '<%= theme.preview.motto.api %>',
-        default: '<%= theme.preview.motto.default %>'
-      },
       galleries: {
         enable: <%= theme.galleries.enable %>
       },
       fab: {
         enable: <%= theme.fab.enable %>,
-        alwaysShow: <%= theme.fab.alwaysShow %>
+        always_show: <%= theme.fab.always_show %>
       },
       carrier: {
         enable: <%= theme.carrier.enable %>
       },
       daovoice: {
         enable: <%= theme.daovoice.enable %>
+      },
+      preview: {
+        background: {
+          default: '<%= theme.preview.background.default %>',
+          api: '<%= theme.preview.background.api %>'
+        },
+        motto: {
+          default: '<%= theme.preview.motto.default %>',
+          api: '<%- theme.preview.motto.api %>'
+        },
+      },
+      qrcode: {
+        enable: <%= theme.qrcode.enable %>,
+        type: '<%= theme.qrcode.type %>',
+        image: '<%= theme.qrcode.image %>',
+      },
+      toc: {
+        enable: <%= theme.toc.enable %>
       }
     }
   </script>
