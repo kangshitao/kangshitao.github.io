@@ -56,8 +56,8 @@ $ git diff HEAD		# 查看工作区和最后一次commit的差异
 ```
 $ git log		# 查看提交记录
 $ git log --pretty=oneline		# 简化查看提交记录信息，只显示commit id和提交说明
-$ git restore --hard HEAD^  # 回退到上个commit版本，两个^^则表示回退到上上个版本，~n表示n个版本
-$ git restore --hard <commit id>  # 回到指定id的版本，id只需要前几位字符，能区分出不同commit即可
+$ git reset --hard HEAD^  # 回退到上个commit版本，两个^^则表示回退到上上个版本，~n表示n个版本
+$ git reset --hard <commit id>  # 回到指定id的版本，id只需要前几位字符，能区分出不同commit即可
 $ git reflog		# 查看历史commit id变化情况，方便找到想要回到的版本
 $ git log --graph --pretty=oneline --abbrew-commit	# 用图形显示提交记录
 ```
@@ -72,9 +72,9 @@ $ git log --graph --pretty=oneline --abbrew-commit	# 用图形显示提交记录
 
 想要撤销修改的话，要根据不同的情况采取不同的操作：
 
-- **没有git add 时**，使用`git restore --<file>`命令，file修改后没有放到暂存区，使用此命令回到版本库状态；或者修改了已经添加到暂存区的文件，修改为还没有add，使用此命令可以回退到第一次添加时的状态。总之，restore 操作让文件回到最近一次commit或者add时的状态。
-- **已经git add到暂存区**，使用`git restore HEAD <file>`，将暂存区的修改撤销，重新放回工作区
-- **已经commit到版本库**，使用`git restore --hard HEAD^`回退版本，或者使用回退到指定commit id
+- **没有git add 时**，使用`git checkout--<file>`命令，file修改后没有放到暂存区，使用此命令回到版本库状态；如果是添加到暂存区后再修改，使用此命令可以回退没修改时的状态。总之，checkout操作让文件回到最近一次commit或者add时的状态。
+- **已经git add到暂存区**，使用`git reset HEAD <file>`，将暂存区的修改撤销，重新放回工作区
+- **已经commit到版本库**，使用`git reset --hard HEAD^`回退版本，或者使用回退到指定commit id
 - **已经push到远程仓库**，没救了:(
 
 # 删除文件
@@ -82,7 +82,7 @@ $ git log --graph --pretty=oneline --abbrew-commit	# 用图形显示提交记录
 使用`rm <file>`指令或者其他方法删除文件后，工作区和仓库文件不一致，这时：
 
 - 如果确定是删除文件，则继续下一步操作即可，`git commit -m 'xxx'`指令，提交删除，会删除仓库文件
-- 如果是误删，此时仓库还有文件，使用`git restore --<file>`恢复即可
+- 如果是误删，此时仓库还有文件，使用`git checkout--<file>`恢复即可
 
 # 添加远程库
 

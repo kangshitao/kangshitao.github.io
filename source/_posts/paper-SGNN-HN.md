@@ -6,7 +6,6 @@ categories: 论文笔记
 tags:
   - SBRS
   - paper
-  - Attention
   - GNN
   - 深度学习
 keywords: 会话推荐,SGNN-HN,GNN,star graph neural networks,session

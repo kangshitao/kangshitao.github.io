@@ -10,6 +10,8 @@ top: 10
 ---
 
 > 使用hexo和github.pages搭建博客，主题为[zhaoo](https://github.com/izhaoo/hexo-theme-zhaoo)
+>
+> 主题一直在更新，功能也在完善，本文的内容中有的功能主题也加上了，设置起来更方便，本文部分内容不再修改，具体配置情况请根据主题而定。更多内容可以参考zhaoo主题作者博客主页：[zhaoo](https://www.izhaoo.com/)
 
 # 准备工作
 
@@ -18,8 +20,6 @@ github创建名为username.github.io的repository
 安装git
 
 安装Node.js
-
-
 
 # 安装Hexo
 
@@ -264,7 +264,7 @@ https://cdn.jsdelivr.net/gh/username/repository@version/file
 
 ## 访问量统计
 
-使用[leancloud](https://leancloud.cn/)，这里的统计是每篇文章的访问量，zhaoo主题支持leancloud，只需要按要求填写即可：
+主题默认使用的是[leancloud](https://leancloud.cn/)，这里的统计是每篇文章的访问量，zhaoo主题支持leancloud，只需要按要求填写即可：
 
 ```
 进入leancloud，创建应用(开发版)
@@ -273,7 +273,21 @@ https://cdn.jsdelivr.net/gh/username/repository@version/file
 将AppID、AppKey、Rest API服务器地址复制到themes/_config.yml
 ```
 
-对于网站的访问量统计，使用[卜蒜子](http://busuanzi.ibruce.info/)，在`themes\zhaoo\layout\_partial\footer.ejs`中合适的位置加入以下代码，其中的字体显示内容和风格可以自由设置：
+如果想要设置本地访问不统计次数，则可以在`\themes\zhaoo\layout\_partial\common\visitors.ejs`中，修改以下内容：
+
+```
+$(function () {
+	  const Counter = AV.Object.extend("Counter");
+	  showCount(Counter);
+      const localhost = /http\:\/\/localhost|http\:\/\/127.0.0.1|http\:\/\/0.0.0.0/;
+      if (localhost.test(document.URL)) {
+	    return;
+	  }
+	  addCount(Counter);
+    }
+```
+
+如果想对网站访问量统计，可以使用[卜蒜子](http://busuanzi.ibruce.info/)，在`themes\zhaoo\layout\_partial\footer.ejs`中合适的位置加入以下代码，其中的字体显示内容和风格可以自由设置：
 
 ```
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"</script>
@@ -298,7 +312,7 @@ leancloud,创建应用(开发版)
 
 ## 侧边目录
 
-zhaoo没有支持侧边目录，需要自己添加代码，使用hexo官方的toc函数
+zhaoo没有支持侧边目录，需要自己添加代码，使用hexo官方的toc函数。(2020.11.16主题更新，已经支持)
 
 在`themes\zhaoo\layout\_partial\post\article.ejs`中，最前面加以下代码：
 
