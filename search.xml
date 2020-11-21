@@ -4134,7 +4134,7 @@ L(\hat{\mathbf{y}})=-\sum\limits_{i=1}^{|V|} \mathbf{y}_i \log(\hat{\mathbf{y}}_
 <h2 id="使用-和-标记一级和二级标签"><a href="#使用-和-标记一级和二级标签" class="headerlink" title="使用 = 和 - 标记一级和二级标签"></a>使用 = 和 - 标记一级和二级标签</h2><p>语法如下：</p>
 <figure class="highlight asciidoc"><table><tbody><tr><td class="code"><pre><code class="hljs asciidoc">一级标题<br>=====<br><br>二级标题<br>-----<br></code></pre></td></tr></tbody></table></figure>
 <p>效果如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_1.png" alt="1"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_1.png"><span class="image-caption">1</span></p>
 <h2 id="使用-号标记"><a href="#使用-号标记" class="headerlink" title="使用#号标记"></a>使用#号标记</h2><p>语法如下：</p>
 <figure class="highlight clean"><table><tbody><tr><td class="code"><pre><code class="hljs clean"># 一级标题<br>## 二级标题<br>### 三级标题<br>#### 四级标题<br>##### 五级标题<br>###### 六级标题<br></code></pre></td></tr></tbody></table></figure>
 <blockquote>
@@ -4152,22 +4152,22 @@ L(\hat{\mathbf{y}})=-\sum\limits_{i=1}^{|V|} \mathbf{y}_i \log(\hat{\mathbf{y}}_
 <h2 id="无序列表："><a href="#无序列表：" class="headerlink" title="无序列表："></a>无序列表：</h2><p>无序列表有三种写法，<code>+</code> 或<code>-</code>或<code>*</code>后加空格即可：</p>
 <figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">+</span> 第一项<br><span class="hljs-bullet">*</span> 第一项<br><span class="hljs-bullet">-</span> 第一项<br></code></pre></td></tr></tbody></table></figure>
 <p>显示效果：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_2.png" alt="2"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_2.png"><span class="image-caption">2</span></p>
 <h2 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h2><p>有序列表使用数字和<code>.</code>再加上空格即可：</p>
 <figure class="highlight angelscript"><table><tbody><tr><td class="code"><pre><code class="hljs angelscript"><span class="hljs-number">1.</span> 第一项<br><span class="hljs-number">2.</span> 第二项<br><span class="hljs-number">3.</span> 第三项<br></code></pre></td></tr></tbody></table></figure>
 <p>显示效果：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_3.png" alt="3"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_3.png"><span class="image-caption">3</span></p>
 <h2 id="列表嵌套"><a href="#列表嵌套" class="headerlink" title="列表嵌套"></a>列表嵌套</h2><p>列表嵌套需要在子列表选项前加四个空格：</p>
 <figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">1.</span> 第一项：<br><span class="hljs-bullet">    -</span> 第一项的第一个元素<br><span class="hljs-bullet">    -</span> 第一项的第二个元素<br><span class="hljs-bullet">2.</span> 第二项：<br><span class="hljs-bullet">    -</span> 第二项的第一个元素<br><span class="hljs-bullet">    -</span> 第二项的第二个元素<br></code></pre></td></tr></tbody></table></figure>
 <p>显示效果：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_4.png" alt="4"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_4.png"><span class="image-caption">4</span></p>
 <blockquote>
 <p>Typora中，子列表选项前不加空格也可以。</p>
 </blockquote>
 <h1 id="插入区块和分隔线"><a href="#插入区块和分隔线" class="headerlink" title="插入区块和分隔线"></a>插入区块和分隔线</h1><h2 id="区块"><a href="#区块" class="headerlink" title="区块"></a>区块</h2><p>Markdown的区块引用是在段落开头使用<code>&gt;</code> 号和空格：</p>
 <figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-quote">&gt; 区块引用</span><br></code></pre></td></tr></tbody></table></figure>
 <p>显示效果：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_5.png" alt="5"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_5.png"><span class="image-caption">5</span></p>
 <p>另外，区块引用也可以像列表一样嵌套，一个<code>&gt;</code> 表示第一层，两个<code>&gt;</code> 表示第二层，以此类推：</p>
 <figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><code class="hljs ruby">&gt; 第一层<br><span class="hljs-meta">&gt;&gt;</span> 第二层<br><span class="hljs-meta">&gt;&gt;</span>&gt; 第三层<br></code></pre></td></tr></tbody></table></figure>
 <p>区块中也可以使用列表，同样，列表中也可以使用区块。</p>
@@ -4260,7 +4260,13 @@ L(\hat{\mathbf{y}})=-\sum\limits_{i=1}^{|V|} \mathbf{y}_i \log(\hat{\mathbf{y}}_
 <font color="red" size="5">
 我是红色字体,大小为5</font>
 
-<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="转义"><a href="#转义" class="headerlink" title="转义"></a>转义</h2><p>使用<code>\</code>符号转移特殊字符：</p>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="页内跳转"><a href="#页内跳转" class="headerlink" title="页内跳转"></a>页内跳转</h2><p>使用<strong>页内跳转</strong>可以用来进行引用等功能的快速跳转。</p>
+<p>具体实现方法：</p>
+<ol>
+<li>定义锚点(id)：在跳转到的目标处添加<code>&lt;span&gt;</code>标签或者<code>&lt;div&gt;</code>标签，比如<code>&lt;span id="refer-1"&gt;参考链接1&lt;/span&gt;</code></li>
+<li>使用Markdown语法：在想要跳转的地点，使用<code>[点击跳转](#refer-1)</code>语句，如果想要“点击跳转”内容是上标的形式，可以将其放到<code>&lt;sup&gt;</code>标签中，即<code>[&lt;sup&gt;点击跳转&lt;/sup&gt;](#refer-1)</code></li>
+</ol>
+<h2 id="转义"><a href="#转义" class="headerlink" title="转义"></a>转义</h2><p>使用<code>\</code>符号转移特殊字符：</p>
 <figure class="highlight taggerscript"><table><tbody><tr><td class="code"><pre><code class="hljs taggerscript">**文本加粗**<br><span class="hljs-symbol">\*</span><span class="hljs-symbol">\*</span>正常显示星号<span class="hljs-symbol">\*</span><span class="hljs-symbol">\*</span><br></code></pre></td></tr></tbody></table></figure>
 <p>效果如下：</p>
 <p><strong>文本加粗</strong><br>**正常显示星号**</p>
@@ -4308,7 +4314,7 @@ L(\hat{\mathbf{y}})=-\sum\limits_{i=1}^{|V|} \mathbf{y}_i \log(\hat{\mathbf{y}}_
 <h2 id="插入流程图"><a href="#插入流程图" class="headerlink" title="插入流程图"></a>插入流程图</h2><p>Typora插入横向流程图：</p>
 <figure class="highlight coq"><table><tbody><tr><td class="code"><pre><code class="hljs coq">​```mermaid<br>graph LR<br>A[方形] --&gt;B(圆角)<br>    B --&gt; C{条件a}<br>    C --&gt;|<span class="hljs-type">a</span>=<span class="hljs-number">1</span>| <span class="hljs-type">D</span>[结果<span class="hljs-number">1</span>]<br>    C --&gt;|<span class="hljs-type">a</span>=<span class="hljs-number">2</span>| <span class="hljs-type">E</span>[结果<span class="hljs-number">2</span>]<br>    F[横向流程图]<br>​```<br></code></pre></td></tr></tbody></table></figure>
 <p>效果如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_6.png" alt="6"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_6.png"><span class="image-caption">6</span></p>
 <blockquote>
 <p>更多类型的流程图、顺序图等可以参考：<a href="https://jingyan.baidu.com/article/48b558e3035d9a7f38c09aeb.html">typora画流程图、时序图(顺序图)、甘特图</a></p>
 </blockquote>
