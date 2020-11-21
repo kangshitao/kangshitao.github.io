@@ -38,7 +38,7 @@ favicon:
 # Font
 font:
   size: 14px
-  family: 'Microsoft YaHei'
+  family: 
 
 # Background Image
 background_image:

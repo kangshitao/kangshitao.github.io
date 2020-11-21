@@ -1,11 +1,24 @@
 ---
 title: PyTorch各种维度变换函数总结
+excerpt: >-
+  记录reshape/view、resize_、transpose/permute、squeeze/unsqueeze、expand/repeat函数使用方法和区别
 mathjax: true
-excerpt: 记录reshape/view、resize_、transpose/permute、squeeze/unsqueeze、expand/repeat函数使用方法和区别
-categories: 'PyTorch'
-tags: ['PyTorch','Python']
-keywords: ['pytorch',reshape','view','transpose','permute','unsqueeze','维度变换']
+categories: PyTorch
+tags:
+  - PyTorch
+  - Python
+keywords:
+  - pytorch
+  - reshape'
+  - view
+  - transpose
+  - permute
+  - unsqueeze
+  - 维度变换
+date: 2020-11-21 22:33:39
 ---
+
+
 
 
 
