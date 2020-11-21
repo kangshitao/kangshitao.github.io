@@ -14,7 +14,7 @@
 
 <div align="center">
   <a href="https://github.com/izhaoo/hexo-theme-zhaoo/releases" target="_blank" rel="noopener noreferrer">
-    <img alt="releases" src="https://img.shields.io/badge/releases-v1.4.0-blue.svg?style=flat-square&longCache=true">
+    <img alt="releases" src="https://img.shields.io/badge/releases-v1.6.0-blue.svg?style=flat-square&longCache=true">
   </a>
   <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">
     <img alt="hexo" src="https://img.shields.io/badge/hexo-%3E=4.0.0-blue.svg?style=flat-square&logo=hexo&longCache=true">
@@ -145,6 +145,12 @@ $ git pull
 * 小程序：[hexo-weapp-zhaoo](https://github.com/izhaoo/hexo-weapp-zhaoo) (为 Hexo 定制的博客小程序)
 * 插件：[hexo-generator-restful](https://github.com/izhaoo/hexo-generator-restful) (Hexo RESTful 接口)
 * 交流群：550262893
+
+## 贡献
+
+[![contributors](https://opencollective.com/hexo-theme-zhaoo/contributors.svg?button=false)](https://github.com/izhaoo/hexo-theme-zhaoo/graphs/contributors)
+
+感谢所有贡献者！欢迎提交代码~
 
 ## 趋势
 
