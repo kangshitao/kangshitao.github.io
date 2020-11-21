@@ -6,7 +6,7 @@
   <link href="http://kangshitao.github.io/atom.xml" rel="self"/>
   
   <link href="http://kangshitao.github.io/"/>
-  <updated>2020-11-15T03:37:19.000Z</updated>
+  <updated>2020-11-21T14:33:39.956Z</updated>
   <id>http://kangshitao.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PyTorch各种维度变换函数总结</title>
+    <link href="http://kangshitao.github.io/2020/11/21/pytorch-function/"/>
+    <id>http://kangshitao.github.io/2020/11/21/pytorch-function/</id>
+    <published>2020-11-21T14:33:39.000Z</published>
+    <updated>2020-11-21T14:33:39.956Z</updated>
+    
+    
+    <summary type="html">记录reshape/view、resize_、transpose/permute、squeeze/unsqueeze、expand/repeat函数使用方法和区别</summary>
+    
+    
+    
+    <category term="PyTorch" scheme="http://kangshitao.github.io/categories/PyTorch/"/>
+    
+    
+    <category term="Python" scheme="http://kangshitao.github.io/tags/Python/"/>
+    
+    <category term="PyTorch" scheme="http://kangshitao.github.io/tags/PyTorch/"/>
+    
+  </entry>
   
   <entry>
     <title>自注意力和Transformer</title>

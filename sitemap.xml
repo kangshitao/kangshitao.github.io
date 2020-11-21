@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://kangshitao.github.io/2020/11/21/pytorch-function/</loc>
+    
+    <lastmod>2020-11-21</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://kangshitao.github.io/2020/10/25/markdown/</loc>
     
     <lastmod>2020-11-21</lastmod>
@@ -178,6 +185,13 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>http://kangshitao.github.io/tags/PyTorch/</loc>
+    <lastmod>2020-11-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   
   <url>
@@ -203,6 +217,13 @@
   
   <url>
     <loc>http://kangshitao.github.io/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2020-11-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://kangshitao.github.io/categories/PyTorch/</loc>
     <lastmod>2020-11-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
