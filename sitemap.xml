@@ -95,27 +95,6 @@
 
   
   <url>
-    <loc>http://kangshitao.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2020-11-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://kangshitao.github.io/tags/Attention/</loc>
-    <lastmod>2020-11-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://kangshitao.github.io/tags/transformer/</loc>
-    <lastmod>2020-11-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://kangshitao.github.io/tags/hexo/</loc>
     <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
@@ -151,14 +130,21 @@
   </url>
   
   <url>
-    <loc>http://kangshitao.github.io/tags/Git/</loc>
+    <loc>http://kangshitao.github.io/tags/Attention/</loc>
     <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://kangshitao.github.io/tags/Markdown/</loc>
+    <loc>http://kangshitao.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2020-11-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://kangshitao.github.io/tags/Git/</loc>
     <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -186,6 +172,20 @@
   </url>
   
   <url>
+    <loc>http://kangshitao.github.io/tags/Markdown/</loc>
+    <lastmod>2020-11-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://kangshitao.github.io/tags/transformer/</loc>
+    <lastmod>2020-11-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://kangshitao.github.io/tags/PyTorch/</loc>
     <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
@@ -193,13 +193,6 @@
   </url>
   
 
-  
-  <url>
-    <loc>http://kangshitao.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2020-11-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
   
   <url>
     <loc>http://kangshitao.github.io/categories/%E5%8D%9A%E5%AE%A2/</loc>
@@ -210,6 +203,13 @@
   
   <url>
     <loc>http://kangshitao.github.io/categories/%E6%95%99%E7%A8%8B/</loc>
+    <lastmod>2020-11-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://kangshitao.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

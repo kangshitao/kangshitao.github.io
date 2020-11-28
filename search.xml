@@ -121,7 +121,7 @@
 <h1 id="图床"><a href="#图床" class="headerlink" title="图床"></a>图床</h1><p>众所周知，github是万能的，使用<a href="https://picgo.github.io/PicGo-Doc/">PigGo</a>和Github搭建个人图床，参考<a href="https://picgo.github.io/PicGo-Doc/zh/guide/#%E5%90%AC%E8%AF%B4%E4%BD%A0%E4%B9%9F%E6%83%B3%E7%94%A8picgo">PigGo官方文档</a></p>
 <h2 id="新建github项目"><a href="#新建github项目" class="headerlink" title="新建github项目"></a>新建github项目</h2><p>新建github项目用来存放图片，并生成token：</p>
 <figure class="highlight xl"><table><tbody><tr><td class="code"><pre><code class="hljs xl"><span class="hljs-function"><span class="hljs-title">github</span>头像-&gt;</span>S<span class="hljs-function"><span class="hljs-title">ettings</span>-&gt;</span>D<span class="hljs-function"><span class="hljs-title">eveloper</span> settings-&gt;</span>Generate new token<br>将repo选项打勾<br></code></pre></td></tr></tbody></table></figure>
-<h2 id="配置PicGo"><a href="#配置PicGo" class="headerlink" title="配置PicGo"></a>配置PicGo</h2><p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/blogcreatprocess_1.png" alt="1"></p>
+<h2 id="配置PicGo"><a href="#配置PicGo" class="headerlink" title="配置PicGo"></a>配置PicGo</h2><p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/blogcreatprocess_1.png"><span class="image-caption">1</span></p>
 <p>然后点击确定，并设置为默认图床。</p>
 <p>自定义域名可以按照图中的设置，也可以使用别的自定义域名。第二种域名方式就是使用<a href="https://en.wikipedia.org/wiki/Content_delivery_network">CDN</a>加速的方法，CDN(Content Delivery Network)是指内容分发网络，也称为内容传送网络。</p>
 <p><a href="https://www.jsdelivr.com/?docs=gh">jsDelivr</a>是一种免费的CDN加速产品，可以加速Github和NPM的资源，其中使用jsDelivr的方法访问Github资源只需要将链接改为以下格式：</p>
@@ -130,10 +130,10 @@
 <p>jsDelivr的更多用法可以参考官方文档</p>
 </blockquote>
 <p>使用jsDelivr加速的自定义域名填写内容如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/blogcreatprocess_2.png" alt="2"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/blogcreatprocess_2.png"><span class="image-caption">2</span></p>
 <h2 id="上传图片"><a href="#上传图片" class="headerlink" title="上传图片"></a>上传图片</h2><p>将图片拖入上传区，上传成功后会自动在剪切板生成图片链接。</p>
 <h2 id="其他设置"><a href="#其他设置" class="headerlink" title="其他设置"></a>其他设置</h2><p>其他参数设置可根据个人喜好进行设置：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/blogcreatprocess_3.png" alt="3"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/blogcreatprocess_3.png"><span class="image-caption">3</span></p>
 <h2 id="图片上传失败问题"><a href="#图片上传失败问题" class="headerlink" title="图片上传失败问题"></a>图片上传失败问题</h2><p>由于某些原因，github当作图库不是很稳定，时好时坏也是正常现象。</p>
 <p>参考<a href="https://blog.csdn.net/TalesOV/article/details/104450037?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-5.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-5.channel_param">PicGo踩坑记</a></p>
 <ul>
@@ -1777,8 +1777,8 @@ stride[i]=stride[i+1]\times size[i+1],\forall i=0,\ldots,d-1(i\neq d-1)</script>
         <category>深度学习</category>
       </categories>
       <tags>
-        <tag>深度学习</tag>
         <tag>Attention</tag>
+        <tag>深度学习</tag>
         <tag>transformer</tag>
       </tags>
   </entry>
@@ -2507,8 +2507,8 @@ p(c_{1:M}|\boldsymbol{x}_{1:N}) = \prod^M_{m=1} p(c_m|c_{1:(m-1)},\boldsymbol{x}
         <category>深度学习</category>
       </categories>
       <tags>
-        <tag>深度学习</tag>
         <tag>Attention</tag>
+        <tag>深度学习</tag>
       </tags>
   </entry>
   <entry>
@@ -2536,7 +2536,7 @@ p(c_{1:M}|\boldsymbol{x}_{1:N}) = \prod^M_{m=1} p(c_m|c_{1:(m-1)},\boldsymbol{x}
 <li>GNN模型：SRGNN、FGNN</li>
 </ul>
 <h1 id="本文模型"><a href="#本文模型" class="headerlink" title="本文模型"></a>本文模型</h1><p>本文模型结构图如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_1.png" alt="1"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_1.png"><span class="image-caption">1</span></p>
 <h2 id="问题定义"><a href="#问题定义" class="headerlink" title="问题定义"></a>问题定义</h2><p><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="21.325ex" height="3.176ex" style="vertical-align: -1.171ex;" viewBox="0 -863.1 9181.5 1367.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title"> V=\{v_1,v_2,\dots,v_{|V|}\} </title>
 <defs aria-hidden="true">
@@ -3881,8 +3881,8 @@ L(\hat{\mathbf{y}})=-\sum\limits_{i=1}^{|V|} \mathbf{y}_i \log(\hat{\mathbf{y}}_
         <category>论文笔记</category>
       </categories>
       <tags>
-        <tag>深度学习</tag>
         <tag>Attention</tag>
+        <tag>深度学习</tag>
         <tag>SBRS</tag>
         <tag>paper</tag>
         <tag>GNN</tag>
