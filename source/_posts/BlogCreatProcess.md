@@ -11,7 +11,7 @@ top: 10
 
 > 使用hexo和github.pages搭建博客，主题为[zhaoo](https://github.com/izhaoo/hexo-theme-zhaoo)
 >
-> 主题一直在更新，功能也在完善，本文的内容中有的功能主题也加上了，设置起来更方便，本文部分内容不再修改，具体配置情况请根据主题而定。更多内容可以参考zhaoo主题作者博客主页：[zhaoo](https://www.izhaoo.com/)
+> 文章部分功能是主题没更新之前写的，随着主题更新，功能也越来越完善，且设置起来更方便。作为记录，已有的内容不再修改，具体配置情况请根据主题而定。更多内容可以参考zhaoo主题作者博客主页：[zhaoo](https://www.izhaoo.com/)
 
 # 准备工作
 
@@ -127,6 +127,10 @@ tags和categories属性的值可以用列表，表示多个标签/类别。
 
 # 数学公式渲染
 
+> 主题更新添加了公式渲染配置的说明，方法简单快捷，可以[参考](https://www.izhaoo.com/2020/05/05/hexo-theme-zhaoo-doc/#%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F)。本节内容作为踩坑记录。
+
+
+
 > hexo默认的Markdown渲染器是hexo-renderer-marked，会先按照Markdown语法解析，然后才是LaTex，所以会有冲突。试了网上各种解决方法，终于遇到一个有效的方法：[hexo无法显示公式的问题-DGZ's Blog](https://www.dazhuanlan.com/2020/03/07/5e633a3b46a81/)
 
 ## 重装插件
@@ -200,7 +204,7 @@ hexo g
 hexo s
 ```
 
-> 弄完才发现，主题作者添加了公式渲染的说明，方法简单快捷，可以[参考](https://www.izhaoo.com/2020/05/05/hexo-theme-zhaoo-doc/#%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F)
+
 
 # 图床
 
@@ -348,8 +352,6 @@ zhaoo没有支持侧边目录，需要自己添加代码，使用hexo官方的to
   padding-left 20px
 ```
 
-下一步计划，目录跟随页面高亮显示当前位置标题……参考[Hexo折腾笔记](https://unnamed42.github.io/2016-09-10-Hexo%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0.htm)
-
 
 
 ## SEO优化
@@ -370,7 +372,7 @@ sitemap:
 
 
 
-其他设置问题，持续更新...
+ 未完待续……
 
 ---
 

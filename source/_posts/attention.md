@@ -124,7 +124,7 @@ att((\boldsymbol{K,V}),\boldsymbol{Q}) = att((\boldsymbol{K,V}),\boldsymbol{q}_1
 $$
 其中$\oplus$表示向量拼接。
 
-多头注意力通常用在自注意力之后，详情参见[自注意力和Transformer](http://kangshitao.github.io/2020/11/12/transformer/index.html).
+多头注意力通常用在自注意力之后，详情参见[自注意力和Transformer](http://kangshitao.github.io/2020/11/15/transformer/index.html).
 
 ## 指针网络
 

@@ -58,7 +58,8 @@ preview:
   motto:
     color: '#ffffff'
     default: 心之所向，素履以往
-    api: https://v1.hitokoto.cn/?encode=text&c=d
+    jinrishici: true # Only if `jinrishici` is false, use api.
+    api: https://v1.hitokoto.cn/?c=i
 
 # Copyright
 copyright: <p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p>
@@ -70,6 +71,10 @@ social:
   #instagram: https://www.instagram.com/izhaoo/ || iconinstagram || '#DA2E76'
   github: https://github.com/kangshitao || icongithub-fill || '#24292E'
   email: mailto:1574716653@qq.com || iconmail
+
+# Override Scrollbar
+scrollbar:
+  model: simple # default simple normal none
 
 # Fab (Float Action Button)
 fab:
@@ -106,6 +111,11 @@ post_page_size:
 # Caption
 caption:
   enable: true
+
+# Indent
+indent:
+  content:
+  excerpt:
 
 # TOC
 toc:
@@ -173,6 +183,13 @@ changyan:
 # --------------------------------------------------
 # Plugin settings
 # --------------------------------------------------
+
+# Notification
+notification:
+  enable: false
+  delay: 4500
+  page_white_list:
+  page_black_list:
 
 # Daovoice
 daovoice:

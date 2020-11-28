@@ -27,6 +27,12 @@
   </a>
 </div>
 
+<br/>
+
+<div align="center">
+  文档：<a href="https://www.izhaoo.com/2020/05/05/hexo-theme-zhaoo-doc/" target="_blank" rel="noopener noreferrer">配置文档</a>&nbsp;&nbsp;&nbsp;&nbsp;预览：<a href="https://www.izhaoo.com/" target="_blank" rel="noopener noreferrer">zhaoo</a>
+</div>
+
 ## 预览
 
 - [zhaoo's Blog](https://www.izhaoo.com)
@@ -44,6 +50,7 @@
 - [你好我是王日天@](http://www.rt95.ink/)
 - [iaosee's Blog](https://www.iaosee.com/)
 - [少年民仔](https://www.feminzai.com/)
+- [刘超智](https://www.insidentally.com/)
 
 （如果您正在使用 zhaoo 主题，欢迎展示您的博客哦，只需在 `README.md` 文件中加入您的博客，提交 PR 即可。）
 
@@ -124,7 +131,7 @@ $ hexo clean && hexo s
 
 修改主题目录下的 `_config.yml` 文件，配置相关功能：
 
-建议参考 [_config.yml](https://github.com/izhaoo/hexo-theme-zhaoo/blob/master/_config.yml) 和 [_example](https://github.com/izhaoo/hexo-theme-zhaoo/tree/master/_example) 进行配置
+建议参考 [配置文档](https://www.izhaoo.com/2020/05/05/hexo-theme-zhaoo-doc/)、[_config.yml](https://github.com/izhaoo/hexo-theme-zhaoo/blob/master/_config.yml)、[_example](https://github.com/izhaoo/hexo-theme-zhaoo/tree/master/_example) 进行配置
 
 ## 更新
 
