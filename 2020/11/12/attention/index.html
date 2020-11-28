@@ -24,7 +24,7 @@
     <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
     <meta rel="msapplication-TileColor" content="#000000">
   
-  
+
   
 <link rel="stylesheet" href="/css/style.css">
 
@@ -92,8 +92,9 @@
           api: ''
         },
         motto: {
+          jinrishici: true,
           default: '心之所向，素履以往',
-          api: 'https://v1.hitokoto.cn/?encode=text&c=d'
+          api: 'https://v1.hitokoto.cn/?c=i'
         },
       },
       qrcode: {
@@ -103,6 +104,16 @@
       },
       toc: {
         enable: true
+      },
+      scrollbar: {
+        model: 'simple'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
       }
     }
   </script>
@@ -115,6 +126,7 @@
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="Live And Learn" type="application/atom+xml">
 </head>
+
 <body class="lock-screen">
   <div class="loading"></div>
   
@@ -168,7 +180,7 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_10.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_1.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">Attention总结</h1>
     <div class="head-info">
@@ -669,7 +681,7 @@ att((\boldsymbol{K,V}),\boldsymbol{Q}) = att((\boldsymbol{K,V}),\boldsymbol{q}_1
  <use xlink:href="#E1-MJMAIN-2295" x="0" y="0"></use>
 </g>
 </svg>表示向量拼接。</p>
-<p>多头注意力通常用在自注意力之后，详情参见<a href="http://kangshitao.github.io/2020/11/12/transformer/index.html">自注意力和Transformer</a>.</p>
+<p>多头注意力通常用在自注意力之后，详情参见<a href="http://kangshitao.github.io/2020/11/15/transformer/index.html">自注意力和Transformer</a>.</p>
 <h2 id="指针网络"><a href="#指针网络" class="headerlink" title="指针网络"></a>指针网络</h2><p>注意力机制主要是用来做信息筛选，从输入信息中选取相关的信息。注意力机制可以分为两步：<strong>一是计算注意力分布<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.488ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 640.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\alpha</title>
 <defs aria-hidden="true">
@@ -924,7 +936,9 @@ p(c_{1:M}|\boldsymbol{x}_{1:N}) = \prod^M_{m=1} p(c_m|c_{1:(m-1)},\boldsymbol{x}
   </div>
 </section>
         
-        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention/" rel="tag">Attention</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li></ul>
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention/" rel="tag">Attention</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li></ul> 
+
         
   <nav class="nav">
     <a href="/2020/11/15/transformer/"><i class="iconfont iconleft"></i>自注意力和Transformer</a>
@@ -1000,6 +1014,11 @@ p(c_{1:M}|\boldsymbol{x}_{1:N}) = \prod^M_{m=1} p(c_m|c_{1:(m-1)},\boldsymbol{x}
   </div>
   
   
+    <div class="scrollbar j-scrollbar">
+  <div class="scrollbar-current j-scrollbar-current"></div>
+</div>
+  
+  
     
 <script src="/js/color-mode.js"></script>
 
@@ -1027,6 +1046,12 @@ p(c_{1:M}|\boldsymbol{x}_{1:N}) = \prod^M_{m=1} p(c_m|c_{1:(m-1)},\boldsymbol{x}
 
   
 <script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js"></script>
 
 
 

@@ -21,7 +21,7 @@
     <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
     <meta rel="msapplication-TileColor" content="#000000">
   
-  
+
   
 <link rel="stylesheet" href="/css/style.css">
 
@@ -89,8 +89,9 @@
           api: ''
         },
         motto: {
+          jinrishici: true,
           default: '心之所向，素履以往',
-          api: 'https://v1.hitokoto.cn/?encode=text&c=d'
+          api: 'https://v1.hitokoto.cn/?c=i'
         },
       },
       qrcode: {
@@ -100,6 +101,16 @@
       },
       toc: {
         enable: true
+      },
+      scrollbar: {
+        model: 'simple'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
       }
     }
   </script>
@@ -112,6 +123,7 @@
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="Live And Learn" type="application/atom+xml">
 </head>
+
 <body class="lock-screen">
   <div class="loading"></div>
   
@@ -165,7 +177,7 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_13.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_15.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">PyTorch各种维度变换函数总结</h1>
     <div class="head-info">
@@ -425,7 +437,9 @@ stride[i]=stride[i+1]\times size[i+1],\forall i=0,\ldots,d-1(i\neq d-1)</script>
   </div>
 </section>
         
-        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyTorch/" rel="tag">PyTorch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyTorch/" rel="tag">PyTorch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul> 
+
         
   <nav class="nav">
     <a></a>
@@ -501,6 +515,11 @@ stride[i]=stride[i+1]\times size[i+1],\forall i=0,\ldots,d-1(i\neq d-1)</script>
   </div>
   
   
+    <div class="scrollbar j-scrollbar">
+  <div class="scrollbar-current j-scrollbar-current"></div>
+</div>
+  
+  
     
 <script src="/js/color-mode.js"></script>
 
@@ -528,6 +547,12 @@ stride[i]=stride[i+1]\times size[i+1],\forall i=0,\ldots,d-1(i\neq d-1)</script>
 
   
 <script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js"></script>
 
 
 

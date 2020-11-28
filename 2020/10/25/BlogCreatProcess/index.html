@@ -22,7 +22,7 @@
     <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
     <meta rel="msapplication-TileColor" content="#000000">
   
-  
+
   
 <link rel="stylesheet" href="/css/style.css">
 
@@ -90,8 +90,9 @@
           api: ''
         },
         motto: {
+          jinrishici: true,
           default: '心之所向，素履以往',
-          api: 'https://v1.hitokoto.cn/?encode=text&c=d'
+          api: 'https://v1.hitokoto.cn/?c=i'
         },
       },
       qrcode: {
@@ -101,6 +102,16 @@
       },
       toc: {
         enable: true
+      },
+      scrollbar: {
+        model: 'simple'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
       }
     }
   </script>
@@ -113,6 +124,7 @@
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="Live And Learn" type="application/atom+xml">
 </head>
+
 <body class="lock-screen">
   <div class="loading"></div>
   
@@ -166,7 +178,7 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_3.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">建立Hexo个人博客</h1>
     <div class="head-info">
@@ -176,7 +188,7 @@
           <i class="iconfont iconeye"></i><span id="/2020/10/25/BlogCreatProcess/" class="leancloud" data-flag-title="建立Hexo个人博客"></span>
         </span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>5662</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>5634</span>
     </div>
   </div>
 </section>
@@ -184,7 +196,7 @@
       <section class="content">
         <blockquote>
 <p>使用hexo和github.pages搭建博客，主题为<a target="_blank" rel="noopener" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p>
-<p>主题一直在更新，功能也在完善，本文的内容中有的功能主题也加上了，设置起来更方便，本文部分内容不再修改，具体配置情况请根据主题而定。更多内容可以参考zhaoo主题作者博客主页：<a target="_blank" rel="noopener" href="https://www.izhaoo.com/">zhaoo</a></p>
+<p>文章部分功能是主题没更新之前写的，随着主题更新，功能也越来越完善，且设置起来更方便。作为记录，已有的内容不再修改，具体配置情况请根据主题而定。更多内容可以参考zhaoo主题作者博客主页：<a target="_blank" rel="noopener" href="https://www.izhaoo.com/">zhaoo</a></p>
 </blockquote>
 <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>github创建名为username.github.io的repository</p>
 <p>安装git</p>
@@ -224,6 +236,7 @@
 <p>在<code>scaffolds</code>文件夹中，有三种默认布局新建时的模版，可以自定义新建文件时的格式。</p>
 <p>tags和categories属性的值可以用列表，表示多个标签/类别。</p>
 <h1 id="数学公式渲染"><a href="#数学公式渲染" class="headerlink" title="数学公式渲染"></a>数学公式渲染</h1><blockquote>
+<p>主题更新添加了公式渲染配置的说明，方法简单快捷，可以<a target="_blank" rel="noopener" href="https://www.izhaoo.com/2020/05/05/hexo-theme-zhaoo-doc/#%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F">参考</a>。本节内容作为踩坑记录。</p>
 <p>hexo默认的Markdown渲染器是hexo-renderer-marked，会先按照Markdown语法解析，然后才是LaTex，所以会有冲突。试了网上各种解决方法，终于遇到一个有效的方法：<a target="_blank" rel="noopener" href="https://www.dazhuanlan.com/2020/03/07/5e633a3b46a81/">hexo无法显示公式的问题-DGZ’s Blog</a></p>
 </blockquote>
 <h2 id="重装插件"><a href="#重装插件" class="headerlink" title="重装插件"></a>重装插件</h2><p>首先，只保留一个公式渲染器，这里保留kramed渲染器。</p>
@@ -296,9 +309,6 @@
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">mathjax:</span> <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
 <h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>如果是第一次修改，修改完以后需要重新启动服务：</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">hexo</span> <span class="hljs-string">clean</span><br><span class="hljs-attr">hexo</span> <span class="hljs-string">g</span><br><span class="hljs-attr">hexo</span> <span class="hljs-string">s</span><br></code></pre></td></tr></table></figure>
-<blockquote>
-<p>弄完才发现，主题作者添加了公式渲染的说明，方法简单快捷，可以<a target="_blank" rel="noopener" href="https://www.izhaoo.com/2020/05/05/hexo-theme-zhaoo-doc/#%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F">参考</a></p>
-</blockquote>
 <h1 id="图床"><a href="#图床" class="headerlink" title="图床"></a>图床</h1><p>众所周知，github是万能的，使用<a target="_blank" rel="noopener" href="https://picgo.github.io/PicGo-Doc/">PigGo</a>和Github搭建个人图床，参考<a target="_blank" rel="noopener" href="https://picgo.github.io/PicGo-Doc/zh/guide/#%E5%90%AC%E8%AF%B4%E4%BD%A0%E4%B9%9F%E6%83%B3%E7%94%A8picgo">PigGo官方文档</a></p>
 <h2 id="新建github项目"><a href="#新建github项目" class="headerlink" title="新建github项目"></a>新建github项目</h2><p>新建github项目用来存放图片，并生成token：</p>
 <figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xl"><span class="hljs-function"><span class="hljs-title">github</span>头像-&gt;</span>S<span class="hljs-function"><span class="hljs-title">ettings</span>-&gt;</span>D<span class="hljs-function"><span class="hljs-title">eveloper</span> settings-&gt;</span>Generate new token<br>将repo选项打勾<br></code></pre></td></tr></table></figure>
@@ -337,13 +347,12 @@
 <figure class="highlight erb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">aside</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;post-widget&quot;</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;toc&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;toc-article fixed&quot;</span>&gt;</span></span><br><span class="xml">	<span class="hljs-tag">&lt;<span class="hljs-name">strong</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;toc-title&quot;</span>&gt;</span>文章目录<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span></span><br><span class="xml">	  <span class="hljs-tag">&lt;<span class="hljs-name">%-</span></span></span><span class="ruby"> toc(page.content, &#123;</span><br><span class="ruby">	    <span class="hljs-class"><span class="hljs-keyword">class</span>: &#x27;<span class="hljs-title">post</span>-<span class="hljs-title">toc</span>&#x27;,</span></span><br><span class="ruby">		<span class="hljs-symbol">list_number:</span> <span class="hljs-literal">false</span>,</span><br><span class="ruby">        <span class="hljs-symbol">max_depth:</span> <span class="hljs-string">&#x27;6&#x27;</span>,</span><br><span class="ruby">	    <span class="hljs-symbol">min_depth:</span> <span class="hljs-string">&#x27;1&#x27;</span>&#125;) </span><span class="xml">%&gt;</span><br><span class="xml">	<span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
 <p>然后在<code>themes\zhaoo\source\css\_partial\post.styl</code>中，最前面添加以下代码：</p>
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-selector-class">.post-widget</span><br>  <span class="hljs-attribute">float</span> <span class="hljs-attribute">right</span><br>  <span class="hljs-attribute">width</span> 15%<br>  <span class="hljs-attribute">padding-left</span> 10px<br>  min-hidden 1px<br><span class="hljs-selector-class">.toc-article</span><span class="hljs-selector-class">.fixed</span><br>  <span class="hljs-attribute">top</span> 76px<br>  <span class="hljs-attribute">bottom</span> 140px<br>  <span class="hljs-attribute">overflow-y</span> <span class="hljs-attribute">auto</span><br><span class="hljs-selector-class">.toc-article</span><br>  <span class="hljs-attribute">position</span> fixed<br>  <span class="hljs-attribute">overflow-x</span> hidden<br><span class="hljs-selector-class">.toc-title</span><br>  <span class="hljs-attribute">padding-left</span> 20px<br></code></pre></td></tr></table></figure>
-<p>下一步计划，目录跟随页面高亮显示当前位置标题……参考<a target="_blank" rel="noopener" href="https://unnamed42.github.io/2016-09-10-Hexo%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0.htm">Hexo折腾笔记</a></p>
 <h2 id="SEO优化"><a href="#SEO优化" class="headerlink" title="SEO优化"></a>SEO优化</h2><blockquote>
 <p>搜索引擎优化（Search Engine Optimization,SEO），是一种通过了解搜索引擎的运作规则来调整网站，以及提高目的网站在有关搜索引擎内排名的方式。</p>
 </blockquote>
 <p>Github.pages屏蔽了百度的爬虫请求，配置较麻烦，这里仅以Google为例，使用<a target="_blank" rel="noopener" href="https://search.google.com/search-console/about">Google Search Console</a>，以下过程参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/35400128">hexo博客搭建(五) SEO优化</a></p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-number">1</span><span class="hljs-string">、首先去google</span> <span class="hljs-string">search</span> <span class="hljs-string">console验证，有多种方式可选。</span><br><span class="hljs-number">2</span><span class="hljs-string">、添加站点地图</span> <span class="hljs-string">sitemap</span><br><span class="hljs-string">npm</span> <span class="hljs-string">install</span> <span class="hljs-string">hexo-generator-sitemap</span> <span class="hljs-string">--save</span>  <span class="hljs-comment"># 安装站点地图自动生成的插件</span><br><span class="hljs-string">在_config.yml文件中添加以下代码：</span><br><span class="hljs-attr">sitemap:</span><br>  <span class="hljs-attr">path:</span> <span class="hljs-string">sitemap.xml</span><br><span class="hljs-number">3</span><span class="hljs-string">、部署之后可以去google</span> <span class="hljs-string">search</span> <span class="hljs-string">console测试。</span><br></code></pre></td></tr></table></figure>
-<p>其他设置问题，持续更新…</p>
+<p> 未完待续……</p>
 <hr>
 <h1 id="参考教程"><a href="#参考教程" class="headerlink" title="参考教程"></a>参考教程</h1><blockquote>
 <p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">hexo官方文档</a></p>
@@ -372,7 +381,9 @@
   </div>
 </section>
         
-        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul> 
+
         
   <nav class="nav">
     <a href="/2020/10/28/conda/"><i class="iconfont iconleft"></i>Conda基础命令</a>
@@ -448,6 +459,11 @@
   </div>
   
   
+    <div class="scrollbar j-scrollbar">
+  <div class="scrollbar-current j-scrollbar-current"></div>
+</div>
+  
+  
     
 <script src="/js/color-mode.js"></script>
 
@@ -475,6 +491,12 @@
 
   
 <script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js"></script>
 
 
 
