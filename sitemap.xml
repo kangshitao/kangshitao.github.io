@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://kangshitao.github.io/2020/12/05/reverse-linkedlist/</loc>
+    
+    <lastmod>2020-12-05</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://kangshitao.github.io/2020/10/25/BlogCreatProcess/</loc>
     
     <lastmod>2020-11-27</lastmod>
@@ -192,6 +199,20 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>http://kangshitao.github.io/tags/%E9%93%BE%E8%A1%A8/</loc>
+    <lastmod>2020-12-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://kangshitao.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
+    <lastmod>2020-12-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   
   <url>
@@ -224,6 +245,13 @@
   
   <url>
     <loc>http://kangshitao.github.io/categories/PyTorch/</loc>
+    <lastmod>2020-12-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://kangshitao.github.io/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2020-12-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
