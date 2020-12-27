@@ -1,12 +1,14 @@
 ---
 title: 10种常用排序算法总结
-mathjax: true
 excerpt: 整理总结常用的十种排序算法
+mathjax: true
 categories: 算法笔记
 tags: 数据结构
-keywords: 排序,算法
-
+keywords: 排序,算法,排序算法,数据结构
+date: 2020-12-27 16:08:34
 ---
+
+
 
 # 概述
 
