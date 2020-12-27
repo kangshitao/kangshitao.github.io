@@ -407,10 +407,11 @@ public class QuickSort{
         int pivot = nums[right]; //这里一直选用最右边的元素作为基准元素
         int i = left; //定义i，j两个指针，分别从左右两边往中间遍历
         int j = right-1; //因为最右边的元素已经是基准元素了，所以需要往左一位
-        while(i<j){
-            while(i<j && nums[i]<pivot) i += 1;//左指针向右遍历，直到找到一个大于pivot的值
-            while(i<j && nums[j]>pivot) j -= 1;//右指针向左遍历，直到找到一个小于pivot的值
-            int temp = nums[i]; //交互两个指针指向的元素的位置
+        while(true){
+            while(i<=j && nums[i]<pivot) i += 1;//左指针向右遍历，直到找到一个大于pivot的值
+            while(i<=j && nums[j]>pivot) j -= 1;//右指针向左遍历，直到找到一个小于pivot的值
+            if(i>=j) break;
+            int temp = nums[i]; //交换两个指针指向的元素的位置
             nums[i] = nums[j];
             nums[j] = temp;
         }
