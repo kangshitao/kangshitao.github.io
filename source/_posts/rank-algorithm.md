@@ -408,20 +408,36 @@ public class QuickSort{
         int i = left; //定义i，j两个指针，分别从左右两边往中间遍历
         int j = right-1; //因为最右边的元素已经是基准元素了，所以需要往左一位
         while(true){
-            while(i<=j && nums[i]<pivot) i += 1;//左指针向右遍历，直到找到一个大于pivot的值
-            while(i<=j && nums[j]>pivot) j -= 1;//右指针向左遍历，直到找到一个小于pivot的值
+            //这里判断条件包括等号，不然会出现两个相同的值重复交换陷入死循环的情况。
+            while(i<=j && nums[i]<=pivot) i += 1;//左指针向右遍历，直到找到一个大于pivot的值
+            while(i<=j && nums[j]>=pivot) j -= 1;//右指针向左遍历，直到找到一个小于pivot的值
             if(i>=j) break;
-            int temp = nums[i]; //交换两个指针指向的元素的位置
-            nums[i] = nums[j];
-            nums[j] = temp;
+            swap(nums,i,j);//交换两个指针指向的元素的位置
         }
         //将序列根据pivot划分为两部分后，将pivot的值放到分界点的位置
         nums[right] = nums[i];//这里和左右指针哪一个指向的值交换都可以
         nums[i] = pivot;
         return i;
     }
+    private static void swap(int[] nums, int i, int j) { //用于交换两个值
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
 }
 ```
+
+> 如果序列近乎有序，每次选取第一个数或者最后一个数作为基准的方法时间复杂度会接近$O(n^2)$，因此需要随机选取基准点。
+>
+> 如果是随机选取基准点，需要在`int pivot = nums[right];`语句前，将随机选取的值放到最右边或最左边，其余代码不变：
+>
+> ```java
+>  int random_index = new Random().nextInt(right-left+1)+left; //随机选取下标
+>  swap(nums,right,random_index); //然后将选取的基准值放到最右边
+>  int pivot = nums[right]; //将此时最右边的元素作为基准值，也就是随机选取的基准值
+> ```
+>
+> 
 
 
 
