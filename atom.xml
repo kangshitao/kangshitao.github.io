@@ -6,7 +6,7 @@
   <link href="http://kangshitao.github.io/atom.xml" rel="self"/>
   
   <link href="http://kangshitao.github.io/"/>
-  <updated>2020-12-28T03:09:02.988Z</updated>
+  <updated>2021-01-02T03:55:07.037Z</updated>
   <id>http://kangshitao.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python爬虫-m3u8视频爬取</title>
+    <link href="http://kangshitao.github.io/2021/01/02/crawler-wuchizhitu/"/>
+    <id>http://kangshitao.github.io/2021/01/02/crawler-wuchizhitu/</id>
+    <published>2021-01-02T02:48:05.000Z</published>
+    <updated>2021-01-02T03:55:07.037Z</updated>
+    
+    
+    <summary type="html">使用python爬取流媒体网站的m3u8视频</summary>
+    
+    
+    
+    <category term="爬虫" scheme="http://kangshitao.github.io/categories/%E7%88%AC%E8%99%AB/"/>
+    
+    
+    <category term="Python" scheme="http://kangshitao.github.io/tags/Python/"/>
+    
+    <category term="爬虫" scheme="http://kangshitao.github.io/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>10种常用排序算法总结</title>
