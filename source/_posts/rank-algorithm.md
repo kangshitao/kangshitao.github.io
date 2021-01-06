@@ -415,7 +415,7 @@ public class QuickSort{
             swap(nums,i,j);//交换两个指针指向的元素的位置
         }
         //将序列根据pivot划分为两部分后，将pivot的值放到分界点的位置
-        nums[right] = nums[i];//这里和左右指针哪一个指向的值交换都可以
+        nums[right] = nums[i];//如果一直选用最右边元素，则和i交换，如果是选最左边，则和j交换
         nums[i] = pivot;
         return i;
     }
