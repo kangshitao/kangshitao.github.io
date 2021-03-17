@@ -193,7 +193,7 @@
   <div class="post-wrap">
     
     <a href="/2020/10/31/git/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_10.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_4.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
       <div class="post-content-wrap">
@@ -204,10 +204,6 @@
       </div>
       <div class="post-info">
         <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 31, 2020</span>
-        
-          <span class="post-info-item">
-            <i class="iconfont iconeye"></i><span id="/2020/10/31/git/" class="leancloud" data-flag-title="Git命令"></span>
-          </span>
         
         <span class="post-info-item"><i class="iconfont iconfont-size"></i>4607</span>
       </div>
@@ -222,7 +218,7 @@
   <div class="post-wrap">
     
     <a href="/2020/10/28/conda/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_11.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_6.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
       <div class="post-content-wrap">
@@ -233,10 +229,6 @@
       </div>
       <div class="post-info">
         <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 28, 2020</span>
-        
-          <span class="post-info-item">
-            <i class="iconfont iconeye"></i><span id="/2020/10/28/conda/" class="leancloud" data-flag-title="Conda基础命令"></span>
-          </span>
         
         <span class="post-info-item"><i class="iconfont iconfont-size"></i>1302</span>
       </div>
@@ -251,7 +243,7 @@
   <div class="post-wrap">
     
     <a href="/2020/10/25/markdown/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_3.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_10.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
       <div class="post-content-wrap">
@@ -262,10 +254,6 @@
       </div>
       <div class="post-info">
         <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 25, 2020</span>
-        
-          <span class="post-info-item">
-            <i class="iconfont iconeye"></i><span id="/2020/10/25/markdown/" class="leancloud" data-flag-title="Markdown简单教程"></span>
-          </span>
         
         <span class="post-info-item"><i class="iconfont iconfont-size"></i>3011</span>
       </div>
@@ -387,46 +375,6 @@
 <script src="/js/script.js"></script>
 
 
-
-  <script>
-  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
-
-    AV.init({
-      appId: 'dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz',
-      appKey: 'XipU873t8gkSypbwl1HWUARD',
-      serverURLs: 'https://leancloud.cn/',
-    });
-
-    const showCount = (Counter) => {
-      const asyncLimit = new AsyncLimit(2);
-      $(".leancloud").each(async (e) => {
-        const url = $(".leancloud").eq(e).attr('id').trim();
-        const query = new AV.Query("Counter");
-        query.equalTo("words", url);
-        let count = await asyncLimit.run(() => query.count());
-        $(".leancloud").eq(e).text(count ? count : '--');
-      });
-    }
-
-    const addCount = (Counter) => {
-      const url = $(".leancloud").length === 1 ? $(".leancloud").attr('id').trim() : 'http://kangshitao.github.io';
-      var query = new Counter;
-      query.save({
-        words: url
-      });
-    }
-
-    $(function () {
-	  const Counter = AV.Object.extend("Counter");
-	  showCount(Counter);
-      const localhost = /http\:\/\/localhost|http\:\/\/127.0.0.1|http\:\/\/0.0.0.0/;
-      if (localhost.test(document.URL)) {
-	    return;
-	  }
-	  addCount(Counter);
-    });
-  });
-</script>
 
 
 
