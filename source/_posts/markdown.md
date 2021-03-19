@@ -30,7 +30,11 @@ Markdown标题有两种格式
 
 效果如下：
 
-![1](https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_1.png)
+<div align='center'>
+    <img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_1.png" />
+</div>
+
+
 
 ## 使用#号标记
 
@@ -92,7 +96,11 @@ Markdown支持无序列表和有序列表。
 
 显示效果：
 
-![2](https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_2.png)
+<div align='center'>
+    <img src='https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_2.png' />
+</div>
+
+
 
 ## 有序列表
 
@@ -106,7 +114,12 @@ Markdown支持无序列表和有序列表。
 
 显示效果：
 
-![3](https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_3.png)
+
+<div align='center'>
+    <img src = 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_3.png'/>
+</div>
+
+
 
 ## 列表嵌套
 
@@ -123,7 +136,12 @@ Markdown支持无序列表和有序列表。
 
 显示效果：
 
-![4](https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_4.png)
+<div align='center'>
+    <img src='https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_4.png' />
+</div>
+
+
+
 > Typora中，子列表选项前不加空格也可以。
 
 # 插入区块和分隔线
@@ -138,7 +156,10 @@ Markdown的区块引用是在段落开头使用`>` 号和空格：
 
 显示效果：
 
-![5](https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_5.png)
+<div align='center'>
+    <img src='https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_5.png' />
+</div>
+
 
 另外，区块引用也可以像列表一样嵌套，一个`>` 表示第一层，两个`>` 表示第二层，以此类推：
 

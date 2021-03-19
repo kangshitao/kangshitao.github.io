@@ -108,7 +108,7 @@ post_image:
 
 # Page Size
 post_page_size:
-  width: 800px
+  width: 1000px
 
 # Caption
 caption:
@@ -156,7 +156,7 @@ galleries:
 # --------------------------------------------------
 
 comments:
-  enable: false
+  enable: true
   type: valine
   button: true
 
@@ -205,10 +205,10 @@ tencentChao:
 
 # LeanCloud
 leancloud:
-  enable: true
+  enable: false
   appId: dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz
   appKey: XipU873t8gkSypbwl1HWUARD
-  serverURLs: https://dvb32zrr.lc-cn-n1-shared.com
+  serverURLs: https://leancloud.cn/
 
 # Lazyload
 lazyload:

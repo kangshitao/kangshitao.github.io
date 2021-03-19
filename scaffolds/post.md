@@ -1,10 +1,10 @@
 ---
 title: {{ title }}
-excerpt: 
+excerpt: {{ title }}
 date: {{ date }}
 mathjax: true
-categories: 
 tags:
-keywords: 
+categories:
+keywords:
 ---
 

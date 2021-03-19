@@ -46,8 +46,9 @@ date: 2020-11-05 20:19:11
 
 本文模型结构图如下：
 
-![1](https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_1.png)
-
+<div align='center'>
+    <img src='https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_1.png'/>
+</div>
 ## 问题定义
 
 $ V=\{v_1,v_2,\dots,v_{|V|}\} $ 表示所有session中的item集合，其中$|V|$ 表示item的个数。
@@ -170,7 +171,7 @@ HN网络处理之后，得到satellite节点和star节点的最终表示$\mathbf
 
 ##  Session表示和预测
 
-将$\mathbf{h}^f \in \mathbb{R}^{d\times m}$用$\mathbf{u}\in \mathbb{R}^{d\times n}$表示(?没看懂)，然后加入可学习的位置编码$\mathbf{p}\in \mathbb{R}^{d\times n}$，则satellite节点表示变为$\mathbf{u}^p = \mathbf{u}+\mathbf{p}$。
+将$\mathbf{h}^f \in \mathbb{R}^{d\times m}$用$\mathbf{u}\in \mathbb{R}^{d\times n}$表示，然后加入可学习的位置编码$\mathbf{p}\in \mathbb{R}^{d\times n}$，则satellite节点表示变为$\mathbf{u}^p = \mathbf{u}+\mathbf{p}$。
 
 考虑使用用户的全局偏好和最近兴趣来生成session表示，使用最后一个点击item作为最近兴趣，即$\mathbf{z}_r=\mathbf{u}_n^p$，然后计算全局偏好：
 $$
