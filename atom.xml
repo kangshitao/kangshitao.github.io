@@ -6,7 +6,7 @@
   <link href="http://kangshitao.github.io/atom.xml" rel="self"/>
   
   <link href="http://kangshitao.github.io/"/>
-  <updated>2021-01-02T03:55:07.037Z</updated>
+  <updated>2021-03-19T14:41:56.026Z</updated>
   <id>http://kangshitao.github.io/</id>
   
   <author>
@@ -15,6 +15,44 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java学习笔记02-Java基本语法</title>
+    <link href="http://kangshitao.github.io/2021/03/19/java-note-0201/"/>
+    <id>http://kangshitao.github.io/2021/03/19/java-note-0201/</id>
+    <published>2021-03-19T12:42:47.000Z</published>
+    <updated>2021-03-19T14:41:56.026Z</updated>
+    
+    
+    <summary type="html">Java基本语法，变量、运算符、程序流程控制</summary>
+    
+    
+    
+    <category term="Java" scheme="http://kangshitao.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java学习笔记01-Java语言概述</title>
+    <link href="http://kangshitao.github.io/2021/03/19/java-note-0101/"/>
+    <id>http://kangshitao.github.io/2021/03/19/java-note-0101/</id>
+    <published>2021-03-19T11:08:20.000Z</published>
+    <updated>2021-03-19T12:48:31.445Z</updated>
+    
+    
+    <summary type="html">Java运行过程，JDK、JRE、JVM</summary>
+    
+    
+    
+    <category term="Java" scheme="http://kangshitao.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Python爬虫-m3u8视频爬取</title>
@@ -103,7 +141,7 @@
     <link href="http://kangshitao.github.io/2020/11/15/transformer/"/>
     <id>http://kangshitao.github.io/2020/11/15/transformer/</id>
     <published>2020-11-15T03:31:47.000Z</published>
-    <updated>2020-11-15T03:37:19.000Z</updated>
+    <updated>2021-03-19T11:18:15.007Z</updated>
     
     
     <summary type="html">自注意力机制和Transformer详解</summary>
@@ -147,7 +185,7 @@
     <link href="http://kangshitao.github.io/2020/11/05/paper-SGNN-HN/"/>
     <id>http://kangshitao.github.io/2020/11/05/paper-SGNN-HN/</id>
     <published>2020-11-05T12:19:11.000Z</published>
-    <updated>2020-11-17T02:13:59.353Z</updated>
+    <updated>2021-03-19T14:42:54.993Z</updated>
     
     
     <summary type="html">2020,CIKM,使用星型GNN的基于会话的推荐系统</summary>
@@ -233,7 +271,7 @@
     <link href="http://kangshitao.github.io/2020/10/25/BlogCreatProcess/"/>
     <id>http://kangshitao.github.io/2020/10/25/BlogCreatProcess/</id>
     <published>2020-10-25T11:15:21.000Z</published>
-    <updated>2020-11-27T01:38:48.606Z</updated>
+    <updated>2021-03-19T14:45:00.780Z</updated>
     
     
     <summary type="html">记录本博客的创建和功能完善的过程</summary>
@@ -254,7 +292,7 @@
     <link href="http://kangshitao.github.io/2020/10/25/markdown/"/>
     <id>http://kangshitao.github.io/2020/10/25/markdown/</id>
     <published>2020-10-25T08:19:14.000Z</published>
-    <updated>2020-11-21T08:26:07.286Z</updated>
+    <updated>2021-03-19T11:26:44.336Z</updated>
     
     
     <summary type="html">Markdown基本语法介绍</summary>

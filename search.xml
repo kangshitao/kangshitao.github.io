@@ -5,7 +5,7 @@
     <url>/2020/10/25/BlogCreatProcess/</url>
     <content><![CDATA[<blockquote>
 <p>使用hexo和github.pages搭建博客，主题为<a href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p>
-<p>文章部分功能是主题没更新之前写的，随着主题更新，功能也越来越完善，且设置起来更方便。作为记录，已有的内容不再修改，具体配置情况请根据主题而定。更多内容可以参考zhaoo主题作者博客主页：<a href="https://www.izhaoo.com/">zhaoo</a></p>
+<p>文章部分功能是主题没更新之前写的，主题一直在更新，功能越来越完善，设置也更方便。作为记录，已有的内容不再修改，具体配置情况请根据主题而定。更多内容可以参考zhaoo主题作者博客主页：<a href="https://www.izhaoo.com/">zhaoo</a></p>
 </blockquote>
 <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>github创建名为username.github.io的repository</p>
 <p>安装git</p>
@@ -161,7 +161,7 @@
 </blockquote>
 <p>Github.pages屏蔽了百度的爬虫请求，配置较麻烦，这里仅以Google为例，使用<a href="https://search.google.com/search-console/about">Google Search Console</a>，以下过程参考：<a href="https://zhuanlan.zhihu.com/p/35400128">hexo博客搭建(五) SEO优化</a></p>
 <figure class="highlight yaml"><table><tbody><tr><td class="code"><pre><code class="hljs yaml"><span class="hljs-number">1</span><span class="hljs-string">、首先去google</span> <span class="hljs-string">search</span> <span class="hljs-string">console验证，有多种方式可选。</span><br><span class="hljs-number">2</span><span class="hljs-string">、添加站点地图</span> <span class="hljs-string">sitemap</span><br><span class="hljs-string">npm</span> <span class="hljs-string">install</span> <span class="hljs-string">hexo-generator-sitemap</span> <span class="hljs-string">--save</span>  <span class="hljs-comment"># 安装站点地图自动生成的插件</span><br><span class="hljs-string">在_config.yml文件中添加以下代码：</span><br><span class="hljs-attr">sitemap:</span><br>  <span class="hljs-attr">path:</span> <span class="hljs-string">sitemap.xml</span><br><span class="hljs-number">3</span><span class="hljs-string">、部署之后可以去google</span> <span class="hljs-string">search</span> <span class="hljs-string">console测试。</span><br></code></pre></td></tr></tbody></table></figure>
-<p> 未完待续……</p>
+<p> continue……</p>
 <hr>
 <h1 id="参考教程"><a href="#参考教程" class="headerlink" title="参考教程"></a>参考教程</h1><blockquote>
 <p><a href="https://hexo.io/zh-cn/docs/">hexo官方文档</a></p>
@@ -174,6 +174,247 @@
       <tags>
         <tag>hexo</tag>
         <tag>blog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java学习笔记02-Java基本语法</title>
+    <url>/2021/03/19/java-note-0201/</url>
+    <content><![CDATA[<h1 id="一、关键字和保留字"><a href="#一、关键字和保留字" class="headerlink" title="一、关键字和保留字"></a>一、关键字和保留字</h1><h2 id="1、关键字"><a href="#1、关键字" class="headerlink" title="1、关键字"></a>1、关键字</h2><p><a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html">Java关键字</a>被Java语言赋予了特殊含义，用做专门用途。一共有如下关键字</p>
+<ul>
+<li>用于定义数据类型：<code>class</code>、<code>interface</code>、<code>enum</code>、<code>byte</code>、<code>short</code>、<code>int</code>、<code>long</code>、<code>float</code>、<code>double</code>、<code>char</code>、<code>boolean</code>、<code>void</code></li>
+<li>用于定义流程控制：<code>if</code>、<code>else</code>、<code>switch</code>、<code>case</code>、<code>default</code>、<code>while</code>、<code>do</code>、<code>for</code>、break<code>、continue</code>、<code>return</code></li>
+<li>用于定义访问权限修饰符：<code>private</code>、<code>protected</code>、<code>public</code></li>
+<li>用于定义类，函数，变量修饰符：<code>abstract</code>、<code>final</code>、<code>static</code>、<code>synchronized</code></li>
+<li>用于定义类与类之间关系：<code>extends</code>、<code>implements</code></li>
+<li>用于定义建立实例及引用实例，判断实例：<code>new</code>、<code>this</code>、<code>super</code>、<code>instanceof</code></li>
+<li>用于异常处理：<code>try</code>、<code>catch</code>、<code>finally</code>、<code>throw</code>、<code>throws</code></li>
+<li>用于包：<code>package</code>、<code>import</code></li>
+<li>其他修饰符：<code>native</code>、<code>strictfp</code>、<code>transient</code>、<code>volatile</code>、<code>assert</code></li>
+</ul>
+<h2 id="2、保留字"><a href="#2、保留字" class="headerlink" title="2、保留字"></a>2、保留字</h2><p>Java保留字指的是现有Java版本尚未使用，但以后版本可能会作为关键字使用。</p>
+<p>有两个保留字：goto、const</p>
+<h1 id="二、标识符"><a href="#二、标识符" class="headerlink" title="二、标识符"></a>二、标识符</h1><p>标识符（Identifier）是对各种<strong>变量</strong>、<strong>方法</strong>和<strong>类</strong>等要素命名时使用的字符序列。</p>
+<ol>
+<li><p>标识符命名规则：</p>
+<ul>
+<li>由26个英文字母大小写，0-9，_或$组成。</li>
+<li>不能以数字开头。</li>
+<li>不可以使用关键字和保留字，但能包含关键字和保留字。</li>
+<li>Java中严格区分大小写，长度无限制。</li>
+<li>不能包含空格。</li>
+</ul>
+</li>
+<li><p>Java中命名规范</p>
+<ul>
+<li>包名：aaabbbccc</li>
+<li>类名、接口名：AaaBbbCcc</li>
+<li>变量名、方法名：aaaBbbCcc</li>
+<li>常量名：AAA_BBB_CCC</li>
+</ul>
+<blockquote>
+<p>起名时要遵循“<strong>见名知意</strong>”的原则。</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="三、变量"><a href="#三、变量" class="headerlink" title="三、变量"></a>三、变量</h1><h2 id="1、变量的分类"><a href="#1、变量的分类" class="headerlink" title="1、变量的分类"></a>1、变量的分类</h2><p>变量是程序中最基本的存储单元，包含<strong>变量类型</strong>、<strong>变量名</strong>和存储的<strong>值</strong>。</p>
+<p>根据数据类型分：</p>
+<div align="center">
+    <img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/java-note-0201_01.png">
+</div>
+​    根据声明的位置：
+
+<div align="center">
+   <img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/java-note-0201_02.jpg">
+</div>
+
+
+
+
+<blockquote>
+<p><strong>成员变量</strong>是方法体外，类体内声明的变量。</p>
+<p><strong>局部变量</strong>是方法体内部声明的变量。</p>
+</blockquote>
+<p>局部变量除形参外，需要显式初始化。而成员变量有默认的初始化值。</p>
+<p>需要注意的点：</p>
+<blockquote>
+<p><code>long</code>型常量需要在后面加‘l’或‘L’</p>
+<p><code>float</code>型常量需要在后面加‘f’或‘F’</p>
+<p>Java中整型变量默认为<code>int</code>型，浮点型默认是<code>doule</code>型</p>
+</blockquote>
+<h2 id="2、自动类型转换"><a href="#2、自动类型转换" class="headerlink" title="2、自动类型转换"></a>2、自动类型转换</h2><h3 id="自动类型转换"><a href="#自动类型转换" class="headerlink" title="自动类型转换"></a>自动类型转换</h3><p>以下几种类型从左到右自动类型提升(转换)：</p>
+<p><strong>(byte，char，short) → int → long → float → double</strong></p>
+<ul>
+<li><code>byte</code>，<code>short</code>，<code>char</code>之间不会相互转换，他们三者在计算时首先转换为<code>int</code>型</li>
+<li><code>boolean</code>类型不能与其他数据类型运算</li>
+<li>任何基本数据类型和<code>String</code>类型进行连接运算(+)时，基本数据类型会自动转化为<code>String</code>类型</li>
+</ul>
+<h3 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h3><p>强制类型转换是自动类型转换的<strong>逆过程</strong>。需要使用强制类型转换符：<code>()</code>，例<code>int a = (int) 3.14;</code></p>
+<h1 id="四、运算符"><a href="#四、运算符" class="headerlink" title="四、运算符"></a>四、运算符</h1><h2 id="1、算数运算符"><a href="#1、算数运算符" class="headerlink" title="1、算数运算符"></a>1、算数运算符</h2><p>算数运算符包括：<code>+</code>、<code>-</code>、<code>*</code>、<code>/</code>、<code>%</code>、<code>++</code>、<code>--</code>、<code>+(字符串连接)</code></p>
+<h2 id="2、赋值运算符"><a href="#2、赋值运算符" class="headerlink" title="2、赋值运算符"></a>2、赋值运算符</h2><p>赋值运算符包括：<code>=</code>、<code>+=</code>、<code>-=</code>、<code>*=</code>、<code>/=</code>、<code>%=</code></p>
+<blockquote>
+<p>这里的<code>+=</code>、<code>-=</code>、<code>*=</code>、<code>/=</code>、<code>%=</code>以及<code>++</code>、<code>--</code>运算符，都不会改变变量本身的类型。比如：</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">short</span> s = <span class="hljs-number">10</span>;<br>s = s + <span class="hljs-number">1</span>;  <span class="hljs-comment">//编译错误，因为s+1已经被自动提升为int类型。</span><br>s = (<span class="hljs-keyword">short</span>)(s + <span class="hljs-number">1</span>); <span class="hljs-comment">//使用强制类型转换，正确</span><br>s++;  <span class="hljs-comment">//自增运算符不会改变数据类型，正确</span><br>s += <span class="hljs-number">1</span>; <span class="hljs-comment">//正确。</span><br></code></pre></td></tr></tbody></table></figure>
+</blockquote>
+<h2 id="3、比较运算符"><a href="#3、比较运算符" class="headerlink" title="3、比较运算符"></a>3、比较运算符</h2><p>比较运算符包括：<code>==</code>、<code>!=</code>、<code>&gt;</code>、<code>&lt;</code>、<code>&gt;=</code>、<code>&lt;=</code>、<code>instanceof</code></p>
+<h2 id="4、逻辑运算符"><a href="#4、逻辑运算符" class="headerlink" title="4、逻辑运算符"></a>4、逻辑运算符</h2><p>逻辑运算符包括：<code>&amp;</code>、<code>&amp;&amp;</code>(短路与)、<code>|</code>、<code>||</code>(短路或)、<code>!</code>、<code>^(异或)</code></p>
+<h2 id="5、位运算符"><a href="#5、位运算符" class="headerlink" title="5、位运算符"></a>5、位运算符</h2><p>位运算符包括：<code>&lt;&lt;</code>、<code>&gt;&gt;</code>、<code>&gt;&gt;&gt;(无符号右移)</code>、<code>&amp;(按位与)</code>、<code>|(按位或)</code>、<code>^(按位异或)</code>、<code>~(按位取反)</code></p>
+<h2 id="6、三元运算符"><a href="#6、三元运算符" class="headerlink" title="6、三元运算符"></a>6、三元运算符</h2><p><code>(条件表达式) ? 表达式1 : 表达式2;</code>表示如果条件表达式为<code>true</code>，则返回表达式1，否则返回表达式2。</p>
+<blockquote>
+<p>这里的表达式1和表达式2必须是同种类型，或者能够自动类型提升。比如表达式1是<code>int</code>类型，表达式2是<code>double</code>类型，则表达式1会被自动转换为<code>double</code>类型。</p>
+</blockquote>
+<h1 id="五、程序流程控制"><a href="#五、程序流程控制" class="headerlink" title="五、程序流程控制"></a>五、程序流程控制</h1><h2 id="1、顺序结构"><a href="#1、顺序结构" class="headerlink" title="1、顺序结构"></a>1、顺序结构</h2><p>Java程序从上到下逐行地执行</p>
+<h2 id="2、分支结构"><a href="#2、分支结构" class="headerlink" title="2、分支结构"></a>2、分支结构</h2><ol>
+<li>if语句</li>
+</ol>
+<p>用法：</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//用法1：</span><br><span class="hljs-keyword">if</span>(条件表达式){<br>	执行代码块;<br>}<br><span class="hljs-comment">//用法2：</span><br><span class="hljs-keyword">if</span>(条件表达式){<br>	执行代码块<span class="hljs-number">1</span>;<br>}<span class="hljs-keyword">else</span>{<br>	执行代码块<span class="hljs-number">2</span>;<br>}<br><span class="hljs-comment">//用法3：</span><br><span class="hljs-keyword">if</span>(条件表达式){<br>	执行代码块<span class="hljs-number">1</span>;<br>}<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>{<br>	执行代码块<span class="hljs-number">2</span>;<br>}<br>......<br><span class="hljs-keyword">else</span>{<br>	执行代码块<span class="hljs-number">3</span>;<br>}<br><br></code></pre></td></tr></tbody></table></figure>
+<ol>
+<li>switch语句</li>
+</ol>
+<p>用法：</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">switch</span>(表达式){<br><span class="hljs-keyword">case</span> 常量<span class="hljs-number">1</span>:<br>	语句<span class="hljs-number">1</span>;<br>	<span class="hljs-comment">//break;</span><br><span class="hljs-keyword">case</span> 常量<span class="hljs-number">2</span>:<br>	语句<span class="hljs-number">2</span>;<br>	<span class="hljs-comment">//break;</span><br>......<br><span class="hljs-keyword">case</span> 常量N:<br>	语句N;<br>	<span class="hljs-comment">//break;</span><br><span class="hljs-keyword">default</span>:<br>	语句;<br>	<span class="hljs-comment">//break;</span><br>}<br></code></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p><code>switch(表达式)</code>中的表达式必须是<code>byte</code>、<code>short</code>、<code>char</code>、<code>int</code>、<code>枚举</code>、<code>String</code>这几种类型之一。</p>
+<p><code>case</code>子句中的值必须是常量，不能是变量名或不确定的表达式值。</p>
+<p>同一个<code>switch</code>语句，所有<code>case</code>子句中的常量值互不相同。</p>
+<p>如果没有<code>break</code>，程序在运行第一个执行语句以后，会继续向下执行(即使<code>case</code>值不同，也会将下面的所有<code>case</code>中语句运行完)。</p>
+<p><code>default</code>语句是可选的，位置也是灵活的。没有匹配<code>case</code>时，会执行<code>default</code>的语句。</p>
+<p><code>switch</code>语句效率稍高，情况少的时候尽量不用<code>if</code>，选择<code>switch</code>语句。</p>
+</blockquote>
+<h2 id="3、循环结构"><a href="#3、循环结构" class="headerlink" title="3、循环结构"></a>3、循环结构</h2><ol>
+<li>for语句</li>
+</ol>
+<p>用法：</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">for</span>(<span class="hljs-number">1.</span>初始化部分; <span class="hljs-number">2.</span>循环条件; <span class="hljs-number">4.</span>迭代部分){<br>	<span class="hljs-number">3.</span>循环体部分;<br>}<br></code></pre></td></tr></tbody></table></figure>
+<ol>
+<li>while语句</li>
+</ol>
+<p>用法：</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//用法1</span><br><span class="hljs-number">1.</span>初始化部分<br><span class="hljs-keyword">while</span>(<span class="hljs-number">2.</span>循环条件){<br>	<span class="hljs-number">3.</span>循环体部分;<br>	<span class="hljs-number">4.</span>迭代部分;<br>}<br><span class="hljs-comment">//用法2</span><br><span class="hljs-number">1.</span>初始化部分<br><span class="hljs-keyword">do</span>{<br>	<span class="hljs-number">3.</span>循环体部分;<br>	<span class="hljs-number">4.</span>迭代部分;<br>}<span class="hljs-keyword">while</span>(<span class="hljs-number">2.</span>循环条件)<br></code></pre></td></tr></tbody></table></figure>
+<h2 id="4、break和continue"><a href="#4、break和continue" class="headerlink" title="4、break和continue"></a>4、break和continue</h2><p><code>break</code>用于终止某个语句块的执行，只能用于<code>switch</code>语句和循环语句，表示跳过循环体，终止循环。</p>
+<p><code>continue</code>只能用在循环体中，表示跳过当前循环，继续下一次循环。</p>
+<blockquote>
+<p><code>break</code>和<code>continue</code>用于循环体内时，都可以使用<code>label</code>指明具体要跳过的循环体是哪个。如果没有明确指明，则都默认对当前循环体起作用，<strong>就近原则</strong>。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java学习笔记01-Java语言概述</title>
+    <url>/2021/03/19/java-note-0101/</url>
+    <content><![CDATA[<h1 id="一、软件开发介绍"><a href="#一、软件开发介绍" class="headerlink" title="一、软件开发介绍"></a>一、软件开发介绍</h1><h2 id="1、常用的DOS命令"><a href="#1、常用的DOS命令" class="headerlink" title="1、常用的DOS命令"></a>1、常用的DOS命令</h2><ul>
+<li>dir：列出当前目录下的文件以及文件夹</li>
+<li>md：创建目录</li>
+<li>rd：删除目录</li>
+<li>cd：进入指定目录</li>
+<li>cd..：退回到上一级目录</li>
+<li>cd\：退回到根目录</li>
+<li>del：删除文件</li>
+<li>exit：退出dos命令行</li>
+<li>echo：输出内容</li>
+</ul>
+<h2 id="2、常用快捷键"><a href="#2、常用快捷键" class="headerlink" title="2、常用快捷键"></a>2、常用快捷键</h2><ul>
+<li>← →：移动光标</li>
+<li>↑ ↓：调阅历史操作命令</li>
+<li>Delete和Backspace：删除字符</li>
+</ul>
+<h1 id="二、计算机编程语言介绍"><a href="#二、计算机编程语言介绍" class="headerlink" title="　二、计算机编程语言介绍"></a>　二、计算机编程语言介绍</h1><ul>
+<li>机器语言</li>
+<li>汇编语言</li>
+<li>高级语言：<ul>
+<li>C、Pascal、Fortran面向过程的语言</li>
+<li>C++面向过程/面向对象</li>
+<li>Java跨平台的纯面向对象的语言</li>
+<li>.NET跨语言的平台</li>
+<li>Python、Scala</li>
+</ul>
+</li>
+</ul>
+<h1 id="三、Java语言概述"><a href="#三、Java语言概述" class="headerlink" title="三、Java语言概述"></a>三、Java语言概述</h1><h2 id="1、Java语言简史"><a href="#1、Java语言简史" class="headerlink" title="1、Java语言简史"></a>1、Java语言简史</h2><ul>
+<li>1991年Green项目，开发语言最初命名为Oak (橡树)</li>
+<li>1994年，开发组意识到Oak非常适合于互联网</li>
+<li>1996年，发布JDK 1.0，约8.3万个网页应用Java技术来制作</li>
+<li>1997年，发布JDK1.1，JavaOne会议召开，创当时全球同类会议规模之最</li>
+<li>1998年，发布JDK 1.2，同年发布企业平台J2EE</li>
+<li>1999年，Java分成J2SE、J2EE和J2ME，JSP/Servlet技术诞生</li>
+<li><strong>2004年，发布里程碑式版本：JDK1.5，为突出此版本的重要性，更名为JDK 5.0</strong></li>
+<li>2005年，J2SE-&gt; JavaSE，J2EE-&gt; JavaEE，J2ME-&gt; JavaME</li>
+<li>2009年，Oracle公司收购SUN，交易价格74亿美元</li>
+<li>2011年，发布JDK 7.0</li>
+<li><strong>2014年，发布JDK8.0，是继JDK 5.0以来变化最大的版本</strong></li>
+<li>2017年，发布JDK9.0，最大限度实现模块化</li>
+<li>2018年3月，发布JDK10.0，版本号也称为18.3</li>
+<li>2018年9月，发布JDK 11.0，版本号也称为18.9</li>
+</ul>
+<h2 id="2、Java技术平台"><a href="#2、Java技术平台" class="headerlink" title="2、Java技术平台"></a>2、Java技术平台</h2><ul>
+<li><strong>Java SE(Java Standard Edition)标准版</strong>：支持面向桌面级应用（如Windows下的应用程序）的Java平台，提供了完整的Java核心API，此版本以前称为J2SE。</li>
+<li><strong>Java EE(Java Enterprise Edition)企业版</strong>：是为开发企业环境下的应用程序提供的一套解决方案。该技术体系中包含的技术如:Servlet、Jsp等，主要针对于Web应用程序开发。版本以前称为J2EE。</li>
+<li>Java ME(Java Micro Edition) 小型版</li>
+<li>Java Card</li>
+</ul>
+<h1 id="四、运行机制及运行过程"><a href="#四、运行机制及运行过程" class="headerlink" title="四、运行机制及运行过程"></a>四、运行机制及运行过程</h1><h2 id="1、Java语言的特点"><a href="#1、Java语言的特点" class="headerlink" title="1、Java语言的特点"></a>1、Java语言的特点</h2><ol>
+<li><strong>面向对象</strong>：<ul>
+<li>两个基本概念：类、对象</li>
+<li>三大特征：封装、继承、多态</li>
+</ul>
+</li>
+<li>健壮性：吸收C/C++的优点，去掉了其指针、内存的申请和释放等，提供了相对安全的内存管理和访问机制。</li>
+<li>跨平台性：“Write once，Run AnyWhere”，只需要在运行Java应用程序的操作系统上，先安装Java虚拟机(JVM,<strong>J</strong>ava <strong>V</strong>irtual <strong>M</strong>achine)即可。由JVM负责Java程序在系统中的运行。、</li>
+</ol>
+<h2 id="2、Java两种核心机制"><a href="#2、Java两种核心机制" class="headerlink" title="2、Java两种核心机制"></a>2、Java两种核心机制</h2><ul>
+<li>Java虚拟机（Java Virtual Machine）</li>
+<li>垃圾收集机制（Garbage Collection）</li>
+</ul>
+<h2 id="3、Java运行过程"><a href="#3、Java运行过程" class="headerlink" title="3、Java运行过程"></a>3、Java运行过程</h2><p>*.java 文件经过编译生成* .class文件（字节码文件），然后执行</p>
+<h1 id="五、Java的环境搭建"><a href="#五、Java的环境搭建" class="headerlink" title="五、Java的环境搭建"></a>五、Java的环境搭建</h1><h2 id="1、环境搭建"><a href="#1、环境搭建" class="headerlink" title="1、环境搭建"></a>1、环境搭建</h2><ul>
+<li>下载JDK并安装JDK</li>
+<li>配置环境变量（为了在任何目录下都能执行java命令）</li>
+<li>使用<code>javac java</code>命令验证是否安装成功</li>
+<li>使用编辑器或IDE开发</li>
+</ul>
+<h2 id="2、JDK、JRE、JVM"><a href="#2、JDK、JRE、JVM" class="headerlink" title="2、JDK、JRE、JVM"></a>2、JDK、JRE、JVM</h2><ul>
+<li>JDK（Java Development Kit  Java开发工具包）。JDK是提供给Java开发人员使用的，包含了Java的开发工具（比如编译工具（javac.exe）、打包工具（jar.exe）等），也包含了JRE，安装了JDK就不用再安装JRE。</li>
+<li>JRE（Java Runtime Environment Java运行环境）。包括JVM和Java程序所需的核心类库等。只安装JRE就能够运行Java程序。</li>
+<li>JVM（Java Virtual Machine）是一个虚拟的计算机，具有指令集并使用不同的存储区域。负责执行指令，管理数据、内存、寄存器。</li>
+</ul>
+<blockquote>
+<p><strong>JDK = JRE+开发工具集（例如Javac编译工具等）</strong></p>
+<p><strong>JRE = JVM+Java SE标准类库</strong></p>
+</blockquote>
+<h1 id="六、运行HelloWorld"><a href="#六、运行HelloWorld" class="headerlink" title="六、运行HelloWorld"></a>六、运行HelloWorld</h1><p>搭建好java环境后，可以在dos窗口编译运行Java程序。</p>
+<ul>
+<li>将Java代码编写到扩展名为.java的文件中。</li>
+<li>通过javac命令对该java文件进行编译。</li>
+<li>通过java命令对生成的class文件进行运行。</li>
+</ul>
+<blockquote>
+<p>注意：</p>
+<p>1、Java应用程序的执行入口是main()方法。它有固定的书写格式：</p>
+<p>​                    public static void main ( String[]args )  {……}</p>
+<p>2、<strong>一个源文件中只能有一个public类</strong>。其他类的个数不限，如果源文件中包含一个public类，则文件名必须按照该类名命名。</p>
+</blockquote>
+<h1 id="七、注释-Comment"><a href="#七、注释-Comment" class="headerlink" title="七、注释(Comment)"></a>七、注释(Comment)</h1><ol>
+<li><p>单行注释：<code>//注释内容</code></p>
+</li>
+<li><p>多行注释：<code>/*注释内容*/</code></p>
+</li>
+<li><p>文档注释（Java特有）：</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">	<span class="hljs-doctag">@author</span> 指定程序作者</span><br><span class="hljs-comment">	<span class="hljs-doctag">@version</span> 指定源文件版本</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></tbody></table></figure>
+</li>
+</ol>
+<h1 id="八、Java-API文档"><a href="#八、Java-API文档" class="headerlink" title="八、Java API文档"></a>八、Java API文档</h1><p><strong>API(Application Programming Interface,应用程序编程接口)</strong>是Java提供的基本编程接口。</p>
+<p>JDK下载链接：<a href="https://www.oracle.com/java/technologies/javase-downloads.html">https://www.oracle.com/java/technologies/javase-downloads.html</a></p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -4338,8 +4579,12 @@ p(c_{1:M}|\boldsymbol{x}_{1:N}) = \prod^M_{m=1} p(c_m|c_{1:(m-1)},\boldsymbol{x}
 <li>GNN模型：SRGNN、FGNN</li>
 </ul>
 <h1 id="本文模型"><a href="#本文模型" class="headerlink" title="本文模型"></a>本文模型</h1><p>本文模型结构图如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_1.png"><span class="image-caption">1</span></p>
-<h2 id="问题定义"><a href="#问题定义" class="headerlink" title="问题定义"></a>问题定义</h2><p><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="21.325ex" height="3.176ex" style="vertical-align: -1.171ex;" viewBox="0 -863.1 9181.5 1367.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<div align="center">
+    <img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_1.png">
+</div>
+## 问题定义
+
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="21.325ex" height="3.176ex" style="vertical-align: -1.171ex;" viewBox="0 -863.1 9181.5 1367.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title"> V=\{v_1,v_2,\dots,v_{|V|}\} </title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJMATHI-56" d="M52 648Q52 670 65 683H76Q118 680 181 680Q299 680 320 683H330Q336 677 336 674T334 656Q329 641 325 637H304Q282 635 274 635Q245 630 242 620Q242 618 271 369T301 118L374 235Q447 352 520 471T595 594Q599 601 599 609Q599 633 555 637Q537 637 537 648Q537 649 539 661Q542 675 545 679T558 683Q560 683 570 683T604 682T668 681Q737 681 755 683H762Q769 676 769 672Q769 655 760 640Q757 637 743 637Q730 636 719 635T698 630T682 623T670 615T660 608T652 599T645 592L452 282Q272 -9 266 -16Q263 -18 259 -21L241 -22H234Q216 -22 216 -15Q213 -9 177 305Q139 623 138 626Q133 637 76 637H59Q52 642 52 648Z"></path>
@@ -4390,8 +4635,9 @@ p(c_{1:M}|\boldsymbol{x}_{1:N}) = \prod^M_{m=1} p(c_m|c_{1:(m-1)},\boldsymbol{x}
  <use xlink:href="#E1-MJMATHI-56" x="278" y="0"></use>
  <use xlink:href="#E1-MJMAIN-7C" x="1048" y="0"></use>
 </g>
-</svg> 表示item的个数。</p>
-<p><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="26.976ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 11614.8 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+</svg> 表示item的个数。
+
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="26.976ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 11614.8 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">S=\{v_1,v_2,\dots,v_t,\dots,v_n\}</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJMATHI-53" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path>
@@ -4435,8 +4681,9 @@ p(c_{1:M}|\boldsymbol{x}_{1:N}) = \prod^M_{m=1} p(c_m|c_{1:(m-1)},\boldsymbol{x}
 </g>
  <use xlink:href="#E1-MJMAIN-7D" x="11114" y="0"></use>
 </g>
-</svg> 是给定的当前session，包含n个item。</p>
-<p>模型的目标是预测<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.447ex" height="2.009ex" style="vertical-align: -0.671ex;" viewBox="0 -576.1 1914.5 865.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+</svg> 是给定的当前session，包含n个item。
+
+模型的目标是预测<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.447ex" height="2.009ex" style="vertical-align: -0.671ex;" viewBox="0 -576.1 1914.5 865.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">v_{n+1}</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJMATHI-76" d="M173 380Q173 405 154 405Q130 405 104 376T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Q21 294 29 316T53 368T97 419T160 441Q202 441 225 417T249 361Q249 344 246 335Q246 329 231 291T200 202T182 113Q182 86 187 69Q200 26 250 26Q287 26 319 60T369 139T398 222T409 277Q409 300 401 317T383 343T365 361T357 383Q357 405 376 424T417 443Q436 443 451 425T467 367Q467 340 455 284T418 159T347 40T241 -11Q177 -11 139 22Q102 54 102 117Q102 148 110 181T151 298Q173 362 173 380Z"></path>
@@ -4498,8 +4745,11 @@ p(c_{1:M}|\boldsymbol{x}_{1:N}) = \prod^M_{m=1} p(c_m|c_{1:(m-1)},\boldsymbol{x}
 </g>
  <use xlink:href="#E1-MJMAIN-7D" x="8697" y="0"></use>
 </g>
-</svg> ，表示所有item的预测分数，最后取分数最高的K个作为推荐item。</p>
-<h2 id="构建星型图"><a href="#构建星型图" class="headerlink" title="构建星型图"></a>构建星型图</h2><p>对于每个session <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="26.976ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 11614.8 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+</svg> ，表示所有item的预测分数，最后取分数最高的K个作为推荐item。
+
+## 构建星型图
+
+对于每个session <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="26.976ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 11614.8 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">S=\{v_1,v_2,\dots,v_t,\dots,v_n\}</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJMATHI-53" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path>
@@ -4571,8 +4821,9 @@ p(c_{1:M}|\boldsymbol{x}_{1:N}) = \prod^M_{m=1} p(c_m|c_{1:(m-1)},\boldsymbol{x}
 </g>
  <use xlink:href="#E1-MJMAIN-7D" x="5647" y="0"></use>
 </g>
-</svg>。</p>
-<p>其中<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="27.528ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 11852.4 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+</svg>。
+
+其中<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="27.528ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 11852.4 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\mathcal{V_s}=\{\{x_1,x_2,\dots,x_m\},x_s\}</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJCAL-56" d="M25 633Q25 647 47 665T100 683Q291 683 291 306Q291 264 288 213T282 132L279 102Q281 102 308 126T378 191T464 279T545 381T596 479Q600 490 600 502Q600 527 581 550T523 577Q505 577 505 601Q505 622 516 647T542 681Q546 683 558 683Q605 679 631 645T658 559Q658 423 487 215Q409 126 308 37T190 -52Q177 -52 177 -28Q177 -26 183 15T196 127T203 270Q203 356 192 421T165 523T126 583T83 613T41 620Q25 620 25 633Z"></path>
@@ -4649,7 +4900,7 @@ p(c_{1:M}|\boldsymbol{x}_{1:N}) = \prod^M_{m=1} p(c_m|c_{1:(m-1)},\boldsymbol{x}
 </g>
  <use xlink:href="#E1-MJMAIN-7D" x="6521" y="0"></use>
 </g>
-</svg>表示<strong>satellite</strong>节点，<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.333ex" height="2.009ex" style="vertical-align: -0.671ex;" viewBox="0 -576.1 1004.5 865.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+</svg>表示**satellite**节点，<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.333ex" height="2.009ex" style="vertical-align: -0.671ex;" viewBox="0 -576.1 1004.5 865.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">x_s</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJMATHI-78" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path>
@@ -4659,7 +4910,7 @@ p(c_{1:M}|\boldsymbol{x}_{1:N}) = \prod^M_{m=1} p(c_m|c_{1:(m-1)},\boldsymbol{x}
  <use xlink:href="#E1-MJMATHI-78" x="0" y="0"></use>
  <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-73" x="809" y="-213"></use>
 </g>
-</svg>表示<strong>star</strong>节点。注意这里的<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="6.534ex" height="2.176ex" style="vertical-align: -0.505ex;" viewBox="0 -719.6 2813.1 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+</svg>表示**star**节点。注意这里的<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="6.534ex" height="2.176ex" style="vertical-align: -0.505ex;" viewBox="0 -719.6 2813.1 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">m\leqslant n</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E2-MJMATHI-6D" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path>
@@ -4671,8 +4922,9 @@ p(c_{1:M}|\boldsymbol{x}_{1:N}) = \prod^M_{m=1} p(c_m|c_{1:(m-1)},\boldsymbol{x}
  <use xlink:href="#E2-MJAMS-2A7D" x="1156" y="0"></use>
  <use xlink:href="#E2-MJMATHI-6E" x="2212" y="0"></use>
 </g>
-</svg>，因为session中可能会有重复出现的item。</p>
-<p><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.564ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 1103.7 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+</svg>，因为session中可能会有重复出现的item。
+
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.564ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 1103.7 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">{\Large\varepsilon}_s</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJMATHI-3B5" d="M190 -22Q124 -22 76 11T27 107Q27 174 97 232L107 239L99 248Q76 273 76 304Q76 364 144 408T290 452H302Q360 452 405 421Q428 405 428 392Q428 381 417 369T391 356Q382 356 371 365T338 383T283 392Q217 392 167 368T116 308Q116 289 133 272Q142 263 145 262T157 264Q188 278 238 278H243Q308 278 308 247Q308 206 223 206Q177 206 142 219L132 212Q68 169 68 112Q68 39 201 39Q253 39 286 49T328 72T345 94T362 105Q376 103 376 88Q376 79 365 62T334 26T275 -8T190 -22Z"></path>
@@ -4682,9 +4934,9 @@ p(c_{1:M}|\boldsymbol{x}_{1:N}) = \prod^M_{m=1} p(c_m|c_{1:(m-1)},\boldsymbol{x}
  <use transform="scale(1.44)" xlink:href="#E1-MJMATHI-3B5" x="0" y="0"></use>
  <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-73" x="950" y="-213"></use>
 </g>
-</svg>是图中的边集合，包括<strong>satellite连接</strong>(图2中实线)和<strong>star连接</strong>(图2中虚线)两种有向边：</p>
-<ul>
-<li><p><strong>Satellite connections</strong>：satellite连接用来传递session中的相邻item间的信息。论文中使用GGNN为例，实现相邻节点之间的信息传播，并且按照satellite边构建输入和输出矩阵，例如对于session <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="26.396ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 11364.8 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+</svg>是图中的边集合，包括**satellite连接**(图2中实线)和**star连接**(图2中虚线)两种有向边：
+
+- **Satellite connections**：satellite连接用来传递session中的相邻item间的信息。论文中使用GGNN为例，实现相邻节点之间的信息传播，并且按照satellite边构建输入和输出矩阵，例如对于session <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="26.396ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 11364.8 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">S=\{x_2,x_3,x_5,x_4,x_5,x_7\}</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJMATHI-53" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path>
@@ -4734,14 +4986,13 @@ p(c_{1:M}|\boldsymbol{x}_{1:N}) = \prod^M_{m=1} p(c_m|c_{1:(m-1)},\boldsymbol{x}
 </g>
  <use xlink:href="#E1-MJMAIN-7D" x="10864" y="0"></use>
 </g>
-</svg>，构建的输入输出矩阵如图3：</p>
-<div align="center">
-    <img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_2.png" style="width:50%; height:50%">
-</div>
+</svg>，构建的输入输出矩阵如图3：
+
+  <div align="center">
+      <img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_2.png" style="width:50%; height:50%">
+  </div>
 
 
-</li>
-</ul>
 <ul>
 <li><strong>Star connections</strong>：受<a href="https://arxiv.org/abs/1902.09113">Star-Transformer</a>模型启发，在图中添加Star节点，构建星型图。star节点和satellite节点之间的边就是Star连接，如图2，Star连接是双向边，分别代表两种信息传递方向，更新两种节点。一方面，以star节点作为中间节点，非相邻的item之间能够以two-hop的方式进行信息传播，来更新satellite节点。另一方面，另一个方向的边能够用来考虑所有satellite节点的信息，生成准确的star节点表示。</li>
 </ul>
@@ -5389,7 +5640,7 @@ a_i^l = Concat(\mathbf{A}_i^I([\mathbf{x}_1^{l-1},\mathbf{x}_2^{l-1},\ldots,\mat
 </g>
 </g>
 </g>
-</svg>表示(?没看懂)，然后加入可学习的位置编码<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="9.361ex" height="3.009ex" style="vertical-align: -0.671ex;" viewBox="0 -1006.6 4030.3 1295.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+</svg>表示，然后加入可学习的位置编码<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="9.361ex" height="3.009ex" style="vertical-align: -0.671ex;" viewBox="0 -1006.6 4030.3 1295.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\mathbf{p}\in \mathbb{R}^{d\times n}</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJMAINB-70" d="M32 442L123 446Q214 450 215 450H221V409Q222 409 229 413T251 423T284 436T328 446T382 450Q480 450 540 388T600 223Q600 128 539 61T361 -6H354Q292 -6 236 28L227 34V-132H296V-194H287Q269 -191 163 -191Q56 -191 38 -194H29V-132H98V113V284Q98 330 97 348T93 370T83 376Q69 380 42 380H29V442H32ZM457 224Q457 303 427 349T350 395Q282 395 235 352L227 345V104L233 97Q274 45 337 45Q383 45 420 86T457 224Z"></path>
@@ -6166,7 +6417,12 @@ L(\hat{\mathbf{y}})=-\sum\limits_{i=1}^{|V|} \mathbf{y}_i \log(\hat{\mathbf{y}}_
 <h2 id="使用-和-标记一级和二级标签"><a href="#使用-和-标记一级和二级标签" class="headerlink" title="使用 = 和 - 标记一级和二级标签"></a>使用 = 和 - 标记一级和二级标签</h2><p>语法如下：</p>
 <figure class="highlight asciidoc"><table><tbody><tr><td class="code"><pre><code class="hljs asciidoc">一级标题<br>=====<br><br>二级标题<br>-----<br></code></pre></td></tr></tbody></table></figure>
 <p>效果如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_1.png"><span class="image-caption">1</span></p>
+<div align="center">
+    <img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_1.png">
+</div>
+
+
+
 <h2 id="使用-号标记"><a href="#使用-号标记" class="headerlink" title="使用#号标记"></a>使用#号标记</h2><p>语法如下：</p>
 <figure class="highlight clean"><table><tbody><tr><td class="code"><pre><code class="hljs clean"># 一级标题<br>## 二级标题<br>### 三级标题<br>#### 四级标题<br>##### 五级标题<br>###### 六级标题<br></code></pre></td></tr></tbody></table></figure>
 <blockquote>
@@ -6184,22 +6440,41 @@ L(\hat{\mathbf{y}})=-\sum\limits_{i=1}^{|V|} \mathbf{y}_i \log(\hat{\mathbf{y}}_
 <h2 id="无序列表："><a href="#无序列表：" class="headerlink" title="无序列表："></a>无序列表：</h2><p>无序列表有三种写法，<code>+</code> 或<code>-</code>或<code>*</code>后加空格即可：</p>
 <figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">+</span> 第一项<br><span class="hljs-bullet">*</span> 第一项<br><span class="hljs-bullet">-</span> 第一项<br></code></pre></td></tr></tbody></table></figure>
 <p>显示效果：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_2.png"><span class="image-caption">2</span></p>
+<div align="center">
+    <img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_2.png">
+</div>
+
+
+
 <h2 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h2><p>有序列表使用数字和<code>.</code>再加上空格即可：</p>
 <figure class="highlight angelscript"><table><tbody><tr><td class="code"><pre><code class="hljs angelscript"><span class="hljs-number">1.</span> 第一项<br><span class="hljs-number">2.</span> 第二项<br><span class="hljs-number">3.</span> 第三项<br></code></pre></td></tr></tbody></table></figure>
 <p>显示效果：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_3.png"><span class="image-caption">3</span></p>
+<div align="center">
+    <img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_3.png">
+</div>
+
+
+
 <h2 id="列表嵌套"><a href="#列表嵌套" class="headerlink" title="列表嵌套"></a>列表嵌套</h2><p>列表嵌套需要在子列表选项前加四个空格：</p>
 <figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">1.</span> 第一项：<br><span class="hljs-bullet">    -</span> 第一项的第一个元素<br><span class="hljs-bullet">    -</span> 第一项的第二个元素<br><span class="hljs-bullet">2.</span> 第二项：<br><span class="hljs-bullet">    -</span> 第二项的第一个元素<br><span class="hljs-bullet">    -</span> 第二项的第二个元素<br></code></pre></td></tr></tbody></table></figure>
 <p>显示效果：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_4.png"><span class="image-caption">4</span></p>
+<div align="center">
+    <img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_4.png">
+</div>
+
+
+
 <blockquote>
 <p>Typora中，子列表选项前不加空格也可以。</p>
 </blockquote>
 <h1 id="插入区块和分隔线"><a href="#插入区块和分隔线" class="headerlink" title="插入区块和分隔线"></a>插入区块和分隔线</h1><h2 id="区块"><a href="#区块" class="headerlink" title="区块"></a>区块</h2><p>Markdown的区块引用是在段落开头使用<code>&gt;</code> 号和空格：</p>
 <figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-quote">&gt; 区块引用</span><br></code></pre></td></tr></tbody></table></figure>
 <p>显示效果：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_5.png"><span class="image-caption">5</span></p>
+<div align="center">
+    <img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/markdown_5.png">
+</div>
+
+
 <p>另外，区块引用也可以像列表一样嵌套，一个<code>&gt;</code> 表示第一层，两个<code>&gt;</code> 表示第二层，以此类推：</p>
 <figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><code class="hljs ruby">&gt; 第一层<br><span class="hljs-meta">&gt;&gt;</span> 第二层<br><span class="hljs-meta">&gt;&gt;</span>&gt; 第三层<br></code></pre></td></tr></tbody></table></figure>
 <p>区块中也可以使用列表，同样，列表中也可以使用区块。</p>
