@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://kangshitao.github.io/2021/03/20/java-note-0301/</loc>
+    
+    <lastmod>2021-03-20</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://kangshitao.github.io/2020/10/25/BlogCreatProcess/</loc>
     
     <lastmod>2021-03-20</lastmod>
@@ -186,14 +193,14 @@
   </url>
   
   <url>
-    <loc>http://kangshitao.github.io/tags/Git/</loc>
+    <loc>http://kangshitao.github.io/tags/Java/</loc>
     <lastmod>2021-03-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://kangshitao.github.io/tags/Java/</loc>
+    <loc>http://kangshitao.github.io/tags/Git/</loc>
     <lastmod>2021-03-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
