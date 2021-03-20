@@ -179,7 +179,7 @@ dir：列出当前...">
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_7.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_11.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">Java学习笔记01-Java语言概述</h1>
     <div class="head-info">
@@ -343,8 +343,8 @@ dir：列出当前...">
     var loadValine = function () {
       new Valine({
         el: '#valine',
-        app_id: "C1IH3DfcmYPQ1T2Ox2nh15Xt-gzGzoHsz",
-        app_key: "tRi9LbD7i7Gdlj8fYrUXJK6S",
+        app_id: "dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz",
+        app_key: "XipU873t8gkSypbwl1HWUARD",
         placeholder: "write comment content...",
         avatar: "mp",
         pageSize: "10",
@@ -355,12 +355,30 @@ dir：列出当前...">
       $("#comments-btn").on("click", function () {
         $(this).hide();
         loadValine();
+		var title1="text=Live and Learn有新评论啦~ --by Valine"
+		var SCKEY_Server="SCT21455TskriUeyliOqL6kHLhiCOMmlB"
+		var ValineButton=document.getElementsByClassName("vsubmit vbtn")[0];
+		function send_valine_Server(){
+			var text="desp=";
+			var pageurl=document.URL;
+			var ptime=new Date();
+			var vnick=document.getElementsByClassName("vnick vinput")[0].value;
+			var veditor=document.getElementsByClassName("veditor vinput")[0].value;
+			var data=text+"|昵称"+"|评论内容"+"|跳转链接"+"|评论时间"+"\n"+"|----|----|----|----|"+"\n"+"|"+vnick+"|"+veditor+"|"+pageurl+"|" +ptime.toLocaleString()+"|";
+			var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+			httpRequest.open('POST', 'https://sctapi.ftqq.com/'+SCKEY_Server+'.send', true); //第二步：打开连接
+			httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）
+			httpRequest.send(title1+"&"+data);//发送请求 将请头体体写在send中
+		};
+		ValineButton.onclick=send_valine_Server;
       });
     } else {
       loadValine();
     }
   };
+ 
 </script>
+
 
 </section>
       

@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://kangshitao.github.io/2021/03/19/java-note-0201/</loc>
+    <loc>http://kangshitao.github.io/2020/10/25/BlogCreatProcess/</loc>
     
     <lastmod>2021-03-20</lastmod>
     
   </url>
   
   <url>
-    <loc>http://kangshitao.github.io/2020/10/25/BlogCreatProcess/</loc>
+    <loc>http://kangshitao.github.io/2021/03/19/java-note-0201/</loc>
     
-    <lastmod>2021-03-19</lastmod>
+    <lastmod>2021-03-20</lastmod>
     
   </url>
   
@@ -193,6 +193,13 @@
   </url>
   
   <url>
+    <loc>http://kangshitao.github.io/tags/Java/</loc>
+    <lastmod>2021-03-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://kangshitao.github.io/tags/Markdown/</loc>
     <lastmod>2021-03-20</lastmod>
     <changefreq>daily</changefreq>
@@ -248,13 +255,6 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>http://kangshitao.github.io/tags/Java/</loc>
-    <lastmod>2021-03-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 
   
   <url>
@@ -286,6 +286,13 @@
   </url>
   
   <url>
+    <loc>http://kangshitao.github.io/categories/Java/</loc>
+    <lastmod>2021-03-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://kangshitao.github.io/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2021-03-20</lastmod>
     <changefreq>daily</changefreq>
@@ -301,13 +308,6 @@
   
   <url>
     <loc>http://kangshitao.github.io/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2021-03-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://kangshitao.github.io/categories/Java/</loc>
     <lastmod>2021-03-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
