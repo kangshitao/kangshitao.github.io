@@ -263,14 +263,14 @@
 <p>这里的表达式1和表达式2必须是同种类型，或者能够自动类型提升。比如表达式1是<code>int</code>类型，表达式2是<code>double</code>类型，则表达式1会被自动转换为<code>double</code>类型。</p>
 </blockquote>
 <h1 id="五、程序流程控制"><a href="#五、程序流程控制" class="headerlink" title="五、程序流程控制"></a>五、程序流程控制</h1><h2 id="1、顺序结构"><a href="#1、顺序结构" class="headerlink" title="1、顺序结构"></a>1、顺序结构</h2><p>Java程序从上到下逐行地执行</p>
-<h2 id="2、分支结构"><a href="#2、分支结构" class="headerlink" title="2、分支结构"></a>2、分支结构</h2><ol>
-<li>if语句</li>
-</ol>
+<h2 id="2、分支结构"><a href="#2、分支结构" class="headerlink" title="2、分支结构"></a>2、分支结构</h2><ul>
+<li><strong>if语句</strong></li>
+</ul>
 <p>用法：</p>
 <figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//用法1：</span><br><span class="hljs-keyword">if</span>(条件表达式){<br>	执行代码块;<br>}<br><span class="hljs-comment">//用法2：</span><br><span class="hljs-keyword">if</span>(条件表达式){<br>	执行代码块<span class="hljs-number">1</span>;<br>}<span class="hljs-keyword">else</span>{<br>	执行代码块<span class="hljs-number">2</span>;<br>}<br><span class="hljs-comment">//用法3：</span><br><span class="hljs-keyword">if</span>(条件表达式){<br>	执行代码块<span class="hljs-number">1</span>;<br>}<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>{<br>	执行代码块<span class="hljs-number">2</span>;<br>}<br>......<br><span class="hljs-keyword">else</span>{<br>	执行代码块<span class="hljs-number">3</span>;<br>}<br><br></code></pre></td></tr></tbody></table></figure>
-<ol>
-<li>switch语句</li>
-</ol>
+<ul>
+<li><strong>switch语句</strong></li>
+</ul>
 <p>用法：</p>
 <figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">switch</span>(表达式){<br><span class="hljs-keyword">case</span> 常量<span class="hljs-number">1</span>:<br>	语句<span class="hljs-number">1</span>;<br>	<span class="hljs-comment">//break;</span><br><span class="hljs-keyword">case</span> 常量<span class="hljs-number">2</span>:<br>	语句<span class="hljs-number">2</span>;<br>	<span class="hljs-comment">//break;</span><br>......<br><span class="hljs-keyword">case</span> 常量N:<br>	语句N;<br>	<span class="hljs-comment">//break;</span><br><span class="hljs-keyword">default</span>:<br>	语句;<br>	<span class="hljs-comment">//break;</span><br>}<br></code></pre></td></tr></tbody></table></figure>
 <blockquote>
@@ -281,14 +281,14 @@
 <p><code>default</code>语句是可选的，位置也是灵活的。没有匹配<code>case</code>时，会执行<code>default</code>的语句。</p>
 <p><code>switch</code>语句效率稍高，情况少的时候尽量不用<code>if</code>，选择<code>switch</code>语句。</p>
 </blockquote>
-<h2 id="3、循环结构"><a href="#3、循环结构" class="headerlink" title="3、循环结构"></a>3、循环结构</h2><ol>
-<li>for语句</li>
-</ol>
+<h2 id="3、循环结构"><a href="#3、循环结构" class="headerlink" title="3、循环结构"></a>3、循环结构</h2><ul>
+<li><strong>for语句</strong></li>
+</ul>
 <p>用法：</p>
 <figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">for</span>(<span class="hljs-number">1.</span>初始化部分; <span class="hljs-number">2.</span>循环条件; <span class="hljs-number">4.</span>迭代部分){<br>	<span class="hljs-number">3.</span>循环体部分;<br>}<br></code></pre></td></tr></tbody></table></figure>
-<ol>
-<li>while语句</li>
-</ol>
+<ul>
+<li><strong>while语句</strong> </li>
+</ul>
 <p>用法：</p>
 <figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//用法1</span><br><span class="hljs-number">1.</span>初始化部分<br><span class="hljs-keyword">while</span>(<span class="hljs-number">2.</span>循环条件){<br>	<span class="hljs-number">3.</span>循环体部分;<br>	<span class="hljs-number">4.</span>迭代部分;<br>}<br><span class="hljs-comment">//用法2</span><br><span class="hljs-number">1.</span>初始化部分<br><span class="hljs-keyword">do</span>{<br>	<span class="hljs-number">3.</span>循环体部分;<br>	<span class="hljs-number">4.</span>迭代部分;<br>}<span class="hljs-keyword">while</span>(<span class="hljs-number">2.</span>循环条件)<br></code></pre></td></tr></tbody></table></figure>
 <h2 id="4、break和continue"><a href="#4、break和continue" class="headerlink" title="4、break和continue"></a>4、break和continue</h2><p><code>break</code>用于终止某个语句块的执行，只能用于<code>switch</code>语句和循环语句，表示跳过循环体，终止循环。</p>

@@ -178,11 +178,15 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_15.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_1.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">Python正则表达式</h1>
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>十一月 01, 2020</span>
+      
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2020/11/01/RegularExpression/" class="leancloud" data-flag-title="Python正则表达式"></span>
+        </span>
       
       <span class="post-info-item"><i class="iconfont iconfont-size"></i>3111</span>
     </div>
@@ -702,6 +706,46 @@
 <script src="/js/script.js"></script>
 
 
+
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz',
+      appKey: 'XipU873t8gkSypbwl1HWUARD',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud").each(async (e) => {
+        const url = $(".leancloud").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud").eq(e).text(count ? count : '--');
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud").length === 1 ? $(".leancloud").attr('id').trim() : 'http://kangshitao.github.io';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    $(function () {
+	  const Counter = AV.Object.extend("Counter");
+	  showCount(Counter);
+      const localhost = /http\:\/\/localhost|http\:\/\/127.0.0.1|http\:\/\/0.0.0.0/;
+      if (localhost.test(document.URL)) {
+	    return;
+	  }
+	  addCount(Counter);
+    });
+  });
+</script>
 
 
 
