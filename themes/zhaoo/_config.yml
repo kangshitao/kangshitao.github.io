@@ -170,8 +170,8 @@ gitalk:
 
 # Valine
 valine:
-  appId: C1IH3DfcmYPQ1T2Ox2nh15Xt-gzGzoHsz
-  appKey: tRi9LbD7i7Gdlj8fYrUXJK6S
+  appId: dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz
+  appKey: XipU873t8gkSypbwl1HWUARD
   placeholder: write comment content... 
   avatar: mp
   pageSize: 10

@@ -18,10 +18,27 @@
       $("#comments-btn").on("click", function () {
         $(this).hide();
         loadValine();
+		var title1="text=Live and Learn有新评论啦~ --by Valine"
+		var SCKEY_Server="SCT21455TskriUeyliOqL6kHLhiCOMmlB"
+		var ValineButton=document.getElementsByClassName("vsubmit vbtn")[0];
+		function send_valine_Server(){
+			var text="desp=";
+			var pageurl=document.URL;
+			var ptime=new Date();
+			var vnick=document.getElementsByClassName("vnick vinput")[0].value;
+			var veditor=document.getElementsByClassName("veditor vinput")[0].value;
+			var data=text+"|昵称"+"|评论内容"+"|跳转链接"+"|评论时间"+"\n"+"|----|----|----|----|"+"\n"+"|"+vnick+"|"+veditor+"|"+pageurl+"|" +ptime.toLocaleString()+"|";
+			var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+			httpRequest.open('POST', 'https://sctapi.ftqq.com/'+SCKEY_Server+'.send', true); //第二步：打开连接
+			httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）
+			httpRequest.send(title1+"&"+data);//发送请求 将请头体体写在send中
+		};
+		ValineButton.onclick=send_valine_Server;
       });
     } else {
       loadValine();
     }
   };
+ 
 </script>
 <% } %>

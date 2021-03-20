@@ -305,14 +305,98 @@ $(function () {
 
 ## 评论功能
 
+### 开启Valine
+
 使用[Valine](https://valine.js.org/)，前提是主题支持：
 
 ```
-leancloud,创建应用(开发版)
+leancloud,创建应用(开发版),可以和访问量统计使用一个应用
 创建Class，配置默认
 打开设置-应用keys
 将AppID、AppKey复制到themes/_config.yml
 ```
+
+### 设置邮箱提醒
+
+如果想要在别人评论后，能够收到提醒，就需要设置邮箱提醒了。这里使用[Valine-Admin](https://github.com/zhaojun1998/Valine-Admin)插件，参考官方教程设置：
+
+1. 进入[Leancloud](https://console.leancloud.cn/apps)对应的valine应用中，
+
+2. 点击云引擎--设置，添加环境变量，添加自定义环境变量，保存。
+
+   > 如果使用QQ邮箱，密码需要使用QQ邮箱的授权码。
+
+3. 设置好环境变量以后，选择Web--部署--Git部署，填写代码库`https://github.com/zhaojun1998/Valine-Admin`，分支使用master，部署。
+
+此外，由于LeanCloud免费版有休眠策略，需要使用自定义计时器让容器一直保持运行状态。
+
+具体使用方法：
+
+* 创建两个定时任务，第一个定时器选`self_wake`函数,`Cron`表达式填`0 */20 7-23 * * ?`，表示每天的7-23点每20分钟访问一次。
+* 第二个定时器选`resend_mails`函数，`Cron`表达式填`0 0 8 * * ?`，表示每天早8点检查过去24小时内漏发的通知邮件并补发。
+
+更新设置以后，重新部署一下即可，至此，可以收到邮件的评论提醒，此外还可以设置邮件的回执格式等。
+
+### 设置微信提醒
+
+如果想使用微信提醒，前提是配置好邮箱提醒。
+
+使用[Server酱](https://sct.ftqq.com/)设置微信提醒，首先需要根据[Server酱的使用教程](http://sc.ftqq.com/9.version)获取到`SCKEY`，在LeanCloud中添加自定义环境变量，`name`是`SCKEY`，`value`是`SCKEY`的值，保存，重新部署。这样配置完后，在Server酱官网进行测试，应该能够收到微信提醒。
+
+设置别人评论收到微信提醒，需要在主题的JS文件中添加代码（参考[链接](https://www.zyskys.com/posts/bd75)），往 `https://sctapi.ftqq.com/SENDKEY.send` 发 HTTP 请求，就可以收到消息啦。具体设置，根据不同主题而定，对于`zhaoo`主题，在`zhaoo\layout\_partial\comments`下的`valine.ejs`文件中，添加以下代码：
+
+```javascript
+// 添加代码以后的文件
+<% if (theme.valine.appId && theme.valine.appKey) { %>
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "<%= theme.valine.appId %>",
+        app_key: "<%= theme.valine.appKey %>",
+        placeholder: "<%= theme.valine.placeholder %>",
+        avatar: "<%= theme.valine.avatar %>",
+        pageSize: "<%= theme.valine.pageSize %>",
+        lang: "<%= theme.valine.lang %>",
+      });
+    }
+    if ( <%- theme.comments.button %> ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+        //从这里开始添加代码
+		var title1="text=Live and Learn有新评论啦~ --by Valine"  //自定义标题
+		var SCKEY_Server=""  //填写SCKEY的值
+		var ValineButton=document.getElementsByClassName("vsubmit vbtn")[0];
+		function send_valine_Server(){
+			var text="desp=";
+			var pageurl=document.URL;
+			var ptime=new Date();
+			var vnick=document.getElementsByClassName("vnick vinput")[0].value;
+			var veditor=document.getElementsByClassName("veditor vinput")[0].value;
+			var data=text+"|昵称"+"|评论内容"+"|跳转链接"+"|评论时间"+"\n"+"|----|----|----|----|"+"\n"+"|"+vnick+"|"+veditor+"|"+pageurl+"|" +ptime.toLocaleString()+"|";
+			var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+			httpRequest.open('POST', 'https://sctapi.ftqq.com/'+SCKEY_Server+'.send', true); //第二步：打开连接
+			httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）
+			httpRequest.send(title1+"&"+data);//发送请求 将请头体体写在send中
+		};
+		ValineButton.onclick=send_valine_Server;
+        // 添加代码结束
+      });
+    } else {
+      loadValine();
+    }
+  };
+ 
+</script>
+<% } %>
+
+```
+
+至此，收到评论以后就能够收到微信提醒。
 
 ## 侧边目录
 
