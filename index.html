@@ -86,11 +86,12 @@
       },
       preview: {
         background: {
-          default: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/welcome-image.jpg',
+          default: '[object Object]',
           api: ''
         },
         motto: {
           default: '心之所向，素履以往',
+		  typing: true,
           api: 'https://v2.jinrishici.com/one.json',
           data_contents: '["data","content"]'
         },
@@ -104,7 +105,7 @@
         enable: true
       },
       scrollbar: {
-        model: 'simple'
+        type: 'default'
       },
       notification: {
         enable: false,
@@ -129,6 +130,24 @@
   <div class="loading"></div>
   
 
+
+  <nav class="navbar" style="background-color: rgba(0, 0, 0, 0) !important; backdrop-filter: none;">
+    <div class="left">
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+    </div>
+    <div class="center"> </div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
 
   
 
@@ -156,12 +175,10 @@
   <main id="main">
   
     <div class="preview">
-  <nav class="navbar j-navbar-menu">
+  <!-- <nav class="navbar j-navbar-menu">
     <i class="iconfont iconmenu"></i>
-  </nav>
+  </nav> -->
   <div class="preview-image">
-    <h2 class="preview-motto" id="motto">心之所向，素履以往</h2>
-    <!-- <span class="preview-cursor">|</span> -->
     
       <div class="preview-overlay">
         <svg class="preview-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -177,6 +194,14 @@
           </g>
         </svg>
       </div>
+    
+  </div>
+  <div class="preview-motto-wrapper">
+    <h2 class="preview-motto" id="motto">
+      
+    </h2>
+    
+      <span class="preview-cursor">_</span>
     
   </div>
   <div class="preview-scroll">
@@ -195,7 +220,7 @@
       <div class="post-top"><div>置顶</div></div>
     
     <a href="/2020/10/25/BlogCreatProcess/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_5.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
       <div class="post-content-wrap">
@@ -224,7 +249,7 @@
   <div class="post-wrap">
     
     <a href="/2021/03/21/java-note-0501/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_6.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_13.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
       <div class="post-content-wrap">
@@ -253,7 +278,7 @@
   <div class="post-wrap">
     
     <a href="/2021/03/20/java-note-0401/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_14.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_5.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
       <div class="post-content-wrap">
@@ -282,7 +307,7 @@
   <div class="post-wrap">
     
     <a href="/2021/03/20/java-note-0301/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_15.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_5.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
       <div class="post-content-wrap">
@@ -311,7 +336,7 @@
   <div class="post-wrap">
     
     <a href="/2021/03/19/java-note-0201/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_12.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_15.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
       <div class="post-content-wrap">
@@ -340,7 +365,7 @@
   <div class="post-wrap">
     
     <a href="/2021/03/19/java-note-0101/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_2.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_10.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
       <div class="post-content-wrap">
@@ -369,7 +394,7 @@
   <div class="post-wrap">
     
     <a href="/2021/01/02/crawler-wuchizhitu/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_5.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_11.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
       <div class="post-content-wrap">
@@ -398,7 +423,7 @@
   <div class="post-wrap">
     
     <a href="/2020/12/27/rank-algorithm/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_1.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_14.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
       <div class="post-content-wrap">
@@ -427,7 +452,7 @@
   <div class="post-wrap">
     
     <a href="/2020/12/05/reverse-linkedlist/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_12.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_15.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
       <div class="post-content-wrap">
@@ -508,10 +533,6 @@
     <i class="iconfont iconcaret-up"></i>
   </div>
   
-  
-    <div class="scrollbar j-scrollbar">
-  <div class="scrollbar-current j-scrollbar-current"></div>
-</div>
   
   
     
@@ -606,6 +627,8 @@
 
 
 
+
+
   <script>
     (function () {
       var bp = document.createElement('script');
@@ -634,7 +657,7 @@
     ga('create', 'G-0FZTGJZNYS', 'auto');
     ga('send', 'pageview');
   </script>
-  <script async src='https://www.google-analytics.com/analytics.js'></script>
+  <script defer src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

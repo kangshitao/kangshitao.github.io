@@ -86,11 +86,12 @@
       },
       preview: {
         background: {
-          default: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/welcome-image.jpg',
+          default: '[object Object]',
           api: ''
         },
         motto: {
           default: '心之所向，素履以往',
+		  typing: true,
           api: 'https://v2.jinrishici.com/one.json',
           data_contents: '["data","content"]'
         },
@@ -104,7 +105,7 @@
         enable: true
       },
       scrollbar: {
-        model: 'simple'
+        type: 'default'
       },
       notification: {
         enable: false,
@@ -130,7 +131,7 @@
   
 
 
-  <nav class="navbar">
+  <nav class="navbar" style="">
     <div class="left">
       
         <i class="iconfont iconqrcode j-navbar-qrcode"></i>
@@ -339,10 +340,6 @@
   </div>
   
   
-    <div class="scrollbar j-scrollbar">
-  <div class="scrollbar-current j-scrollbar-current"></div>
-</div>
-  
   
     
 <script src="/js/color-mode.js"></script>
@@ -436,6 +433,8 @@
 
 
 
+
+
   <script>
     (function () {
       var bp = document.createElement('script');
@@ -464,7 +463,7 @@
     ga('create', 'G-0FZTGJZNYS', 'auto');
     ga('send', 'pageview');
   </script>
-  <script async src='https://www.google-analytics.com/analytics.js'></script>
+  <script defer src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

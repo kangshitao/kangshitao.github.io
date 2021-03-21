@@ -6,6 +6,7 @@
   --color-text-secondary: #4e4e4e;
   --color-text-third: #999;
   --color-border: #eee;
+  --background-image: url("https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/welcome-image.jpg");
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -19,6 +20,7 @@
     --color-text-secondary: #9899ab;
     --color-text-third: #7d8594;
     --color-border: #2b3038;
+    --background-image: url("https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/welcome-image.jpg");
   }
 }
 [color-mode='dark'] {
@@ -29,6 +31,7 @@
   --color-text-secondary: #9899ab;
   --color-text-third: #7d8594;
   --color-border: #2b3038;
+  --background-image: url("https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/welcome-image.jpg");
 }
 [color-mode='dark'] .tags a {
   color: var(--color-text) !important;
@@ -53,7 +56,9 @@ body {
   font-size: 14px;
   color: var(--color-text);
   font-family: Hiragino Sans GB;
-  background: var(--color-background) url("") fixed no-repeat;
+  background-color: var(--color-background);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 body a {
   color: var(--color-text);
@@ -113,9 +118,6 @@ body a,
 body div,
 body span {
   -webkit-tap-highlight-color: transparent;
-}
-::-webkit-scrollbar {
-  display: none;
 }
 *::selection {
   background: #ff3b00;
@@ -1090,7 +1092,7 @@ body span {
   z-index: 40;
   height: 90vh;
   width: 100%;
-  background-image: url("https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/welcome-image.jpg");
+  background-image: var(--background-image);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -1100,30 +1102,7 @@ body span {
   justify-content: center;
   align-items: center;
 }
-.preview .preview-image .preview-motto,
-.preview .preview-image .preview-cursor {
-  text-align: center;
-  font-size: 3.5em;
-  padding: 1em 0.2em;
-  font-family: 'Quicksand', 'Vollkorn', serif;
-  font-weight: 300;
-  color: #fff;
-  margin: 0;
-}
-@media (max-width: 768px) {
-  .preview .preview-image .preview-motto,
-  .preview .preview-image .preview-cursor {
-    font-size: 2em;
-  }
-}
-.preview .preview-image .preview-cursor {
-  opacity: 1;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
-  animation-name: blink;
-}
 .preview .preview-image .preview-overlay {
-  width: 100%;
   position: absolute;
   bottom: -1px;
   left: -100vw;
@@ -1163,6 +1142,34 @@ body span {
 .preview .preview-image .preview-overlay .preview-parallax > use:nth-child(4) {
   animation-delay: -5s;
   animation-duration: 20s;
+}
+.preview .preview-motto-wrapper {
+  position: absolute;
+  top: 42vh;
+  left: 0;
+  z-index: 50;
+  width: 100%;
+  text-align: center;
+}
+.preview .preview-motto-wrapper .preview-motto {
+  display: inline;
+  text-align: center;
+  font-size: 3.5em;
+  font-family: 'Quicksand', 'Vollkorn', serif;
+  font-weight: 300;
+  color: #fff;
+  margin: 0;
+}
+.preview .preview-motto-wrapper .preview-cursor {
+  font-size: 2.5em;
+  color: #fff;
+  animation: blink 0.7s infinite;
+}
+@media (max-width: 768px) {
+  .preview .preview-motto-wrapper .preview-motto,
+  .preview .preview-motto-wrapper .preview-cursor {
+    font-size: 2em;
+  }
 }
 .preview .preview-scroll {
   height: 10vh;
@@ -1962,6 +1969,32 @@ body span {
   position: absolute;
   display: block;
   object-fit: cover;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+.gallery .waterfallWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+.gallery .waterfallWrap .item {
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+}
+.gallery .waterfallWrap .item:hover {
+  filter: grayscale(100%);
+}
+.gallery .waterfallWrap .item img {
+  display: block;
+  object-fit: cover;
+  max-width: 100%;
   width: 100%;
   height: 100%;
   top: 0;

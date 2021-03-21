@@ -86,11 +86,12 @@
       },
       preview: {
         background: {
-          default: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/welcome-image.jpg',
+          default: '[object Object]',
           api: ''
         },
         motto: {
           default: '心之所向，素履以往',
+		  typing: true,
           api: 'https://v2.jinrishici.com/one.json',
           data_contents: '["data","content"]'
         },
@@ -104,7 +105,7 @@
         enable: true
       },
       scrollbar: {
-        model: 'simple'
+        type: 'default'
       },
       notification: {
         enable: false,
@@ -129,6 +130,24 @@
   <div class="loading"></div>
   
 
+
+  <nav class="navbar" style="background-color: rgba(0, 0, 0, 0) !important; backdrop-filter: none;">
+    <div class="left">
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+    </div>
+    <div class="center"> </div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
 
   
 
@@ -156,12 +175,10 @@
   <main id="main">
   
     <div class="preview">
-  <nav class="navbar j-navbar-menu">
+  <!-- <nav class="navbar j-navbar-menu">
     <i class="iconfont iconmenu"></i>
-  </nav>
+  </nav> -->
   <div class="preview-image">
-    <h2 class="preview-motto" id="motto">心之所向，素履以往</h2>
-    <!-- <span class="preview-cursor">|</span> -->
     
       <div class="preview-overlay">
         <svg class="preview-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -179,6 +196,14 @@
       </div>
     
   </div>
+  <div class="preview-motto-wrapper">
+    <h2 class="preview-motto" id="motto">
+      
+    </h2>
+    
+      <span class="preview-cursor">_</span>
+    
+  </div>
   <div class="preview-scroll">
     <a href="#container" class="smooth-scroll"><i class="iconfont iconMouse"></i></a>
   </div>
@@ -193,7 +218,7 @@
   <div class="post-wrap">
     
     <a href="/2020/11/21/pytorch-function/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_2.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_4.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
       <div class="post-content-wrap">
@@ -251,7 +276,7 @@
   <div class="post-wrap">
     
     <a href="/2020/11/12/attention/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_11.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
       <div class="post-content-wrap">
@@ -280,7 +305,7 @@
   <div class="post-wrap">
     
     <a href="/2020/11/05/paper-SGNN-HN/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_12.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_13.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
       <div class="post-content-wrap">
@@ -309,7 +334,7 @@
   <div class="post-wrap">
     
     <a href="/2020/11/01/RegularExpression/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_1.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_4.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
       <div class="post-content-wrap">
@@ -338,7 +363,7 @@
   <div class="post-wrap">
     
     <a href="/2020/10/31/git/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_1.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_7.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
       <div class="post-content-wrap">
@@ -367,7 +392,7 @@
   <div class="post-wrap">
     
     <a href="/2020/10/28/conda/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_3.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
       <div class="post-content-wrap">
@@ -396,7 +421,7 @@
   <div class="post-wrap">
     
     <a href="/2020/10/25/markdown/" class="post-image">
-      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_15.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+      <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_6.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
     </a>
     <div class="post-content">
       <div class="post-content-wrap">
@@ -477,10 +502,6 @@
     <i class="iconfont iconcaret-up"></i>
   </div>
   
-  
-    <div class="scrollbar j-scrollbar">
-  <div class="scrollbar-current j-scrollbar-current"></div>
-</div>
   
   
     
@@ -575,6 +596,8 @@
 
 
 
+
+
   <script>
     (function () {
       var bp = document.createElement('script');
@@ -603,7 +626,7 @@
     ga('create', 'G-0FZTGJZNYS', 'auto');
     ga('send', 'pageview');
   </script>
-  <script async src='https://www.google-analytics.com/analytics.js'></script>
+  <script defer src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

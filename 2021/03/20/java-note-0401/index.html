@@ -87,11 +87,12 @@
       },
       preview: {
         background: {
-          default: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/welcome-image.jpg',
+          default: '[object Object]',
           api: ''
         },
         motto: {
           default: '心之所向，素履以往',
+		  typing: true,
           api: 'https://v2.jinrishici.com/one.json',
           data_contents: '["data","content"]'
         },
@@ -105,7 +106,7 @@
         enable: true
       },
       scrollbar: {
-        model: 'simple'
+        type: 'default'
       },
       notification: {
         enable: false,
@@ -131,7 +132,7 @@
   
 
 
-  <nav class="navbar">
+  <nav class="navbar" style="">
     <div class="left">
       
         <i class="iconfont iconqrcode j-navbar-qrcode"></i>
@@ -179,7 +180,7 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_14.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_13.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">Java学习笔记04-面向对象编程(上)</h1>
     <div class="head-info">
@@ -591,10 +592,6 @@
   </div>
   
   
-    <div class="scrollbar j-scrollbar">
-  <div class="scrollbar-current j-scrollbar-current"></div>
-</div>
-  
   
     
 <script src="/js/color-mode.js"></script>
@@ -688,6 +685,8 @@
 
 
 
+
+
   <script>
     (function () {
       var bp = document.createElement('script');
@@ -716,7 +715,7 @@
     ga('create', 'G-0FZTGJZNYS', 'auto');
     ga('send', 'pageview');
   </script>
-  <script async src='https://www.google-analytics.com/analytics.js'></script>
+  <script defer src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
