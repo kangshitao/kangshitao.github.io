@@ -6,7 +6,7 @@
   <link href="http://kangshitao.github.io/atom.xml" rel="self"/>
   
   <link href="http://kangshitao.github.io/"/>
-  <updated>2021-03-20T13:44:26.086Z</updated>
+  <updated>2021-03-21T13:41:32.575Z</updated>
   <id>http://kangshitao.github.io/</id>
   
   <author>
@@ -15,6 +15,44 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java学习笔记05-面向对象编程(中)</title>
+    <link href="http://kangshitao.github.io/2021/03/21/java-note-0501/"/>
+    <id>http://kangshitao.github.io/2021/03/21/java-note-0501/</id>
+    <published>2021-03-21T09:00:21.000Z</published>
+    <updated>2021-03-21T13:41:32.575Z</updated>
+    
+    
+    <summary type="html">继承性，多态性，重写，super关键字，Object类，包装类</summary>
+    
+    
+    
+    <category term="Java" scheme="http://kangshitao.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java学习笔记04-面向对象编程(上)</title>
+    <link href="http://kangshitao.github.io/2021/03/20/java-note-0401/"/>
+    <id>http://kangshitao.github.io/2021/03/20/java-note-0401/</id>
+    <published>2021-03-20T13:50:55.000Z</published>
+    <updated>2021-03-21T09:00:00.150Z</updated>
+    
+    
+    <summary type="html">面向对象思想，对象，属性，方法，封装，构造器，this，package和import</summary>
+    
+    
+    
+    <category term="Java" scheme="http://kangshitao.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Java学习笔记03-数组</title>
