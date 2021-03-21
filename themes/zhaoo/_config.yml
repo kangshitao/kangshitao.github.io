@@ -49,15 +49,18 @@ loading: /images/theme/loading.gif
 # Preview
 preview:
   enable: true
-  model: wave  # wave cloud
+  type: wave  # wave cloud
   background:
-    default: https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/welcome-image.jpg
+    default: 
+      light: https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/welcome-image.jpg
+      dark: https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/welcome-image.jpg
     api: # https://source.unsplash.com/random/1920x1080
     size: cover # css: background-size
     position: center # css: background-position
   motto:
     default: 心之所向，素履以往
     color: '#ffffff'
+    typing: true
     api: https://v2.jinrishici.com/one.json
     data_contents: ['data', 'content']
     # ex.one  =>  apl: https://v1.hitokoto.cn/?encode=text&c=i  data_contents:
@@ -76,7 +79,7 @@ social:
 
 # Override Scrollbar
 scrollbar:
-  model: simple # default simple normal none
+  type: default # default simple normal none
 
 # Fab (Float Action Button)
 fab:
@@ -150,6 +153,8 @@ galleries:
   enable: true
   title: 摄影
   subtitle: Photography
+  type: 'waterfall' # waterfall | grid
+  columns: 3
 
 # --------------------------------------------------
 # Comment Settings

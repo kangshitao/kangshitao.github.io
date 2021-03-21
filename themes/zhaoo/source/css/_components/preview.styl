@@ -31,7 +31,7 @@
     z-index 40
     height 90vh
     width 100%
-    background-image url(hexo-config('preview.background.default'))
+    background-image var(--background-image)
     background-repeat no-repeat
     background-size unquote(hexo-config('preview.background.size') || '100% 100%')
     background-position unquote(hexo-config('preview.background.position') || center)
@@ -40,23 +40,7 @@
     display flex
     justify-content center
     align-items center
-    .preview-motto, .preview-cursor
-      text-align center
-      font-size 3.5em
-      padding 1em 0.2em
-      font-family 'Quicksand', 'Vollkorn', serif
-      font-weight 300
-      color convert(hexo-config('preview.motto.color')) || #000000
-      margin 0
-      @media (max-width 768px)
-        font-size 2em
-    .preview-cursor
-      opacity 1
-      animation-duration 1s
-      animation-iteration-count infinite
-      animation-name blink
     .preview-overlay
-      width 100%
       position absolute
       bottom -1px
       left -100vw
@@ -88,6 +72,28 @@
         > use:nth-child(4)
           animation-delay -5s
           animation-duration 20s
+  .preview-motto-wrapper
+    position absolute
+    top 42vh
+    left 0
+    z-index 50
+    width 100%
+    text-align center
+    .preview-motto
+      display inline
+      text-align center
+      font-size 3.5em
+      font-family 'Quicksand', 'Vollkorn', serif
+      font-weight 300
+      color convert(hexo-config('preview.motto.color')) || #000000
+      margin 0
+    .preview-cursor
+      font-size 2.5em
+      color #ffffff
+      animation blink 0.7s infinite
+    .preview-motto, .preview-cursor
+      @media (max-width 768px)
+        font-size 2em
   .preview-scroll
     height 10vh
     display flex
