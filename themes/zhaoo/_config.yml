@@ -51,9 +51,9 @@ preview:
   enable: true
   type: wave  # wave cloud
   background:
-    default: 
-      light: https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/welcome-image.jpg
-      dark: https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/welcome-image.jpg
+    default:
+      light: https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/welcome-image2.jpg
+      dark: https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/welcome-image1.jpg
     api: # https://source.unsplash.com/random/1920x1080
     size: cover # css: background-size
     position: center # css: background-position
@@ -61,8 +61,8 @@ preview:
     default: 心之所向，素履以往
     color: '#ffffff'
     typing: true
-    api: https://v2.jinrishici.com/one.json
-    data_contents: ['data', 'content']
+    api: https://v1.hitokoto.cn/?encode=text&c=d
+    data_contents: 
     # ex.one  =>  apl: https://v1.hitokoto.cn/?encode=text&c=i  data_contents:
     # ex.two  =>  api: https://v2.jinrishici.com/one.json  data_contents: ['data', 'content']
 
