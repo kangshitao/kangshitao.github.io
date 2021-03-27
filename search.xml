@@ -201,6 +201,136 @@
       </tags>
   </entry>
   <entry>
+    <title>Java学习笔记07-异常处理</title>
+    <url>/2021/03/26/java-note-0701/</url>
+    <content><![CDATA[<h1 id="一、异常概述与异常体系结构"><a href="#一、异常概述与异常体系结构" class="headerlink" title="一、异常概述与异常体系结构"></a>一、异常概述与异常体系结构</h1><h2 id="1、异常概述"><a href="#1、异常概述" class="headerlink" title="1、异常概述"></a>1、异常概述</h2><p>Java中的异常可以分为两类：</p>
+<ul>
+<li><code>Error</code>：Java虚拟机无法解决的严重问题，如：JVM系统内部错误、资源耗尽等严重情况。比如<code>StackOverflowError</code>和<code>OOM</code>。对于这类异常一般不编写针对性代码进行处理。</li>
+<li><code>Exception</code>：其他因编程错误或偶然的外在因素导致的一般性问题。可以使用针对性代码进行处理，如<ul>
+<li>空指针异常：<code>NullPointerException</code></li>
+<li>读取不存在的文件：<code>FileNotFoundException</code></li>
+<li>类型转换异常：<code>ClassCastException</code></li>
+<li>数组索引越界：<code>ArrayIndexOutOfBoundException</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="2、异常体系结构"><a href="#2、异常体系结构" class="headerlink" title="2、异常体系结构"></a>2、异常体系结构</h2><p>Java中的异常体系结构如下：</p>
+<p><code>java.lang.Throwable</code>有以下继承关系:</p>
+<ul>
+<li><p><code>java.lang.Error</code>：</p>
+<ul>
+<li><code>StackOverflowError</code></li>
+<li><code>OutOfMemoryError</code></li>
+<li><code>...</code></li>
+</ul>
+</li>
+<li><p><code>java.lang.Exception</code>：</p>
+<ul>
+<li><code>ClassNotFoundException</code></li>
+<li><code>CloneNotSupportedException</code></li>
+<li><p><code>IOException</code>：</p>
+<ul>
+<li><code>EOFException</code></li>
+<li><code>FileNotFoundException</code></li>
+<li><code>MalformedURLException</code></li>
+<li><code>UnknowHostException</code></li>
+<li><code>...</code></li>
+</ul>
+</li>
+<li><p><code>RuntimeException</code>:</p>
+<ul>
+<li><code>ArithmeticException</code>：除数是0时报此异常</li>
+<li><code>ClassCastException</code></li>
+<li><code>IllegalArgumentException</code></li>
+<li><code>IllegalStateException</code></li>
+<li><code>IndexOutOfBoundsException</code></li>
+<li><code>NoSuchElementException</code></li>
+<li><code>NullPointerException</code></li>
+<li><code>...</code></li>
+</ul>
+</li>
+<li><code>...</code></li>
+</ul>
+</li>
+</ul>
+<p>可以看到，<code>Throwable</code>是异常体系的根父类，其有<code>Error</code>和<code>Exception</code>两个子类，<code>Exception</code>分为<strong>运行时异常(RuntimeException)</strong>和<strong>编译时异常(IOException等)</strong>，其中<strong>运行时异常</strong>又可以称为<strong>非受检(unchecked)异常</strong>，<strong>编译时异常</strong>称为<strong>受检(checked)异常</strong>。</p>
+<h2 id="3、异常处理"><a href="#3、异常处理" class="headerlink" title="3、异常处理"></a>3、异常处理</h2><p>Java中对于异常处理使用的<strong>抓抛模型</strong>：</p>
+<ul>
+<li>第一步，“抛”出异常：执行过程中，一旦出现异常，会在代码处生成一个对应异常类的对象，并将此对象抛出，一旦抛出异常对象以后，其后的代码不再执行。<ul>
+<li>抛出异常有两种方式：①系统自动生成异常对象并自动抛出。②手动生成异常对象并抛出(<code>throw</code>)</li>
+</ul>
+</li>
+<li>第二步，“抓”住异常(<strong>捕获(catch)异常</strong>)，即异常的处理。<ul>
+<li>对于异常处理有两种方法：①<code>try-catch-finally</code>。②使用<code>throws</code>将异常交给方法调用者处理。</li>
+</ul>
+</li>
+</ul>
+<h1 id="二、异常处理机制之一：try-catch-finally"><a href="#二、异常处理机制之一：try-catch-finally" class="headerlink" title="二、异常处理机制之一：try-catch-finally"></a>二、异常处理机制之一：try-catch-finally</h1><h2 id="1、try-catch的使用"><a href="#1、try-catch的使用" class="headerlink" title="1、try-catch的使用"></a>1、try-catch的使用</h2><p><code>try-catch-finally</code>的使用：</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java">    <span class="hljs-keyword">try</span>{<br>        <span class="hljs-comment">//可能出现异常的代码</span><br>    }<span class="hljs-keyword">catch</span>(异常类型<span class="hljs-number">1</span> 变量名<span class="hljs-number">1</span>){<br>        <span class="hljs-comment">//处理异常的方式1</span><br>    }<span class="hljs-keyword">catch</span>(异常类型<span class="hljs-number">2</span> 变量名<span class="hljs-number">2</span>){<br>        <span class="hljs-comment">//处理异常的方式2</span><br>    }<span class="hljs-keyword">catch</span>(异常类型<span class="hljs-number">3</span> 变量名<span class="hljs-number">3</span>){<br>        <span class="hljs-comment">//处理异常的方式3</span><br>    }<br>    ......<br>    <span class="hljs-keyword">finally</span>{<br>        <span class="hljs-comment">//一定会执行的代码</span><br>    }<br><br><span class="hljs-comment">//例如：</span><br>	<span class="hljs-keyword">try</span>{<br>       ...<span class="hljs-comment">//读取文件的语句</span><br>    }<span class="hljs-keyword">catch</span>(IOException e){<br>        System.out.println(e.getMessage());<br>    }<br></code></pre></td></tr></tbody></table></figure>
+<ul>
+<li><code>finally</code>是可选的，<code>try-catch-finally</code>结构可以嵌套。</li>
+<li>使用<code>try</code>将可能出现异常的代码包装起来，一旦出现异常，会生成一个对应异常类的对象，根据此对象的类型，去<code>catch</code>中匹配。</li>
+<li><code>try</code>中的异常对象匹配到某个<code>catch</code>时，就进入<code>catch</code>中处理，处理完成后，跳出<code>try-catch</code>结构(没有<code>finally</code>时)，继续执行其后的代码</li>
+<li>catch中的异常类型如果没有子父类关系，则多个<code>catch</code>无关顺序。如果多个<code>catch</code>的异常类型有子父类关系，需要将子类写在父类的前面，否则出错。比如<code>NullPointerException</code>必须写在<code>RuntimeException</code>前面。</li>
+<li>常用的异常对象处理的方式：<ul>
+<li><code>Sting getMessage()</code>：获取异常信息，返回字符串。</li>
+<li><code>printStackTrace()</code>：获取异常类名和异常信息，以及异常出现在程序中的位置，返回值<code>void</code>。</li>
+</ul>
+</li>
+<li><code>try</code>结构中声明的变量，在<code>try</code>结构外面不能调用。可以将变量声明在外面，在<code>try</code>结构中赋值。</li>
+</ul>
+<h2 id="2、finally"><a href="#2、finally" class="headerlink" title="2、finally"></a>2、finally</h2><p><code>finally</code>的用法：</p>
+<ul>
+<li><code>finally</code>中声明的是一定会被执行的代码。即使<code>catch</code>中又出现异常、<code>try</code>中有<code>return</code>语句、<code>catch</code>中有<code>return</code>语句，<code>finally</code>中的语句也会执行。</li>
+<li>数据库连接、输入输出流、网络编程Socket等资源，JVM不能自动回收，需要手动进行资源的释放。此时的资源释放，需要声明在<code>finally</code>中。</li>
+</ul>
+<h2 id="3、不捕获异常的情况"><a href="#3、不捕获异常的情况" class="headerlink" title="3、不捕获异常的情况"></a>3、不捕获异常的情况</h2><ul>
+<li>使用<code>try-catch-finally</code>处理编译时异常，使程序在编译时不报错，但运行时仍可能报错。相当于使用<code>try-catch-finally</code>将<strong>编译时</strong>可能出现的异常延迟到<strong>运行时</strong>出现。</li>
+<li>由于运行时异常比较常见，Java能够自动捕获，因此，对于运行时异常，通常不使用<code>try-catch</code>结构捕获。而对于<strong>编译时异常，必须进行异常处理(捕获异常)</strong>。</li>
+</ul>
+<h1 id="三、异常处理机制之二：throws"><a href="#三、异常处理机制之二：throws" class="headerlink" title="三、异常处理机制之二：throws"></a>三、异常处理机制之二：throws</h1><h2 id="1、throws的使用"><a href="#1、throws的使用" class="headerlink" title="1、throws的使用"></a>1、throws的使用</h2><p>使用<code>throws</code>声明抛出异常是处理异常的第二种方式。如果一个方法中可能生成某种异常，但不能确定如何处理这种异常，就可以使用<code>throws</code>显式地声明抛出异常，表示该方法不对这些异常处理，而是由调用者负责处理。</p>
+<p>当方法体执行时出现异常，会在异常代码处生成一个异常类对象，如果此对象满足throws后的异常类型，就会被抛出(抛给方法的调用者)，异常代码后面的语句不再执行。</p>
+<p><code>throws</code>的使用格式为：<code>throws 异常类型</code>，写在方法声明处的方法名后面。</p>
+<p>例如：</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> FileNotFoundException, IOException</span>{<br>    <span class="hljs-comment">//读取文件的语句</span><br>    File file = <span class="hljs-keyword">new</span> File(<span class="hljs-string">"xxx.txt"</span>);<br>    ...<br>}<br></code></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>可以同时声明多个类型的抛出异常。</p>
+<p>对于重写的方法，子类重写的方法抛出的异常<strong>不大于</strong>父类被重写的方法抛出的异常类型。</p>
+</blockquote>
+<h2 id="2、throws和try-catch"><a href="#2、throws和try-catch" class="headerlink" title="2、throws和try-catch"></a>2、throws和try-catch</h2><p><code>throws</code>和<code>try-catch</code>都是异常处理的两种方式，其区别是：</p>
+<ul>
+<li><code>try-catch-finally</code>真正地将异常处理掉了。</li>
+<li><code>throws</code>的方式只是将异常抛给了方法的调用者，没有真正地处理掉异常。</li>
+</ul>
+<p>如何选择两种处理方式？</p>
+<ul>
+<li>如果父类中被重写的方法没有<code>throws</code>方式处理异常，则子类重写的方法不能使用<code>throws</code>，如果有异常只能使用<code>try-catch-finally</code>的方式。</li>
+<li>如果执行的方法a中先后调用了另外的几个递进关系的方法，建议这几个方法使用<code>throws</code>处理异常，而方法a使用<code>try-catch-finally</code>。</li>
+</ul>
+<h1 id="四、手动抛出异常：throw"><a href="#四、手动抛出异常：throw" class="headerlink" title="四、手动抛出异常：throw"></a>四、手动抛出异常：throw</h1><p>Java异常类对象除了系统自动生成以外，还可以手动创建异常类对象并抛出。需要先声明异常类对象，然后通过throw语句抛出：</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java">IOException e = <span class="hljs-keyword">new</span> IOException();  <span class="hljs-comment">//创建异常类对象</span><br><span class="hljs-keyword">throw</span> e;  <span class="hljs-comment">//将异常类对象抛出</span><br></code></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>手动抛出异常的方式，可以用在<code>try-catch</code>结构里和使用了<code>throws</code>的方法中。</p>
+</blockquote>
+<p><code>throw</code>的应用：</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//场景一：</span><br><span class="hljs-keyword">try</span> {<br>    System.out.println(<span class="hljs-string">"try"</span>);<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"制造异常"</span>);<br>} <span class="hljs-keyword">catch</span>{<br>    System.out.println(<span class="hljs-string">"catch"</span>);<br>}<br><span class="hljs-comment">//场景二：</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method</span><span class="hljs-params">(<span class="hljs-keyword">int</span> id)</span> <span class="hljs-keyword">throws</span> Exception </span>{<br>    <span class="hljs-keyword">if</span>(xxx){<br>        <span class="hljs-comment">//执行语句</span><br>    }<span class="hljs-keyword">else</span>{<br>        <span class="hljs-comment">//手动抛出异常对象</span><br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"您输入的数据非法！"</span>);<br>        <span class="hljs-comment">//throw new MyException("不能输入负数");  //抛出自定义异常类对象</span><br>    }<br></code></pre></td></tr></tbody></table></figure>
+<h1 id="五、自定义异常类"><a href="#五、自定义异常类" class="headerlink" title="五、自定义异常类"></a>五、自定义异常类</h1><p>一般来说，自定义异常类都是<code>RuntimeException</code>、<code>Exception</code>的子类，过程如下：</p>
+<ul>
+<li>编写重载的构造器。</li>
+<li>提供<code>serialVersionUID</code></li>
+<li>通过<code>throw</code>抛出异常类对象</li>
+</ul>
+<p>以下是自定义类的举例：</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">RuntimeException</span></span>{<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = -<span class="hljs-number">1234567890L</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyException</span><span class="hljs-params">()</span></span>{}<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyException</span><span class="hljs-params">(String msg)</span></span>{<br>        <span class="hljs-keyword">super</span>(msg);<br>    }<br>}<br><br></code></pre></td></tr></tbody></table></figure>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java学习笔记06-面向对象编程(下)</title>
     <url>/2021/03/26/java-note-0601/</url>
     <content><![CDATA[<h1 id="一、关键字：static"><a href="#一、关键字：static" class="headerlink" title="一、关键字：static"></a>一、关键字：static</h1><h2 id="1、介绍"><a href="#1、介绍" class="headerlink" title="1、介绍"></a>1、介绍</h2><p><code>static</code>：静态的，可以用来修饰属性、方法、代码块、内部类。</p>

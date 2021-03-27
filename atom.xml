@@ -6,7 +6,7 @@
   <link href="http://kangshitao.github.io/atom.xml" rel="self"/>
   
   <link href="http://kangshitao.github.io/"/>
-  <updated>2021-03-26T14:21:45.319Z</updated>
+  <updated>2021-03-27T12:59:44.092Z</updated>
   <id>http://kangshitao.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java学习笔记07-异常处理</title>
+    <link href="http://kangshitao.github.io/2021/03/26/java-note-0701/"/>
+    <id>http://kangshitao.github.io/2021/03/26/java-note-0701/</id>
+    <published>2021-03-26T14:37:04.000Z</published>
+    <updated>2021-03-27T12:59:44.092Z</updated>
+    
+    
+    <summary type="html">异常处理，try-catch-finally，throws，throw，自定义异常类</summary>
+    
+    
+    
+    <category term="Java" scheme="http://kangshitao.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Java学习笔记06-面向对象编程(下)</title>
