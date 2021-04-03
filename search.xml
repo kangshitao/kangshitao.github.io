@@ -192,12 +192,268 @@
 <p><a href="https://blog.csdn.net/sinat_37781304/article/details/82729029">hexo史上最全搭建教程</a></p>
 </blockquote>
 ]]></content>
+  </entry>
+  <entry>
+    <title>Java学习笔记08-多线程</title>
+    <url>/2021/04/03/java-note-0801/</url>
+    <content><![CDATA[<h1 id="一、程序、进程、线程"><a href="#一、程序、进程、线程" class="headerlink" title="一、程序、进程、线程"></a>一、程序、进程、线程</h1><ul>
+<li><strong>程序(program)</strong>：是为完成特定任务、用某种语言编写的一组指令的集合，即指一段静态的代码，静态对象。</li>
+<li><strong>进程(process)</strong>：是程序的一次执行过程，是正在运行的一个程序。<ul>
+<li>是一个动态的过程，有自身的产生、存在和消亡的过程——即<strong>生命周期</strong>。</li>
+<li>程序是<strong>静态</strong>的，进程是<strong>动态</strong>的。</li>
+<li><strong>进程是资源分配的单位</strong>，系统在运行时会为每个进程分配不同的内存区域。</li>
+</ul>
+</li>
+<li><strong>线程(thread)</strong>：进程可进一步细化为线程，是一个<strong>程序内部的一条执行路径</strong>。 <ul>
+<li>若一个进程同一时间并行执行多个线程，就是支持<strong>多线程</strong>的。</li>
+<li><strong>线程是调度和执行的单位</strong>，每个线程拥有独立的<strong>运行栈</strong>和<strong>程序计数器(pc)</strong>，线程切换开销小。 </li>
+<li>一个进程的多个线程共享进程的<strong>堆</strong>和<strong>方法区</strong>，每个线程有自己的<strong>程序计数器、虚拟机栈和本地方法栈</strong>，这些线程从同一堆中分配对象，可以访问相同的变量和对象。</li>
+<li>多个线程操作共享的系统资源可能会带来安全的隐患。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>一个Java程序java.exe，至少有三个线程：main()主线程、gc()垃圾回收线程、异常处理线程。</p>
+</blockquote>
+<p>JVM结构：</p>
+<div align="center">
+    <img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/java-note-0801_1.jpg">
+</div>
+
+<ol>
+<li><strong>方法区(Method Area)</strong>：存储类结构信息，包括常量池、静态变量、构造函数等。JVM规范把方法区描述为堆的一个逻辑部分，但它有个别名non-heap(非堆)。方法区还包含运行时常量池</li>
+<li><strong>堆(Heap)</strong>：存储Java实例或者对象，是GC的主要区域。</li>
+<li><strong>虚拟机栈(VM Stack，Stack，Java Stack)</strong>：即Java栈，每当创建一个线程时，JVM就会为这个线程创建一个其私有的Java栈。在这个栈中包含多个栈帧，每运行一个方法就创建一个栈帧，用于存储局部变量表、操作栈、方法返回值等。每一个方法从调用直至执行完成的过程，就对应一个栈帧在Java栈中入栈到出栈的过程。</li>
+<li><strong>程序计数器(PC Register)</strong>：保存当前线程执行的内存地址。由于JVM程序是多线程执行的（线程轮流切换），所以为了保证线程切换回来后，还能恢复到原先状态，就需要一个独立的计数器，记录之前中断的地方。</li>
+<li><strong>本地方法栈(Native Method Stack)</strong>：和Java栈的作用类似，只不过是为JVM使用到的native方法服务的。</li>
+</ol>
+<p>参考：<a href="https://www.zhihu.com/question/264627396">java中进程与线程的概念</a></p>
+<p>并行和并发：</p>
+<ul>
+<li>并行：多个CPU同时执行多个任务。</li>
+<li>并发：一个CPU(采用时间片)同时执行多个任务。</li>
+</ul>
+<h1 id="二、线程的创建和使用"><a href="#二、线程的创建和使用" class="headerlink" title="二、线程的创建和使用"></a>二、线程的创建和使用</h1><p>线程的创建方式共有四种：继承<code>Thread</code>类、实现<code>Runnable</code>接口、实现<code>Callable</code>接口(5.0新增)、使用线程池(5.0新增)。</p>
+<h2 id="1、Thread类"><a href="#1、Thread类" class="headerlink" title="1、Thread类"></a>1、Thread类</h2><p>创建线程的第一种方式是继承<code>Thread</code>类：</p>
+<ul>
+<li>创建继承<code>Thread</code>类的子类。</li>
+<li>重写<code>run()</code>方法，将此线程执行的操作声明的此方法中。</li>
+<li>创建子类的对象，然后使用此对象调用<code>start()</code>方法。</li>
+</ul>
+<blockquote>
+<p>①<code>start()</code>方法的作用：启动当前线程；调用当前线程的<code>run()</code>方法。</p>
+<p>②启动多线程，必须调用<code>start()</code>方法，不能通过直接调用<code>run()</code>的方式启动线程。</p>
+<p>③不能让已经<code>start()</code>的线程再<code>start()</code>，即一个线程不能启动多次，否则报<code>IllegalThreadStateException</code>异常。</p>
+<p>④如果想创建多个线程，需要创建多个对象。</p>
+</blockquote>
+<p>实现代码：</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThreadTest</span> </span>{<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{<br>        <span class="hljs-comment">//3.创建Thread类的子类的对象</span><br>        MyThread1 mt = <span class="hljs-keyword">new</span> MyThread1();<br>        <span class="hljs-comment">//4.通过此对象调用start()方法</span><br>        mt.start(); <span class="hljs-comment">//主线程使用mt对象调用了start方法，启动新线程。</span><br>        <span class="hljs-comment">// start方法能够使线程执行，JVM调用这个线程的run方法</span><br><br>        <span class="hljs-comment">//这里是主线程运行</span><br>        <span class="hljs-comment">//同时运行两个线程，输出顺序就不确定，每个线程的输出也可能交叉</span><br>        <span class="hljs-keyword">for</span>( <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;<span class="hljs-number">100</span>;i++){<br>            <span class="hljs-keyword">if</span>(i % <span class="hljs-number">2</span> != <span class="hljs-number">0</span>)<br>                System.out.println(Thread.currentThread().getName()+<span class="hljs-string">":"</span>+i);<br>        }<br>    }<br>}<br><span class="hljs-comment">// 1.创建一个继承于Thread类的子类</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyThread1</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Thread</span></span>{<br>    <span class="hljs-comment">//2.重写Thread的run()</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;<span class="hljs-number">100</span>;i++){<br>            <span class="hljs-keyword">if</span>(i % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>)<br>                System.out.println(Thread.currentThread().getName()+<span class="hljs-string">":"</span>+i);<br>        }<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
+<p><code>Thread</code>类的相关方法：</p>
+<ul>
+<li><code>start()</code>：启动线程，并执行对象的run()方法</li>
+<li><code>run()</code>：线程被调度时执行的操作</li>
+<li><code>currentThread()</code>：返回当前线程，在Thread子类中就是this，通常用于主线程和Runnable实现类</li>
+<li><code>getName()</code>：返回线程名称</li>
+<li><code>setName()</code>：设置线程名称</li>
+<li><code>yield()</code>：线程让步，释放当前cpu的执行权。暂停当前正在执行的线程，把执行机会让给优先级相同或更高的线程。</li>
+<li><code>join()</code>：在线程A中调用线程B的<code>join()</code>方法，此时A进入阻塞状态，直到线程B完全执行完以后，线程A才结束阻塞状态</li>
+<li><code>sleep(long millitime)</code>：让当前线程指定时间内放弃对CPU的控制。指定的毫秒时间内，当前线程是阻塞状态。</li>
+<li><code>isAlive()</code>：判断线程是否活着</li>
+<li><code>stop()</code>：已过时。强制结束当前线程</li>
+<li><code>suspend()</code>：已过时</li>
+<li><code>resume()</code>：已过时</li>
+</ul>
+<p>线程的优先级：</p>
+<p><code>MAX_PRIORITY</code>：10</p>
+<p><code>MIN_PRIORITY</code>：1</p>
+<p><code>NORM_PRIORITY</code>：5</p>
+<p>方法：</p>
+<ul>
+<li><code>getPriority()</code>：返回线程优先级</li>
+<li><code>setPriority(int newPriority)</code>：改变线程优先级</li>
+</ul>
+<blockquote>
+<p>线程创建时继承父线程的优先级</p>
+<p>低优先级的线程只是获得调度的概率低，并不是说低优先级线程一定在高优先级线程执行完之后执行。</p>
+</blockquote>
+<p><strong>守护线程</strong>和<strong>用户线程</strong></p>
+<ul>
+<li>二者几乎每个方面都是相同的，唯一的区别是判断JVM何时离开。</li>
+<li>守护线程是用来服务用户线程的，可以通过在<code>start()</code>方法前调用<code>thread.setDaemon(true)</code>把用户线程变成守护线程。</li>
+<li>守护线程比如Java垃圾回收。当JVM中都是守护线程时，当前JVM将退出</li>
+</ul>
+<h2 id="2、Runnable接口"><a href="#2、Runnable接口" class="headerlink" title="2、Runnable接口"></a>2、Runnable接口</h2><p>创建线程的第二种方式是实现<code>Runnable</code>接口：</p>
+<ul>
+<li>创建类，实现实现<code>Runnable</code>接口。</li>
+<li>重写<code>run()</code>方法。</li>
+<li>创建实现类对象，作为参数传入<code>Thread</code>类的构造器。</li>
+<li><code>Thread</code>类的对象调用<code>start()</code>方法启动线程。</li>
+</ul>
+<blockquote>
+<p>①实现接口的方法，避免了单继承的局限性。</p>
+<p>②多个线程共享一个接口实现类的对象，非常适合多个相同线程处理同一份资源。</p>
+<p>③和方法一相比，实现<code>Runnable</code>接口的方法优先使用。</p>
+</blockquote>
+<p>实现代码：</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThreadTest2</span> </span>{<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{<br>        MyThread2 mt = <span class="hljs-keyword">new</span> MyThread2();<br>        Thread t1 = <span class="hljs-keyword">new</span> Thread(mt,<span class="hljs-string">"Thread-1"</span>);<br>        Thread t2 = <span class="hljs-keyword">new</span> Thread(mt,<span class="hljs-string">"Thread-2"</span>);<br>        <span class="hljs-comment">//启动多个线程，只需要新建Thread对象，两个线程共享Runnable实现类对象</span><br>        t1.start();<br>        t2.start();<br>    }<br>}<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyThread2</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span></span>{<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt; <span class="hljs-number">100</span>; i++)<br>            System.out.println(Thread.currentThread().getName());<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
+<h2 id="3、Callable接口"><a href="#3、Callable接口" class="headerlink" title="3、Callable接口"></a>3、Callable接口</h2><p>创建线程的第三种方法是实现<code>Callable</code>接口(JDK 5.0新增)：</p>
+<ul>
+<li>声明实现<code>Callable</code>接口的实现类。</li>
+<li>重写<code>call()</code>方法。</li>
+<li>声明实现类对象，比如<code>mt3</code>。</li>
+<li>声明<code>FutureTask</code>类对象<code>ft</code>，构造器参数为实现类对象<code>mt3</code>。</li>
+<li>声明<code>Thread</code>类对象<code>t</code>，构造器参数为<code>FutureTask</code>类对象<code>ft</code>。</li>
+<li>通过对象<code>t</code>调用<code>start()</code>方法，启动并运行线程。</li>
+</ul>
+<blockquote>
+<p>①<code>Future</code>接口可以对具体<code>Runnable</code>、<code>Callable</code>任务的执行结果进行取消、查询是否完成、获取结果等。</p>
+<p>②<code>FutureTask</code>是<code>Future</code>接口唯一的实现类。</p>
+<p>③<code>FutrueTask</code>同时实现了<code>Runnable</code>、<code>Future</code>接口，它<strong>既可以作为<code>Runnable</code>被线程执行</strong>，<strong>也可以作为<code>Future</code>得到<code>Callable</code>的返回值</strong>。</p>
+</blockquote>
+<p>实现<code>Callable</code>接口和实现<code>Runnable</code>接口相比，前者更强大，因为：</p>
+<ul>
+<li><code>call()</code>方法可以有返回值。</li>
+<li><code>call()</code>可以抛出异常，被外面的操作捕获，获取异常信息</li>
+<li><code>Callable</code>支持泛型。</li>
+</ul>
+<p>实现代码：</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThreadThree</span> </span>{<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{<br>        <span class="hljs-comment">//创建实现类的对象</span><br>        NumThread numThread = <span class="hljs-keyword">new</span> NumThread(); <br>        <span class="hljs-comment">//创建FutureTask类对象，将实现类对象作为参数</span><br>        FutureTask futureTask = <span class="hljs-keyword">new</span> FutureTask(numThread); <br>        <span class="hljs-comment">//创建Thread类对象，将futureTask作为Runnable被线程执行</span><br>        <span class="hljs-keyword">new</span> Thread(futureTask).start();  <br><br>        <span class="hljs-comment">//FutureTask作为Future得到Callable的返回值</span><br>        <span class="hljs-keyword">try</span> {<span class="hljs-comment">//get的返回值即numThread重写的call的返回值</span><br>            Object num = futureTask.get();  <br>            System.out.println(num);<br>        } <span class="hljs-keyword">catch</span> (InterruptedException e) {<br>            e.printStackTrace();<br>        } <span class="hljs-keyword">catch</span> (ExecutionException e) {<br>            e.printStackTrace();<br>        }<br>    }<br>}<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NumThread</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Callable</span></span>{ <span class="hljs-comment">//实现Callable接口，并重写call方法</span><br>    <span class="hljs-comment">//call()函数有返回值，且能够抛出异常</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">call</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>{<br>        <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt;= <span class="hljs-number">100</span>; i++) {<br>            <span class="hljs-keyword">if</span>(i % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>){<br>                System.out.println(i);<br>                sum += i;<br>            }<br>        }<br>        <span class="hljs-keyword">return</span> sum;<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
+<h2 id="4、线程池"><a href="#4、线程池" class="headerlink" title="4、线程池"></a>4、线程池</h2><p>创建线程的第四种方式是使用线程池(JDK 5.0新增)。</p>
+<p>经常创建和销毁、使用量特别大的资源，比如并发情况下的线程，对性能影响很大。线程池的思想是提前创建好多个线程，放入线程池中，使用时直接获取，使用完放回池中。可以避免频繁创建销毁、实现重复利用。</p>
+<p>线程池的优势：</p>
+<ul>
+<li>提高响应速度（减少了创建新线程的时间）。</li>
+<li>降低资源消耗（重复利用线程池中线程，不需要每次都创建）。</li>
+<li>便于线程管理。</li>
+</ul>
+<p>JDK 5.0 提供了线程池相关的API：<code>ExecutorService</code>接口和<code>Executors</code>工具类。</p>
+<ul>
+<li><p><code>ThreadPoolExecutor</code>是<code>ExecutorService</code>的常见实现类，其中的常用方法：</p>
+<ul>
+<li><code>corePoolSize</code>：核心池大小</li>
+<li><code>maximumPoolSize</code>：最大线程数</li>
+<li>keepAliveTim`e：线程没有任务时，最多保持多长时间后会终止</li>
+</ul>
+</li>
+<li><p><code>ExecutorService</code>：真正的线程池接口，常见的实现类为<code>ThreadPoolExecutor</code></p>
+<ul>
+<li><code>void execute(Runnable command)</code>:执行任务/命令，一般用来执行<code>Runnable</code></li>
+<li><code>&lt;T&gt;Future&lt;T&gt; submit(Callable&lt;T&gt; task)</code>:执行任务，有返回值，一般用来执行<code>Callable</code></li>
+<li><code>void shutdown()</code>：关闭连接池。</li>
+</ul>
+</li>
+<li><p><code>Executors</code>：工具类、线程池的工厂类，用于创建并返回不同类型的线程池。</p>
+<ul>
+<li><code>Executors.newCachedThreadPool()</code>：创建一个可根据需要创建新线程的线程池</li>
+<li><code>Executors.newFixedThreadPool(n)</code>：创建一个可重用的固定线程数的线程池</li>
+<li><code>Executors.newSingleThreadExecutor()</code>：创建一个只有一个线程的线程池</li>
+<li><code>Executors.newScheduledThreadPool(n)</code>：创建一个线程池，可安排在给定延迟后运行命令或者定期地执行</li>
+</ul>
+</li>
+</ul>
+<p>使用步骤：<br>    1.提供指定线程数量的线程池：调用工具类的方法创建线程池，返回ThreadPoolExecutor对象。<br>    2.执行指定的线程的操作，需要提供实现Runnable接口或Callable接口实现类的对象。<br>    3.关闭线程池。</p>
+<p>具体代码：</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThreadPool</span> </span>{<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{<br>        <span class="hljs-comment">//1.提供指定线程数量的线程池</span><br>        ExecutorService service = Executors.newFixedThreadPool(<span class="hljs-number">10</span>);<br>        <span class="hljs-comment">//ThreadPoolExecutor类实现了ExecutorService接口</span><br>        ThreadPoolExecutor service1 = (ThreadPoolExecutor) service;<br>        <span class="hljs-comment">//通过service1，可以设置线程池的属性...</span><br>        service1.setMaximumPoolSize(<span class="hljs-number">15</span>);<br><br>        <span class="hljs-comment">//2.执行指定的线程的操作，需要提供实现Runnable接口或Callable接口实现类的对象</span><br>        service.execute(<span class="hljs-keyword">new</span> NumThreadFour()); <span class="hljs-comment">//适合于Runnable,分配线程1</span><br>        service.execute(<span class="hljs-keyword">new</span> NumThreadFour2()); <span class="hljs-comment">//适合于Runnable，分配线程2</span><br>        service.submit(<span class="hljs-keyword">new</span> FutureTask(<span class="hljs-keyword">new</span> NumThreadFour3())); <span class="hljs-comment">//适合于Callable，分配线程3</span><br>        <span class="hljs-comment">//3.关闭线程池</span><br>        service.shutdown();<br>    }<br>}<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NumThreadFour</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span> </span>{...}<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NumThreadFour2</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span> </span>{...}<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NumThreadFour3</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Callable</span> </span>{...}<br></code></pre></td></tr></tbody></table></figure>
+<h1 id="三、线程的生命周期"><a href="#三、线程的生命周期" class="headerlink" title="三、线程的生命周期"></a>三、线程的生命周期</h1><p>一个线程的完整生命周期有六种状态，在<code>Thread</code>类中的<code>State</code>枚举类定义了线程的五种状态：</p>
+<ul>
+<li><strong>新建(NEW)</strong>：执行new指令，新创建的线程的状态</li>
+<li><strong>运行(RUNNABLE)</strong>：运行状态包括就绪(READY)和正在运行(RUNNING)两个状态。<ul>
+<li><strong>就绪(READY)</strong>：执行start方法以后进入就绪状态，已经具备了运行的条件，只有分配到CPU资源以后才进入RUNNING状态。</li>
+<li><strong>正在运行(RUNNING)</strong>：就绪的线程分配到CPU资源(时间片)时，便进入RUNNING状态，<code>run()</code>方法定义了线程的操作和功能。</li>
+</ul>
+</li>
+<li><strong>阻塞(BLOCKED)</strong>：线程进入synchronized方法/代码块中时，要判断同步锁是否被释放，等待同步锁被释放的状态就是阻塞状态。获取到同步锁以后进入就绪状态。</li>
+<li><strong>等待(WAITING)</strong>：等待状态下的线程不会被分配CPU时间片，必须被显式唤醒，即<code>notify()</code>/<code>notifyAll()</code>，否则会处于无限期等待的状态</li>
+<li><strong>超时等待(TIMED_WAITING)</strong>：超时等待状态下的线程不会被分配CPU时间片，无须被显式唤醒，在达到一定时间后会自动唤醒。</li>
+<li><strong>终止(TERMINATED)</strong>：线程的<code>run()</code>方法完成时，或者被强制终止，或出现异常导致结束，线程进入终止状态。</li>
+</ul>
+<blockquote>
+<p>1、执行<code>Object</code>中的<code>wait()</code>方法后，线程释放同步锁并进入等待状态，只有被显示唤醒，比如<code>notify()</code>/<code>notifyAll()</code>，才能进入阻塞状态，等待同步锁被释放然后进入就绪状态。</p>
+<p>2、执行<code>sleep()</code>、<code>join()</code>、IO操作以后，线程进入超时等待状态，等时间到或者操作结束，自动进入就绪状态。</p>
+</blockquote>
+<p><strong>线程的状态转换图</strong>(图中的阻塞状态包括了阻塞、等待、超时等待三个状态)：</p>
+<div align="center">
+    <img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/java-note-0801_2.png">
+</div>
+
+
+
+<h1 id="四、线程的同步"><a href="#四、线程的同步" class="headerlink" title="四、线程的同步"></a>四、线程的同步</h1><h2 id="1、介绍"><a href="#1、介绍" class="headerlink" title="1、介绍"></a>1、介绍</h2><p>多条语句在操作共享数据时，如果某个线程操作尚未完成时，其他线程参与进来，会导致共享数据出现错误，这就导致了线程安全问题。</p>
+<p>比如有三个窗口共同卖100张票，如下的代码就会有线程安全问题：</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WindowTest2</span> </span>{<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{<br>        Window2 w2 = <span class="hljs-keyword">new</span> Window2();<br>        <span class="hljs-comment">//创建三个线程，即三个窗口</span><br>        Thread t1 = <span class="hljs-keyword">new</span> Thread(w2,<span class="hljs-string">"窗口1"</span>);<br>        Thread t2 = <span class="hljs-keyword">new</span> Thread(w2,<span class="hljs-string">"窗口2"</span>);<br>        Thread t3 = <span class="hljs-keyword">new</span> Thread(w2,<span class="hljs-string">"窗口3"</span>);<br>        t1.start();<br>        t2.start();<br>        t3.start();<br>    }<br>}<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Window2</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span></span>{<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> ticket = <span class="hljs-number">100</span>;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{<br>        <span class="hljs-keyword">while</span>(<span class="hljs-keyword">true</span>){<br>            <span class="hljs-keyword">if</span>(ticket &gt; <span class="hljs-number">0</span>){<br>                System.out.println(Thread.currentThread().getName()+<span class="hljs-string">"票号为:"</span>+ticket);<br>                ticket--;<br>            }<span class="hljs-keyword">else</span> <span class="hljs-keyword">break</span>;<br>        }<br>    }<br>}<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">三个线程共享100张票，在其中一个窗口操作的同时，其他线程参与进来，导致票数出现异常</span><br><span class="hljs-comment">以下是部分执行结果：</span><br><span class="hljs-comment">窗口2票号为:23</span><br><span class="hljs-comment">窗口2票号为:7</span><br><span class="hljs-comment">窗口2票号为:6</span><br><span class="hljs-comment">窗口1票号为:8</span><br><span class="hljs-comment">窗口3票号为:19</span><br><span class="hljs-comment">窗口1票号为:4</span><br><span class="hljs-comment">窗口1票号为:2</span><br><span class="hljs-comment">窗口2票号为:5</span><br><span class="hljs-comment">窗口1票号为:1</span><br><span class="hljs-comment">窗口3票号为:3</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></tbody></table></figure>
+<p>为了解决类似于以上的线程安全问题，需要保证当前线程操作时，其他线程不能参与进来，直到当前线程操作完，其他线程才可以操作。即使当前线程出现了阻塞，也不能被改变。</p>
+<p>Java中使用<strong>同步机制</strong>解决线程安全问题，包括<strong>同步代码块</strong>、<strong>同步方法</strong>、<strong>Lock锁(JDK 5.0新增)</strong>三种方法实现同步机制。其中同步代码块和同步方法都是使用<code>synchronized</code>关键字。</p>
+<h2 id="2、方法一：同步代码块"><a href="#2、方法一：同步代码块" class="headerlink" title="2、方法一：同步代码块"></a>2、方法一：同步代码块</h2><p>格式和代码：</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//格式：</span><br><span class="hljs-keyword">synchronized</span>(同步监视器){<br>    <span class="hljs-comment">//需要被同步的代码</span><br>}<br><span class="hljs-comment">//具体使用：</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TicketSell</span> </span>{<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{<br>        Window w = <span class="hljs-keyword">new</span> Window();<br>        <span class="hljs-comment">//创建三个线程，即三个窗口</span><br>        Thread t1 = <span class="hljs-keyword">new</span> Thread(w, <span class="hljs-string">"窗口1"</span>);<br>        Thread t2 = <span class="hljs-keyword">new</span> Thread(w, <span class="hljs-string">"窗口2"</span>);<br>        Thread t3 = <span class="hljs-keyword">new</span> Thread(w, <span class="hljs-string">"窗口3"</span>);<br>        t1.start();<br>        t2.start();<br>        t3.start();<br>    }<br>}<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Window</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span> </span>{<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> ticket = <span class="hljs-number">100</span>;<br>    Object obj = <span class="hljs-keyword">new</span> Object(); <span class="hljs-comment">//同步监视器(同步锁)</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{<br>        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) {<br>            <span class="hljs-comment">//synchronized (this){ //也可以使用当前对象</span><br>            <span class="hljs-comment">//synchronized (Window.class){  //当前类也可以作为同步锁</span><br>            <span class="hljs-keyword">synchronized</span> (obj) { <span class="hljs-comment">//以下为同步代码</span><br>                <span class="hljs-keyword">if</span> (ticket &gt; <span class="hljs-number">0</span>) {<br>                    System.out.println(Thread.currentThread().getName() + <br>                                       <span class="hljs-string">"票号为:"</span> + ticket);<br>                    ticket--;<br>                } <span class="hljs-keyword">else</span> <span class="hljs-keyword">break</span>;<br>            }<br>        }<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
+<p>说明：</p>
+<ul>
+<li>操作共享数据的代码，即为需要被同步的代码，同步代码不能多也不能少，否则容易导致错误。</li>
+<li>共享数据：多个线程共同操作的数据，比如本例的ticket。</li>
+<li>同步监视器，即“同步锁”：任何一个类的对象都可以充当同步锁。同步锁被某个线程持有的时候，只有当其执行完同步代码，然后释放同步锁以后，其他线程才可以继续执行。</li>
+<li>要求多个线程必须共用同一把同步锁，即<strong>多个线程的同步锁必须是同一个对象</strong>，才能保证同步。</li>
+<li>实现<code>Runnable</code>接口创建多线程的方式中，因为只创建一个实现类对象，可以考虑使用<code>this</code>充当同步锁。而在继承<code>Thread</code>类创建多线程的方式中，要慎用<code>this</code>作为锁，根据实际情况判断<code>this</code>是不是唯一的。</li>
+<li>也可以考虑当前类作为同步锁(类也是对象，即<code>当前类.class</code>。</li>
+</ul>
+<h2 id="3、方法二：同步方法"><a href="#3、方法二：同步方法" class="headerlink" title="3、方法二：同步方法"></a>3、方法二：同步方法</h2><p>如果操作共享数据的代码完整的声明在一个方法中，可以使用<code>synchrozied</code>将此方法声明为同步的。可以将多个方法都使用<code>synchronized</code>监视起来，解决这几个方法的线程安全问题。</p>
+<p>格式和使用：</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//格式：</span><br>权限修饰符 <span class="hljs-keyword">synchronized</span> 返回值类型 方法名(参数){<br>    <span class="hljs-comment">//操作共享数据的代码</span><br>}<br><br><span class="hljs-comment">//具体使用：</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Window3</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span> </span>{<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> ticket = <span class="hljs-number">100</span>;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{<br>        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) {<br>            show();<br>        }<br>    }<br>	<span class="hljs-comment">//同步方法。非静态方法默认的同步监视器是this</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span> </span>{<br>        <span class="hljs-keyword">if</span> (ticket &gt; <span class="hljs-number">0</span>) {<br>            System.out.println(Thread.currentThread().getName() + <span class="hljs-string">"票号为:"</span> + ticket);<br>            ticket--;<br>        }<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
+<p>说明：</p>
+<ul>
+<li>同步方法仍然涉及到同步监视器，不需要显式声明。</li>
+<li>对于非静态的同步方法，同步监视器是this</li>
+<li>对于静态的同步方法，同步监视器是当前类本身(<code>类名.class</code>，类也是对象)。</li>
+</ul>
+<h2 id="4、方法三：Lock锁"><a href="#4、方法三：Lock锁" class="headerlink" title="4、方法三：Lock锁"></a>4、方法三：Lock锁</h2><p>Lock锁是JDK 5.0新增的解决线程安全问题的一种方式，通过显式定义同步锁对象来实现同步。同步锁使用Lock对象充当。</p>
+<p><code>java.util.concurrent.locks.Lock</code>接口是控制多个线程对共享资源进行访问的工具。锁提供了对共享资源的独占访问，每次只能有一个线程对Lock对象加锁，线程开始访问共享资源之前应先获得Lock对象。<br><code>ReentrantLock</code>类实现了<code>Lock</code>接口，它拥有与<code>synchronized</code>相同的并发性和内存语义，在实现线程安全的控制中，比较常用的是<code>ReentrantLock</code>，可以显式加锁、释放锁。</p>
+<p>使用方法：</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//首先需要声明ReentrantLock对象</span><br><span class="hljs-comment">//然后调用lock方法加锁</span><br><span class="hljs-comment">//最后调用unlock方法释放锁</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Window</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span> </span>{<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> ticket = <span class="hljs-number">100</span>;<br>    <span class="hljs-keyword">private</span> ReentrantLock lock = <span class="hljs-keyword">new</span> ReentrantLock(); <span class="hljs-comment">//步骤一</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{<br>        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) {<br>            lock.lock(); <span class="hljs-comment">//步骤二，加锁</span><br>            <span class="hljs-keyword">try</span> {<br>                <span class="hljs-keyword">if</span> (ticket &gt; <span class="hljs-number">0</span>) {<br>                    System.out.println(Thread.currentThread().getName() <br>                                       + <span class="hljs-string">":"</span> + ticket);<br>                    ticket--;<br>                } <span class="hljs-keyword">else</span> <span class="hljs-keyword">break</span>;<br>            } <span class="hljs-keyword">finally</span> {<br>                lock.unlock(); <span class="hljs-comment">//步骤三，解锁</span><br>            }<br>        }<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
+<p>使用Lock接口进行同步的时候，同样需要保证多个线程使用同一个ReentrantLock对象。</p>
+<p>比较<code>synchronized</code>和<code>Lock</code>的异同：</p>
+<ul>
+<li><code>synchronized</code>是隐式锁，在执行完相应的同步代码后，自动释放同步锁(同步监视器)。</li>
+<li><code>Lock</code>是显式锁，需要手动启动同步(<code>Lock()</code>),结束时也需要手动关闭(<code>unLock()</code>)</li>
+<li><code>Lock</code>只有代码块锁，<code>synchronized</code>有代码块锁和方法锁。</li>
+</ul>
+<p>三种实现同步的方式，使用的优先顺序为：Lock—&gt;同步代码块(已经进入了方法体，分配了相应资源)—&gt;同步方法</p>
+<h2 id="5、死锁"><a href="#5、死锁" class="headerlink" title="5、死锁"></a>5、死锁</h2><p>同的线程分别占用对方需要的同步资源(同步锁)不放弃，都在等待对方放弃自己需要的同步资源，就形成了线程的死锁。A线程持有锁a，等待操作b，而B线程持有锁b，等待操作a(此时a被A当作同步锁持有，没有被释放)，这就形成了死锁。</p>
+<p>举例：</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DeadLock</span> </span>{<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{<br>        StringBuffer s1 = <span class="hljs-keyword">new</span> StringBuffer();<br>        StringBuffer s2 = <span class="hljs-keyword">new</span> StringBuffer();<br>        <span class="hljs-keyword">new</span> Thread() {<span class="hljs-comment">//Thread的匿名实现类</span><br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{<br>                <span class="hljs-keyword">synchronized</span> (s1) {<br>                    s2.append(<span class="hljs-string">"a"</span>); <span class="hljs-comment">//持有同步锁 s1，等待s2被释放</span><br>                    System.out.println(getName() + <span class="hljs-string">":"</span> + s1);<br>                    System.out.println(getName() + <span class="hljs-string">":"</span> + s2);<br>                }<br>            }<br>        }.start();<br>        <span class="hljs-keyword">new</span> Thread() { <span class="hljs-comment">//Thread的匿名实现类</span><br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{<br>                <span class="hljs-keyword">synchronized</span> (s2) {<br>                    s1.append(<span class="hljs-string">"b"</span>);<span class="hljs-comment">//持有同步锁 s2，等待s1被释放，造成死锁</span><br>                    System.out.println(getName() + <span class="hljs-string">":"</span> + s1);<br>                    System.out.println(getName() + <span class="hljs-string">":"</span> + s2);<br>                }<br>            }<br>        }.start();<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
+<p>解决方法：<br>1.专门的算法、原则<br>2.尽量减少同步资源的定义<br>3.尽量避免嵌套同步</p>
+<h1 id="五、线程的通信"><a href="#五、线程的通信" class="headerlink" title="五、线程的通信"></a>五、线程的通信</h1><p>线程的通信涉及到三个方法：</p>
+<ul>
+<li><code>wait()</code>：使当前线程进入等待状态(排队等待同步资源)，并释放同步锁(同步监视器)。</li>
+<li><code>notify()</code>：唤醒排队等待同步资源的一个进程，如果有多个线程排队等待同步资源，唤醒优先级高的线程。</li>
+<li><code>notifyAll()</code>：唤醒所有排队等待同步资源的线程。</li>
+</ul>
+<blockquote>
+<p>调用以上三个方法的必要条件是当前线程具有对当前对象的监控权，即持有同步锁。这三个方法只能在同步代码块或同步方法中使用。</p>
+<p>任意对象都能作为同步锁，因此以上三个方法在Object类中声明。</p>
+</blockquote>
+<p><code>sleep()</code>和<code>wait()</code>两个方法的异同：</p>
+<ul>
+<li>都可以使当前线程进入阻塞状态，<code>sleep</code>使线程进入的是<strong>超时等待(TIMED_WAITING)</strong>状态，<code>wait</code>使线程进入<strong>等待(WAITING)</strong>状态。</li>
+<li>声明位置不同，<code>sleep</code>声明在<code>Thread</code>类中，<code>wait</code>方法声明在<code>Object</code>类中。</li>
+<li>调用的要求不同。<code>sleep</code>可以在任何需要的场景下使用。<code>wait</code>只能在同步代码块/同步方法中。</li>
+<li>是否释放同步锁：两个方法都使用在同步代码块/同步方法中时，<code>sleep</code>不会释放同步锁，<code>wait</code>会释放同步锁。</li>
+</ul>
+<p>总结：</p>
+<p>能够释放锁的操作有以下几种：</p>
+<ul>
+<li>线程的同步方法、同步代码块执行结束。</li>
+<li>执行过程中遇到<code>break</code>、<code>return</code>终止了执行操作。</li>
+<li>有未处理的<code>Error</code>和<code>Exception</code>，导致异常结束。</li>
+<li>执行线程的<code>wait()</code>方法，使线程释放锁，并进入等待状态。</li>
+</ul>
+<blockquote>
+<p><code>sleep</code>、<code>yield</code>方法以及<code>suspend</code>方法不会释放同步锁。</p>
+<p>尽量避免使用<code>suspend</code>和<code>resume</code>方法控制线程。</p>
+</blockquote>
+]]></content>
       <categories>
-        <category>博客</category>
+        <category>Java</category>
       </categories>
       <tags>
-        <tag>hexo</tag>
-        <tag>blog</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -323,12 +579,6 @@
 <p>以下是自定义类的举例：</p>
 <figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">RuntimeException</span></span>{<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = -<span class="hljs-number">1234567890L</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyException</span><span class="hljs-params">()</span></span>{}<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyException</span><span class="hljs-params">(String msg)</span></span>{<br>        <span class="hljs-keyword">super</span>(msg);<br>    }<br>}<br><br></code></pre></td></tr></tbody></table></figure>
 ]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
   </entry>
   <entry>
     <title>Java学习笔记06-面向对象编程(下)</title>
@@ -549,12 +799,6 @@
 <p>匿名内部类举例：</p>
 <figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Product</span></span>{<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getPrice</span><span class="hljs-params">()</span></span>;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span></span>;<br>}<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AnonymousTest</span></span>{<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">(Product p)</span></span>{<br>		System.out.println(<span class="hljs-string">"购买了一个"</span> + p.getName() + <span class="hljs-string">"，花掉了"</span> + p.getPrice());<br>	}<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{<br>		AnonymousTest ta = <span class="hljs-keyword">new</span> AnonymousTest();<br>		<span class="hljs-comment">//调用test方法时，需要传入一个Product参数，</span><br>		<span class="hljs-comment">//此处传入其匿名实现类的实例，匿名内部类。</span><br>		ta.test(<span class="hljs-keyword">new</span> Product(){ <br>			<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getPrice</span><span class="hljs-params">()</span></span>{<br>				<span class="hljs-keyword">return</span> <span class="hljs-number">567.8</span>;<br>			}<br>			<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span></span>{<br>				<span class="hljs-keyword">return</span> <span class="hljs-string">"AGP显卡"</span>;<br>			}<br>		});<br>	}<br>}<br></code></pre></td></tr></tbody></table></figure>
 ]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
   </entry>
   <entry>
     <title>Java学习笔记05-面向对象编程(中)</title>
@@ -791,12 +1035,6 @@
 <p>判断某个类中的<code>equals()</code>方法的功能，需要看其是否对<code>equals()</code>进行了重写，以及怎样重写的。</p>
 </blockquote>
 ]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
   </entry>
   <entry>
     <title>Java学习笔记04-面向对象编程(上)</title>
@@ -1046,12 +1284,6 @@
 </ul>
 <p>MVC模式在项目中的应用：<a href="https://github.com/kangshitao/Java_shangguigu/tree/main/Project2">客户信息管理软件</a></p>
 ]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
   </entry>
   <entry>
     <title>Java学习笔记03-数组</title>
@@ -1104,12 +1336,6 @@
 <li>空指针异常：<code>NullPointerException</code></li>
 </ul>
 ]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
   </entry>
   <entry>
     <title>Java学习笔记02-Java基本语法</title>
@@ -1232,12 +1458,6 @@
 <p><code>break</code>和<code>continue</code>用于循环体内时，都可以使用<code>label</code>指明具体要跳过的循环体是哪个。如果没有明确指明，则都默认对当前循环体起作用，<strong>就近原则</strong>。</p>
 </blockquote>
 ]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
   </entry>
   <entry>
     <title>Java学习笔记01-Java语言概述</title>
@@ -1321,6 +1541,11 @@
 <p><strong>JDK = JRE+开发工具集（例如Javac编译工具等）</strong></p>
 <p><strong>JRE = JVM+Java SE标准类库</strong></p>
 </blockquote>
+<p>Java SE 8概要图<a href="https://docs.oracle.com/javase/8/docs/">Java Platform Standard Edition 8 Documentation</a>：</p>
+<div align="center">
+    <img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/java-note-0101_1.png">
+</div>
+
 <h1 id="六、运行HelloWorld"><a href="#六、运行HelloWorld" class="headerlink" title="六、运行HelloWorld"></a>六、运行HelloWorld</h1><p>搭建好java环境后，可以在dos窗口编译运行Java程序。</p>
 <ul>
 <li>将Java代码编写到扩展名为.java的文件中。</li>
@@ -1345,12 +1570,6 @@
 <h1 id="八、Java-API文档"><a href="#八、Java-API文档" class="headerlink" title="八、Java API文档"></a>八、Java API文档</h1><p><strong>API(Application Programming Interface,应用程序编程接口)</strong>是Java提供的基本编程接口。</p>
 <p>JDK下载链接：<a href="https://www.oracle.com/java/technologies/javase-downloads.html">https://www.oracle.com/java/technologies/javase-downloads.html</a></p>
 ]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
   </entry>
   <entry>
     <title>Python爬虫-m3u8视频爬取</title>
@@ -1390,13 +1609,6 @@
 <li><a href="https://www.cnblogs.com/i-am-normal/p/11624225.html">爬取m3u8视频</a></li>
 </ol>
 ]]></content>
-      <categories>
-        <category>爬虫</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>爬虫</tag>
-      </tags>
   </entry>
   <entry>
     <title>10种常用排序算法总结</title>
@@ -2949,12 +3161,6 @@
 <li><a href="https://blog.csdn.net/FISHBALL1/article/details/52425521">排序算法的比较和选择依据</a></li>
 </ol>
 ]]></content>
-      <categories>
-        <category>算法笔记</category>
-      </categories>
-      <tags>
-        <tag>数据结构</tag>
-      </tags>
   </entry>
   <entry>
     <title>单链表反转</title>
@@ -3146,13 +3352,6 @@
 <p>这递归太难理解了 :-( ，建议看大佬题解<a href="https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/solution/dong-hua-yan-shi-duo-chong-jie-fa-206-fan-zhuan-li/">剑指offer24题解</a>或者<a href="http://c.biancheng.net/view/8105.html">单链表反转详解</a>。</p>
 </blockquote>
 ]]></content>
-      <categories>
-        <category>算法笔记</category>
-      </categories>
-      <tags>
-        <tag>链表</tag>
-        <tag>数据结构</tag>
-      </tags>
   </entry>
   <entry>
     <title>PyTorch各种维度变换函数总结</title>
@@ -3379,13 +3578,6 @@ stride[i]=stride[i+1]\times size[i+1],\forall i=0,\ldots,d-1(i\neq d-1)</script>
 <p><span id="2">2. </span><a href="https://stackoverflow.com/questions/48915810/pytorch-contiguous#">stackoverflow-pytorch-contiguous</a></p>
 <p><span id="3">3. </span><a href="https://pytorch.org/docs/master/index.html">PyTorch官方文档</a></p>
 ]]></content>
-      <categories>
-        <category>PyTorch</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>PyTorch</tag>
-      </tags>
   </entry>
   <entry>
     <title>自注意力和Transformer</title>
@@ -4751,14 +4943,6 @@ stride[i]=stride[i+1]\times size[i+1],\forall i=0,\ldots,d-1(i\neq d-1)</script>
 <li>Transformer失去的位置信息在NLP中非常重要，而论文中在特征向量中加入Position Embedding只是一个权宜之计，并没有改变Transformer结构上的固有缺陷。</li>
 </ul>
 ]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>Attention</tag>
-        <tag>深度学习</tag>
-        <tag>transformer</tag>
-      </tags>
   </entry>
   <entry>
     <title>Attention总结</title>
@@ -5481,13 +5665,6 @@ p(c_{1:M}|\boldsymbol{x}_{1:N}) = \prod^M_{m=1} p(c_m|c_{1:(m-1)},\boldsymbol{x}
 </svg>可以通过<strong>注意力分布</strong>来计算。</p>
 <p>关于指针网络的详情可以参考<a href="https://zhuanlan.zhihu.com/p/48959800">Pointer Networks简介及其应用</a>.</p>
 ]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>Attention</tag>
-        <tag>深度学习</tag>
-      </tags>
   </entry>
   <entry>
     <title>论文阅读-Star Graph Neural Networks for Session-based Recommendation</title>
@@ -6865,16 +7042,6 @@ L(\hat{\mathbf{y}})=-\sum\limits_{i=1}^{|V|} \mathbf{y}_i \log(\hat{\mathbf{y}}_
 
 <h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>本文提出了SGNN-HN模型，一方面解决了一般GNN模型不能考虑高阶信息转换的问题，另一方面解决了GNN模型容易过拟合的问题。</p>
 ]]></content>
-      <categories>
-        <category>论文笔记</category>
-      </categories>
-      <tags>
-        <tag>Attention</tag>
-        <tag>深度学习</tag>
-        <tag>SBRS</tag>
-        <tag>paper</tag>
-        <tag>GNN</tag>
-      </tags>
   </entry>
   <entry>
     <title>Python正则表达式</title>
@@ -7204,13 +7371,6 @@ L(\hat{\mathbf{y}})=-\sum\limits_{i=1}^{|V|} \mathbf{y}_i \log(\hat{\mathbf{y}}_
 </table>
 </div>
 ]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>正则表达式</tag>
-        <tag>Python</tag>
-      </tags>
   </entry>
   <entry>
     <title>Git命令</title>
@@ -7303,12 +7463,6 @@ L(\hat{\mathbf{y}})=-\sum\limits_{i=1}^{|V|} \mathbf{y}_i \log(\hat{\mathbf{y}}_
 <figure class="highlight avrasm"><table><tbody><tr><td class="code"><pre><code class="hljs avrasm">$ git <span class="hljs-keyword">push</span> origin &lt;tagname&gt;   <span class="hljs-meta"># 推送单个标签</span><br>$ git <span class="hljs-keyword">push</span> origin --tags     <span class="hljs-meta"># 推送所有标签</span><br></code></pre></td></tr></tbody></table></figure>
 <h2 id="操作标签"><a href="#操作标签" class="headerlink" title="操作标签"></a>操作标签</h2><figure class="highlight elixir"><table><tbody><tr><td class="code"><pre><code class="hljs elixir"><span class="hljs-variable">$ </span>git tag -d &lt;tag-name&gt;		<span class="hljs-comment"># 删除一个指定的本地标签</span><br><span class="hljs-variable">$ </span>git push origin <span class="hljs-symbol">:refs/tags/&lt;tag-name&gt;</span>    <span class="hljs-comment"># 删除远程仓库的指定标签</span><br></code></pre></td></tr></tbody></table></figure>
 ]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-      </tags>
   </entry>
   <entry>
     <title>Conda基础命令</title>
@@ -7337,12 +7491,6 @@ L(\hat{\mathbf{y}})=-\sum\limits_{i=1}^{|V|} \mathbf{y}_i \log(\hat{\mathbf{y}}_
 <h2 id="删除包"><a href="#删除包" class="headerlink" title="删除包"></a>删除包</h2><figure class="highlight cmake"><table><tbody><tr><td class="code"><pre><code class="hljs cmake">conda <span class="hljs-keyword">remove</span> [package_name]		<span class="hljs-comment"># 删除当前环境下的包</span><br>conda <span class="hljs-keyword">remove</span> -n [env_name] [package_name	<span class="hljs-comment"># 删除指定环境下的包</span><br></code></pre></td></tr></tbody></table></figure>
 <h2 id="查找包的信息"><a href="#查找包的信息" class="headerlink" title="查找包的信息"></a>查找包的信息</h2><figure class="highlight nginx"><table><tbody><tr><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">conda</span> search [package_name]	<span class="hljs-comment"># 查找指定包的信息</span><br></code></pre></td></tr></tbody></table></figure>
 ]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>Conda</tag>
-      </tags>
   </entry>
   <entry>
     <title>Markdown简单教程</title>
@@ -7568,11 +7716,5 @@ L(\hat{\mathbf{y}})=-\sum\limits_{i=1}^{|V|} \mathbf{y}_i \log(\hat{\mathbf{y}}_
 </ul>
 </blockquote>
 ]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>Markdown</tag>
-      </tags>
   </entry>
 </search>

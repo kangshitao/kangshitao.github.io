@@ -6,7 +6,7 @@
   <link href="http://kangshitao.github.io/atom.xml" rel="self"/>
   
   <link href="http://kangshitao.github.io/"/>
-  <updated>2021-03-27T12:59:44.092Z</updated>
+  <updated>2021-04-03T12:55:41.014Z</updated>
   <id>http://kangshitao.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java学习笔记08-多线程</title>
+    <link href="http://kangshitao.github.io/2021/04/03/java-note-0801/"/>
+    <id>http://kangshitao.github.io/2021/04/03/java-note-0801/</id>
+    <published>2021-04-03T02:07:20.000Z</published>
+    <updated>2021-04-03T12:55:41.014Z</updated>
+    
+    
+    <summary type="html">进程、线程、线程同步和通信、Thread、synchronized、wait()、notify()、notifyAll()</summary>
+    
+    
+    
+    <category term="Java" scheme="http://kangshitao.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Java学习笔记07-异常处理</title>
@@ -28,10 +47,6 @@
     
     
     
-    <category term="Java" scheme="http://kangshitao.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
     
   </entry>
   
@@ -47,10 +62,6 @@
     
     
     
-    <category term="Java" scheme="http://kangshitao.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
     
   </entry>
   
@@ -66,10 +77,6 @@
     
     
     
-    <category term="Java" scheme="http://kangshitao.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
     
   </entry>
   
@@ -85,10 +92,6 @@
     
     
     
-    <category term="Java" scheme="http://kangshitao.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
     
   </entry>
   
@@ -104,10 +107,6 @@
     
     
     
-    <category term="Java" scheme="http://kangshitao.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
     
   </entry>
   
@@ -123,10 +122,6 @@
     
     
     
-    <category term="Java" scheme="http://kangshitao.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
     
   </entry>
   
@@ -135,17 +130,13 @@
     <link href="http://kangshitao.github.io/2021/03/19/java-note-0101/"/>
     <id>http://kangshitao.github.io/2021/03/19/java-note-0101/</id>
     <published>2021-03-19T11:08:20.000Z</published>
-    <updated>2021-03-22T09:58:38.995Z</updated>
+    <updated>2021-03-31T07:58:03.527Z</updated>
     
     
     <summary type="html">Java运行过程，JDK、JRE、JVM</summary>
     
     
     
-    <category term="Java" scheme="http://kangshitao.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
     
   </entry>
   
@@ -161,12 +152,6 @@
     
     
     
-    <category term="爬虫" scheme="http://kangshitao.github.io/categories/%E7%88%AC%E8%99%AB/"/>
-    
-    
-    <category term="Python" scheme="http://kangshitao.github.io/tags/Python/"/>
-    
-    <category term="爬虫" scheme="http://kangshitao.github.io/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
@@ -182,10 +167,6 @@
     
     
     
-    <category term="算法笔记" scheme="http://kangshitao.github.io/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="数据结构" scheme="http://kangshitao.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
   </entry>
   
@@ -201,12 +182,6 @@
     
     
     
-    <category term="算法笔记" scheme="http://kangshitao.github.io/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="链表" scheme="http://kangshitao.github.io/tags/%E9%93%BE%E8%A1%A8/"/>
-    
-    <category term="数据结构" scheme="http://kangshitao.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
   </entry>
   
@@ -222,12 +197,6 @@
     
     
     
-    <category term="PyTorch" scheme="http://kangshitao.github.io/categories/PyTorch/"/>
-    
-    
-    <category term="Python" scheme="http://kangshitao.github.io/tags/Python/"/>
-    
-    <category term="PyTorch" scheme="http://kangshitao.github.io/tags/PyTorch/"/>
     
   </entry>
   
@@ -243,14 +212,6 @@
     
     
     
-    <category term="深度学习" scheme="http://kangshitao.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="Attention" scheme="http://kangshitao.github.io/tags/Attention/"/>
-    
-    <category term="深度学习" scheme="http://kangshitao.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="transformer" scheme="http://kangshitao.github.io/tags/transformer/"/>
     
   </entry>
   
@@ -266,12 +227,6 @@
     
     
     
-    <category term="深度学习" scheme="http://kangshitao.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="Attention" scheme="http://kangshitao.github.io/tags/Attention/"/>
-    
-    <category term="深度学习" scheme="http://kangshitao.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
@@ -280,25 +235,13 @@
     <link href="http://kangshitao.github.io/2020/11/05/paper-SGNN-HN/"/>
     <id>http://kangshitao.github.io/2020/11/05/paper-SGNN-HN/</id>
     <published>2020-11-05T12:19:11.000Z</published>
-    <updated>2021-03-19T14:42:54.993Z</updated>
+    <updated>2021-04-03T02:30:35.689Z</updated>
     
     
     <summary type="html">2020,CIKM,使用星型GNN的基于会话的推荐系统</summary>
     
     
     
-    <category term="论文笔记" scheme="http://kangshitao.github.io/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="Attention" scheme="http://kangshitao.github.io/tags/Attention/"/>
-    
-    <category term="深度学习" scheme="http://kangshitao.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="SBRS" scheme="http://kangshitao.github.io/tags/SBRS/"/>
-    
-    <category term="paper" scheme="http://kangshitao.github.io/tags/paper/"/>
-    
-    <category term="GNN" scheme="http://kangshitao.github.io/tags/GNN/"/>
     
   </entry>
   
@@ -314,12 +257,6 @@
     
     
     
-    <category term="教程" scheme="http://kangshitao.github.io/categories/%E6%95%99%E7%A8%8B/"/>
-    
-    
-    <category term="正则表达式" scheme="http://kangshitao.github.io/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-    
-    <category term="Python" scheme="http://kangshitao.github.io/tags/Python/"/>
     
   </entry>
   
@@ -335,10 +272,6 @@
     
     
     
-    <category term="教程" scheme="http://kangshitao.github.io/categories/%E6%95%99%E7%A8%8B/"/>
-    
-    
-    <category term="Git" scheme="http://kangshitao.github.io/tags/Git/"/>
     
   </entry>
   
@@ -354,10 +287,6 @@
     
     
     
-    <category term="教程" scheme="http://kangshitao.github.io/categories/%E6%95%99%E7%A8%8B/"/>
-    
-    
-    <category term="Conda" scheme="http://kangshitao.github.io/tags/Conda/"/>
     
   </entry>
   
@@ -373,12 +302,6 @@
     
     
     
-    <category term="博客" scheme="http://kangshitao.github.io/categories/%E5%8D%9A%E5%AE%A2/"/>
-    
-    
-    <category term="hexo" scheme="http://kangshitao.github.io/tags/hexo/"/>
-    
-    <category term="blog" scheme="http://kangshitao.github.io/tags/blog/"/>
     
   </entry>
   
@@ -394,10 +317,6 @@
     
     
     
-    <category term="教程" scheme="http://kangshitao.github.io/categories/%E6%95%99%E7%A8%8B/"/>
-    
-    
-    <category term="Markdown" scheme="http://kangshitao.github.io/tags/Markdown/"/>
     
   </entry>
   
