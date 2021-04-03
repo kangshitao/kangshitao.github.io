@@ -192,6 +192,13 @@
 <p><a href="https://blog.csdn.net/sinat_37781304/article/details/82729029">hexo史上最全搭建教程</a></p>
 </blockquote>
 ]]></content>
+      <categories>
+        <category>博客</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>blog</tag>
+      </tags>
   </entry>
   <entry>
     <title>Java学习笔记08-多线程</title>
@@ -579,6 +586,12 @@
 <p>以下是自定义类的举例：</p>
 <figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">RuntimeException</span></span>{<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = -<span class="hljs-number">1234567890L</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyException</span><span class="hljs-params">()</span></span>{}<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyException</span><span class="hljs-params">(String msg)</span></span>{<br>        <span class="hljs-keyword">super</span>(msg);<br>    }<br>}<br><br></code></pre></td></tr></tbody></table></figure>
 ]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
   </entry>
   <entry>
     <title>Java学习笔记06-面向对象编程(下)</title>
@@ -799,6 +812,12 @@
 <p>匿名内部类举例：</p>
 <figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Product</span></span>{<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getPrice</span><span class="hljs-params">()</span></span>;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span></span>;<br>}<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AnonymousTest</span></span>{<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">(Product p)</span></span>{<br>		System.out.println(<span class="hljs-string">"购买了一个"</span> + p.getName() + <span class="hljs-string">"，花掉了"</span> + p.getPrice());<br>	}<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{<br>		AnonymousTest ta = <span class="hljs-keyword">new</span> AnonymousTest();<br>		<span class="hljs-comment">//调用test方法时，需要传入一个Product参数，</span><br>		<span class="hljs-comment">//此处传入其匿名实现类的实例，匿名内部类。</span><br>		ta.test(<span class="hljs-keyword">new</span> Product(){ <br>			<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getPrice</span><span class="hljs-params">()</span></span>{<br>				<span class="hljs-keyword">return</span> <span class="hljs-number">567.8</span>;<br>			}<br>			<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span></span>{<br>				<span class="hljs-keyword">return</span> <span class="hljs-string">"AGP显卡"</span>;<br>			}<br>		});<br>	}<br>}<br></code></pre></td></tr></tbody></table></figure>
 ]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
   </entry>
   <entry>
     <title>Java学习笔记05-面向对象编程(中)</title>
@@ -1035,6 +1054,12 @@
 <p>判断某个类中的<code>equals()</code>方法的功能，需要看其是否对<code>equals()</code>进行了重写，以及怎样重写的。</p>
 </blockquote>
 ]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
   </entry>
   <entry>
     <title>Java学习笔记04-面向对象编程(上)</title>
@@ -1284,6 +1309,12 @@
 </ul>
 <p>MVC模式在项目中的应用：<a href="https://github.com/kangshitao/Java_shangguigu/tree/main/Project2">客户信息管理软件</a></p>
 ]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
   </entry>
   <entry>
     <title>Java学习笔记03-数组</title>
@@ -1336,6 +1367,12 @@
 <li>空指针异常：<code>NullPointerException</code></li>
 </ul>
 ]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
   </entry>
   <entry>
     <title>Java学习笔记02-Java基本语法</title>
@@ -1458,6 +1495,12 @@
 <p><code>break</code>和<code>continue</code>用于循环体内时，都可以使用<code>label</code>指明具体要跳过的循环体是哪个。如果没有明确指明，则都默认对当前循环体起作用，<strong>就近原则</strong>。</p>
 </blockquote>
 ]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
   </entry>
   <entry>
     <title>Java学习笔记01-Java语言概述</title>
@@ -1570,6 +1613,12 @@
 <h1 id="八、Java-API文档"><a href="#八、Java-API文档" class="headerlink" title="八、Java API文档"></a>八、Java API文档</h1><p><strong>API(Application Programming Interface,应用程序编程接口)</strong>是Java提供的基本编程接口。</p>
 <p>JDK下载链接：<a href="https://www.oracle.com/java/technologies/javase-downloads.html">https://www.oracle.com/java/technologies/javase-downloads.html</a></p>
 ]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
   </entry>
   <entry>
     <title>Python爬虫-m3u8视频爬取</title>
@@ -1609,6 +1658,13 @@
 <li><a href="https://www.cnblogs.com/i-am-normal/p/11624225.html">爬取m3u8视频</a></li>
 </ol>
 ]]></content>
+      <categories>
+        <category>爬虫</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>爬虫</tag>
+      </tags>
   </entry>
   <entry>
     <title>10种常用排序算法总结</title>
@@ -3161,6 +3217,12 @@
 <li><a href="https://blog.csdn.net/FISHBALL1/article/details/52425521">排序算法的比较和选择依据</a></li>
 </ol>
 ]]></content>
+      <categories>
+        <category>算法笔记</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
   </entry>
   <entry>
     <title>单链表反转</title>
@@ -3352,6 +3414,13 @@
 <p>这递归太难理解了 :-( ，建议看大佬题解<a href="https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/solution/dong-hua-yan-shi-duo-chong-jie-fa-206-fan-zhuan-li/">剑指offer24题解</a>或者<a href="http://c.biancheng.net/view/8105.html">单链表反转详解</a>。</p>
 </blockquote>
 ]]></content>
+      <categories>
+        <category>算法笔记</category>
+      </categories>
+      <tags>
+        <tag>链表</tag>
+        <tag>数据结构</tag>
+      </tags>
   </entry>
   <entry>
     <title>PyTorch各种维度变换函数总结</title>
@@ -3578,6 +3647,13 @@ stride[i]=stride[i+1]\times size[i+1],\forall i=0,\ldots,d-1(i\neq d-1)</script>
 <p><span id="2">2. </span><a href="https://stackoverflow.com/questions/48915810/pytorch-contiguous#">stackoverflow-pytorch-contiguous</a></p>
 <p><span id="3">3. </span><a href="https://pytorch.org/docs/master/index.html">PyTorch官方文档</a></p>
 ]]></content>
+      <categories>
+        <category>PyTorch</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>PyTorch</tag>
+      </tags>
   </entry>
   <entry>
     <title>自注意力和Transformer</title>
@@ -4943,6 +5019,14 @@ stride[i]=stride[i+1]\times size[i+1],\forall i=0,\ldots,d-1(i\neq d-1)</script>
 <li>Transformer失去的位置信息在NLP中非常重要，而论文中在特征向量中加入Position Embedding只是一个权宜之计，并没有改变Transformer结构上的固有缺陷。</li>
 </ul>
 ]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>Attention</tag>
+        <tag>深度学习</tag>
+        <tag>transformer</tag>
+      </tags>
   </entry>
   <entry>
     <title>Attention总结</title>
@@ -5665,6 +5749,13 @@ p(c_{1:M}|\boldsymbol{x}_{1:N}) = \prod^M_{m=1} p(c_m|c_{1:(m-1)},\boldsymbol{x}
 </svg>可以通过<strong>注意力分布</strong>来计算。</p>
 <p>关于指针网络的详情可以参考<a href="https://zhuanlan.zhihu.com/p/48959800">Pointer Networks简介及其应用</a>.</p>
 ]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>Attention</tag>
+        <tag>深度学习</tag>
+      </tags>
   </entry>
   <entry>
     <title>论文阅读-Star Graph Neural Networks for Session-based Recommendation</title>
@@ -7042,6 +7133,16 @@ L(\hat{\mathbf{y}})=-\sum\limits_{i=1}^{|V|} \mathbf{y}_i \log(\hat{\mathbf{y}}_
 
 <h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>本文提出了SGNN-HN模型，一方面解决了一般GNN模型不能考虑高阶信息转换的问题，另一方面解决了GNN模型容易过拟合的问题。</p>
 ]]></content>
+      <categories>
+        <category>论文笔记</category>
+      </categories>
+      <tags>
+        <tag>Attention</tag>
+        <tag>深度学习</tag>
+        <tag>SBRS</tag>
+        <tag>paper</tag>
+        <tag>GNN</tag>
+      </tags>
   </entry>
   <entry>
     <title>Python正则表达式</title>
@@ -7371,6 +7472,13 @@ L(\hat{\mathbf{y}})=-\sum\limits_{i=1}^{|V|} \mathbf{y}_i \log(\hat{\mathbf{y}}_
 </table>
 </div>
 ]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>正则表达式</tag>
+        <tag>Python</tag>
+      </tags>
   </entry>
   <entry>
     <title>Git命令</title>
@@ -7463,6 +7571,12 @@ L(\hat{\mathbf{y}})=-\sum\limits_{i=1}^{|V|} \mathbf{y}_i \log(\hat{\mathbf{y}}_
 <figure class="highlight avrasm"><table><tbody><tr><td class="code"><pre><code class="hljs avrasm">$ git <span class="hljs-keyword">push</span> origin &lt;tagname&gt;   <span class="hljs-meta"># 推送单个标签</span><br>$ git <span class="hljs-keyword">push</span> origin --tags     <span class="hljs-meta"># 推送所有标签</span><br></code></pre></td></tr></tbody></table></figure>
 <h2 id="操作标签"><a href="#操作标签" class="headerlink" title="操作标签"></a>操作标签</h2><figure class="highlight elixir"><table><tbody><tr><td class="code"><pre><code class="hljs elixir"><span class="hljs-variable">$ </span>git tag -d &lt;tag-name&gt;		<span class="hljs-comment"># 删除一个指定的本地标签</span><br><span class="hljs-variable">$ </span>git push origin <span class="hljs-symbol">:refs/tags/&lt;tag-name&gt;</span>    <span class="hljs-comment"># 删除远程仓库的指定标签</span><br></code></pre></td></tr></tbody></table></figure>
 ]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
   </entry>
   <entry>
     <title>Conda基础命令</title>
@@ -7491,6 +7605,12 @@ L(\hat{\mathbf{y}})=-\sum\limits_{i=1}^{|V|} \mathbf{y}_i \log(\hat{\mathbf{y}}_
 <h2 id="删除包"><a href="#删除包" class="headerlink" title="删除包"></a>删除包</h2><figure class="highlight cmake"><table><tbody><tr><td class="code"><pre><code class="hljs cmake">conda <span class="hljs-keyword">remove</span> [package_name]		<span class="hljs-comment"># 删除当前环境下的包</span><br>conda <span class="hljs-keyword">remove</span> -n [env_name] [package_name	<span class="hljs-comment"># 删除指定环境下的包</span><br></code></pre></td></tr></tbody></table></figure>
 <h2 id="查找包的信息"><a href="#查找包的信息" class="headerlink" title="查找包的信息"></a>查找包的信息</h2><figure class="highlight nginx"><table><tbody><tr><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">conda</span> search [package_name]	<span class="hljs-comment"># 查找指定包的信息</span><br></code></pre></td></tr></tbody></table></figure>
 ]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>Conda</tag>
+      </tags>
   </entry>
   <entry>
     <title>Markdown简单教程</title>
@@ -7716,5 +7836,11 @@ L(\hat{\mathbf{y}})=-\sum\limits_{i=1}^{|V|} \mathbf{y}_i \log(\hat{\mathbf{y}}_
 </ul>
 </blockquote>
 ]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
+      </tags>
   </entry>
 </search>
