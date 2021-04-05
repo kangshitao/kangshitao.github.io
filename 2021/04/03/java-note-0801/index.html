@@ -180,7 +180,7 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_12.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">Java学习笔记08-多线程</h1>
     <div class="head-info">
@@ -190,7 +190,7 @@
           <i class="iconfont iconeye"></i><span id="/2021/04/03/java-note-0801/" class="leancloud" data-flag-title="Java学习笔记08-多线程"></span>
         </span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>13679</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>13731</span>
     </div>
   </div>
 </section>
@@ -411,7 +411,7 @@
 <p>比较<code>synchronized</code>和<code>Lock</code>的异同：</p>
 <ul>
 <li><code>synchronized</code>是隐式锁，在执行完相应的同步代码后，自动释放同步锁(同步监视器)。</li>
-<li><code>Lock</code>是显式锁，需要手动启动同步(<code>Lock()</code>),结束时也需要手动关闭(<code>unLock()</code>)</li>
+<li><code>Lock</code>是显式锁，需要手动启动同步（执行<code>Lock()</code>），结束时也需要手动关闭（执行<code>unLock()</code>），<code>try-catch</code>结构中，解锁代码需要写在<code>finally</code>中，保证<code>unlock()</code>一定会被执行。</li>
 <li><code>Lock</code>只有代码块锁，<code>synchronized</code>有代码块锁和方法锁。</li>
 </ul>
 <p>三种实现同步的方式，使用的优先顺序为：Lock—&gt;同步代码块(已经进入了方法体，分配了相应资源)—&gt;同步方法</p>
@@ -476,7 +476,7 @@
 
         
   <nav class="nav">
-    <a></a>
+    <a href="/2021/04/03/java-note-0901/"><i class="iconfont iconleft"></i>Java学习笔记09(1)-常用类之String</a>
     <a href="/2021/03/26/java-note-0701/">Java学习笔记07-异常处理<i class="iconfont iconright"></i></a>
   </nav>
 
