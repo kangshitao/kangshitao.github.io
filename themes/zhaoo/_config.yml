@@ -111,7 +111,7 @@ post_image:
 
 # Page Size
 post_page_size:
-  width: 1000px
+  width: 800px
 
 # Caption
 caption:
@@ -231,7 +231,7 @@ pjax: false
 highlight:
   enable: true
   style: # https://highlightjs.org/static/demo/
-    light: Monokai Sublime  #Atelier Heath Light  # 浅色模式的代码风格
+    light: Github Gist  #Atelier Heath Light  # 浅色模式的代码风格
     dark: Dracula # 深色模式下的代码风格
 
 # SEO

@@ -65,13 +65,13 @@ $S=\{v_1,v_2,\dots,v_t,\dots,v_n\}$ 是给定的当前session，包含n个item�
 
 ${\Large\varepsilon}_s$是图中的边集合，包括**satellite连接**(图2中实线)和**star连接**(图2中虚线)两种有向边：
 
-- **Satellite connections**：satellite连接用来传递session中的相邻item间的信息。论文中使用GGNN为例，实现相邻节点之间的信息传播，并且按照satellite边构建输入和输出矩阵，例如对于session $S=\{x_2,x_3,x_5,x_4,x_5,x_7\}$，构建的输入输出矩阵如图3：
+* **Satellite connections**：satellite连接用来传递session中的相邻item间的信息。论文中使用GGNN为例，实现相邻节点之间的信息传播，并且按照satellite边构建输入和输出矩阵，例如对于session $S=\{x_2,x_3,x_5,x_4,x_5,x_7\}$，构建的输入输出矩阵如图3：
 
-  <div align='center'>
-      <img src='https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_2.png' style='width:50%; height:50%'/>
-  </div>
+<div align='center'>
+    <img src='https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_2.png' style='width:50%; height:50%'/>
+</div>
 
-  
+
 - **Star connections**：受[Star-Transformer](https://arxiv.org/abs/1902.09113)模型启发，在图中添加Star节点，构建星型图。star节点和satellite节点之间的边就是Star连接，如图2，Star连接是双向边，分别代表两种信息传递方向，更新两种节点。一方面，以star节点作为中间节点，非相邻的item之间能够以two-hop的方式进行信息传播，来更新satellite节点。另一方面，另一个方向的边能够用来考虑所有satellite节点的信息，生成准确的star节点表示。
 
 本文模型使用门控网络控制分别从邻居节点和star节点获取信息量的多少。

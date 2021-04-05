@@ -103,7 +103,11 @@ keywords: 'Java'
 >
 > **JRE = JVM+Java SE标准类库**
 
+Java SE 8概要图[Java Platform Standard Edition 8 Documentation](https://docs.oracle.com/javase/8/docs/)：
 
+<div align='center'>
+    <img src="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/java-note-0101_1.png"/>
+</div>
 
 # 六、运行HelloWorld
 
