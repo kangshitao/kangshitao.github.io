@@ -92,7 +92,7 @@
         motto: {
           default: '心之所向，素履以往',
 		  typing: true,
-          api: 'https://v1.hitokoto.cn/?encode=text&c=d',
+          api: 'https://v1.hitokoto.cn/?encode=text&c=i',
           data_contents: ''
         },
       },
@@ -179,7 +179,7 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_2.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_7.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">Java学习笔记05-面向对象编程(中)</h1>
     <div class="head-info">
@@ -189,7 +189,7 @@
           <i class="iconfont iconeye"></i><span id="/2021/03/21/java-note-0501/" class="leancloud" data-flag-title="Java学习笔记05-面向对象编程(中)"></span>
         </span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>7750</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>7795</span>
     </div>
   </div>
 </section>
@@ -377,9 +377,10 @@
 <ul>
 <li><p>基本数据类型和包装类之间的相互转换</p>
 <ul>
-<li><p>基本数据类型→包装类，调用包装类的构造器：</p>
+<li><p>基本数据类型→包装类，调用包装类的构造器或<code>valueOf()</code>方法：</p>
 <ul>
 <li><code>Integer i = new Integer(12);</code></li>
+<li><code>Integer i = Integer.valueOf(12);</code></li>
 </ul>
 </li>
 <li><p>包装类→基本数据类型，调用包装类的<code>xxxValue()</code>方法：</p>
@@ -407,7 +408,7 @@
 </ul>
 </li>
 </ul>
-<p>特殊说明，<code>Integer</code>内部定义了<code>IntegerCache</code>结构，<code>IntegerCache</code>定义了<code>Integer[]</code>，保存了<code>-128~127</code>范围的整数，使用自动装箱的时候可以直接使用数组的元素，如果不再此范围内，则会<code>new</code>一个对象。比如下面的例子：</p>
+<p>特殊说明，<code>Integer</code>内部定义了<code>IntegerCache</code>结构，<code>IntegerCache</code>定义了<code>Integer[]</code>，保存了<code>-128~127</code>范围的整数，使用自动装箱的时候可以直接使用数组的元素，如果不在此范围内，则会<code>new</code>一个对象。比如下面的例子：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">Integer m = <span class="hljs-number">1</span>;<br>Integer n = <span class="hljs-number">1</span>;<br>System.out.println(m == n); <span class="hljs-comment">//true</span><br>Integer x = <span class="hljs-number">128</span>;<br>Integer y = <span class="hljs-number">128</span>;<br><span class="hljs-comment">//数字128超出了IntegerCache数组的范围，此时x和y是两个不同的对象</span><br>System.out.println(x == y); <span class="hljs-comment">//false</span><br></code></pre></td></tr></table></figure>
 <h1 id="八、-和equals-的区别"><a href="#八、-和equals-的区别" class="headerlink" title="八、== 和equals()的区别"></a>八、== 和equals()的区别</h1><ul>
 <li><code>==</code>是运算符，可以使用在基本数据类型和引用数据类型中：<ul>

@@ -92,7 +92,7 @@
         motto: {
           default: '心之所向，素履以往',
 		  typing: true,
-          api: 'https://v1.hitokoto.cn/?encode=text&c=d',
+          api: 'https://v1.hitokoto.cn/?encode=text&c=i',
           data_contents: ''
         },
       },
@@ -179,7 +179,7 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_6.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_1.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">Java学习笔记09(1)-常用类之String</h1>
     <div class="head-info">
@@ -189,7 +189,7 @@
           <i class="iconfont iconeye"></i><span id="/2021/04/03/java-note-0901/" class="leancloud" data-flag-title="Java学习笔记09(1)-常用类之String"></span>
         </span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>7605</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>7606</span>
     </div>
   </div>
 </section>
@@ -293,7 +293,7 @@
 <ul>
 <li><code>StringBuffer()</code>：初始容量为16的字符串缓冲区。</li>
 <li><code>StringBuffer(intsize)</code>：构造指定容量的字符串缓冲区。</li>
-<li><code>StringBuffer(Stringstr)</code>：将内容初始化为指定字符串内容。</li>
+<li><code>StringBuffer(String str)</code>：将内容初始化为指定字符串内容。</li>
 </ul>
 <p>举例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> class <span class="hljs-title">test</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span></span>&#123;<br>        StringBuffer sb1 = <span class="hljs-keyword">new</span> StringBuffer(<span class="hljs-string">&quot;abc&quot;</span>);  <span class="hljs-comment">//abc</span><br>        sb1.setCharAt(<span class="hljs-number">0</span>,<span class="hljs-string">&#x27;m&#x27;</span>); <span class="hljs-comment">//直接修改sb1，不会创建新的对象</span><br>        System.out.println(sb1);  <span class="hljs-comment">//mbc  </span><br><br>        StringBuffer sb2 = <span class="hljs-keyword">new</span> StringBuffer();<br>        System.out.println(sb2.length());  <span class="hljs-comment">//0</span><br>        StringBuffer sb3 = <span class="hljs-keyword">new</span> StringBuffer();<br>        String s = <span class="hljs-keyword">null</span>;<br>        sb3.append(s); <span class="hljs-comment">//append方法可以将null当作字符串添加进去</span><br>        System.out.println(sb3);  <span class="hljs-comment">//此时的sb3为字符串&quot;null&quot;</span><br>        System.out.println(sb3.length()); <span class="hljs-comment">// 4</span><br>        <span class="hljs-comment">//StringBuffer sb4 = new StringBuffer(null); //构造的时候不行</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
