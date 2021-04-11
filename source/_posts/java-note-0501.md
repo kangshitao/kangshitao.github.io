@@ -284,9 +284,10 @@ pm instanceof Woman;  //false
 
 * 基本数据类型和包装类之间的相互转换
 
-  * 基本数据类型→包装类，调用包装类的构造器：
+  * 基本数据类型→包装类，调用包装类的构造器或`valueOf()`方法：
 
     * `Integer i = new Integer(12);`
+    * `Integer i = Integer.valueOf(12);`
 
   * 包装类→基本数据类型，调用包装类的`xxxValue()`方法：
 
@@ -303,7 +304,7 @@ pm instanceof Woman;  //false
     * 例1：`int i = new Integer("12");`
     * 例2：`int i = Integer.parseInt("12");`
 
-特殊说明，`Integer`内部定义了`IntegerCache`结构，`IntegerCache`定义了`Integer[]`，保存了`-128~127`范围的整数，使用自动装箱的时候可以直接使用数组的元素，如果不再此范围内，则会`new`一个对象。比如下面的例子：
+特殊说明，`Integer`内部定义了`IntegerCache`结构，`IntegerCache`定义了`Integer[]`，保存了`-128~127`范围的整数，使用自动装箱的时候可以直接使用数组的元素，如果不在此范围内，则会`new`一个对象。比如下面的例子：
 
 ```java
 Integer m = 1;

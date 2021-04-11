@@ -252,7 +252,7 @@ JDK 5.0 提供了线程池相关的API：`ExecutorService`接口和`Executors`�
 * `ThreadPoolExecutor`是`ExecutorService`的常见实现类，其中的常用方法：
   * `corePoolSize`：核心池大小
   * `maximumPoolSize`：最大线程数
-  * keepAliveTim`e：线程没有任务时，最多保持多长时间后会终止
+  * `keepAliveTime`：线程没有任务时，最多保持多长时间后会终止
 
 * `ExecutorService`：真正的线程池接口，常见的实现类为`ThreadPoolExecutor`
   * `void execute(Runnable command)`:执行任务/命令，一般用来执行`Runnable`

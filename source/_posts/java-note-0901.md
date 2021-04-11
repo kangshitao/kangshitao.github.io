@@ -170,7 +170,7 @@ String类的常用方法：
 
 * `StringBuffer()`：初始容量为16的字符串缓冲区。
 * `StringBuffer(intsize)`：构造指定容量的字符串缓冲区。
-* `StringBuffer(Stringstr)`：将内容初始化为指定字符串内容。
+* `StringBuffer(String str)`：将内容初始化为指定字符串内容。
 
 举例：
 

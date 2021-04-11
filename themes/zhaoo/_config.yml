@@ -61,7 +61,7 @@ preview:
     default: 心之所向，素履以往
     color: '#ffffff'
     typing: true
-    api: https://v1.hitokoto.cn/?encode=text&c=d
+    api: https://v1.hitokoto.cn/?encode=text&c=i
     data_contents: 
     # ex.one  =>  apl: https://v1.hitokoto.cn/?encode=text&c=i  data_contents:
     # ex.two  =>  api: https://v2.jinrishici.com/one.json  data_contents: ['data', 'content']
