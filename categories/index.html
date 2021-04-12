@@ -29,7 +29,7 @@
 
   
     
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_s6x2xcokxrl.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
 
   
 
@@ -86,14 +86,14 @@
       },
       preview: {
         background: {
-          default: '[object Object]',
+          default: '',
           api: ''
         },
         motto: {
           default: '心之所向，素履以往',
 		  typing: true,
-          api: 'https://v1.hitokoto.cn/?encode=text&c=i',
-          data_contents: ''
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
         },
       },
       qrcode: {
@@ -113,6 +113,10 @@
         list: '',
         page_white_list: '',
         page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
       }
     }
   </script>
@@ -129,15 +133,22 @@
 <body class="lock-screen">
   <div class="loading"></div>
   
+    
 
 
-  <nav class="navbar" style="">
+  <nav class="navbar">
     <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
       
         <i class="iconfont iconqrcode j-navbar-qrcode"></i>
       
       
         <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
       
     </div>
     <div class="center">categories</div>
@@ -150,9 +161,10 @@
   </nav>
 
   
+  
 
 <nav class="menu">
-  <div class="menu-wrap">
+  <div class="menu-container">
     <div class="menu-close">
       <i class="iconfont iconbaseline-close-px"></i>
     </div>
@@ -178,7 +190,7 @@
   <h1 class="header-title">分类</h1>
   <p class="header-subtitle">共: 8 个</p>
 </header>
-    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%99%E7%A8%8B/">教程</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">算法笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8D%9A%E5%AE%A2/">博客</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">论文笔记</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PyTorch/">PyTorch</a><span class="category-list-count">1</span></li></ul>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%99%E7%A8%8B/">教程</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">算法笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8D%9A%E5%AE%A2/">博客</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PyTorch/">PyTorch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">论文笔记</a><span class="category-list-count">1</span></li></ul>
   </section>
 </main>
   
@@ -236,6 +248,21 @@
     
 <script src="/js/color-mode.js"></script>
 
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
   
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
