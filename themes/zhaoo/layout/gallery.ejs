@@ -7,6 +7,7 @@ var pageTitle = page.title;
 var currentGallery = getCurrentGallery(galleries, pageTitle);
 var photos = currentGallery.photos;
 var images = initWrap(photos);
+
 function initWrap(photoList) {
   var images = ''
   for(var i = 0; i < photoList.length; i++) {
@@ -15,6 +16,7 @@ function initWrap(photoList) {
   }
   return images
 }
+
 function getCurrentGallery(galleries, pageTitle) {
   for (let i = 0; i < galleries.length; i++) {
     if (galleries[i]['name'] == pageTitle) {
@@ -38,14 +40,17 @@ function getCurrentGallery(galleries, pageTitle) {
   var gap = 10;
   var items = document.getElementsByClassName('item');
   var wrap = document.getElementById("wrap");
+
   window.onload = function () {
     waterFall();
   }
+
   window.onresize = function () {
     setTimeout(() => {
       waterFall();
     }, 1000)
   }
+
   function waterFall() {
     if (!(wrap.getAttribute('default-type') === 'waterfall')) return;
     var wrapWidth = getClientWidth();
@@ -59,6 +64,7 @@ function getCurrentGallery(galleries, pageTitle) {
     }
     rerenderImage(columns, wrapWidth);
   }
+
   function rerenderImage(col, pageWidth) {
     var arr = [];
     var maxHeight = 0;
@@ -91,6 +97,7 @@ function getCurrentGallery(galleries, pageTitle) {
     }
     wrap.style.height = maxHeight + 'px';
   }
+
   function getClientWidth() {
     return wrap.getBoundingClientRect().width;
   }

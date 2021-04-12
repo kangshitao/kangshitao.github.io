@@ -1,7 +1,9 @@
 <%- partial('_partial/head') %>
 <body class="lock-screen">
   <%- partial('_partial/components/loading') %>
-  <%- partial('_partial/components/navbar') %>
+  <% if (theme.navbar.enable) { %>
+    <%- partial('_partial/components/navbar') %>
+  <% } %>
   <%- partial('_partial/components/menu') %>
   <%- body %>
   <%- partial('_partial/components/footer') %>
@@ -14,6 +16,12 @@
   <% if (theme.color_mode.enable) { %>
     <%- js('js/color-mode') %>
   <% } %>
+  <% if (theme.search.enable) { %>
+    <%- partial('_partial/components/search') %>
+  <% } %>
+  
+  <%- js('js/clicklove') %><!-- 页面点击小红心 -->
+  
 </body>
 <%- partial('_partial/script') %>
 </html>

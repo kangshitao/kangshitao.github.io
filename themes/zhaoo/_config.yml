@@ -49,11 +49,13 @@ loading: /images/theme/loading.gif
 # Preview
 preview:
   enable: true
-  type: wave  # wave cloud
+  type: wave  # wave | cloud
   background:
-    default:
+    type: image # image video
+    default_image:
       light: https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/welcome-image2.jpg
       dark: https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/welcome-image1.jpg
+    video:
     api: # https://source.unsplash.com/random/1920x1080
     size: cover # css: background-size
     position: center # css: background-position
@@ -61,11 +63,16 @@ preview:
     default: 心之所向，素履以往
     color: '#ffffff'
     typing: true
-    api: https://v1.hitokoto.cn/?encode=text&c=i
-    data_contents: 
+    api: https://v2.jinrishici.com/one.json  #https://v1.hitokoto.cn/?encode=text&c=i
+    data_contents: ['data', 'content']
     # ex.one  =>  apl: https://v1.hitokoto.cn/?encode=text&c=i  data_contents:
     # ex.two  =>  api: https://v2.jinrishici.com/one.json  data_contents: ['data', 'content']
 
+# Navbar
+navbar:
+  enable: true
+  back_home: true
+  
 # Copyright
 copyright: <p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p>
 
@@ -79,17 +86,21 @@ social:
 
 # Override Scrollbar
 scrollbar:
-  type: default # default simple normal none
+  type: default # default | simple | normal | none
 
 # Fab (Float Action Button)
 fab:
   enable: true
   always_show: false
 
+# Search
+search:
+  enable: true
+
 # QR Code
 qrcode:
   enable: true
-  type: url # url image
+  type: url # url | image
   image: #https://pic.izhaoo.com/weapp-code.jpg
 
 # Color Mode
@@ -142,7 +153,7 @@ post_copyright:
 # Carrier（copy article with one click）
 carrier:
   enable: true
-  type: html # html markdown text
+  type: html # html | markdown | text
 
 # --------------------------------------------------
 # Page Settings
@@ -153,8 +164,9 @@ galleries:
   enable: true
   title: 摄影
   subtitle: Photography
-  type: 'waterfall' # waterfall | grid
+  type: waterfall # waterfall | grid
   columns: 3
+
 
 # --------------------------------------------------
 # Comment Settings
@@ -259,7 +271,7 @@ vendors:
   daovoice_js: https://widget.daovoice.io/widget/0f81ff2f.js
   fancybox_css: https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css
   highlight_css: https://cdn.bootcss.com/highlight.js/9.18.1/styles/
-  iconfont_css: //at.alicdn.com/t/font_1445822_s6x2xcokxrl.css
+  iconfont_css: //at.alicdn.com/t/font_1445822_r673sha78lq.css
 
 # Custom
 custom:

@@ -130,7 +130,7 @@ feed:
 
 # 搜索插件
 search:
-  path: search.xml
+  path: /search.xml
   field: post
   content: true
   format: html
