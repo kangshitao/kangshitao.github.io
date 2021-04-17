@@ -11,7 +11,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
-  <meta name="keywords" content="hexo-blog,live and learn,kangshitao, Java">
+  <meta name="keywords" content="hexo-blog,live and learn,kangshitao, Java,Java多线程,synchronized">
   <meta name="description" content="一、程序、进程、线程
 程序(program)：是为完成...">
   <meta name="author" content="Kangshitao">
@@ -45,7 +45,7 @@
       
         
         
-<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/github-gist.min.css" name="highlight-style" mode="light">
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/atelier-heath-light.min.css" name="highlight-style" mode="light">
 
       
         
@@ -192,7 +192,7 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_11.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">Java学习笔记08-多线程</h1>
     <div class="head-info">
@@ -202,7 +202,7 @@
           <i class="iconfont iconeye"></i><span id="/2021/04/03/java-note-0801/" class="leancloud" data-flag-title="Java学习笔记08-多线程"></span>
         </span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>13730</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>14754</span>
     </div>
   </div>
 </section>
@@ -460,6 +460,8 @@
 <p><code>sleep</code>、<code>yield</code>方法以及<code>suspend</code>方法不会释放同步锁。</p>
 <p>尽量避免使用<code>suspend</code>和<code>resume</code>方法控制线程。</p>
 </blockquote>
+<p>线程通信举例：创建两个线程，交替输出从1-100的数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CommunicationTest</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        CommunicationThread ct = <span class="hljs-keyword">new</span> CommunicationThread();<br>        Thread t1 = <span class="hljs-keyword">new</span> Thread(ct, <span class="hljs-string">&quot;Thread-1&quot;</span>);<br>        Thread t2 = <span class="hljs-keyword">new</span> Thread(ct, <span class="hljs-string">&quot;Thread-2&quot;</span>);<br>        t1.start();<br>        t2.start();<br>    &#125;<br>&#125;<br><span class="hljs-comment">//这里使用实现Runnable接口的方式</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CommunicationThread</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> number = <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) &#123;<br>            <span class="hljs-keyword">synchronized</span> (<span class="hljs-keyword">this</span>) &#123;<br>                notify(); <span class="hljs-comment">//唤醒另一个线程，只有两个线程，也可以使用notifyAll</span><br>                <span class="hljs-keyword">if</span> (number &lt; <span class="hljs-number">100</span>) &#123;<br>                    number++;<br>                    System.out.println(Thread.currentThread().getName() <br>                                       + <span class="hljs-string">&quot;:&quot;</span> + number);<br>                    <span class="hljs-keyword">try</span> &#123;<br>                        wait(); <span class="hljs-comment">//当前线程进入阻塞状态</span><br>                    &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                        e.printStackTrace();<br>                    &#125;<br>                &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">break</span>;<br><br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
       </section>
       <section class="extra">

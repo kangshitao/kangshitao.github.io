@@ -11,7 +11,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
-  <meta name="keywords" content="hexo-blog,live and learn,kangshitao, Java">
+  <meta name="keywords" content="hexo-blog,live and learn,kangshitao, Java,static,final,单例模式,抽象类,接口,内部类,面向对象编程">
   <meta name="description" content="一、关键字：static1、介绍static：静态的，...">
   <meta name="author" content="Kangshitao">
   <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
@@ -44,7 +44,7 @@
       
         
         
-<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/github-gist.min.css" name="highlight-style" mode="light">
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/atelier-heath-light.min.css" name="highlight-style" mode="light">
 
       
         
@@ -191,7 +191,7 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_6.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_10.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">Java学习笔记06-面向对象编程(下)</h1>
     <div class="head-info">
@@ -201,7 +201,7 @@
           <i class="iconfont iconeye"></i><span id="/2021/03/26/java-note-0601/" class="leancloud" data-flag-title="Java学习笔记06-面向对象编程(下)"></span>
         </span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>7801</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>7803</span>
     </div>
   </div>
 </section>
@@ -338,7 +338,7 @@
 </blockquote>
 <h2 id="3、匿名子类"><a href="#3、匿名子类" class="headerlink" title="3、匿名子类"></a>3、匿名子类</h2><p>定义抽象类<code>Person</code>的匿名子类：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java">Person p = <span class="hljs-keyword">new</span> Person()&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">eat</span><span class="hljs-params">()</span></span>&#123; <br>        System.out.println(<span class="hljs-string">&quot;eat&quot;</span>);<br>    &#125;<br>&#125;; <span class="hljs-comment">//匿名子类需要重写父类的抽象方法</span><br><br><span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">eat</span><span class="hljs-params">()</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h1 id="六、接口-interface"><a href="#六、接口-interface" class="headerlink" title="六、接口(interface)"></a>六、接口(interface)</h1><p><code>interface</code>：接口。接口定义的是一组规则，是和类并列的结构。继承是一种”是不是“的关系，而接口是”能不能“的关系。定义接口：<code>interface Flyable&#123;&#125;</code></p>
+<h1 id="六、接口-interface"><a href="#六、接口-interface" class="headerlink" title="六、接口(interface)"></a>六、接口(interface)</h1><p><code>interface</code>：接口。接口定义的是一组规则，是和类并列的结构。继承是一种“是不是”的关系，而接口是“能不能“的关系。定义接口：<code>interface Flyable&#123;&#125;</code></p>
 <ul>
 <li><code>JDK 7</code>及以前，接口中只能定义全局常量和抽象方法。<ul>
 <li>全局常量：默认权限是<code>public static final</code>，关键字可以省略不写。全局常量可以通过<code>接口.常量</code>调用。</li>
@@ -349,7 +349,7 @@
 <ul>
 <li>接口中定义的静态方法，只能使用接口调用，即<code>接口.静态方法</code>。</li>
 <li>实现类如果调用接口的默认方法，使用<code>接口.super.默认方法</code>的方式调用。</li>
-<li>通过实现类的对象，可以调用接口的默认方法。默认方法可以被重写，但不是必须的，但是接口中的抽象方法必须被重写。</li>
+<li>通过实现类的对象，可以调用接口的默认方法。<strong>默认方法可以被重写，但不是必须的，不强制，接口中的抽象方法必须被重写</strong>。</li>
 <li>如果子类继承的父类和实现的接口中声明了同名同参的方法，如果子类没有重写，默认调用的是父类中的方法。(类优先原则)</li>
 <li>如果实现类同时实现了多个接口，这多个接口中定义了同名同参的默认方法，实现类必须重写此方法，否则报错。(接口冲突)</li>
 </ul>
