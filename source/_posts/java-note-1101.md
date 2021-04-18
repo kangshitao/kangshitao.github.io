@@ -5,7 +5,7 @@ mathjax: true
 date: 2021-04-09 22:11:30
 tags: Java
 categories: Java
-keywords: Java
+keywords: Java,Java集合,HashMap,Collection,List,Set,Map
 ---
 
 # 一、Java集合框架概述

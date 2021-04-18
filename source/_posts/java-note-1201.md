@@ -5,7 +5,7 @@ mathjax: true
 date: 2021-04-11 12:30:29
 tags: Java
 categories: Java
-keywords: Java
+keywords: Java,泛型
 ---
 
 # 一、泛型的引入

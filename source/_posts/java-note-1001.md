@@ -5,7 +5,7 @@ mathjax: true
 date: 2021-04-05 16:50:08
 tags: Java
 categories: Java
-keywords: Java
+keywords: Java,Java枚举类,注解
 ---
 
 # 一、枚举类

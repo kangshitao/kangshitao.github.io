@@ -5,7 +5,7 @@ mathjax: true
 date: 2021-03-21 17:00:21
 tags: Java
 categories: Java
-keywords: Java
+keywords: Java,继承,多态,Object类,包装类,面向对象编程
 ---
 
 # 一、面向对象特征之二：继承性

@@ -5,7 +5,7 @@ mathjax: true
 date: 2021-04-03 10:07:20
 tags: Java
 categories: Java
-keywords: Java
+keywords: Java,Java多线程,synchronized
 ---
 
 # 一、程序、进程、线程
@@ -586,3 +586,42 @@ public class DeadLock {
 >`sleep`、`yield`方法以及`suspend`方法不会释放同步锁。
 >
 >尽量避免使用`suspend`和`resume`方法控制线程。
+
+
+
+线程通信举例：创建两个线程，交替输出从1-100的数据
+
+```java
+public class CommunicationTest {
+    public static void main(String[] args) {
+        CommunicationThread ct = new CommunicationThread();
+        Thread t1 = new Thread(ct, "Thread-1");
+        Thread t2 = new Thread(ct, "Thread-2");
+        t1.start();
+        t2.start();
+    }
+}
+//这里使用实现Runnable接口的方式
+class CommunicationThread implements Runnable {
+    private int number = 0;
+    public void run() {
+        while (true) {
+            synchronized (this) {
+                notify(); //唤醒另一个线程，只有两个线程，也可以使用notifyAll
+                if (number < 100) {
+                    number++;
+                    System.out.println(Thread.currentThread().getName() 
+                                       + ":" + number);
+                    try {
+                        wait(); //当前线程进入阻塞状态
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                } else break;
+
+            }
+        }
+    }
+}
+```
+

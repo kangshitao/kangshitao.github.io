@@ -5,13 +5,13 @@ date: 2020-10-25 19:15:21
 mathjax: true
 tags: ['hexo','blog']
 categories: 博客
-keywords: hexo-blog,个人博客搭建，zhaoo
+keywords: hexo-blog,个人博客搭建,zhaoo
 top: 10
 ---
 
 > 使用hexo和github.pages搭建博客，主题为[zhaoo](https://github.com/izhaoo/hexo-theme-zhaoo)
 >
-> 文章部分功能是主题没更新之前写的，主题一直在更新，功能越来越完善，设置也更方便。作为记录，已有的内容不再修改，具体配置情况请根据主题而定。更多内容可以参考zhaoo主题作者博客主页：[zhaoo](https://www.izhaoo.com/)
+> 文章部分功能是主题没更新之前写的，作为记录，已有的内容不再修改，具体配置情况根据主题而定。更多内容可以参考zhaoo主题作者博客主页：[zhaoo](https://www.izhaoo.com/)
 
 # 准备工作
 

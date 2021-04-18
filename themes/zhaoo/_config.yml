@@ -243,7 +243,7 @@ pjax: false
 highlight:
   enable: true
   style: # https://highlightjs.org/static/demo/
-    light: Github Gist  #Atelier Heath Light  # 浅色模式的代码风格
+    light: Atelier Heath Light #Atelier Heath Light  # 浅色模式的代码风格
     dark: Dracula # 深色模式下的代码风格
 
 # SEO

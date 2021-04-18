@@ -5,7 +5,7 @@ mathjax: true
 date: 2021-04-05 15:05:13
 tags: Java
 categories: Java
-keywords: Java
+keywords: Java,Java比较器,Comparable接口,Comparator接口
 ---
 
 # 一、Java比较器
