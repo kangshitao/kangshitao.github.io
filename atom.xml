@@ -6,7 +6,7 @@
   <link href="http://kangshitao.github.io/atom.xml" rel="self"/>
   
   <link href="http://kangshitao.github.io/"/>
-  <updated>2021-04-17T14:56:45.150Z</updated>
+  <updated>2021-04-18T10:18:55.010Z</updated>
   <id>http://kangshitao.github.io/</id>
   
   <author>
@@ -17,14 +17,33 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Java学习笔记14-网络编程</title>
+    <link href="http://kangshitao.github.io/2021/04/17/java-note-1401/"/>
+    <id>http://kangshitao.github.io/2021/04/17/java-note-1401/</id>
+    <published>2021-04-17T15:00:21.000Z</published>
+    <updated>2021-04-18T10:18:55.010Z</updated>
+    
+    
+    <summary type="html">网络编程概述，IP和端口号，网络协议，TCP/UDP网络编程，URL编程</summary>
+    
+    
+    
+    <category term="Java" scheme="http://kangshitao.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Java学习笔记13-IO流</title>
     <link href="http://kangshitao.github.io/2021/04/16/java-note-1301/"/>
     <id>http://kangshitao.github.io/2021/04/16/java-note-1301/</id>
     <published>2021-04-16T12:51:33.000Z</published>
-    <updated>2021-04-17T14:56:45.150Z</updated>
+    <updated>2021-04-17T15:04:43.635Z</updated>
     
     
-    <summary type="html">java-note-1301</summary>
+    <summary type="html">IO流,节点流,缓冲流,转换流,字符集,字符编码,打印流,数据流,序列化,反序列化</summary>
     
     
     
@@ -135,7 +154,7 @@
     <link href="http://kangshitao.github.io/2021/04/03/java-note-0901/"/>
     <id>http://kangshitao.github.io/2021/04/03/java-note-0901/</id>
     <published>2021-04-03T13:08:54.000Z</published>
-    <updated>2021-04-16T15:00:39.811Z</updated>
+    <updated>2021-04-18T03:12:12.331Z</updated>
     
     
     <summary type="html">String类，StringBuffer，StringBuilder</summary>
@@ -380,29 +399,6 @@
     <category term="Python" scheme="http://kangshitao.github.io/tags/Python/"/>
     
     <category term="PyTorch" scheme="http://kangshitao.github.io/tags/PyTorch/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>自注意力和Transformer</title>
-    <link href="http://kangshitao.github.io/2020/11/15/transformer/"/>
-    <id>http://kangshitao.github.io/2020/11/15/transformer/</id>
-    <published>2020-11-15T03:31:47.000Z</published>
-    <updated>2021-03-19T11:18:15.007Z</updated>
-    
-    
-    <summary type="html">自注意力机制和Transformer详解</summary>
-    
-    
-    
-    <category term="深度学习" scheme="http://kangshitao.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="Attention" scheme="http://kangshitao.github.io/tags/Attention/"/>
-    
-    <category term="深度学习" scheme="http://kangshitao.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="transformer" scheme="http://kangshitao.github.io/tags/transformer/"/>
     
   </entry>
   
