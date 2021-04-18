@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://kangshitao.github.io/2021/04/18/java-note-1501/</loc>
+    
+    <lastmod>2021-04-18</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://kangshitao.github.io/2021/04/17/java-note-1401/</loc>
     
     <lastmod>2021-04-18</lastmod>
@@ -242,20 +249,6 @@
   </url>
   
   <url>
-    <loc>http://kangshitao.github.io/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</loc>
-    <lastmod>2021-04-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://kangshitao.github.io/tags/Python/</loc>
-    <lastmod>2021-04-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://kangshitao.github.io/tags/Attention/</loc>
     <lastmod>2021-04-18</lastmod>
     <changefreq>daily</changefreq>
@@ -277,6 +270,27 @@
   </url>
   
   <url>
+    <loc>http://kangshitao.github.io/tags/Java/</loc>
+    <lastmod>2021-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://kangshitao.github.io/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</loc>
+    <lastmod>2021-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://kangshitao.github.io/tags/Python/</loc>
+    <lastmod>2021-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://kangshitao.github.io/tags/%E7%88%AC%E8%99%AB/</loc>
     <lastmod>2021-04-18</lastmod>
     <changefreq>daily</changefreq>
@@ -291,7 +305,7 @@
   </url>
   
   <url>
-    <loc>http://kangshitao.github.io/tags/Java/</loc>
+    <loc>http://kangshitao.github.io/tags/PyTorch/</loc>
     <lastmod>2021-04-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -320,13 +334,6 @@
   
   <url>
     <loc>http://kangshitao.github.io/tags/GNN/</loc>
-    <lastmod>2021-04-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://kangshitao.github.io/tags/PyTorch/</loc>
     <lastmod>2021-04-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
