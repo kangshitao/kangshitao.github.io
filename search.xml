@@ -201,6 +201,17 @@
       </tags>
   </entry>
   <entry>
+    <title>Java学习笔记16-Java8的其它新特征</title>
+    <url>/2021/04/18/java-note-1601/</url>
+    <content><![CDATA[<h1 id="一、Lambda表达式"><a href="#一、Lambda表达式" class="headerlink" title="一、Lambda表达式"></a>一、Lambda表达式</h1><h1 id="二、函数式-Functional-接口"><a href="#二、函数式-Functional-接口" class="headerlink" title="二、函数式(Functional)接口"></a>二、函数式(Functional)接口</h1><h1 id="三、方法引用与构造器引用"><a href="#三、方法引用与构造器引用" class="headerlink" title="三、方法引用与构造器引用"></a>三、方法引用与构造器引用</h1><h1 id="四、强大的Stream-API"><a href="#四、强大的Stream-API" class="headerlink" title="四、强大的Stream API"></a>四、强大的Stream API</h1><h1 id="五、Optional类"><a href="#五、Optional类" class="headerlink" title="五、Optional类"></a>五、Optional类</h1>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java学习笔记15-反射</title>
     <url>/2021/04/18/java-note-1501/</url>
     <content><![CDATA[<h1 id="一、Java反射机制概述"><a href="#一、Java反射机制概述" class="headerlink" title="一、Java反射机制概述"></a>一、Java反射机制概述</h1><p><strong>Reflection(反射)</strong>是被视为动态语言的关键，反射机制允许程序在执行期间借助于Reflection API取得任何类的内部信息，并能直接操作任意对象的内部属性及方法。</p>
