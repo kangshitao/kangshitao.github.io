@@ -1,5 +1,4 @@
-console.log("current theme-->%c Github %c", "background:#333333; color:#ffffff", "", 
-"https://github.com/izhaoo/hexo-theme-zhaoo");
+console.log("%c Github %c", "background:#333333; color:#ffffff", "", "https://github.com/izhaoo/hexo-theme-zhaoo");
 
 (function ($) {
   "use strict";
@@ -11,6 +10,7 @@ console.log("current theme-->%c Github %c", "background:#333333; color:#ffffff",
       fn.hideFab();
       ZHAOO.utils.bindKeyup(27, function () {
         fn.hideMenu();
+        $(".navbar").removeClass("hide");
       });
     },
     hideMenu: function () {
@@ -23,6 +23,7 @@ console.log("current theme-->%c Github %c", "background:#333333; color:#ffffff",
       fn.hideFab();
       ZHAOO.utils.bindKeyup(27, function () {
         fn.hideSearch();
+        $(".navbar").removeClass("hide");
       });
     },
     hideSearch: function () {
@@ -102,10 +103,10 @@ console.log("current theme-->%c Github %c", "background:#333333; color:#ffffff",
           if ($(window).scrollTop() > 60) {
             $(".navbar .center").addClass("hide");
           } else {
+            $(".navbar .center").removeClass("hide");
             if (!CONFIG.isHome) {
               $(".navbar").removeClass("transparent");
             }
-            $(".navbar .center").removeClass("hide");
           }
         }
         center();

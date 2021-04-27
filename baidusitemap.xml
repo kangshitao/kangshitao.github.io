@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://kangshitao.github.io/2021/04/26/mysql-basis/</loc>
+    <lastmod>2021-04-27</lastmod>
+  </url>
+  <url>
+    <loc>http://kangshitao.github.io/2021/04/17/java-note-1401/</loc>
+    <lastmod>2021-04-25</lastmod>
+  </url>
+  <url>
     <loc>http://kangshitao.github.io/2020/11/01/RegularExpression/</loc>
     <lastmod>2021-04-21</lastmod>
   </url>
@@ -14,10 +22,6 @@
   </url>
   <url>
     <loc>http://kangshitao.github.io/2021/04/18/java-note-1501/</loc>
-    <lastmod>2021-04-18</lastmod>
-  </url>
-  <url>
-    <loc>http://kangshitao.github.io/2021/04/17/java-note-1401/</loc>
     <lastmod>2021-04-18</lastmod>
   </url>
   <url>

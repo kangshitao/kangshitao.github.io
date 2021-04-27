@@ -7,6 +7,8 @@
   --color-text-third: #999;
   --color-border: #eee;
   --background-image: url("https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/welcome-image2.jpg");
+  --loading-image: url("/images/theme/loading.gif");
+  --lazyload-image: url("/images/theme/loading.gif");
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -21,6 +23,8 @@
     --color-text-third: #7d8594;
     --color-border: #2b3038;
     --background-image: url("https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/welcome-image1.jpg");
+    --loading-image: url("/images/theme/loading.gif");
+    --lazyload-image: url("/images/theme/loading.gif");
   }
 }
 [color-mode='dark'] {
@@ -32,6 +36,8 @@
   --color-text-third: #7d8594;
   --color-border: #2b3038;
   --background-image: url("https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/welcome-image1.jpg");
+  --loading-image: url("/images/theme/loading.gif");
+  --lazyload-image: url("/images/theme/loading.gif");
 }
 [color-mode='dark'] .tags a {
   color: var(--color-text) !important;
@@ -791,14 +797,14 @@ body input {
   opacity: 1;
 }
 .lazyload {
-  background: url("/images/theme/loading.gif") no-repeat center;
+  background: var(--lazyload-image) no-repeat center;
 }
 .loading {
   position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
-  background: url("/images/theme/loading.gif") no-repeat center;
+  background: var(--loading-image) no-repeat center;
   background-color: var(--color-background);
   z-index: 2019;
   overflow: hidden;
@@ -1839,9 +1845,6 @@ body input {
   padding: 20px;
   height: calc(100vh - 140px);
   overflow: scroll;
-}
-.toc-wrap::-webkit-scrollbar {
-  display: none;
 }
 @media (max-width: 1200px) {
   .toc-wrap {

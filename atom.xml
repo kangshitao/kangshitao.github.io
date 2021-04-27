@@ -6,7 +6,7 @@
   <link href="http://kangshitao.github.io/atom.xml" rel="self"/>
   
   <link href="http://kangshitao.github.io/"/>
-  <updated>2021-04-19T13:30:21.394Z</updated>
+  <updated>2021-04-27T11:50:04.336Z</updated>
   <id>http://kangshitao.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MySQL数据库基础篇</title>
+    <link href="http://kangshitao.github.io/2021/04/26/mysql-basis/"/>
+    <id>http://kangshitao.github.io/2021/04/26/mysql-basis/</id>
+    <published>2021-04-26T13:14:17.000Z</published>
+    <updated>2021-04-27T11:50:04.336Z</updated>
+    
+    
+    <summary type="html">MySQL的使用，常用SQL语句，DDL、DML、DQL，事务，视图，存储结构，函数</summary>
+    
+    
+    
+    <category term="MySQL" scheme="http://kangshitao.github.io/categories/MySQL/"/>
+    
+    
+    <category term="MySQL" scheme="http://kangshitao.github.io/tags/MySQL/"/>
+    
+  </entry>
   
   <entry>
     <title>Java学习笔记17-Java9&amp;10&amp;11新特征</title>
@@ -78,7 +97,7 @@
     <link href="http://kangshitao.github.io/2021/04/17/java-note-1401/"/>
     <id>http://kangshitao.github.io/2021/04/17/java-note-1401/</id>
     <published>2021-04-17T15:00:21.000Z</published>
-    <updated>2021-04-18T10:18:55.010Z</updated>
+    <updated>2021-04-25T07:32:09.246Z</updated>
     
     
     <summary type="html">网络编程概述，IP和端口号，网络协议，TCP/UDP网络编程，URL编程</summary>
@@ -374,27 +393,6 @@
     
     
     <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python爬虫-m3u8视频爬取</title>
-    <link href="http://kangshitao.github.io/2021/01/02/crawler-wuchizhitu/"/>
-    <id>http://kangshitao.github.io/2021/01/02/crawler-wuchizhitu/</id>
-    <published>2021-01-02T02:48:05.000Z</published>
-    <updated>2021-03-22T09:59:03.565Z</updated>
-    
-    
-    <summary type="html">使用python爬取流媒体网站的m3u8视频</summary>
-    
-    
-    
-    <category term="爬虫" scheme="http://kangshitao.github.io/categories/%E7%88%AC%E8%99%AB/"/>
-    
-    
-    <category term="Python" scheme="http://kangshitao.github.io/tags/Python/"/>
-    
-    <category term="爬虫" scheme="http://kangshitao.github.io/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
