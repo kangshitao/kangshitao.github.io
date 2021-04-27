@@ -44,7 +44,9 @@ font:
 background_image:
 
 # Loading
-loading: /images/theme/loading.gif
+loading: 
+  light: /images/theme/loading.gif
+  dark: /images/theme/loading.gif
 
 # Preview
 preview:
@@ -231,7 +233,9 @@ leancloud:
 lazyload:
   enable: true
   only_post: false
-  loading: /images/theme/loading.gif
+  loading:
+    light: /images/theme/loading.gif
+    dark: /images/theme/loading.gif
   
 # FancyBox
 fancybox: true
@@ -244,7 +248,7 @@ highlight:
   enable: true
   style: # https://highlightjs.org/static/demo/
     light: Atelier Heath Light #Atelier Heath Light  # 浅色模式的代码风格
-    dark: Dracula # 深色模式下的代码风格
+    dark: Stackoverflow Dark # Dracula # 深色模式下的代码风格
 
 # SEO
 seo:
