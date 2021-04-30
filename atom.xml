@@ -6,7 +6,7 @@
   <link href="http://kangshitao.github.io/atom.xml" rel="self"/>
   
   <link href="http://kangshitao.github.io/"/>
-  <updated>2021-04-27T11:50:04.336Z</updated>
+  <updated>2021-04-30T14:19:31.015Z</updated>
   <id>http://kangshitao.github.io/</id>
   
   <author>
@@ -17,21 +17,50 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>JDBC与Druid数据库连接池</title>
+    <link href="http://kangshitao.github.io/2021/04/30/jdbc-datasource/"/>
+    <id>http://kangshitao.github.io/2021/04/30/jdbc-datasource/</id>
+    <published>2021-04-30T07:58:59.000Z</published>
+    <updated>2021-04-30T14:19:31.015Z</updated>
+    
+    
+    <summary type="html">JDBC简介，Druid数据库连接池、Apache-DBUtils工具类的用法</summary>
+    
+    
+    
+    <category term="数据库" scheme="http://kangshitao.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+    <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
+    
+    <category term="数据库" scheme="http://kangshitao.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    <category term="MySQL" scheme="http://kangshitao.github.io/tags/MySQL/"/>
+    
+    <category term="SQL" scheme="http://kangshitao.github.io/tags/SQL/"/>
+    
+  </entry>
+  
+  <entry>
     <title>MySQL数据库基础篇</title>
     <link href="http://kangshitao.github.io/2021/04/26/mysql-basis/"/>
     <id>http://kangshitao.github.io/2021/04/26/mysql-basis/</id>
     <published>2021-04-26T13:14:17.000Z</published>
-    <updated>2021-04-27T11:50:04.336Z</updated>
+    <updated>2021-04-30T07:56:58.277Z</updated>
     
     
     <summary type="html">MySQL的使用，常用SQL语句，DDL、DML、DQL，事务，视图，存储结构，函数</summary>
     
     
     
-    <category term="MySQL" scheme="http://kangshitao.github.io/categories/MySQL/"/>
+    <category term="数据库" scheme="http://kangshitao.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
+    
+    <category term="数据库" scheme="http://kangshitao.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     <category term="MySQL" scheme="http://kangshitao.github.io/tags/MySQL/"/>
+    
+    <category term="SQL" scheme="http://kangshitao.github.io/tags/SQL/"/>
     
   </entry>
   
@@ -367,25 +396,6 @@
     
     
     <summary type="html">Java基本语法，变量、运算符、程序流程控制</summary>
-    
-    
-    
-    <category term="Java" scheme="http://kangshitao.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java学习笔记01-Java语言概述</title>
-    <link href="http://kangshitao.github.io/2021/03/19/java-note-0101/"/>
-    <id>http://kangshitao.github.io/2021/03/19/java-note-0101/</id>
-    <published>2021-03-19T11:08:20.000Z</published>
-    <updated>2021-04-28T13:05:04.898Z</updated>
-    
-    
-    <summary type="html">Java运行过程，JDK、JRE、JVM</summary>
     
     
     
