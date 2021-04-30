@@ -3,8 +3,8 @@ title: Java学习笔记02-Java基本语法
 excerpt: Java基本语法，变量、运算符、程序流程控制
 mathjax: true
 date: 2021-03-19 20:42:47
-tags: 'Java'
-categories: 'Java'
+tags: Java
+categories: Java
 keywords: 'Java基本语法,Java'
 ---
 

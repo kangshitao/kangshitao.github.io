@@ -3,8 +3,8 @@ title: MySQL数据库基础篇
 excerpt: MySQL的使用，常用SQL语句，DDL、DML、DQL，事务，视图，存储结构，函数
 mathjax: true
 date: 2021-04-26 21:14:17
-tags: MySQL
-categories: MySQL
+tags: ['数据库','MySQL','SQL']
+categories: 数据库
 keywords: MySQL,SQL,DQL,DML,DDL,事务,视图,存储结构,函数
 ---
 

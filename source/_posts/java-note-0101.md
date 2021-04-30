@@ -3,8 +3,8 @@ title: Java学习笔记01-Java语言概述
 excerpt: Java运行过程，JDK、JRE、JVM
 mathjax: true
 date: 2021-03-19 19:08:20
-tags: 'Java'
-categories: 'Java'
+tags: Java
+categories: Java
 keywords: 'Java概述,Java'
 ---
 
