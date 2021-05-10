@@ -6,7 +6,7 @@
   <link href="http://kangshitao.github.io/atom.xml" rel="self"/>
   
   <link href="http://kangshitao.github.io/"/>
-  <updated>2021-05-09T07:18:35.198Z</updated>
+  <updated>2021-05-10T11:54:05.629Z</updated>
   <id>http://kangshitao.github.io/</id>
   
   <author>
@@ -17,11 +17,32 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>深入理解String的intern()方法</title>
+    <link href="http://kangshitao.github.io/2021/05/10/understanding-string-intern/"/>
+    <id>http://kangshitao.github.io/2021/05/10/understanding-string-intern/</id>
+    <published>2021-05-10T11:40:39.000Z</published>
+    <updated>2021-05-10T11:54:05.629Z</updated>
+    
+    
+    <summary type="html">从JVM的角度理解字符串的创建和拼接过程，理解intern()方法</summary>
+    
+    
+    
+    <category term="JVM" scheme="http://kangshitao.github.io/categories/JVM/"/>
+    
+    
+    <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
+    
+    <category term="JVM" scheme="http://kangshitao.github.io/tags/JVM/"/>
+    
+  </entry>
+  
+  <entry>
     <title>JVM-不同JDK版本中方法区的演变</title>
     <link href="http://kangshitao.github.io/2021/05/09/method-area-evolution/"/>
     <id>http://kangshitao.github.io/2021/05/09/method-area-evolution/</id>
     <published>2021-05-09T03:27:46.000Z</published>
-    <updated>2021-05-09T07:18:35.198Z</updated>
+    <updated>2021-05-09T07:19:04.604Z</updated>
     
     
     <summary type="html">JDK6，JDK7，JDK8及以后的方法区的变化</summary>
@@ -379,25 +400,6 @@
     
     
     <summary type="html">面向对象思想，对象，属性，方法，封装，构造器，this，package和import</summary>
-    
-    
-    
-    <category term="Java" scheme="http://kangshitao.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java学习笔记03-数组</title>
-    <link href="http://kangshitao.github.io/2021/03/20/java-note-0301/"/>
-    <id>http://kangshitao.github.io/2021/03/20/java-note-0301/</id>
-    <published>2021-03-20T13:13:12.000Z</published>
-    <updated>2021-04-28T13:05:02.596Z</updated>
-    
-    
-    <summary type="html">一维数组，二维数组，排序算法，Arrays工具类</summary>
     
     
     
