@@ -6,7 +6,7 @@
   <link href="http://kangshitao.github.io/atom.xml" rel="self"/>
   
   <link href="http://kangshitao.github.io/"/>
-  <updated>2021-05-10T11:54:05.629Z</updated>
+  <updated>2021-05-11T10:16:41.598Z</updated>
   <id>http://kangshitao.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JVM垃圾回收相关概念补充</title>
+    <link href="http://kangshitao.github.io/2021/05/11/gc-related-concepts-supplement/"/>
+    <id>http://kangshitao.github.io/2021/05/11/gc-related-concepts-supplement/</id>
+    <published>2021-05-11T10:09:54.000Z</published>
+    <updated>2021-05-11T10:16:41.598Z</updated>
+    
+    
+    <summary type="html">内存溢出、内存泄露、STW、GC的并行与并发、强引用、软引用、弱引用、虚引用</summary>
+    
+    
+    
+    <category term="JVM" scheme="http://kangshitao.github.io/categories/JVM/"/>
+    
+    
+    <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
+    
+    <category term="JVM" scheme="http://kangshitao.github.io/tags/JVM/"/>
+    
+  </entry>
   
   <entry>
     <title>深入理解String的intern()方法</title>
@@ -381,25 +402,6 @@
     
     
     <summary type="html">继承性，多态性，重写，super关键字，Object类，包装类</summary>
-    
-    
-    
-    <category term="Java" scheme="http://kangshitao.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java学习笔记04-面向对象编程(上)</title>
-    <link href="http://kangshitao.github.io/2021/03/20/java-note-0401/"/>
-    <id>http://kangshitao.github.io/2021/03/20/java-note-0401/</id>
-    <published>2021-03-20T13:50:55.000Z</published>
-    <updated>2021-04-28T13:05:03.693Z</updated>
-    
-    
-    <summary type="html">面向对象思想，对象，属性，方法，封装，构造器，this，package和import</summary>
     
     
     
