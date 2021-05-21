@@ -88,7 +88,7 @@ social:
 
 # Override Scrollbar
 scrollbar:
-  type: default # default | simple | normal | none
+  type: normal # default | simple | normal | none
 
 # Fab (Float Action Button)
 fab:
