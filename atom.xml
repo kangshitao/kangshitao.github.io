@@ -6,7 +6,7 @@
   <link href="http://kangshitao.github.io/atom.xml" rel="self"/>
   
   <link href="http://kangshitao.github.io/"/>
-  <updated>2021-05-19T15:03:26.345Z</updated>
+  <updated>2021-05-21T12:29:32.274Z</updated>
   <id>http://kangshitao.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>操作系统复习</title>
+    <link href="http://kangshitao.github.io/2021/05/21/computer-os-review/"/>
+    <id>http://kangshitao.github.io/2021/05/21/computer-os-review/</id>
+    <published>2021-05-21T12:12:05.000Z</published>
+    <updated>2021-05-21T12:29:32.274Z</updated>
+    
+    
+    <summary type="html">进程和线程、死锁、内存管理、虚拟内存</summary>
+    
+    
+    
+    <category term="CS基础" scheme="http://kangshitao.github.io/categories/CS%E5%9F%BA%E7%A1%80/"/>
+    
+    
+    <category term="操作系统" scheme="http://kangshitao.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
   
   <entry>
     <title>计算机网络汇总</title>
@@ -383,25 +402,6 @@
     
     
     <summary type="html">异常处理，try-catch-finally，throws，throw，自定义异常类</summary>
-    
-    
-    
-    <category term="Java" scheme="http://kangshitao.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java学习笔记06-面向对象编程(下)</title>
-    <link href="http://kangshitao.github.io/2021/03/26/java-note-0601/"/>
-    <id>http://kangshitao.github.io/2021/03/26/java-note-0601/</id>
-    <published>2021-03-26T03:49:40.000Z</published>
-    <updated>2021-04-16T13:21:32.629Z</updated>
-    
-    
-    <summary type="html">static，fianl，单例模式，抽象类，接口，代码块，内部类</summary>
     
     
     
