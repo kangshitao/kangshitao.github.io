@@ -193,7 +193,9 @@ MySQL中的命令有以下规范：
 
 MySQL支持所有标准SQL数值数据类型（SQL数据类型参考[链接](https://www.runoob.com/sql/sql-datatypes-general.html)）。作为SQL标准的扩展，MySQL也支持整数类型TINYINT、MEDIUMINT和BIGINT。详细参考[MySQL数据类型](https://www.runoob.com/mysql/mysql-data-types.html)
 
-包括**数值型**、**字符型**、**日期型**等。
+**MySQL中的TRUE和FALSE，也可以分别用1和0表示。**
+
+MySQL中的数据类型包括**数值型**、**字符型**、**日期型**等。
 
 **数值型**
 
@@ -1782,7 +1784,7 @@ drop table [if exists] 表名;
 
 > **关于key**
 >
-> [MySQL文档](https://dev.mysql.com/doc/refman/8.0/en/create-table.html)：key是索引的近义词。
+> [MySQL文档](https://dev.mysql.com/doc/refman/8.0/en/create-table.html)：key是索引的近义词，可以将key理解为索引。
 >
 > [参考1](https://sqlrelease.com/sql-server-tutorial/types-of-keys)：key是表中的字段，它们参与RDBMS系统中的以下活动
 > a.表与表中数据之间的依赖关系由key建立
@@ -2064,7 +2066,7 @@ ROLLBACK;
 
 当多个事务同时操作同一个数据库的相同数据时，容易导致并发问题，包括以下问题：
 
-**脏写**：一个事物修改了其他事务还没有提交的数据。事务B去修改了事务A修改过的值，但是此时事务A还没提交，所以事务A随时会回滚，导致事务B修改的值也没了。
+**脏写（丢失修改）**：一个事务修改了其他事务还没有提交的数据，如果其他事务回滚，导致当前事务的修改丢失。事务B去修改了事务A修改过的值，但是此时事务A还没提交，所以事务A随时会回滚，导致事务B修改的值也没了。
 **脏读**：一个事务读取到了其他事务未提交（一般指**数据修改**）的数据。事务B去查询了事务A修改过的数据，但是此时事务A还没提交，所以事务A随时会回滚，导致事务B再次查询就读不到刚才事务A修改的数据了。
 
 >  脏读和脏写都是因为一个事务去更新或者查询了另外一个还没提交的事务更新过的数据。因为另外一个事务还没提交，所以它随时可能会回滚，那么必然导致你更新的数据就没了，或者你之前查询到的数据就没了，这就是脏写和脏读两种场景。
@@ -2146,6 +2148,27 @@ select @@tx_isolation;
 #查看全局隔离级别
 select @@global.tx_isolation;
 ```
+
+## 5、MyISAM引擎和InnoDB引擎对比
+
+InnoDB引擎是MySQL5.5开始引入的。InnoDB和MyISAM引擎的对比：
+
+* **是否支持行级锁**。MyISAM只支持表锁，而InnoDB支持表锁和行锁，且默认为行锁。
+* **是否支持事务**。MyISAM不支持事务，InnoDB支持事务，具有提交和回滚事务的能力。
+* **是否支持外键**。MyISAM不支持外键，InnoDB支持外键。
+* **是否支持数据库异常崩溃后的安全恢复**。MyISAM不支持，InnoDB支持。InnoDB引擎能够保证，在数据库异常崩溃后，数据库重新启动的时候会保证数据库恢复到崩溃前的状态，恢复的过程依赖于`redo log`
+
+
+
+<font color='red'>扩展：InnoDB是如何保证ACID特性的？</font>
+
+1、InnoDB引擎使用**redo log(重做日志)**保证事务的**持久性**
+
+2、InnoDB引擎使用**undo log(回滚日志)**保证事务的**原子性**
+
+3、InnoDB引擎使用**锁机制**、**MVCC**等手段保证事务的**隔离性**
+
+4、保证了上述三个特性后，**一致性**才得以保障。
 
 
 
