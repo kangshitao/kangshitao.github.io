@@ -152,13 +152,40 @@ show tables;
 show tables from 库名;
 ```
 
-查看表结构
+查看表结构：
 
 ```mysql
 desc 表名;
 ```
 
-查看服务器的版本
+查看表的列属性：
+
+```mysql
+show columns from 表名;
+```
+
+查看表的索引：
+
+```mysql
+show index from 表名;
+```
+
+查看xx状态：
+
+```mysql
+# 查看指定表的状态信息
+show table status from 表名/数据库;
+
+# 查看主从复制中的主机状态
+show master status;
+
+# 查看主从复制中从机状态
+show slave status;
+```
+
+
+
+查看服务器的版本：
 
 ```mysql
 # 方式一，在mysql服务端查看：
@@ -168,6 +195,43 @@ mysql --version
 或
 mysql --V
 ```
+
+
+
+用户管理指令：
+
+**添加用户的两种方式**
+
+1、使用insert指令，在mysql.user表中添加用户：
+
+```mysql
+# 比如想添加用户：user，密码：123456，并授予select权限
+# 只需要在user表的指定列添加内容即可。
+insert into mysql.user(host,user,password，select_priv)
+	values('localhost','user',password('123456'),'Y');
+flush privileges;
+/* 
+其中host列表示限制登陆的主机，localhost表示只能当前主机登陆，
+可以指定ip，使用%表示任意主机。
+MySQL5.7以后，password改名为authentication_string。
+密码需要使用password()函数进行加密，MySQL8.0.11移除了这个函数，可以使用MD5()代替。
+可以根据需求授予其他权限，只需要相应列赋值为'Y'即可。
+添加完后，使用flush privileges语句刷新授权表，使之立即生效，
+否则需要重启MySQL服务才生效。
+*/
+```
+
+2、使用grant命令
+
+```mysql
+# 比如给指定数据库比如student库，添加用户user，密码123,授予select权限
+grant select   # 指定授予的权限
+on student.*   # 指定数据库和表，*表示所有，这里表示student库所有表
+to 'user'@'localhost'  # 指定用户名和登陆主机，localhost根据需求填写
+indentified by '123';   # 指定登录密码。
+```
+
+grant指令更多内容，参考[GRANT  Statement](https://dev.mysql.com/doc/refman/8.0/en/grant.html#grant-overview)
 
 
 
