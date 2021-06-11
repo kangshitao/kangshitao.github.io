@@ -128,7 +128,7 @@ driverClass=com.mysql.jdbc.Driver
 **PreparedStatement 和 Statement对比**：
 
 - PreparedStatement是Statement的子类，二者都能实现对数据库的CRUD操作
-- S‘tatement使用字符串拼接操作，繁琐。而使用PreparedStatement的代码可读性和可维护性强。
+- Statement使用字符串拼接操作，繁琐。而使用PreparedStatement的代码可读性和可维护性强。
 - **PreparedStatement 对SQL语句预编译**，能最大可能提高性能：
   - DBServer会对**预编译**语句提供性能优化。因为**预编译语句有可能被重复调用**，所以语句在被DBServer的编译器编译后的执行代码被缓存下来，那么下次调用时只要是相同的预编译语句就不需要编译，只要将参数直接传入编译过的语句执行代码中就会得到执行。
   - statement语句中，即使是相同操作，但因为数据内容不一样导致整个语句本身不能匹配，没有缓存语句的意义。事实是没有数据库会对普通语句编译后的执行代码缓存。这样每执行一次都要对传入的语句编译一次，效率降低。
@@ -149,28 +149,28 @@ public static void closeResource(Connection c,Statement ps,ResultSet rs)：关�
 */
 public class PreparedStatementTest{
     //适用于不同的表的增、删、改操作
-	public void update(String sql,Object ... args){
-		Connection conn = null;
-		PreparedStatement ps = null;
-		try {
-			//1.获取数据库的连接
-			conn = JDBCUtils.getConnection();
-			
-			//2.获取PreparedStatement的实例 (或：预编译sql语句)
-			ps = conn.prepareStatement(sql);
-			//3.填充占位符
-			for(int i = 0;i < args.length;i++){
-				ps.setObject(i + 1, args[i]);
-			}
-			//4.执行sql语句
-			ps.execute();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			//5.关闭资源
-			JDBCUtils.closeResource(conn, ps);
-		}
-	}
+    public void update(String sql,Object ... args){
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            //1.获取数据库的连接
+            conn = JDBCUtils.getConnection();
+            
+            //2.获取PreparedStatement的实例 (或：预编译sql语句)
+            ps = conn.prepareStatement(sql);
+            //3.填充占位符
+            for(int i = 0;i < args.length;i++){
+                ps.setObject(i + 1, args[i]);
+            }
+            //4.执行sql语句
+            ps.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            //5.关闭资源
+            JDBCUtils.closeResource(conn, ps);
+        }
+    }
 }
 ```
 
@@ -181,46 +181,46 @@ public class PreparedStatementTest{
 ```java
 public class prepareStatementTest{
     // 通用的针对于不同表的查询:返回一个对象
-	public <T> T getInstance(Class<T> clazz, String sql, Object... args) {
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		try {
-			// 1.获取数据库连接
-			conn = JDBCUtils.getConnection();
-			// 2.预编译sql语句，得到PreparedStatement对象
-			ps = conn.prepareStatement(sql);
-			// 3.填充占位符
-			for (int i = 0; i < args.length; i++) {
-				ps.setObject(i + 1, args[i]);
-			}
-			// 4.执行executeQuery(),得到结果集：ResultSet
-			rs = ps.executeQuery();
-			// 5.得到结果集的元数据：ResultSetMetaData
-			ResultSetMetaData rsmd = rs.getMetaData();
-			// 6.1通过ResultSetMetaData得到columnCount,columnLabel；通过ResultSet得到列值
-			int columnCount = rsmd.getColumnCount();
-			if (rs.next()) {
-				T t = clazz.newInstance();
-				for (int i = 0; i < columnCount; i++) {// 遍历每一个列
-					// 获取列值
-					Object columnVal = rs.getObject(i + 1);
-					// 获取列的别名:列的别名必须和类的属性相同
-					String columnLabel = rsmd.getColumnLabel(i + 1);
-					// 6.2使用反射，给对象的相应属性赋值
-					Field field = clazz.getDeclaredField(columnLabel);
-					field.setAccessible(true);
-					field.set(t, columnVal);
-				}
-				return t;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {// 7.关闭资源
-			JDBCUtils.closeResource(conn, ps, rs);
-		}
-		return null;
-	}
+    public <T> T getInstance(Class<T> clazz, String sql, Object... args) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            // 1.获取数据库连接
+            conn = JDBCUtils.getConnection();
+            // 2.预编译sql语句，得到PreparedStatement对象
+            ps = conn.prepareStatement(sql);
+            // 3.填充占位符
+            for (int i = 0; i < args.length; i++) {
+                ps.setObject(i + 1, args[i]);
+            }
+            // 4.执行executeQuery(),得到结果集：ResultSet
+            rs = ps.executeQuery();
+            // 5.得到结果集的元数据：ResultSetMetaData
+            ResultSetMetaData rsmd = rs.getMetaData();
+            // 6.1通过ResultSetMetaData得到columnCount,columnLabel；通过ResultSet得到列值
+            int columnCount = rsmd.getColumnCount();
+            if (rs.next()) {
+                T t = clazz.newInstance();
+                for (int i = 0; i < columnCount; i++) {// 遍历每一个列
+                    // 获取列值
+                    Object columnVal = rs.getObject(i + 1);
+                    // 获取列的别名:列的别名必须和类的属性相同
+                    String columnLabel = rsmd.getColumnLabel(i + 1);
+                    // 6.2使用反射，给对象的相应属性赋值
+                    Field field = clazz.getDeclaredField(columnLabel);
+                    field.setAccessible(true);
+                    field.set(t, columnVal);
+                }
+                return t;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {// 7.关闭资源
+            JDBCUtils.closeResource(conn, ps, rs);
+        }
+        return null;
+    }
 }
 ```
 
@@ -230,57 +230,57 @@ public class prepareStatementTest{
 
 ```java
 public void testJDBCTransaction() {
-	Connection conn = null;
-	try {
-		// 1.获取数据库连接
-		conn = JDBCUtils.getConnection();
-		// 2.开启事务,关闭自动提交
-		conn.setAutoCommit(false);
-		// 3.进行数据库操作，这里的两个SQL操作组成一个事务
-		String sql1 = "update user_table set balance = balance - 100 where user = ?";
-		update(conn, sql1, "AA");  //执行事务
-		// 模拟网络异常。如果有异常，事务会回滚
-		//System.out.println(10 / 0);
+    Connection conn = null;
+    try {
+        // 1.获取数据库连接
+        conn = JDBCUtils.getConnection();
+        // 2.开启事务,关闭自动提交
+        conn.setAutoCommit(false);
+        // 3.进行数据库操作，这里的两个SQL操作组成一个事务
+        String sql1 = "update user_table set balance = balance - 100 where user = ?";
+        update(conn, sql1, "AA");  //执行事务
+        // 模拟网络异常。如果有异常，事务会回滚
+        //System.out.println(10 / 0);
 
-		String sql2 = "update user_table set balance = balance + 100 where user = ?";
-		update(conn, sql2, "BB");
-		// 4.若没有异常，则提交事务
-		conn.commit();
-	} catch (Exception e) {
-		e.printStackTrace();
-		// 5.若有异常，则回滚事务
-		try {
-			conn.rollback();
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
+        String sql2 = "update user_table set balance = balance + 100 where user = ?";
+        update(conn, sql2, "BB");
+        // 4.若没有异常，则提交事务
+        conn.commit();
+    } catch (Exception e) {
+        e.printStackTrace();
+        // 5.若有异常，则回滚事务
+        try {
+            conn.rollback();
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
     } finally {
         try {
-			//6.恢复自动提交
-			conn.setAutoCommit(true);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            //6.恢复自动提交
+            conn.setAutoCommit(true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         //7.关闭连接
-		JDBCUtils.closeResource(conn, null, null); 
+        JDBCUtils.closeResource(conn, null, null); 
     }  
 }
 
 //使用事务以后的方法需要改写，将连接对象作为参数传入，其余内容不变
 //对于查询操作的方法同样如此。
 public void update(Connection conn,String sql, Object... args) {
-	PreparedStatement ps = null;
-	try {
-		ps = conn.prepareStatement(sql);
-		for (int i = 0; i < args.length; i++) {
-			ps.setObject(i + 1, args[i]);
-		}
-		ps.execute();
-	} catch (Exception e) {
-		e.printStackTrace();
-	} finally {
-		JDBCUtils.closeResource(null, ps);
-	}
+    PreparedStatement ps = null;
+    try {
+        ps = conn.prepareStatement(sql);
+        for (int i = 0; i < args.length; i++) {
+            ps.setObject(i + 1, args[i]);
+        }
+        ps.execute();
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        JDBCUtils.closeResource(null, ps);
+    }
 }
 ```
 
@@ -653,8 +653,8 @@ static{
         Properties pros = new Properties();
         FileInputStream is = new FileInputStream("src/druid.properties");
         pros.load(is);
-        //创建一个dbcp连接池
-        source = BasicDataSourceFactory.createDataSource(pros);
+        //创建一个druid连接池
+        source = DruidDataSourceFactory.createDataSource(pros);
     } catch (Exception e) {
         e.printStackTrace();
     }
