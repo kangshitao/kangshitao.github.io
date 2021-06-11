@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://kangshitao.github.io/2021/04/30/jdbc-datasource/</loc>
+    <lastmod>2021-06-11</lastmod>
+  </url>
+  <url>
     <loc>http://kangshitao.github.io/2021/06/07/mysql-advance/</loc>
     <lastmod>2021-06-07</lastmod>
   </url>
@@ -31,10 +35,6 @@
   <url>
     <loc>http://kangshitao.github.io/2020/10/31/git/</loc>
     <lastmod>2021-05-04</lastmod>
-  </url>
-  <url>
-    <loc>http://kangshitao.github.io/2021/04/30/jdbc-datasource/</loc>
-    <lastmod>2021-04-30</lastmod>
   </url>
   <url>
     <loc>http://kangshitao.github.io/2021/03/19/java-note-0101/</loc>
