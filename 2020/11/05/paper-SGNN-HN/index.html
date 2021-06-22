@@ -191,7 +191,7 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_10.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_11.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">论文阅读-Star Graph Neural Networks for Session-based Recommendation</h1>
     <div class="head-info">
@@ -201,7 +201,7 @@
           <i class="iconfont iconeye"></i><span id="/2020/11/05/paper-SGNN-HN/" class="leancloud" data-flag-title="论文阅读-Star Graph Neural Networks for Session-based Recommendation"></span>
         </span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>8624</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>8790</span>
     </div>
   </div>
 </section>
@@ -220,21 +220,21 @@
 <li>对于问题1，使用Star GNN(SGNN)学习当前session中不相邻item的复杂转换信息。</li>
 <li>对于问题2，使用Highway Networks(HN)自适应地从item表示中选择嵌入信息，缓解过拟合问题。</li>
 </ol>
-<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>基于session的推荐系统是根据当前正在进行的session生成推荐，SBRS没有用户的历史交互信息，只有当前session中的item信息，并且是很有限的。使用RNN考虑session的序列信息(如GRU4Rec)，或者使用注意力机制考虑主要目的(如NARM)，都不能完全考虑到item的复杂转换信息。后来的GNN模型(如SRGNN、TAGNN等)，虽然利用GNN的优势，考虑了item间的复杂转换信息，但是面临上述两个问题，即高阶转换信息和过拟合问题。</p>
+<h1 id="一、介绍"><a href="#一、介绍" class="headerlink" title="一、介绍"></a>一、介绍</h1><p>基于session的推荐系统是根据当前正在进行的session生成推荐，SBRS没有用户的历史交互信息，只有当前session中的item信息，并且是很有限的。使用RNN考虑session的序列信息(如GRU4Rec)，或者使用注意力机制考虑主要目的(如NARM)，都不能完全考虑到item的复杂转换信息。后来的GNN模型(如SRGNN、TAGNN等)，虽然利用GNN的优势，考虑了item间的复杂转换信息，但是面临上述两个问题，即高阶转换信息和过拟合问题。</p>
 <p>因此，作者提出了SGNN-HN模型，<strong>首先</strong>在图中加入star节点，构建SGNN，建立当前session复杂item转换信息的模型，解决长距离信息传播问题。<strong>然后</strong>使用HN，在SGNN前后动态选择item表示，解决过拟合问题。<strong>最后</strong>使用注意力机制将item表示融合，得到session表示，用于推荐。</p>
-<h1 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h1><ul>
+<h1 id="二、相关工作"><a href="#二、相关工作" class="headerlink" title="二、相关工作"></a>二、相关工作</h1><ul>
 <li>一般推荐模型：CF、MF、NCF、Item-KNN等</li>
 <li>序列推荐模型：MC、FPMC、GRU4Rec、NARM、KNN、CSRM</li>
 <li>注意力模型：STAMP、Co-Attention模型</li>
 <li>GNN模型：SRGNN、FGNN</li>
 </ul>
-<h1 id="本文模型"><a href="#本文模型" class="headerlink" title="本文模型"></a>本文模型</h1><p>本文模型结构图如下：</p>
+<h1 id="三、本文模型"><a href="#三、本文模型" class="headerlink" title="三、本文模型"></a>三、本文模型</h1><p>本文模型结构图如下：</p>
 <div align='center'>
     <img src='https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_1.png'/>
 </div>
-## 问题定义
 
-<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="21.325ex" height="3.176ex" style="vertical-align: -1.171ex;" viewBox="0 -863.1 9181.5 1367.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+
+<h2 id="3-1-问题定义"><a href="#3-1-问题定义" class="headerlink" title="3.1 问题定义"></a>3.1 问题定义</h2><p><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="21.325ex" height="3.176ex" style="vertical-align: -1.171ex;" viewBox="0 -863.1 9181.5 1367.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title"> V=\{v_1,v_2,\dots,v_{|V|}\} </title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJMATHI-56" d="M52 648Q52 670 65 683H76Q118 680 181 680Q299 680 320 683H330Q336 677 336 674T334 656Q329 641 325 637H304Q282 635 274 635Q245 630 242 620Q242 618 271 369T301 118L374 235Q447 352 520 471T595 594Q599 601 599 609Q599 633 555 637Q537 637 537 648Q537 649 539 661Q542 675 545 679T558 683Q560 683 570 683T604 682T668 681Q737 681 755 683H762Q769 676 769 672Q769 655 760 640Q757 637 743 637Q730 636 719 635T698 630T682 623T670 615T660 608T652 599T645 592L452 282Q272 -9 266 -16Q263 -18 259 -21L241 -22H234Q216 -22 216 -15Q213 -9 177 305Q139 623 138 626Q133 637 76 637H59Q52 642 52 648Z"></path>
@@ -285,9 +285,8 @@
  <use xlink:href="#E1-MJMATHI-56" x="278" y="0"></use>
  <use xlink:href="#E1-MJMAIN-7C" x="1048" y="0"></use>
 </g>
-</svg> 表示item的个数。
-
-<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="26.976ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 11614.8 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+</svg> 表示item的个数。</p>
+<p><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="26.976ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 11614.8 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">S=\{v_1,v_2,\dots,v_t,\dots,v_n\}</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJMATHI-53" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path>
@@ -331,9 +330,8 @@
 </g>
  <use xlink:href="#E1-MJMAIN-7D" x="11114" y="0"></use>
 </g>
-</svg> 是给定的当前session，包含n个item。
-
-模型的目标是预测<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.447ex" height="2.009ex" style="vertical-align: -0.671ex;" viewBox="0 -576.1 1914.5 865.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+</svg> 是给定的当前session，包含n个item。</p>
+<p>模型的目标是预测<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.447ex" height="2.009ex" style="vertical-align: -0.671ex;" viewBox="0 -576.1 1914.5 865.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">v_{n+1}</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJMATHI-76" d="M173 380Q173 405 154 405Q130 405 104 376T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Q21 294 29 316T53 368T97 419T160 441Q202 441 225 417T249 361Q249 344 246 335Q246 329 231 291T200 202T182 113Q182 86 187 69Q200 26 250 26Q287 26 319 60T369 139T398 222T409 277Q409 300 401 317T383 343T365 361T357 383Q357 405 376 424T417 443Q436 443 451 425T467 367Q467 340 455 284T418 159T347 40T241 -11Q177 -11 139 22Q102 54 102 117Q102 148 110 181T151 298Q173 362 173 380Z"></path>
@@ -395,11 +393,8 @@
 </g>
  <use xlink:href="#E1-MJMAIN-7D" x="8697" y="0"></use>
 </g>
-</svg> ，表示所有item的预测分数，最后取分数最高的K个作为推荐item。
-
-## 构建星型图
-
-对于每个session <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="26.976ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 11614.8 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+</svg> ，表示所有item的预测分数，最后取分数最高的K个作为推荐item。</p>
+<h2 id="3-2-构建星型图"><a href="#3-2-构建星型图" class="headerlink" title="3.2 构建星型图"></a>3.2 构建星型图</h2><p>对于每个session <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="26.976ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 11614.8 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">S=\{v_1,v_2,\dots,v_t,\dots,v_n\}</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJMATHI-53" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path>
@@ -471,9 +466,8 @@
 </g>
  <use xlink:href="#E1-MJMAIN-7D" x="5647" y="0"></use>
 </g>
-</svg>。
-
-其中<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="27.528ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 11852.4 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+</svg>。</p>
+<p>其中<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="27.528ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 11852.4 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\mathcal{V_s}=\{\{x_1,x_2,\dots,x_m\},x_s\}</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJCAL-56" d="M25 633Q25 647 47 665T100 683Q291 683 291 306Q291 264 288 213T282 132L279 102Q281 102 308 126T378 191T464 279T545 381T596 479Q600 490 600 502Q600 527 581 550T523 577Q505 577 505 601Q505 622 516 647T542 681Q546 683 558 683Q605 679 631 645T658 559Q658 423 487 215Q409 126 308 37T190 -52Q177 -52 177 -28Q177 -26 183 15T196 127T203 270Q203 356 192 421T165 523T126 583T83 613T41 620Q25 620 25 633Z"></path>
@@ -550,7 +544,7 @@
 </g>
  <use xlink:href="#E1-MJMAIN-7D" x="6521" y="0"></use>
 </g>
-</svg>表示**satellite**节点，<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.333ex" height="2.009ex" style="vertical-align: -0.671ex;" viewBox="0 -576.1 1004.5 865.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+</svg>表示<strong>satellite</strong>节点，<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.333ex" height="2.009ex" style="vertical-align: -0.671ex;" viewBox="0 -576.1 1004.5 865.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">x_s</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJMATHI-78" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path>
@@ -560,7 +554,7 @@
  <use xlink:href="#E1-MJMATHI-78" x="0" y="0"></use>
  <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-73" x="809" y="-213"></use>
 </g>
-</svg>表示**star**节点。注意这里的<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="6.534ex" height="2.176ex" style="vertical-align: -0.505ex;" viewBox="0 -719.6 2813.1 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+</svg>表示<strong>star</strong>节点。注意这里的<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="6.534ex" height="2.176ex" style="vertical-align: -0.505ex;" viewBox="0 -719.6 2813.1 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">m\leqslant n</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E2-MJMATHI-6D" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path>
@@ -572,9 +566,8 @@
  <use xlink:href="#E2-MJAMS-2A7D" x="1156" y="0"></use>
  <use xlink:href="#E2-MJMATHI-6E" x="2212" y="0"></use>
 </g>
-</svg>，因为session中可能会有重复出现的item。
-
-<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.564ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 1103.7 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+</svg>，因为session中可能会有重复出现的item。</p>
+<p><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.564ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 1103.7 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">{\Large\varepsilon}_s</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJMATHI-3B5" d="M190 -22Q124 -22 76 11T27 107Q27 174 97 232L107 239L99 248Q76 273 76 304Q76 364 144 408T290 452H302Q360 452 405 421Q428 405 428 392Q428 381 417 369T391 356Q382 356 371 365T338 383T283 392Q217 392 167 368T116 308Q116 289 133 272Q142 263 145 262T157 264Q188 278 238 278H243Q308 278 308 247Q308 206 223 206Q177 206 142 219L132 212Q68 169 68 112Q68 39 201 39Q253 39 286 49T328 72T345 94T362 105Q376 103 376 88Q376 79 365 62T334 26T275 -8T190 -22Z"></path>
@@ -584,9 +577,9 @@
  <use transform="scale(1.44)" xlink:href="#E1-MJMATHI-3B5" x="0" y="0"></use>
  <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-73" x="950" y="-213"></use>
 </g>
-</svg>是图中的边集合，包括**satellite连接**(图2中实线)和**star连接**(图2中虚线)两种有向边：
-
-* **Satellite connections**：satellite连接用来传递session中的相邻item间的信息。论文中使用GGNN为例，实现相邻节点之间的信息传播，并且按照satellite边构建输入和输出矩阵，例如对于session <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="26.396ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 11364.8 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+</svg>是图中的边集合，包括<strong>satellite连接</strong>(图2中实线)和<strong>star连接</strong>(图2中虚线)两种有向边：</p>
+<ul>
+<li><strong>Satellite connections</strong>：satellite连接用来传递session中的相邻item间的信息。论文中使用GGNN为例，实现相邻节点之间的信息传播，并且按照satellite边构建输入和输出矩阵，例如对于session <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="26.396ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 11364.8 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">S=\{x_2,x_3,x_5,x_4,x_5,x_7\}</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJMATHI-53" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path>
@@ -636,19 +629,21 @@
 </g>
  <use xlink:href="#E1-MJMAIN-7D" x="10864" y="0"></use>
 </g>
-</svg>，构建的输入输出矩阵如图3：
-
+</svg>，构建的输入输出矩阵如图3：</li>
+</ul>
 <div align='center'>
     <img src='https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_2.png' style='width:50%; height:50%'/>
 </div>
+
+
 
 
 <ul>
 <li><strong>Star connections</strong>：受<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1902.09113">Star-Transformer</a>模型启发，在图中添加Star节点，构建星型图。star节点和satellite节点之间的边就是Star连接，如图2，Star连接是双向边，分别代表两种信息传递方向，更新两种节点。一方面，以star节点作为中间节点，非相邻的item之间能够以two-hop的方式进行信息传播，来更新satellite节点。另一方面，另一个方向的边能够用来考虑所有satellite节点的信息，生成准确的star节点表示。</li>
 </ul>
 <p>本文模型使用门控网络控制分别从邻居节点和star节点获取信息量的多少。</p>
-<h2 id="学习item嵌入"><a href="#学习item嵌入" class="headerlink" title="学习item嵌入"></a>学习item嵌入</h2><p>学习satellite节点和star节点表示</p>
-<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><ul>
+<h2 id="3-3-学习item嵌入"><a href="#3-3-学习item嵌入" class="headerlink" title="3.3 学习item嵌入"></a>3.3 学习item嵌入</h2><p>学习satellite节点和star节点表示</p>
+<h3 id="3-3-1-初始化"><a href="#3-3-1-初始化" class="headerlink" title="3.3.1 初始化"></a>3.3.1 初始化</h3><ul>
 <li>satellite节点：使用item的embedding</li>
 </ul>
 <script type="math/tex; mode=display">
@@ -656,8 +651,7 @@ h^0=\{x_1,x_2,\ldots,x_m\} \tag{1}</script><ul>
 <li>star节点：对satellite节点进行平均池化，得到star节点初始状态</li>
 </ul>
 <script type="math/tex; mode=display">
-x_s^0 = \frac 1{m}\sum\limits^{m}_{i=1} {x_i} \tag{2}</script><h3 id="更新节点"><a href="#更新节点" class="headerlink" title="更新节点"></a>更新节点</h3><ol>
-<li><p><strong>Satellite节点更新</strong></p>
+x_s^0 = \frac 1{m}\sum\limits^{m}_{i=1} {x_i} \tag{2}</script><h3 id="3-3-2-更新节点"><a href="#3-3-2-更新节点" class="headerlink" title="3.3.2 更新节点"></a>3.3.2 更新节点</h3><p><strong>1、Satellite节点更新</strong></p>
 <p>对于每个satellite节点，邻居节点信息包括<strong>相邻节点信息</strong>和<strong>star节点信息</strong>，分别对应来自直接相连节点和没有直接相连节点的信息。</p>
 <ul>
 <li><p>首先，考虑相邻节点信息，使用GGNN网络更新节点。对于图的第<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.693ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 298.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
@@ -1040,8 +1034,7 @@ a_i^l = Concat(\mathbf{A}_i^I([\mathbf{x}_1^{l-1},\mathbf{x}_2^{l-1},\ldots,\mat
 </blockquote>
 </li>
 </ul>
-</li>
-<li><p><strong>Star节点更新</strong></p>
+<p><strong>2、Star节点更新</strong></p>
 <p>star节点是根据最新的satellite节点表示来更新的，同样使用self-attention，将star节点作为Query向量：</p>
 <script type="math/tex; mode=display">
 \beta = softmax(\frac{\mathbf{K}^ \mathbf{T} \mathbf{q}}{\sqrt{d}})
@@ -1125,9 +1118,7 @@ a_i^l = Concat(\mathbf{A}_i^I([\mathbf{x}_1^{l-1},\mathbf{x}_2^{l-1},\ldots,\mat
 </g>
 </g>
 </svg></p>
-</li>
-</ol>
-<h3 id="Highway-Networks"><a href="#Highway-Networks" class="headerlink" title="Highway Networks"></a>Highway Networks</h3><p>上述节点更新的过程可以多次迭代，即堆叠多层SGNN，第<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.693ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 298.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<h3 id="3-3-3-Highway-Networks"><a href="#3-3-3-Highway-Networks" class="headerlink" title="3.3.3 Highway Networks"></a>3.3.3 Highway Networks</h3><p>上述节点更新的过程可以多次迭代，即堆叠多层SGNN，第<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.693ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 298.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">l</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJMATHI-6C" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path>
@@ -1243,8 +1234,9 @@ a_i^l = Concat(\mathbf{A}_i^I([\mathbf{x}_1^{l-1},\mathbf{x}_2^{l-1},\ldots,\mat
 <div align='center'>
     <img src='https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_3.jpg'/>
 </div>
+##  3.4 Session表示和预测
 
-<h2 id="Session表示和预测"><a href="#Session表示和预测" class="headerlink" title="Session表示和预测"></a>Session表示和预测</h2><p>将<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="10.954ex" height="2.676ex" style="vertical-align: -0.338ex;" viewBox="0 -1006.6 4716.2 1152.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+将<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="10.954ex" height="2.676ex" style="vertical-align: -0.338ex;" viewBox="0 -1006.6 4716.2 1152.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\mathbf{h}^f \in \mathbb{R}^{d\times m}</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJMAINB-68" d="M40 686L131 690Q222 694 223 694H229V533L230 372L238 381Q248 394 264 407T317 435T398 450Q428 450 448 447T491 434T529 402T551 346Q553 335 554 198V62H623V0H614Q596 3 489 3Q374 3 365 0H356V62H425V194V275Q425 348 416 373T371 399Q326 399 288 370T238 290Q236 281 235 171V62H304V0H295Q277 3 171 3Q64 3 46 0H37V62H106V332Q106 387 106 453T107 534Q107 593 105 605T91 620Q77 624 50 624H37V686H40Z"></path>
@@ -1329,8 +1321,9 @@ a_i^l = Concat(\mathbf{A}_i^I([\mathbf{x}_1^{l-1},\mathbf{x}_2^{l-1},\ldots,\mat
  <use xlink:href="#E1-MJMAIN-2B" x="3291" y="0"></use>
  <use xlink:href="#E1-MJMAINB-70" x="4292" y="0"></use>
 </g>
-</svg>。</p>
-<p>考虑使用用户的全局偏好和最近兴趣来生成session表示，使用最后一个点击item作为最近兴趣，即<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="7.964ex" height="2.843ex" style="vertical-align: -0.671ex;" viewBox="0 -934.9 3428.9 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+</svg>。
+
+考虑使用用户的全局偏好和最近兴趣来生成session表示，使用最后一个点击item作为最近兴趣，即<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="7.964ex" height="2.843ex" style="vertical-align: -0.671ex;" viewBox="0 -934.9 3428.9 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\mathbf{z}_r=\mathbf{u}_n^p</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJMAINB-7A" d="M48 262Q48 264 54 349T60 436V444H252Q289 444 336 444T394 445Q441 445 450 441T459 418Q459 406 458 404Q456 399 327 229T194 55H237Q260 56 268 56T297 58T325 65T348 77T370 98T384 128T395 170Q400 197 400 216Q400 217 431 217H462V211Q461 208 453 108T444 6V0H245Q46 0 43 2Q32 7 32 28V33Q32 41 40 52T84 112Q129 170 164 217L298 393H256Q189 392 165 380Q124 360 115 303Q110 280 110 256Q110 254 79 254H48V262Z"></path>
@@ -1350,11 +1343,17 @@ a_i^l = Concat(\mathbf{A}_i^I([\mathbf{x}_1^{l-1},\mathbf{x}_2^{l-1},\ldots,\mat
  <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-6E" x="904" y="-212"></use>
 </g>
 </g>
-</svg>，然后计算全局偏好：</p>
-<script type="math/tex; mode=display">
-\mathbf{z}_g = \sum _{i=1}^n \gamma_i \mathbf{u}_i^p \tag{12}</script><script type="math/tex; mode=display">
+</svg>，然后计算全局偏好：
+$$
+\mathbf{z}_g = \sum _{i=1}^n \gamma_i \mathbf{u}_i^p \tag{12}
+$$
+
+$$
 \gamma_i = \mathbf{W}_0^ \mathbf{T} \sigma(\mathbf{W}_1 \mathbf{u}_i^p+
-\mathbf{W}_2 \mathbf{x}_s + \mathbf{W}_3 \mathbf{z}_r + \mathbf{b}) \tag{13}</script><p><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="11.947ex" height="3.009ex" style="vertical-align: -0.671ex;" viewBox="0 -1006.6 5143.8 1295.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+\mathbf{W}_2 \mathbf{x}_s + \mathbf{W}_3 \mathbf{z}_r + \mathbf{b}) \tag{13}
+$$
+
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="11.947ex" height="3.009ex" style="vertical-align: -0.671ex;" viewBox="0 -1006.6 5143.8 1295.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\mathbf{W}_0,\mathbf{b} \in \mathbb{R}^d</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJMAINB-57" d="M915 686L1052 683Q1142 683 1157 686H1164V624H1073L957 320Q930 249 900 170T855 52T839 10Q834 0 826 -5Q821 -7 799 -7H792Q777 -7 772 -5T759 10Q759 11 748 39T716 122T676 228L594 442L512 228Q486 159 455 78Q433 19 428 9T416 -5Q411 -7 389 -7H379Q356 -7 349 10Q349 12 334 51T288 170T231 320L116 624H24V686H35Q44 683 183 683Q331 683 355 686H368V624H323Q278 624 278 623L437 207L499 369L561 531L526 624H434V686H445Q454 683 593 683Q741 683 765 686H778V624H733Q688 624 688 623L847 207Q848 207 927 415T1006 624H905V686H915Z"></path>
@@ -1412,10 +1411,13 @@ a_i^l = Concat(\mathbf{A}_i^I([\mathbf{x}_1^{l-1},\mathbf{x}_2^{l-1},\ldots,\mat
 </g>
 </g>
 </g>
-</svg>。</p>
-<p>然后计算最终的session表示：</p>
-<script type="math/tex; mode=display">
-\mathbf{z}_h = \mathbf{W}_4[\mathbf{z}_g;\mathbf{z}_r] \tag{14}</script><p>考虑到长尾效应，参考<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1909.04276">NISER</a>，对session表示<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.367ex" height="2.009ex" style="vertical-align: -0.671ex;" viewBox="0 -576.1 1019.1 865.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+</svg>。
+
+然后计算最终的session表示：
+$$
+\mathbf{z}_h = \mathbf{W}_4[\mathbf{z}_g;\mathbf{z}_r] \tag{14}
+$$
+考虑到长尾效应，参考[NISER](https://arxiv.org/abs/1909.04276)，对session表示<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.367ex" height="2.009ex" style="vertical-align: -0.671ex;" viewBox="0 -576.1 1019.1 865.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\mathbf{z}_h</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJMAINB-7A" d="M48 262Q48 264 54 349T60 436V444H252Q289 444 336 444T394 445Q441 445 450 441T459 418Q459 406 458 404Q456 399 327 229T194 55H237Q260 56 268 56T297 58T325 65T348 77T370 98T384 128T395 170Q400 197 400 216Q400 217 431 217H462V211Q461 208 453 108T444 6V0H245Q46 0 43 2Q32 7 32 28V33Q32 41 40 52T84 112Q129 170 164 217L298 393H256Q189 392 165 380Q124 360 115 303Q110 280 110 256Q110 254 79 254H48V262Z"></path>
@@ -1435,12 +1437,16 @@ a_i^l = Concat(\mathbf{A}_i^I([\mathbf{x}_1^{l-1},\mathbf{x}_2^{l-1},\ldots,\mat
  <use xlink:href="#E1-MJMAINB-76" x="0" y="0"></use>
  <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-69" x="859" y="-213"></use>
 </g>
-</svg>的嵌入向量进行层标准化处理，即:</p>
-<script type="math/tex; mode=display">
+</svg>的嵌入向量进行层标准化处理，即:
+$$
 \tilde{\mathbf{z}}_h = LayerNorm(\mathbf{z}_h) = \frac{\mathbf{z}_h}{\Vert \mathbf{z}_h \Vert _2} \\
-\tilde{\mathbf{v}}_i = LayerNorm(\mathbf{v}_i)= \frac{\mathbf{v}_i}{\Vert \mathbf{v}_i \Vert _2}</script><p>然后计算推荐分数：</p>
-<script type="math/tex; mode=display">
-\tilde{\mathbf{y}_i} = \tilde{\mathbf{z}}_h^{\mathbf{T}}\tilde{\mathbf{v}_i} \tag{15}</script><p>最后使用softmax函数进行归一化，根据<a target="_blank" rel="noopener" href="https://dl.acm.org/doi/10.1145/3123266.3123359">论文</a>，由于余弦相似度的值在<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="6.461ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 2781.7 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+\tilde{\mathbf{v}}_i = LayerNorm(\mathbf{v}_i)= \frac{\mathbf{v}_i}{\Vert \mathbf{v}_i \Vert _2}
+$$
+然后计算推荐分数：
+$$
+\tilde{\mathbf{y}_i} = \tilde{\mathbf{z}}_h^{\mathbf{T}}\tilde{\mathbf{v}_i} \tag{15}
+$$
+最后使用softmax函数进行归一化，根据[论文](https://dl.acm.org/doi/10.1145/3123266.3123359)，由于余弦相似度的值在<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="6.461ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 2781.7 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">[-1,1]</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJMAIN-5B" d="M118 -250V750H255V710H158V-210H255V-250H118Z"></path>
@@ -1457,10 +1463,12 @@ a_i^l = Concat(\mathbf{A}_i^I([\mathbf{x}_1^{l-1},\mathbf{x}_2^{l-1},\ldots,\mat
  <use xlink:href="#E1-MJMAIN-31" x="2002" y="0"></use>
  <use xlink:href="#E1-MJMAIN-5D" x="2503" y="0"></use>
 </g>
-</svg>之间，可能导致softmax损失很大，以致模型无法收敛，因此使用缩放因子用来帮助模型更好地收敛：</p>
-<script type="math/tex; mode=display">
+</svg>之间，可能导致softmax损失很大，以致模型无法收敛，因此使用缩放因子用来帮助模型更好地收敛：
+$$
 \hat{\mathbf{y}} = \frac{\exp(\tau \tilde{\mathbf{y}_i})}
-{\sum \nolimits_i \tau \hat{\mathbf{y}_i}}, \forall i=1,2,\ldots,|V| \tag{16}</script><p>其中<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="21.283ex" height="3.176ex" style="vertical-align: -1.171ex;" viewBox="0 -863.1 9163.5 1367.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+{\sum \nolimits_i \tau \hat{\mathbf{y}_i}}, \forall i=1,2,\ldots,|V| \tag{16}
+$$
+其中<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="21.283ex" height="3.176ex" style="vertical-align: -1.171ex;" viewBox="0 -863.1 9163.5 1367.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\hat{\mathbf{y}}=(\hat{\mathbf{y}}_1,\hat{\mathbf{y}}_2,\ldots,\hat{\mathbf{y}}_{|V|})</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJMAINB-79" d="M84 -102Q84 -110 87 -119T102 -138T133 -149Q148 -148 162 -143T186 -131T206 -114T222 -95T234 -76T243 -59T249 -45T252 -37L269 0L96 382H26V444H34Q49 441 146 441Q252 441 270 444H279V382H255Q232 382 232 380L337 151L442 382H394V444H401Q413 441 495 441Q568 441 574 444H580V382H510L406 152Q298 -84 297 -87Q269 -139 225 -169T131 -200Q85 -200 54 -172T23 -100Q23 -64 44 -50T87 -35Q111 -35 130 -50T152 -92V-100H84V-102Z"></path>
@@ -1505,10 +1513,13 @@ a_i^l = Concat(\mathbf{A}_i^I([\mathbf{x}_1^{l-1},\mathbf{x}_2^{l-1},\ldots,\mat
 </g>
  <use xlink:href="#E1-MJMAIN-29" x="8774" y="0"></use>
 </g>
-</svg>。损失函数使用交叉熵：</p>
-<script type="math/tex; mode=display">
+</svg>。损失函数使用交叉熵：
+
+$$
 L(\hat{\mathbf{y}})=-\sum\limits_{i=1}^{|V|} \mathbf{y}_i \log(\hat{\mathbf{y}}_i)+
-(1-\mathbf{y}_i)\log(1-\hat{\mathbf{y}}_i) \tag{17}</script><p><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="6.462ex" height="2.343ex" style="vertical-align: -0.838ex;" viewBox="0 -647.8 2782.4 1008.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+(1-\mathbf{y}_i)\log(1-\hat{\mathbf{y}}_i) \tag{17}
+$$
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="6.462ex" height="2.343ex" style="vertical-align: -0.838ex;" viewBox="0 -647.8 2782.4 1008.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\mathbf{y}_i \in \mathbf{y}</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJMAINB-79" d="M84 -102Q84 -110 87 -119T102 -138T133 -149Q148 -148 162 -143T186 -131T206 -114T222 -95T234 -76T243 -59T249 -45T252 -37L269 0L96 382H26V444H34Q49 441 146 441Q252 441 270 444H279V382H255Q232 382 232 380L337 151L442 382H394V444H401Q413 441 495 441Q568 441 574 444H580V382H510L406 152Q298 -84 297 -87Q269 -139 225 -169T131 -200Q85 -200 54 -172T23 -100Q23 -64 44 -50T87 -35Q111 -35 130 -50T152 -92V-100H84V-102Z"></path>
@@ -1551,34 +1562,34 @@ L(\hat{\mathbf{y}})=-\sum\limits_{i=1}^{|V|} \mathbf{y}_i \log(\hat{\mathbf{y}}_
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#E1-MJMATHI-69" x="0" y="0"></use>
 </g>
-</svg>个item是给定session的目标item。</p>
-<h1 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h1><p>实验数据和处理方式同SRGNN、NARM等模型，并且同样使用了数据增强的方法，具体细节见原文。</p>
-<p>实验数据：</p>
+</svg>个item是给定session的目标item。
+
+# 四、实验
+
+实验数据和处理方式同SRGNN、NARM等模型，并且同样使用了数据增强的方法，具体细节见原文。
+
+实验数据：
+
 <div align='center'>
     <img src='https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_4.png'/>
 </div>
 
 <p>评估指标使用Precision和MRR。</p>
-<h1 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h1><h2 id="与SOTA模型对比"><a href="#与SOTA模型对比" class="headerlink" title="与SOTA模型对比"></a>与SOTA模型对比</h2><div align='center'>
+<h1 id="五、实验结果"><a href="#五、实验结果" class="headerlink" title="五、实验结果"></a>五、实验结果</h1><h2 id="5-1-与SOTA模型对比"><a href="#5-1-与SOTA模型对比" class="headerlink" title="5.1 与SOTA模型对比"></a>5.1 与SOTA模型对比</h2><p><div align='center'>
     <img src='https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_5.png'/>
-</div>
-
-<h2 id="SGNN网络的作用"><a href="#SGNN网络的作用" class="headerlink" title="SGNN网络的作用"></a>SGNN网络的作用</h2><p>分别用自注意力网络(SAT)和门控图神经网络(GGNN)代替SGNN：</p>
-<div align='center'>
+</div></p>
+<h2 id="5-2-SGNN网络的作用"><a href="#5-2-SGNN网络的作用" class="headerlink" title="5.2 SGNN网络的作用"></a>5.2 SGNN网络的作用</h2><p>分别用自注意力网络(SAT)和门控图神经网络(GGNN)代替SGNN：</p>
+<p><div align='center'>
     <img src='https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_6.png'/>
-</div>
-
-<h2 id="HN网络层的作用"><a href="#HN网络层的作用" class="headerlink" title="HN网络层的作用"></a>HN网络层的作用</h2><p>HN网络对于不同数量GNN层的作用：</p>
-<div align='center'>
+</div></p>
+<h2 id="5-3-HN网络层的作用"><a href="#5-3-HN网络层的作用" class="headerlink" title="5.3 HN网络层的作用"></a>5.3 HN网络层的作用</h2><p>HN网络对于不同数量GNN层的作用：</p>
+<p><div align='center'>
     <img src='https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_7.png'/>
-</div>
-## Session长度的影响
-
-<div align='center'>
+</div></p>
+<h2 id="5-4-Session长度的影响"><a href="#5-4-Session长度的影响" class="headerlink" title="5.4 Session长度的影响"></a>5.4 Session长度的影响</h2><p><div align='center'>
     <img src='https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/paper-SGNN-HN_8.png'/>
-</div>
-
-<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>本文提出了SGNN-HN模型，一方面解决了一般GNN模型不能考虑高阶信息转换的问题，另一方面解决了GNN模型容易过拟合的问题。</p>
+</div></p>
+<h1 id="六、结论"><a href="#六、结论" class="headerlink" title="六、结论"></a>六、结论</h1><p>本文提出了SGNN-HN模型，一方面解决了一般GNN模型不能考虑高阶信息转换的问题，另一方面解决了GNN模型容易过拟合的问题。</p>
 
       </section>
       <section class="extra">
@@ -1672,7 +1683,7 @@ L(\hat{\mathbf{y}})=-\sum\limits_{i=1}^{|V|} \mathbf{y}_i \log(\hat{\mathbf{y}}_
           
   <aside class="toc-wrap">
     <h3 class="toc-title">文章目录：</h3>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">相关工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%AC%E6%96%87%E6%A8%A1%E5%9E%8B"><span class="toc-text">本文模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0item%E5%B5%8C%E5%85%A5"><span class="toc-text">学习item嵌入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E8%8A%82%E7%82%B9"><span class="toc-text">更新节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Highway-Networks"><span class="toc-text">Highway Networks</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Session%E8%A1%A8%E7%A4%BA%E5%92%8C%E9%A2%84%E6%B5%8B"><span class="toc-text">Session表示和预测</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C"><span class="toc-text">实验</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="toc-text">实验结果</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8ESOTA%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94"><span class="toc-text">与SOTA模型对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SGNN%E7%BD%91%E7%BB%9C%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">SGNN网络的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HN%E7%BD%91%E7%BB%9C%E5%B1%82%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">HN网络层的作用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">结论</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BB%8B%E7%BB%8D"><span class="toc-text">一、介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">二、相关工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%9C%AC%E6%96%87%E6%A8%A1%E5%9E%8B"><span class="toc-text">三、本文模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E9%97%AE%E9%A2%98%E5%AE%9A%E4%B9%89"><span class="toc-text">3.1 问题定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E6%9E%84%E5%BB%BA%E6%98%9F%E5%9E%8B%E5%9B%BE"><span class="toc-text">3.2 构建星型图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E5%AD%A6%E4%B9%A0item%E5%B5%8C%E5%85%A5"><span class="toc-text">3.3 学习item嵌入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-1-%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">3.3.1 初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-2-%E6%9B%B4%E6%96%B0%E8%8A%82%E7%82%B9"><span class="toc-text">3.3.2 更新节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-3-Highway-Networks"><span class="toc-text">3.3.3 Highway Networks</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="toc-text">五、实验结果</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E4%B8%8ESOTA%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94"><span class="toc-text">5.1 与SOTA模型对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-SGNN%E7%BD%91%E7%BB%9C%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">5.2 SGNN网络的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-HN%E7%BD%91%E7%BB%9C%E5%B1%82%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">5.3 HN网络层的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-Session%E9%95%BF%E5%BA%A6%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-text">5.4 Session长度的影响</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E7%BB%93%E8%AE%BA"><span class="toc-text">六、结论</span></a></li></ol>
   </aside>
 
         
