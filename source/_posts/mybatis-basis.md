@@ -3,7 +3,7 @@ title: MyBatis配置与使用
 excerpt: MyBatis配置文件解析，MyBatis的基本使用
 mathjax: false
 date: 2021-06-21 22:30:22
-tags: ['数据库','MyBatis','SQL']
+tags: ['数据库','MyBatis','SQL','SSM']
 categories: SSM框架
 keywords: MyBatis,SQL,XML配置
 ---
