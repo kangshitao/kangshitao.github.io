@@ -6,7 +6,7 @@
   <link href="http://kangshitao.github.io/atom.xml" rel="self"/>
   
   <link href="http://kangshitao.github.io/"/>
-  <updated>2021-06-22T15:11:02.908Z</updated>
+  <updated>2021-06-29T09:04:15.909Z</updated>
   <id>http://kangshitao.github.io/</id>
   
   <author>
@@ -17,11 +17,32 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Spring5配置与使用</title>
+    <link href="http://kangshitao.github.io/2021/06/27/spring-basis/"/>
+    <id>http://kangshitao.github.io/2021/06/27/spring-basis/</id>
+    <published>2021-06-27T12:06:31.000Z</published>
+    <updated>2021-06-29T09:04:15.909Z</updated>
+    
+    
+    <summary type="html">IOC容器，依赖注入，Bean自动装配，动态代理与AOP，声明式事务，Spring与MyBatis整合</summary>
+    
+    
+    
+    <category term="SSM框架" scheme="http://kangshitao.github.io/categories/SSM%E6%A1%86%E6%9E%B6/"/>
+    
+    
+    <category term="SSM" scheme="http://kangshitao.github.io/tags/SSM/"/>
+    
+    <category term="Spring" scheme="http://kangshitao.github.io/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
     <title>MyBatis配置与使用</title>
     <link href="http://kangshitao.github.io/2021/06/21/mybatis-basis/"/>
     <id>http://kangshitao.github.io/2021/06/21/mybatis-basis/</id>
     <published>2021-06-21T14:30:22.000Z</published>
-    <updated>2021-06-22T15:11:02.908Z</updated>
+    <updated>2021-06-27T12:13:05.870Z</updated>
     
     
     <summary type="html">MyBatis配置文件解析，MyBatis的基本使用</summary>
@@ -33,9 +54,11 @@
     
     <category term="数据库" scheme="http://kangshitao.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
+    <category term="MyBatis" scheme="http://kangshitao.github.io/tags/MyBatis/"/>
+    
     <category term="SQL" scheme="http://kangshitao.github.io/tags/SQL/"/>
     
-    <category term="MyBatis" scheme="http://kangshitao.github.io/tags/MyBatis/"/>
+    <category term="SSM" scheme="http://kangshitao.github.io/tags/SSM/"/>
     
   </entry>
   
@@ -56,9 +79,9 @@
     
     <category term="数据库" scheme="http://kangshitao.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
-    <category term="MySQL" scheme="http://kangshitao.github.io/tags/MySQL/"/>
-    
     <category term="SQL" scheme="http://kangshitao.github.io/tags/SQL/"/>
+    
+    <category term="MySQL" scheme="http://kangshitao.github.io/tags/MySQL/"/>
     
   </entry>
   
@@ -182,9 +205,9 @@
     
     <category term="数据库" scheme="http://kangshitao.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
-    <category term="MySQL" scheme="http://kangshitao.github.io/tags/MySQL/"/>
-    
     <category term="SQL" scheme="http://kangshitao.github.io/tags/SQL/"/>
+    
+    <category term="MySQL" scheme="http://kangshitao.github.io/tags/MySQL/"/>
     
   </entry>
   
@@ -205,9 +228,9 @@
     
     <category term="数据库" scheme="http://kangshitao.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
-    <category term="MySQL" scheme="http://kangshitao.github.io/tags/MySQL/"/>
-    
     <category term="SQL" scheme="http://kangshitao.github.io/tags/SQL/"/>
+    
+    <category term="MySQL" scheme="http://kangshitao.github.io/tags/MySQL/"/>
     
   </entry>
   
@@ -391,25 +414,6 @@
     
     
     <summary type="html">Date类、Calendar类、SimpleDateFormat类、LocalDate、Instant、DateTimeFormatter</summary>
-    
-    
-    
-    <category term="Java" scheme="http://kangshitao.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java学习笔记09(1)-常用类之String</title>
-    <link href="http://kangshitao.github.io/2021/04/03/java-note-0901/"/>
-    <id>http://kangshitao.github.io/2021/04/03/java-note-0901/</id>
-    <published>2021-04-03T13:08:54.000Z</published>
-    <updated>2021-04-18T03:12:12.331Z</updated>
-    
-    
-    <summary type="html">String类，StringBuffer，StringBuilder</summary>
     
     
     
