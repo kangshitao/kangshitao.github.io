@@ -6,7 +6,7 @@
   <link href="http://kangshitao.github.io/atom.xml" rel="self"/>
   
   <link href="http://kangshitao.github.io/"/>
-  <updated>2021-06-29T09:04:15.909Z</updated>
+  <updated>2021-07-02T12:11:48.545Z</updated>
   <id>http://kangshitao.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://kangshitao.github.io/2021/06/27/spring-basis/"/>
     <id>http://kangshitao.github.io/2021/06/27/spring-basis/</id>
     <published>2021-06-27T12:06:31.000Z</published>
-    <updated>2021-06-29T09:04:15.909Z</updated>
+    <updated>2021-07-02T12:11:48.545Z</updated>
     
     
     <summary type="html">IOC容器，依赖注入，Bean自动装配，动态代理与AOP，声明式事务，Spring与MyBatis整合</summary>
@@ -54,9 +54,9 @@
     
     <category term="数据库" scheme="http://kangshitao.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
-    <category term="MyBatis" scheme="http://kangshitao.github.io/tags/MyBatis/"/>
-    
     <category term="SQL" scheme="http://kangshitao.github.io/tags/SQL/"/>
+    
+    <category term="MyBatis" scheme="http://kangshitao.github.io/tags/MyBatis/"/>
     
     <category term="SSM" scheme="http://kangshitao.github.io/tags/SSM/"/>
     
@@ -79,9 +79,9 @@
     
     <category term="数据库" scheme="http://kangshitao.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
-    <category term="SQL" scheme="http://kangshitao.github.io/tags/SQL/"/>
-    
     <category term="MySQL" scheme="http://kangshitao.github.io/tags/MySQL/"/>
+    
+    <category term="SQL" scheme="http://kangshitao.github.io/tags/SQL/"/>
     
   </entry>
   
@@ -205,9 +205,9 @@
     
     <category term="数据库" scheme="http://kangshitao.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
-    <category term="SQL" scheme="http://kangshitao.github.io/tags/SQL/"/>
-    
     <category term="MySQL" scheme="http://kangshitao.github.io/tags/MySQL/"/>
+    
+    <category term="SQL" scheme="http://kangshitao.github.io/tags/SQL/"/>
     
   </entry>
   
@@ -228,9 +228,9 @@
     
     <category term="数据库" scheme="http://kangshitao.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
-    <category term="SQL" scheme="http://kangshitao.github.io/tags/SQL/"/>
-    
     <category term="MySQL" scheme="http://kangshitao.github.io/tags/MySQL/"/>
+    
+    <category term="SQL" scheme="http://kangshitao.github.io/tags/SQL/"/>
     
   </entry>
   
