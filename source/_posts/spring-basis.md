@@ -337,6 +337,13 @@ Spring中将需要实例化的类使用`<bean>`注册为容器中的bean：
 * `scope`：指定该bean的作用域，官方给定了六种作用域，比如`prototype`/`sigleton`等，具体参考下文内容。
 * `autowire`：用于指定自动装配的方式，具体参考下文内容。
 
+如果使用`property`对属性进行配置，其中有两个用于赋值的参数需要注意：
+
+* `value`：表示一个字符串，当参数类型为`String`时需要使用`value`进行赋值。
+* `ref`：传递一个引用类型的变量，当参数的类型为引用类型时，必须使用`ref`进行传值。
+
+
+
 
 
 ## 3.3 import
@@ -2035,6 +2042,8 @@ public void accountPropertyAccess() {}
 
 整合主要是将MyBatis中需要手动创建对象的地方，交给Spring容器去做。我们最后只需要通过容器获取实现类的对象，然后调用相关的方法即可。
 
+我们主要使用[`MyBatis-Spring`](http://mybatis.org/spring/zh/index.html)来整合。
+
 一般来说Spring和MyBatis有三种整合方式：
 
 * 使用`MapperScannerConfigurer`，它会查找类路径下的映射器并自动将它们创建为`MapperFactoryBean`。
@@ -2045,7 +2054,7 @@ public void accountPropertyAccess() {}
 
   > `org.apache.ibatis.session.SqlSession`类是MyBatis中和一个核心接口，它的实现类用于获取Mapper接口的实现类对象。
 
-这里我们主要使用[`MyBatis-Spring`](http://mybatis.org/spring/zh/index.html)来整合，其采用了后两种方式。
+
 
 首先我们需要在Maven配置中导入MyBatis-Spring依赖和spring-jdbc依赖：
 
@@ -2381,6 +2390,42 @@ public class UserMapperImpl extends SqlSessionDaoSupport implements UserMapper{
 
 
 
+## 11.3 方式三：使用MapperScannerConfigurer
+
+
+
+[`MapperScannerConfigurer`](http://mybatis.org/spring/zh/mappers.html#MapperScannerConfigurer)基于反射原理，会自动查找类路径下的映射器（DAO接口）并自动将它们创建为`MapperFactoryBean`。也就是说它会扫描指定包下的所有接口，然后创建各自接口的动态代理类。
+
+`MapperFactoryBean`的出现**为了代替手工使用SqlSessionDaoSupport或SqlSessionTemplate编写数据访问对象(DAO)的代码,使用动态代理实现。**所以使用`MapperScannerConfigurer`的方式省略了前两种方法中手动创建`UserMapper`的步骤。
+
+此时的`spring-dao.xml`文件内容如下：
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 1、DataSource -->
+    <bean>...</bean>
+    <!-- 2、获取SqlSessionFactory对象 -->
+    <bean>...</bean>
+
+    <!-- 3、配置MapperScannerConfigurer -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- a.设置要扫描的包 -->
+        <property name="basePackage" value="com.kang.dao"/>
+        <!-- b.注入sqlSessionFactory -->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+</beans>
+```
+
+在上述配置中，我们设置自动扫描`com.kang.dao`这个包，假如这个包内有一个`UserMapper`接口，则`MapperScannerConfigurer`会使用动态代理自动为我们创建一个`id`为`userMapper`的代理bean对象，在同一个ApplicationContext中（或者是通过`import`引入）我们就可以直接使用这个bean。
+
+
+
 # 十二、声明式事务
 
 参考[Spring事务总结](https://snailclimb.gitee.io/javaguide/#/docs/system-design/framework/spring/Spring%E4%BA%8B%E5%8A%A1%E6%80%BB%E7%BB%93)
@@ -2391,6 +2436,8 @@ Spring中的事务有两种：
 * 声明式事务：使用AOP，在配置文件中配置。
 
 Spring中实现声明式事务同样也包括**XML配置**和**注解**两种方式，其中XML配置主要使用的时`<tx>`标签，注解主要使用的是`@Transactional`注解。
+
+**一般我们需要处理事务是在service层。**
 
 首先我们需要准备POJO类，对应的接口以及接口实现类。
 
@@ -2435,6 +2482,7 @@ public interface UserMapper {
 <!-- 配置声明式事务的步骤 -->
 <!-- 1.开启事务处理功能，配置事务管理器 -->
 <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <!-- 注入数据源 -->
     <constructor-arg ref="dataSource"/>
 </bean>
 
@@ -2452,6 +2500,7 @@ public interface UserMapper {
 
 <!-- 配置事务切入点和通知器 -->
 <aop:config>
+    <!-- 一般处理事务在service层，这里只是做个示例 -->
     <aop:pointcut id="txPointcut" expression="execution(* com.kang.mapper.*.*(..))"/>
     <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
 </aop:config>
