@@ -6,7 +6,7 @@
   <link href="http://kangshitao.github.io/atom.xml" rel="self"/>
   
   <link href="http://kangshitao.github.io/"/>
-  <updated>2021-07-02T12:11:48.545Z</updated>
+  <updated>2021-07-04T14:44:11.705Z</updated>
   <id>http://kangshitao.github.io/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SSM框架整合</title>
+    <link href="http://kangshitao.github.io/2021/07/04/SSM-project/"/>
+    <id>http://kangshitao.github.io/2021/07/04/SSM-project/</id>
+    <published>2021-07-04T11:31:36.000Z</published>
+    <updated>2021-07-04T14:44:11.705Z</updated>
+    
+    
+    <summary type="html">Spring、SpringMVC、MyBatis整合案例</summary>
+    
+    
+    
+    <category term="SSM框架" scheme="http://kangshitao.github.io/categories/SSM%E6%A1%86%E6%9E%B6/"/>
+    
+    
+    <category term="SSM" scheme="http://kangshitao.github.io/tags/SSM/"/>
+    
+    <category term="Spring" scheme="http://kangshitao.github.io/tags/Spring/"/>
+    
+    <category term="SpringMVC" scheme="http://kangshitao.github.io/tags/SpringMVC/"/>
+    
+    <category term="MyBatis" scheme="http://kangshitao.github.io/tags/MyBatis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringMVC总结</title>
+    <link href="http://kangshitao.github.io/2021/07/03/spring-mvc/"/>
+    <id>http://kangshitao.github.io/2021/07/03/spring-mvc/</id>
+    <published>2021-07-03T08:15:45.000Z</published>
+    <updated>2021-07-04T10:39:26.474Z</updated>
+    
+    
+    <summary type="html">SpringMVC工作原理，Controller，拦截器，RestFul，JSON，Ajax</summary>
+    
+    
+    
+    <category term="SSM框架" scheme="http://kangshitao.github.io/categories/SSM%E6%A1%86%E6%9E%B6/"/>
+    
+    
+    <category term="SSM" scheme="http://kangshitao.github.io/tags/SSM/"/>
+    
+    <category term="SprinMVC" scheme="http://kangshitao.github.io/tags/SprinMVC/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring5配置与使用</title>
@@ -52,13 +98,13 @@
     <category term="SSM框架" scheme="http://kangshitao.github.io/categories/SSM%E6%A1%86%E6%9E%B6/"/>
     
     
-    <category term="数据库" scheme="http://kangshitao.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-    <category term="SQL" scheme="http://kangshitao.github.io/tags/SQL/"/>
+    <category term="SSM" scheme="http://kangshitao.github.io/tags/SSM/"/>
     
     <category term="MyBatis" scheme="http://kangshitao.github.io/tags/MyBatis/"/>
     
-    <category term="SSM" scheme="http://kangshitao.github.io/tags/SSM/"/>
+    <category term="数据库" scheme="http://kangshitao.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    <category term="SQL" scheme="http://kangshitao.github.io/tags/SQL/"/>
     
   </entry>
   
@@ -376,44 +422,6 @@
     
     
     <summary type="html">自定义枚举类、enum、注解(Annotation)</summary>
-    
-    
-    
-    <category term="Java" scheme="http://kangshitao.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java学习笔记09(3)-常用类之Java比较器和其他常用类</title>
-    <link href="http://kangshitao.github.io/2021/04/05/java-note-0903/"/>
-    <id>http://kangshitao.github.io/2021/04/05/java-note-0903/</id>
-    <published>2021-04-05T07:05:13.000Z</published>
-    <updated>2021-04-28T13:04:59.530Z</updated>
-    
-    
-    <summary type="html">Comparable与Comparator接口、System类、Math类、BigInteger与BigDecimal</summary>
-    
-    
-    
-    <category term="Java" scheme="http://kangshitao.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java学习笔记09(2)-常用类之日期类</title>
-    <link href="http://kangshitao.github.io/2021/04/04/java-note-0902/"/>
-    <id>http://kangshitao.github.io/2021/04/04/java-note-0902/</id>
-    <published>2021-04-04T11:34:14.000Z</published>
-    <updated>2021-04-16T13:21:36.682Z</updated>
-    
-    
-    <summary type="html">Date类、Calendar类、SimpleDateFormat类、LocalDate、Instant、DateTimeFormatter</summary>
     
     
     
