@@ -664,7 +664,7 @@ Extra包括以下几个值：
 
 * <font color='red'>Using filesort</font>：说明MySQL会对数据使用一个外部的索引排序，而不是按照表内的索引顺序进行读取。MySQL无法利用索引完成的排序操作称作”文件排序“。出现这种情况会严重拖慢效率。比如对col1和col2两列建立复合索引，但是select中的ORDER BY子句不是按照col1和col2的顺序排序，就会导致索引失效，并出现using filesort。
 * <font color='red'>Using temporary</font>：说明使用了临时表保存中间结果，MySQL对查询结果排序时使用临时表。常见于排序ORDER BY和分组GROUP BY。这种情况比Using filesort还要糟糕。
-* <font color='green'>Using temporary</font>：表示相应的select操作中使用了索引覆盖，避免了访问表的数据行，是我们希望看到的。其中，如果同时出现了using where，表示索引被用来根据索引键值查找数据（即根据索引值判断数据是否是符合条件的值）。如果没有同时出现using where，表示索引用来读取数据（仅读取索引值），而非执行查找动作。
+* <font color='green'>Using index</font>：表示相应的select操作中使用了索引覆盖，避免了访问表的数据行，是我们希望看到的。其中，如果同时出现了using where，表示索引被用来根据索引键值查找数据（即根据索引值判断数据是否是符合条件的值）。如果没有同时出现using where，表示索引用来读取数据（仅读取索引值），而非执行查找动作。
 * Using where：表明使用了where过滤。
 * using join buffer：使用了连接缓存。
 * impossible where：表明where子句的值总是false，不会有符合条件的数据。
