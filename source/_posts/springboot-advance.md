@@ -139,9 +139,7 @@ protected AutoConfigurationEntry getAutoConfigurationEntry(
 
   * ![](https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/springboot-advance_3.png)
 
-    
-
-    当前版本一共131个需要自动装配的类，没有第三方starter时，他们都是来自`spring-boot-autoconfigure-2.5.2`包里的`META-INF/spring.factories`文件。这个自动配置包里面规定了SpringBoot自动配置的一些属性，其中的`EnableAutoConfiguration`属性就是所有要自动装配的类，如图。
+  * 当前版本一共131个需要自动装配的类，没有第三方starter时，他们都是来自`spring-boot-autoconfigure-2.5.2`包里的`META-INF/spring.factories`文件。这个自动配置包里面规定了SpringBoot自动配置的一些属性，其中的`EnableAutoConfiguration`属性就是所有要自动装配的类，如图。
 
     ![META-INF/spring.factories里配置的需要自动装配的类](https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/springboot-advance_4.png)
 
