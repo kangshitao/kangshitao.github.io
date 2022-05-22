@@ -201,8 +201,8 @@
       </tags>
   </entry>
   <entry>
-    <title>Ubuntu20安装MySQL8.md</title>
-    <url>/2022/05/22/Ubuntu20-install-mysql8-md/</url>
+    <title>Ubuntu20安装MySQL8</title>
+    <url>/2022/05/22/Ubuntu20-install-mysql8/</url>
     <content><![CDATA[<h2 id="一、版本信息"><a href="#一、版本信息" class="headerlink" title="一、版本信息"></a>一、版本信息</h2><p>系统：<code>Ubuntu 20.04.4</code></p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><code class="hljs bash">root@LAPTOP-4LK64UFH:/etc<span class="hljs-comment"># lsb_release -a</span><br>No LSB modules are available.<br>Distributor ID: Ubuntu<br>Description:    Ubuntu 20.04.4 LTS<br>Release:        20.04<br>Codename:       focal<br></code></pre></td></tr></tbody></table></figure>
 <p>MySQL：<code>8.0.29</code></p>
