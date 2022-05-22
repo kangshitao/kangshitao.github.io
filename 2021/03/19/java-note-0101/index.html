@@ -1,0 +1,620 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Java学习笔记01-Java语言概述 - Live And Learn</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="hexo-blog,live and learn,kangshitao, Java概述,Java">
+  <meta name="description" content="一、软件开发介绍1、常用的DOS命令
+dir：列出当前...">
+  <meta name="author" content="Kangshitao">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/atelier-heath-light.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/monokai-sublime.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg',
+        wechat: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '心之所向，素履以往',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'normal'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Live And Learn" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">Java学习笔记01-Java语言概述</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_6.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">Java学习笔记01-Java语言概述</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>三月 19, 2021</span>
+      
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2021/03/19/java-note-0101/" class="leancloud" data-flag-title="Java学习笔记01-Java语言概述"></span>
+        </span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2430</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="一、软件开发介绍"><a href="#一、软件开发介绍" class="headerlink" title="一、软件开发介绍"></a>一、软件开发介绍</h1><h2 id="1、常用的DOS命令"><a href="#1、常用的DOS命令" class="headerlink" title="1、常用的DOS命令"></a>1、常用的DOS命令</h2><ul>
+<li>dir：列出当前目录下的文件以及文件夹</li>
+<li>md：创建目录</li>
+<li>rd：删除目录</li>
+<li>cd：进入指定目录</li>
+<li>cd..：退回到上一级目录</li>
+<li>cd\：退回到根目录</li>
+<li>del：删除文件</li>
+<li>exit：退出dos命令行</li>
+<li>echo：输出内容</li>
+</ul>
+<h2 id="2、常用快捷键"><a href="#2、常用快捷键" class="headerlink" title="2、常用快捷键"></a>2、常用快捷键</h2><ul>
+<li>← →：移动光标</li>
+<li>↑ ↓：调阅历史操作命令</li>
+<li>Delete和Backspace：删除字符</li>
+</ul>
+<h1 id="二、计算机编程语言介绍"><a href="#二、计算机编程语言介绍" class="headerlink" title="　二、计算机编程语言介绍"></a>　二、计算机编程语言介绍</h1><ul>
+<li>机器语言</li>
+<li>汇编语言</li>
+<li>高级语言：<ul>
+<li>C、Pascal、Fortran面向过程的语言</li>
+<li>C++面向过程/面向对象</li>
+<li>Java跨平台的纯面向对象的语言</li>
+<li>.NET跨语言的平台</li>
+<li>Python、Scala</li>
+</ul>
+</li>
+</ul>
+<h1 id="三、Java语言概述"><a href="#三、Java语言概述" class="headerlink" title="三、Java语言概述"></a>三、Java语言概述</h1><h2 id="1、Java语言简史"><a href="#1、Java语言简史" class="headerlink" title="1、Java语言简史"></a>1、Java语言简史</h2><ul>
+<li>1991年Green项目，开发语言最初命名为Oak (橡树)</li>
+<li>1994年，开发组意识到Oak非常适合于互联网</li>
+<li>1996年，发布JDK 1.0，约8.3万个网页应用Java技术来制作</li>
+<li>1997年，发布JDK1.1，JavaOne会议召开，创当时全球同类会议规模之最</li>
+<li>1998年，发布JDK 1.2，同年发布企业平台J2EE</li>
+<li>1999年，Java分成J2SE、J2EE和J2ME，JSP/Servlet技术诞生</li>
+<li><strong>2004年，发布里程碑式版本：JDK1.5，为突出此版本的重要性，更名为JDK 5.0</strong></li>
+<li>2005年，J2SE-&gt; JavaSE，J2EE-&gt; JavaEE，J2ME-&gt; JavaME</li>
+<li>2009年，Oracle公司收购SUN，交易价格74亿美元</li>
+<li>2011年，发布JDK 7.0</li>
+<li><strong>2014年，发布JDK8.0，是继JDK 5.0以来变化最大的版本</strong></li>
+<li>2017年，发布JDK9.0，最大限度实现模块化</li>
+<li>2018年3月，发布JDK10.0，版本号也称为18.3</li>
+<li>2018年9月，发布JDK 11.0，版本号也称为18.9</li>
+</ul>
+<h2 id="2、Java技术平台"><a href="#2、Java技术平台" class="headerlink" title="2、Java技术平台"></a>2、Java技术平台</h2><ul>
+<li><strong>Java SE(Java Standard Edition)标准版</strong>：支持面向桌面级应用（如Windows下的应用程序）的Java平台，提供了完整的Java核心API，此版本以前称为J2SE。</li>
+<li><strong>Java EE(Java Enterprise Edition)企业版</strong>：是为开发企业环境下的应用程序提供的一套解决方案。该技术体系中包含的技术如:Servlet、Jsp等，主要针对于Web应用程序开发。版本以前称为J2EE。</li>
+<li>Java ME(Java Micro Edition) 小型版</li>
+<li>Java Card</li>
+</ul>
+<h1 id="四、运行机制及运行过程"><a href="#四、运行机制及运行过程" class="headerlink" title="四、运行机制及运行过程"></a>四、运行机制及运行过程</h1><h2 id="1、Java语言的特点"><a href="#1、Java语言的特点" class="headerlink" title="1、Java语言的特点"></a>1、Java语言的特点</h2><ol>
+<li><strong>面向对象</strong>：<ul>
+<li>两个基本概念：类、对象</li>
+<li>三大特征：封装、继承、多态</li>
+</ul>
+</li>
+<li>健壮性：吸收C/C++的优点，去掉了其指针、内存的申请和释放等，提供了相对安全的内存管理和访问机制。</li>
+<li>跨平台性：“Write once，Run AnyWhere”，只需要在运行Java应用程序的操作系统上，先安装Java虚拟机(JVM,<strong>J</strong>ava <strong>V</strong>irtual <strong>M</strong>achine)即可。由JVM负责Java程序在系统中的运行。、</li>
+</ol>
+<h2 id="2、Java两种核心机制"><a href="#2、Java两种核心机制" class="headerlink" title="2、Java两种核心机制"></a>2、Java两种核心机制</h2><ul>
+<li>Java虚拟机（Java Virtual Machine）</li>
+<li>垃圾收集机制（Garbage Collection）</li>
+</ul>
+<h2 id="3、Java运行过程"><a href="#3、Java运行过程" class="headerlink" title="3、Java运行过程"></a>3、Java运行过程</h2><p>`<em>.java <code>文件经过编译生成</code>\</em> .class`文件（字节码文件），然后执行</p>
+<h1 id="五、Java的环境搭建"><a href="#五、Java的环境搭建" class="headerlink" title="五、Java的环境搭建"></a>五、Java的环境搭建</h1><h2 id="1、环境搭建"><a href="#1、环境搭建" class="headerlink" title="1、环境搭建"></a>1、环境搭建</h2><ul>
+<li>下载JDK并安装JDK</li>
+<li>配置环境变量（为了在任何目录下都能执行java命令）</li>
+<li>使用<code>javac java</code>命令验证是否安装成功</li>
+<li>使用编辑器或IDE开发</li>
+</ul>
+<h2 id="2、JDK、JRE、JVM"><a href="#2、JDK、JRE、JVM" class="headerlink" title="2、JDK、JRE、JVM"></a>2、JDK、JRE、JVM</h2><ul>
+<li>JDK（Java Development Kit  Java开发工具包）。JDK是提供给Java开发人员使用的，包含了Java的开发工具（比如编译工具（javac.exe）、打包工具（jar.exe）等），也包含了JRE，安装了JDK就不用再安装JRE。</li>
+<li>JRE（Java Runtime Environment Java运行环境）。包括JVM和Java程序所需的核心类库等。只安装JRE就能够运行Java程序。</li>
+<li>JVM（Java Virtual Machine）是一个虚拟的计算机，具有指令集并使用不同的存储区域。负责执行指令，管理数据、内存、寄存器。</li>
+</ul>
+<blockquote>
+<p><strong>JDK = JRE+开发工具集（例如Javac编译工具等）</strong></p>
+<p><strong>JRE = JVM+Java SE标准类库</strong></p>
+</blockquote>
+<p>Java SE 8概要图<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/">Java Platform Standard Edition 8 Documentation</a>：</p>
+<div align='center'>
+    <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/java-note-0101_1.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" />
+</div>
+
+<h1 id="六、运行HelloWorld"><a href="#六、运行HelloWorld" class="headerlink" title="六、运行HelloWorld"></a>六、运行HelloWorld</h1><p>搭建好java环境后，可以在dos窗口编译运行Java程序。</p>
+<ul>
+<li>将Java代码编写到扩展名为.java的文件中。</li>
+<li>通过javac命令对该java文件进行编译。</li>
+<li>通过java命令对生成的class文件进行运行。</li>
+</ul>
+<blockquote>
+<p>注意：</p>
+<p>1、Java应用程序的执行入口是main()方法。它有固定的书写格式：</p>
+<p>​                    public static void main ( String[]args )  {……}</p>
+<p>2、<strong>一个源文件中只能有一个public类</strong>。其他类的个数不限，如果源文件中包含一个public类，则文件名必须按照该类名命名。</p>
+</blockquote>
+<h1 id="七、注释-Comment"><a href="#七、注释-Comment" class="headerlink" title="七、注释(Comment)"></a>七、注释(Comment)</h1><ol>
+<li><p>单行注释：<code>//注释内容</code></p>
+</li>
+<li><p>多行注释：<code>/*注释内容*/</code></p>
+</li>
+<li><p>文档注释（Java特有）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">	<span class="hljs-doctag">@author</span> 指定程序作者</span><br><span class="hljs-comment">	<span class="hljs-doctag">@version</span> 指定源文件版本</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="八、Java-API文档"><a href="#八、Java-API文档" class="headerlink" title="八、Java API文档"></a>八、Java API文档</h1><p><strong>API(Application Programming Interface,应用程序编程接口)</strong>是Java提供的基本编程接口。</p>
+<p>JDK下载链接：<a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/javase-downloads.html">https://www.oracle.com/java/technologies/javase-downloads.html</a></p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Kangshitao</li>
+    <li><strong>本文链接：</strong><a href="http://kangshitao.github.io/2021/03/19/java-note-0101/index.html" title="http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2021&#x2F;03&#x2F;19&#x2F;java-note-0101&#x2F;index.html">http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2021&#x2F;03&#x2F;19&#x2F;java-note-0101&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/03/19/java-note-0201/"><i class="iconfont iconleft"></i>Java学习笔记02-Java基本语法</a>
+    <a href="/2021/01/02/crawler-wuchizhitu/">Python爬虫-m3u8视频爬取<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+        <section class="comments">
+  
+    <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz",
+        app_key: "XipU873t8gkSypbwl1HWUARD",
+        placeholder: "write comment content...",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+		var title1="text=Live and Learn有新评论啦~ --by Valine"
+		var SCKEY_Server="SCT21455TskriUeyliOqL6kHLhiCOMmlB"
+		var ValineButton=document.getElementsByClassName("vsubmit vbtn")[0];
+		function send_valine_Server(){
+			var text="desp=";
+			var pageurl=document.URL;
+			var ptime=new Date();
+			var vnick=document.getElementsByClassName("vnick vinput")[0].value;
+			var veditor=document.getElementsByClassName("veditor vinput")[0].value;
+			var data=text+"|昵称"+"|评论内容"+"|跳转链接"+"|评论时间"+"\n"+"|----|----|----|----|"+"\n"+"|"+vnick+"|"+veditor+"|"+pageurl+"|" +ptime.toLocaleString()+"|";
+			var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+			httpRequest.open('POST', 'https://sctapi.ftqq.com/'+SCKEY_Server+'.send', true); //第二步：打开连接
+			httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）
+			httpRequest.send(title1+"&"+data);//发送请求 将请头体体写在send中
+		};
+		ValineButton.onclick=send_valine_Server;
+      });
+    } else {
+      loadValine();
+    }
+  };
+ 
+</script>
+
+
+</section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E4%BB%8B%E7%BB%8D"><span class="toc-text">一、软件开发介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%B8%B8%E7%94%A8%E7%9A%84DOS%E5%91%BD%E4%BB%A4"><span class="toc-text">1、常用的DOS命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-text">2、常用快捷键</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%BB%8B%E7%BB%8D"><span class="toc-text">　二、计算机编程语言介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81Java%E8%AF%AD%E8%A8%80%E6%A6%82%E8%BF%B0"><span class="toc-text">三、Java语言概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81Java%E8%AF%AD%E8%A8%80%E7%AE%80%E5%8F%B2"><span class="toc-text">1、Java语言简史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81Java%E6%8A%80%E6%9C%AF%E5%B9%B3%E5%8F%B0"><span class="toc-text">2、Java技术平台</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%E5%8F%8A%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="toc-text">四、运行机制及运行过程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81Java%E8%AF%AD%E8%A8%80%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">1、Java语言的特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81Java%E4%B8%A4%E7%A7%8D%E6%A0%B8%E5%BF%83%E6%9C%BA%E5%88%B6"><span class="toc-text">2、Java两种核心机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81Java%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="toc-text">3、Java运行过程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81Java%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-text">五、Java的环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-text">1、环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81JDK%E3%80%81JRE%E3%80%81JVM"><span class="toc-text">2、JDK、JRE、JVM</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E8%BF%90%E8%A1%8CHelloWorld"><span class="toc-text">六、运行HelloWorld</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E6%B3%A8%E9%87%8A-Comment"><span class="toc-text">七、注释(Comment)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AB%E3%80%81Java-API%E6%96%87%E6%A1%A3"><span class="toc-text">八、Java API文档</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1574716653 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/kangshitao "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#24292E'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:1574716653@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">Total:
+  <span id="busuanzi_value_site_pv" style="font-size:12px;"></span></span>
+  <span id="busuanzi_container_site_uv" >| Visitors:
+  <span id="busuanzi_value_site_uv" style="font-size:12px;"></span></span>
+  </div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+  
+  
+<script src="/js/clicklove.js"></script>
+<!-- 页面点击小红心 -->
+  
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz',
+      appKey: 'XipU873t8gkSypbwl1HWUARD',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud").each(async (e) => {
+        const url = $(".leancloud").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud").eq(e).text(count ? count : '--');
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud").length === 1 ? $(".leancloud").attr('id').trim() : 'http://kangshitao.github.io';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    $(function () {
+	  const Counter = AV.Object.extend("Counter");
+	  showCount(Counter);
+      const localhost = /http\:\/\/localhost|http\:\/\/127.0.0.1|http\:\/\/0.0.0.0/;
+      if (localhost.test(document.URL)) {
+	    return;
+	  }
+	  addCount(Counter);
+    });
+  });
+</script>
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <script>
+    window.ga = window.ga || function () {
+      (ga.q = ga.q || []).push(arguments)
+    };
+    ga.l = +new Date;
+    ga('create', 'G-0FZTGJZNYS', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,631 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Java学习笔记07-异常处理 - Live And Learn</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="hexo-blog,live and learn,kangshitao, Java,Java异常处理,异常类">
+  <meta name="description" content="一、异常概述与异常体系结构1、异常概述Java中的异常...">
+  <meta name="author" content="Kangshitao">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/atelier-heath-light.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/monokai-sublime.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg',
+        wechat: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '心之所向，素履以往',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'normal'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Live And Learn" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">Java学习笔记07-异常处理</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_5.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">Java学习笔记07-异常处理</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>三月 26, 2021</span>
+      
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2021/03/26/java-note-0701/" class="leancloud" data-flag-title="Java学习笔记07-异常处理"></span>
+        </span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3963</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="一、异常概述与异常体系结构"><a href="#一、异常概述与异常体系结构" class="headerlink" title="一、异常概述与异常体系结构"></a>一、异常概述与异常体系结构</h1><h2 id="1、异常概述"><a href="#1、异常概述" class="headerlink" title="1、异常概述"></a>1、异常概述</h2><p>Java中的异常可以分为两类：</p>
+<ul>
+<li><code>Error</code>：Java虚拟机无法解决的严重问题，如：JVM系统内部错误、资源耗尽等严重情况。比如<code>StackOverflowError</code>和<code>OOM</code>。对于这类异常一般不编写针对性代码进行处理。</li>
+<li><code>Exception</code>：其他因编程错误或偶然的外在因素导致的一般性问题。可以使用针对性代码进行处理，如<ul>
+<li>空指针异常：<code>NullPointerException</code></li>
+<li>读取不存在的文件：<code>FileNotFoundException</code></li>
+<li>类型转换异常：<code>ClassCastException</code></li>
+<li>数组索引越界：<code>ArrayIndexOutOfBoundException</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="2、异常体系结构"><a href="#2、异常体系结构" class="headerlink" title="2、异常体系结构"></a>2、异常体系结构</h2><p>Java中的异常体系结构如下：</p>
+<p><code>java.lang.Throwable</code>有以下继承关系:</p>
+<ul>
+<li><p><code>java.lang.Error</code>：</p>
+<ul>
+<li><code>StackOverflowError</code></li>
+<li><code>OutOfMemoryError</code></li>
+<li><code>...</code></li>
+</ul>
+</li>
+<li><p><code>java.lang.Exception</code>：</p>
+<ul>
+<li><code>ClassNotFoundException</code></li>
+<li><code>CloneNotSupportedException</code></li>
+<li><p><code>IOException</code>：</p>
+<ul>
+<li><code>EOFException</code></li>
+<li><code>FileNotFoundException</code></li>
+<li><code>MalformedURLException</code></li>
+<li><code>UnknowHostException</code></li>
+<li><code>...</code></li>
+</ul>
+</li>
+<li><p><code>RuntimeException</code>:</p>
+<ul>
+<li><code>ArithmeticException</code>：除数是0时报此异常</li>
+<li><code>ClassCastException</code></li>
+<li><code>IllegalArgumentException</code></li>
+<li><code>IllegalStateException</code></li>
+<li><code>IndexOutOfBoundsException</code></li>
+<li><code>NoSuchElementException</code></li>
+<li><code>NullPointerException</code></li>
+<li><code>...</code></li>
+</ul>
+</li>
+<li><code>...</code></li>
+</ul>
+</li>
+</ul>
+<p>可以看到，<code>Throwable</code>是异常体系的根父类，其有<code>Error</code>和<code>Exception</code>两个子类，<code>Exception</code>分为<strong>运行时异常(RuntimeException)</strong>和<strong>编译时异常(IOException等)</strong>，其中<strong>运行时异常</strong>又可以称为<strong>非受检(unchecked)异常</strong>，<strong>编译时异常</strong>称为<strong>受检(checked)异常</strong>。</p>
+<h2 id="3、异常处理"><a href="#3、异常处理" class="headerlink" title="3、异常处理"></a>3、异常处理</h2><p>Java中对于异常处理使用的<strong>抓抛模型</strong>：</p>
+<ul>
+<li>第一步，“抛”出异常：执行过程中，一旦出现异常，会在代码处生成一个对应异常类的对象，并将此对象抛出，一旦抛出异常对象以后，其后的代码不再执行。<ul>
+<li>抛出异常有两种方式：①系统自动生成异常对象并自动抛出。②手动生成异常对象并抛出(<code>throw</code>)</li>
+</ul>
+</li>
+<li>第二步，“抓”住异常(<strong>捕获(catch)异常</strong>)，即异常的处理。<ul>
+<li>对于异常处理有两种方法：①<code>try-catch-finally</code>。②使用<code>throws</code>将异常交给方法调用者处理。</li>
+</ul>
+</li>
+</ul>
+<h1 id="二、异常处理机制之一：try-catch-finally"><a href="#二、异常处理机制之一：try-catch-finally" class="headerlink" title="二、异常处理机制之一：try-catch-finally"></a>二、异常处理机制之一：try-catch-finally</h1><h2 id="1、try-catch的使用"><a href="#1、try-catch的使用" class="headerlink" title="1、try-catch的使用"></a>1、try-catch的使用</h2><p><code>try-catch-finally</code>的使用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java">    <span class="hljs-keyword">try</span>&#123;<br>        <span class="hljs-comment">//可能出现异常的代码</span><br>    &#125;<span class="hljs-keyword">catch</span>(异常类型<span class="hljs-number">1</span> 变量名<span class="hljs-number">1</span>)&#123;<br>        <span class="hljs-comment">//处理异常的方式1</span><br>    &#125;<span class="hljs-keyword">catch</span>(异常类型<span class="hljs-number">2</span> 变量名<span class="hljs-number">2</span>)&#123;<br>        <span class="hljs-comment">//处理异常的方式2</span><br>    &#125;<span class="hljs-keyword">catch</span>(异常类型<span class="hljs-number">3</span> 变量名<span class="hljs-number">3</span>)&#123;<br>        <span class="hljs-comment">//处理异常的方式3</span><br>    &#125;<br>    ......<br>    <span class="hljs-keyword">finally</span>&#123;<br>        <span class="hljs-comment">//一定会执行的代码</span><br>    &#125;<br><br><span class="hljs-comment">//例如：</span><br>	<span class="hljs-keyword">try</span>&#123;<br>       ...<span class="hljs-comment">//读取文件的语句</span><br>    &#125;<span class="hljs-keyword">catch</span>(IOException e)&#123;<br>        System.out.println(e.getMessage());<br>    &#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li><code>finally</code>是可选的，<code>try-catch-finally</code>结构可以嵌套。</li>
+<li>使用<code>try</code>将可能出现异常的代码包装起来，一旦出现异常，会生成一个对应异常类的对象，根据此对象的类型，去<code>catch</code>中匹配。</li>
+<li><code>try</code>中的异常对象匹配到某个<code>catch</code>时，就进入<code>catch</code>中处理，处理完成后，跳出<code>try-catch</code>结构(没有<code>finally</code>时)，继续执行其后的代码</li>
+<li>catch中的异常类型如果没有子父类关系，则多个<code>catch</code>无关顺序。如果多个<code>catch</code>的异常类型有子父类关系，需要将子类写在父类的前面，否则出错。比如<code>NullPointerException</code>必须写在<code>RuntimeException</code>前面。</li>
+<li>常用的异常对象处理的方式：<ul>
+<li><code>Sting getMessage()</code>：获取异常信息，返回字符串。</li>
+<li><code>printStackTrace()</code>：获取异常类名和异常信息，以及异常出现在程序中的位置，返回值<code>void</code>。</li>
+</ul>
+</li>
+<li><code>try</code>结构中声明的变量，在<code>try</code>结构外面不能调用。可以将变量声明在外面，在<code>try</code>结构中赋值。</li>
+</ul>
+<h2 id="2、finally"><a href="#2、finally" class="headerlink" title="2、finally"></a>2、finally</h2><p><code>finally</code>的用法：</p>
+<ul>
+<li><code>finally</code>中声明的是一定会被执行的代码。即使<code>catch</code>中又出现异常、<code>try</code>中有<code>return</code>语句、<code>catch</code>中有<code>return</code>语句，<code>finally</code>中的语句也会执行。</li>
+<li>数据库连接、输入输出流、网络编程Socket等资源，JVM不能自动回收，需要手动进行资源的释放。此时的资源释放，需要声明在<code>finally</code>中。</li>
+</ul>
+<h2 id="3、不捕获异常的情况"><a href="#3、不捕获异常的情况" class="headerlink" title="3、不捕获异常的情况"></a>3、不捕获异常的情况</h2><ul>
+<li>使用<code>try-catch-finally</code>处理编译时异常，使程序在编译时不报错，但运行时仍可能报错。相当于使用<code>try-catch-finally</code>将<strong>编译时</strong>可能出现的异常延迟到<strong>运行时</strong>出现。</li>
+<li>由于运行时异常比较常见，Java能够自动捕获，因此，对于运行时异常，通常不使用<code>try-catch</code>结构捕获。而对于<strong>编译时异常，必须进行异常处理(捕获异常)</strong>。</li>
+</ul>
+<h1 id="三、异常处理机制之二：throws"><a href="#三、异常处理机制之二：throws" class="headerlink" title="三、异常处理机制之二：throws"></a>三、异常处理机制之二：throws</h1><h2 id="1、throws的使用"><a href="#1、throws的使用" class="headerlink" title="1、throws的使用"></a>1、throws的使用</h2><p>使用<code>throws</code>声明抛出异常是处理异常的第二种方式。如果一个方法中可能生成某种异常，但不能确定如何处理这种异常，就可以使用<code>throws</code>显式地声明抛出异常，表示该方法不对这些异常处理，而是由调用者负责处理。</p>
+<p>当方法体执行时出现异常，会在异常代码处生成一个异常类对象，如果此对象满足throws后的异常类型，就会被抛出(抛给方法的调用者)，异常代码后面的语句不再执行。</p>
+<p><code>throws</code>的使用格式为：<code>throws 异常类型</code>，写在方法声明处的方法名后面。</p>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> FileNotFoundException, IOException</span>&#123;<br>    <span class="hljs-comment">//读取文件的语句</span><br>    File file = <span class="hljs-keyword">new</span> File(<span class="hljs-string">&quot;xxx.txt&quot;</span>);<br>    ...<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>可以同时声明多个类型的抛出异常。</p>
+<p>对于重写的方法，子类重写的方法抛出的异常<strong>不大于</strong>父类被重写的方法抛出的异常类型。</p>
+</blockquote>
+<h2 id="2、throws和try-catch"><a href="#2、throws和try-catch" class="headerlink" title="2、throws和try-catch"></a>2、throws和try-catch</h2><p><code>throws</code>和<code>try-catch</code>都是异常处理的两种方式，其区别是：</p>
+<ul>
+<li><code>try-catch-finally</code>真正地将异常处理掉了。</li>
+<li><code>throws</code>的方式只是将异常抛给了方法的调用者，没有真正地处理掉异常。</li>
+</ul>
+<p>如何选择两种处理方式？</p>
+<ul>
+<li>如果父类中被重写的方法没有<code>throws</code>方式处理异常，则子类重写的方法不能使用<code>throws</code>，如果有异常只能使用<code>try-catch-finally</code>的方式。</li>
+<li>如果执行的方法a中先后调用了另外的几个递进关系的方法，建议这几个方法使用<code>throws</code>处理异常，而方法a使用<code>try-catch-finally</code>。</li>
+</ul>
+<h1 id="四、手动抛出异常：throw"><a href="#四、手动抛出异常：throw" class="headerlink" title="四、手动抛出异常：throw"></a>四、手动抛出异常：throw</h1><p>Java异常类对象除了系统自动生成以外，还可以手动创建异常类对象并抛出。需要先声明异常类对象，然后通过throw语句抛出：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">IOException e = <span class="hljs-keyword">new</span> IOException();  <span class="hljs-comment">//创建异常类对象</span><br><span class="hljs-keyword">throw</span> e;  <span class="hljs-comment">//将异常类对象抛出</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>手动抛出异常的方式，可以用在<code>try-catch</code>结构里和使用了<code>throws</code>的方法中。</p>
+</blockquote>
+<p><code>throw</code>的应用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//场景一：</span><br><span class="hljs-keyword">try</span> &#123;<br>    System.out.println(<span class="hljs-string">&quot;try&quot;</span>);<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">&quot;制造异常&quot;</span>);<br>&#125; <span class="hljs-keyword">catch</span>&#123;<br>    System.out.println(<span class="hljs-string">&quot;catch&quot;</span>);<br>&#125;<br><span class="hljs-comment">//场景二：</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method</span><span class="hljs-params">(<span class="hljs-keyword">int</span> id)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>    <span class="hljs-keyword">if</span>(xxx)&#123;<br>        <span class="hljs-comment">//执行语句</span><br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-comment">//手动抛出异常对象</span><br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">&quot;您输入的数据非法！&quot;</span>);<br>        <span class="hljs-comment">//throw new MyException(&quot;不能输入负数&quot;);  //抛出自定义异常类对象</span><br>    &#125;<br></code></pre></td></tr></table></figure>
+<h1 id="五、自定义异常类"><a href="#五、自定义异常类" class="headerlink" title="五、自定义异常类"></a>五、自定义异常类</h1><p>一般来说，自定义异常类都是<code>RuntimeException</code>、<code>Exception</code>的子类，过程如下：</p>
+<ul>
+<li>编写重载的构造器。</li>
+<li>提供<code>serialVersionUID</code></li>
+<li>通过<code>throw</code>抛出异常类对象</li>
+</ul>
+<p>以下是自定义类的举例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">RuntimeException</span></span>&#123;<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = -<span class="hljs-number">1234567890L</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyException</span><span class="hljs-params">()</span></span>&#123;&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyException</span><span class="hljs-params">(String msg)</span></span>&#123;<br>        <span class="hljs-keyword">super</span>(msg);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Kangshitao</li>
+    <li><strong>本文链接：</strong><a href="http://kangshitao.github.io/2021/03/26/java-note-0701/index.html" title="http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2021&#x2F;03&#x2F;26&#x2F;java-note-0701&#x2F;index.html">http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2021&#x2F;03&#x2F;26&#x2F;java-note-0701&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/04/03/java-note-0801/"><i class="iconfont iconleft"></i>Java学习笔记08-多线程</a>
+    <a href="/2021/03/26/java-note-0601/">Java学习笔记06-面向对象编程(下)<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+        <section class="comments">
+  
+    <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz",
+        app_key: "XipU873t8gkSypbwl1HWUARD",
+        placeholder: "write comment content...",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+		var title1="text=Live and Learn有新评论啦~ --by Valine"
+		var SCKEY_Server="SCT21455TskriUeyliOqL6kHLhiCOMmlB"
+		var ValineButton=document.getElementsByClassName("vsubmit vbtn")[0];
+		function send_valine_Server(){
+			var text="desp=";
+			var pageurl=document.URL;
+			var ptime=new Date();
+			var vnick=document.getElementsByClassName("vnick vinput")[0].value;
+			var veditor=document.getElementsByClassName("veditor vinput")[0].value;
+			var data=text+"|昵称"+"|评论内容"+"|跳转链接"+"|评论时间"+"\n"+"|----|----|----|----|"+"\n"+"|"+vnick+"|"+veditor+"|"+pageurl+"|" +ptime.toLocaleString()+"|";
+			var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+			httpRequest.open('POST', 'https://sctapi.ftqq.com/'+SCKEY_Server+'.send', true); //第二步：打开连接
+			httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）
+			httpRequest.send(title1+"&"+data);//发送请求 将请头体体写在send中
+		};
+		ValineButton.onclick=send_valine_Server;
+      });
+    } else {
+      loadValine();
+    }
+  };
+ 
+</script>
+
+
+</section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%BC%82%E5%B8%B8%E6%A6%82%E8%BF%B0%E4%B8%8E%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="toc-text">一、异常概述与异常体系结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%BC%82%E5%B8%B8%E6%A6%82%E8%BF%B0"><span class="toc-text">1、异常概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="toc-text">2、异常体系结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-text">3、异常处理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6%E4%B9%8B%E4%B8%80%EF%BC%9Atry-catch-finally"><span class="toc-text">二、异常处理机制之一：try-catch-finally</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81try-catch%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">1、try-catch的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81finally"><span class="toc-text">2、finally</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E4%B8%8D%E6%8D%95%E8%8E%B7%E5%BC%82%E5%B8%B8%E7%9A%84%E6%83%85%E5%86%B5"><span class="toc-text">3、不捕获异常的情况</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6%E4%B9%8B%E4%BA%8C%EF%BC%9Athrows"><span class="toc-text">三、异常处理机制之二：throws</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81throws%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">1、throws的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81throws%E5%92%8Ctry-catch"><span class="toc-text">2、throws和try-catch</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%89%8B%E5%8A%A8%E6%8A%9B%E5%87%BA%E5%BC%82%E5%B8%B8%EF%BC%9Athrow"><span class="toc-text">四、手动抛出异常：throw</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8%E7%B1%BB"><span class="toc-text">五、自定义异常类</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1574716653 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/kangshitao "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#24292E'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:1574716653@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">Total:
+  <span id="busuanzi_value_site_pv" style="font-size:12px;"></span></span>
+  <span id="busuanzi_container_site_uv" >| Visitors:
+  <span id="busuanzi_value_site_uv" style="font-size:12px;"></span></span>
+  </div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+  
+  
+<script src="/js/clicklove.js"></script>
+<!-- 页面点击小红心 -->
+  
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz',
+      appKey: 'XipU873t8gkSypbwl1HWUARD',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud").each(async (e) => {
+        const url = $(".leancloud").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud").eq(e).text(count ? count : '--');
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud").length === 1 ? $(".leancloud").attr('id').trim() : 'http://kangshitao.github.io';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    $(function () {
+	  const Counter = AV.Object.extend("Counter");
+	  showCount(Counter);
+      const localhost = /http\:\/\/localhost|http\:\/\/127.0.0.1|http\:\/\/0.0.0.0/;
+      if (localhost.test(document.URL)) {
+	    return;
+	  }
+	  addCount(Counter);
+    });
+  });
+</script>
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <script>
+    window.ga = window.ga || function () {
+      (ga.q = ga.q || []).push(arguments)
+    };
+    ga.l = +new Date;
+    ga('create', 'G-0FZTGJZNYS', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,757 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Java学习笔记04-面向对象编程(上) - Live And Learn</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="hexo-blog,live and learn,kangshitao, Java,面向对象,构造器">
+  <meta name="description" content="一、面向过程和面向对象
+面向过程(Procedure ...">
+  <meta name="author" content="Kangshitao">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/atelier-heath-light.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/monokai-sublime.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg',
+        wechat: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '心之所向，素履以往',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'normal'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Live And Learn" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">Java学习笔记04-面向对象编程(上)</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_14.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">Java学习笔记04-面向对象编程(上)</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>三月 20, 2021</span>
+      
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2021/03/20/java-note-0401/" class="leancloud" data-flag-title="Java学习笔记04-面向对象编程(上)"></span>
+        </span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>8269</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="一、面向过程和面向对象"><a href="#一、面向过程和面向对象" class="headerlink" title="一、面向过程和面向对象"></a>一、面向过程和面向对象</h1><ul>
+<li><p>面向过程(Procedure Oriented Programming)：强调功能行为，以函数为最小单位，考虑怎么做。</p>
+</li>
+<li><p><strong>面向对象(Object Oriented Programming，OOP)</strong>：将功能封装进对象，强调具备了功能的对象，以类/对象为最小单位，考虑谁来做。</p>
+</li>
+</ul>
+<p>面向对象三大特征：<strong>封装(Encapsulation)</strong>、<strong>继承(Inheritance)</strong>、<strong>多态(Polymorphism)</strong></p>
+<h1 id="二、Java基本元素：类和对象"><a href="#二、Java基本元素：类和对象" class="headerlink" title="二、Java基本元素：类和对象"></a>二、Java基本元素：类和对象</h1><ul>
+<li>类是对一类事物的描述，是<strong>抽象</strong>的、概念上的定义</li>
+<li>对象是<strong>实际存在</strong>的该类事物的每个个体，也称为<strong>实例(instance)</strong></li>
+</ul>
+<p>设计类，就是设计类的成员：</p>
+<ul>
+<li><code>属性</code> = <code>成员变量</code> = <code>filed</code> = <code>域</code>、<code>字段</code></li>
+<li><code>方法</code> = <code>成员方法</code> = <code>函数</code> = <code>method</code></li>
+</ul>
+<p>创建类的对象 = 类的实例化 = 实例化类</p>
+<p>创建类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java">修饰符 <span class="hljs-class"><span class="hljs-keyword">class</span> 类名</span>&#123;<br>    属性声明;<br>    方法声明;<br>&#125;<br><span class="hljs-comment">//创建Person类</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>&#123;<br>    <span class="hljs-keyword">int</span> age; <span class="hljs-comment">//成员变量</span><br>    String name; <span class="hljs-comment">//成员变量</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">eat</span><span class="hljs-params">()</span></span>&#123; <span class="hljs-comment">//方法</span><br>        System.out.pringln(<span class="hljs-string">&quot;eat&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="三、对象的创建和使用"><a href="#三、对象的创建和使用" class="headerlink" title="三、对象的创建和使用"></a>三、对象的创建和使用</h1><p>通过 <code>类名 对象名= new 类名();</code>创建对象，通过<code>对象名.对象成员</code>访问对象的属性和方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">Person person = <span class="hljs-keyword">new</span> Person();<br><span class="hljs-keyword">int</span> age = person.age;  <span class="hljs-comment">//访问类的属性</span><br>person.eat();  <span class="hljs-comment">//访问类的方法</span><br></code></pre></td></tr></table></figure>
+<p>类的访问机制：</p>
+<ul>
+<li>同一个类中，类中的方法可以直接访问类中的成员变量（非static）。</li>
+<li>不同类中，需要先创建类的对象，通过对象访问类中的成员。</li>
+</ul>
+<h1 id="四、类的成员之一：属性"><a href="#四、类的成员之一：属性" class="headerlink" title="四、类的成员之一：属性"></a>四、类的成员之一：属性</h1><p>声明格式：<code>修饰符 数据类型 属性名 = 初始化值;</code></p>
+<ul>
+<li>成员变量：方法体外，类内声明的变量。有默认初始值。</li>
+<li>局部变量：方法体内部声明的变量。没有默认初始值，需要显式初始化(形参除外)。</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>成员变量</th>
+<th>局部变量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>声明位置</td>
+<td>直接声明在类中</td>
+<td>方法形参、方法内部、代码块内、构造器内</td>
+</tr>
+<tr>
+<td>修饰符</td>
+<td>private、public、static、final等</td>
+<td>不能用权限修饰符，可以用final修饰</td>
+</tr>
+<tr>
+<td>初始化值</td>
+<td>有默认初始化值(同数组元素初始化)</td>
+<td>无默认初始化值，必须显式赋值才能使用</td>
+</tr>
+<tr>
+<td>内存加载位置</td>
+<td>堆空间或静态域内</td>
+<td>栈空间</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span>()</span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> age; <span class="hljs-comment">//成员变量</span><br>    <span class="hljs-keyword">public</span> String name;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">eat</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">int</span> hour = <span class="hljs-number">3</span>; <span class="hljs-comment">//局部变量</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="五、类的成员之二：方法"><a href="#五、类的成员之二：方法" class="headerlink" title="五、类的成员之二：方法"></a>五、类的成员之二：方法</h1><h2 id="1、方法定义"><a href="#1、方法定义" class="headerlink" title="1、方法定义"></a>1、方法定义</h2><p><code>方法(method)</code>用来完成某个功能，实现代码复用，简化代码。</p>
+<p>Java里的<code>方法</code>不能独立存在，必须定义在类内。</p>
+<p>声明格式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java">修饰符 返回值类型 方法名(参数类型 参数<span class="hljs-number">1</span>,参数类型 参数<span class="hljs-number">2</span>,...)&#123;<br>    方法体;<br>    <span class="hljs-keyword">return</span> 返回值;  <br>    <span class="hljs-comment">//返回值类型为void时，可以没有return语句，或使用return;</span><br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">showInfo</span><span class="hljs-params">()</span></span>&#123;<br>    System.out.println(<span class="hljs-string">&quot;showInfo&quot;</span>);<br>    <span class="hljs-comment">//return;</span><br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getAge</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">return</span> age;<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>方法中只能调用方法或属性，不能在方法内定义方法。</p>
+</blockquote>
+<h2 id="2、方法重载"><a href="#2、方法重载" class="headerlink" title="2、方法重载"></a>2、方法重载</h2><p><code>重载(overload)</code>：同一个类中，功能类似，<code>方法名相同</code>的多个方法。<code>参数列表不同</code>（类型，个数，顺序）。返回值类型可以相同也可以不同，但一般返回值类型是相同的。</p>
+<p><strong>两同一不同</strong>：类、方法名相同，参数列表不同。</p>
+<p>是否重载和权限修饰符、返回值类型、形参变量名、方法体都没有关系。</p>
+<p>举例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OverLoad</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        OverLoad test = <span class="hljs-keyword">new</span> OverLoad();<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getSum</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)</span></span>&#123;&#125; <br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getSum</span><span class="hljs-params">(<span class="hljs-keyword">double</span> a, <span class="hljs-keyword">double</span> b)</span></span>&#123;&#125; <span class="hljs-comment">//是重载</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getSum</span><span class="hljs-params">(String s, <span class="hljs-keyword">int</span> i)</span></span>&#123;&#125; <span class="hljs-comment">//是重载</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getSum</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i, String s)</span></span>&#123;&#125; <span class="hljs-comment">//是重载，和上一个也构成重载，顺序不同。</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getSum</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b, <span class="hljs-keyword">int</span> c)</span></span>&#123; <span class="hljs-comment">//是重载，参数个数不同</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getSum</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)</span></span>&#123;<span class="hljs-comment">//不是重载，参数列表相同</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="3、可变个数形参"><a href="#3、可变个数形参" class="headerlink" title="3、可变个数形参"></a>3、可变个数形参</h2><p>JavaSE 5.0提供了Varargs(variable number of arguments)机制，允许直接定义能和多个实参匹配的形参。</p>
+<p>JDK5.0之前，使用数组形参定义方法，传入多个<strong>同一类型</strong>变量:</p>
+<p><code>public static void test(int a, String[] books);</code></p>
+<p>JDK5.0之后，使用可变形参，传入多个<strong>同一类型</strong>变量：</p>
+<p><code>public static void test(int a, String...books);</code></p>
+<ul>
+<li>可变个数形参的方法，和同名的方法构成重载。</li>
+<li>可变个数形参方法的使用，和使用数组时一样，使用索引获取某个参数。</li>
+<li>可变形参需要放到参数列表的最后。</li>
+<li>一个方法的参数中只能有一个可变个数形参。</li>
+<li>如果有参数列表恰好符合的方法，优先调用。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MethodTest</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        MethodTest m = <span class="hljs-keyword">new</span> MethodTest();<br>        m.show(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>); <span class="hljs-comment">//method 3，优先调用两个参数的方法。</span><br>        m.show(<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[]&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>&#125;); <span class="hljs-comment">//调用可变形参的方法</span><br>        m.show(<span class="hljs-string">&quot;sss&quot;</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>); <span class="hljs-comment">//method 4，两种参数方法都可以。</span><br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">show</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span></span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;method 1&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">show</span><span class="hljs-params">(<span class="hljs-keyword">int</span> ... i)</span></span>&#123;  <span class="hljs-comment">//可以接收任意个数的参数。也可以接受数组类型的参数。</span><br>        System.out.println(<span class="hljs-string">&quot;可变形参&quot;</span>);<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">show</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)</span></span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;method 3&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">show</span><span class="hljs-params">(String s, <span class="hljs-keyword">int</span> ... i)</span></span>&#123;  <span class="hljs-comment">//可变形参必须放在最后。</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> n = <span class="hljs-number">0</span>; n&lt;i.length; n++)&#123; <span class="hljs-comment">//将i当成数组处理即可。</span><br>        &#125;<br>        System.out.println(<span class="hljs-string">&quot;method 4&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="4、值传递"><a href="#4、值传递" class="headerlink" title="4、值传递"></a>4、值传递</h2><p><strong>形参</strong>：方法声明时的参数。</p>
+<p><strong>实参</strong>：方法调用时实际传给形参的参数值。</p>
+<p>Java里的方法参数传递方式只有一种：<strong>值传递</strong>。即将实际参数值的副本(复制品)传入方法内，而参数本身不受影响。</p>
+<ul>
+<li>形参是<strong>基本数据类型</strong>：将实参基本数据类型变量的<strong>“数据值”</strong>传递给形参。</li>
+<li>形参是<strong>引用数据类型</strong>：将实参引用数据类型变量的<strong>“地址值”</strong>传递给形参。</li>
+</ul>
+<p>值传递练习：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">valueTransfer</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span> </span>&#123;<br>        valueTransfer t = <span class="hljs-keyword">new</span> valueTransfer();<br>        t.first();<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">first</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> i = <span class="hljs-number">5</span>;<br>        Value v = <span class="hljs-keyword">new</span> Value();<br>        v.i = <span class="hljs-number">25</span>;<br>        second(v, i);  <span class="hljs-comment">//经过second函数，v中的i被修改为20</span><br>        System.out.println(v.i);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">second</span><span class="hljs-params">(Value v, <span class="hljs-keyword">int</span> i)</span> </span>&#123; <br>        <span class="hljs-comment">//参数的v和i是在栈空间中新建的，这里的v指向传入对象v的地址</span><br>        i = <span class="hljs-number">0</span>;<br>        v.i = <span class="hljs-number">20</span>; <span class="hljs-comment">// 将指向的地址中的i赋值为20</span><br>        Value val = <span class="hljs-keyword">new</span> Value();<br>        v = val;  <span class="hljs-comment">//v指向对象val的地址。</span><br>        System.out.println(v.i + <span class="hljs-string">&quot; &quot;</span> + i);  <span class="hljs-comment">//15 0</span><br>    &#125;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Value</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> i = <span class="hljs-number">15</span>;<br>&#125;<br><span class="hljs-comment">//以上程序输出结果：</span><br><span class="hljs-number">15</span> <span class="hljs-number">0</span><br><span class="hljs-number">20</span><br></code></pre></td></tr></table></figure>
+<h1 id="六、类的成员之三：构造器-构造方法"><a href="#六、类的成员之三：构造器-构造方法" class="headerlink" title="六、类的成员之三：构造器(构造方法)"></a>六、类的成员之三：构造器(构造方法)</h1><p>类的<strong>构造器(构造方法，constructor)</strong>用于给对象进行初始化。</p>
+<p><strong>构造器特征</strong>：</p>
+<ul>
+<li>具有与类相同的名称</li>
+<li>不声明返回值类型</li>
+<li>不能被<code>static</code>、<code>final</code>、<code>synchronized</code>、<code>abstract</code>、<code>native</code>修饰，不能有<code>return</code>语句返回值</li>
+</ul>
+<p><strong>声明格式</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java">权限修饰符 类名(参数列表)&#123;<br>    初始化语句;<br>&#125; <br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Animal</span></span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> legs;<br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Animal</span><span class="hljs-params">(<span class="hljs-keyword">int</span> l)</span></span>&#123; <span class="hljs-comment">//构造器1</span><br>        legs = l;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Animal</span><span class="hljs-params">(<span class="hljs-keyword">int</span> l, String n)</span></span>&#123; <span class="hljs-comment">//构造器2</span><br>        legs = l;<br>        name = n;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>注意：</p>
+<ul>
+<li>Java中，每个类至少有一个构造器。</li>
+<li>如果没有显式地定义类的构造器，系统默认提供一个空参的构造器。</li>
+<li>一旦显式地定义了构造器，系统不再提供默认的构造器。</li>
+<li>一个类中可以定义多个构造器，构成重载。</li>
+</ul>
+<blockquote>
+<p>在IDEA中，可以右键→generate→Constructor，自动生成构造器</p>
+</blockquote>
+<p><strong>属性根据以下顺序赋值</strong></p>
+<p>① 默认初始化。</p>
+<p>② 显式初始化，如<code>int age = 1;</code></p>
+<p>③ 构造器中初始化。</p>
+<p>④ 通过<code>对象.方法</code> 或 <code>对象.属性</code>的方式赋值。</p>
+<h1 id="七、面向对象特征之一：封装与隐藏"><a href="#七、面向对象特征之一：封装与隐藏" class="headerlink" title="七、面向对象特征之一：封装与隐藏"></a>七、面向对象特征之一：封装与隐藏</h1><h2 id="1、封装性"><a href="#1、封装性" class="headerlink" title="1、封装性"></a>1、封装性</h2><p>类的<strong>封装性</strong>是指将对象内部的复杂性隐藏起来，只对外提供必要的接口，便于调用。</p>
+<p>如果直接将属性暴露出来，使用者对属性的直接操作可能导致数据错误、混乱或安全性问题。</p>
+<p>Java中通过将数据声明为<code>私有的(private)</code>，再提供<code>公共的(public)</code>方法<code>getXxx()</code>和<code>setXxx()</code>实现对该属性的操作，以实现下述目的：</p>
+<ul>
+<li>隐藏一个类中不需要对外提供的实现细节；</li>
+<li>使用者只能通过事先定制好的方法来访问数据，可以方便地加入控制逻辑，限制对属性的不合理操作；</li>
+<li>便于修改，增强代码的可维护性；</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PersonTest</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        Person p = <span class="hljs-keyword">new</span> Person(<span class="hljs-number">20</span>); <span class="hljs-comment">// new 后面的Person()就是构造器。</span><br>        p.setAge(<span class="hljs-number">25</span>); <span class="hljs-comment">//将年龄设置为25</span><br>        <span class="hljs-keyword">int</span> age = p.getAge();  <span class="hljs-comment">// age = 25</span><br>        <span class="hljs-comment">//int age = p.age; 无法直接通过对象调用age属性，因为类中的age是私有的</span><br>    &#125;<br>&#125;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> age;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">()</span></span>&#123; <span class="hljs-comment">//构造器（构造函数）</span><br>        System.out.println(<span class="hljs-string">&quot;constructor&quot;</span>);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a)</span></span>&#123; <span class="hljs-comment">//重载的构造器</span><br>        age = a;<br>        System.out.println(<span class="hljs-string">&quot;constructor&quot;</span>);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getAge</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> age;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a)</span> </span>&#123;<br>        age = a;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">eat</span><span class="hljs-params">()</span></span>&#123;&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>同样地，<code>getXxx()</code>和<code>setXxx()</code>方法可以使用自动生成的方法。</p>
+<h2 id="2、四种权限修饰符"><a href="#2、四种权限修饰符" class="headerlink" title="2、四种权限修饰符"></a>2、四种权限修饰符</h2><p>权限修饰符可以用来修饰类和方法，其中<code>class</code>只能用<code>public</code>和<code>缺省(default)</code>两种权限修饰符，四种权限修饰符的权限如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>权限修饰符</th>
+<th>类内部</th>
+<th>同一个包</th>
+<th>不同包的子类</th>
+<th>同一个工程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>private</td>
+<td>√</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>缺省(default)</td>
+<td>√</td>
+<td>√</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>protected</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td></td>
+</tr>
+<tr>
+<td>public</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="3、JavaBean"><a href="#3、JavaBean" class="headerlink" title="3、JavaBean"></a>3、JavaBean</h2><p>JavaBean是一种Java语言写成的可重用组件。</p>
+<p>所谓JavaBean，是指符合如下标准的Java类：</p>
+<ul>
+<li>类是<code>public</code>的。</li>
+<li>有一个无参的<code>public</code>构造器。</li>
+<li>有属性，且有对应的<code>get</code>、<code>set</code>方法。</li>
+</ul>
+<h1 id="八、this关键字"><a href="#八、this关键字" class="headerlink" title="八、this关键字"></a>八、this关键字</h1><p><code>this</code>可以用来修饰<code>属性</code>、<code>方法</code>、<code>构造器</code>。</p>
+<h2 id="1、修饰属性和方法"><a href="#1、修饰属性和方法" class="headerlink" title="1、修饰属性和方法"></a>1、修饰属性和方法</h2><p><code>this</code>修饰属性和方法时，表示当前对象或当前正在构建的对象。使用<code>this.属性</code>和<code>this.方法</code>的方式，调用当前对象的属性和方法。</p>
+<p>通常情况下，省略<code>this</code>，特殊情况下，当参数和属性同名时，必须使用<code>this</code>进行区分。</p>
+<h2 id="2、修饰构造器"><a href="#2、修饰构造器" class="headerlink" title="2、修饰构造器"></a>2、修饰构造器</h2><p><code>this</code>修饰构造器：</p>
+<ul>
+<li>在类的构造器中，可以用<code>this(形参列表)</code>方式，调用<strong>本类中其他构造器</strong>。</li>
+<li>构造器不能用<code>this(形参列表)</code>方式调用自己。</li>
+<li>如果一个类中有n个构造器，则最多有n-1个构造器中使用了<code>this(形参列表)</code>方式。</li>
+<li><code>this(形参列表)</code>必须声明在当前构造器的<strong>首行</strong>。</li>
+<li>每个构造器内部，最多只能有一个<code>this(形参列表)</code>的方式。且多个构造器之间调用不能形成环，否则会导致死循环。</li>
+</ul>
+<p><code>this</code>关键字的用法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>&#123;  <span class="hljs-comment">//JavaBean的形式构造Person类</span><br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> age;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> name;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.name = name;  <span class="hljs-comment">//使用this区分类的属性name和形参name</span><br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getAge</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> age;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> age)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.age = age;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">()</span></span>&#123;&#125; <span class="hljs-comment">//构造器（构造函数）</span><br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">(String name)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.name = name;<br>        System.out.println(<span class="hljs-string">&quot;second constructor&quot;</span>);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">(String name, <span class="hljs-keyword">int</span> age)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>(name); <span class="hljs-comment">//使用this调用第二个构造器</span><br>        <span class="hljs-keyword">this</span>.age = age;<br>        System.out.println(<span class="hljs-string">&quot;third constructor&quot;</span>);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">eat</span><span class="hljs-params">()</span></span>&#123;&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h1 id="九、package和import"><a href="#九、package和import" class="headerlink" title="九、package和import"></a>九、package和import</h1><h2 id="1、package"><a href="#1、package" class="headerlink" title="1、package"></a>1、package</h2><p><code>package</code>语句是Java源文件的第一条语句，指明该文件中定义的类所在的包。</p>
+<p>比如<code>pack1\pack2\PackageTest.java</code>路径下的类<code>PackageTest</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pack1.pack2;<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PackageTest</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;PackageTest&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><code>JDK</code>中常用的包：</p>
+<ul>
+<li><code>java.lang</code>：包含一些Java语言的核心类，如<code>String</code>、<code>Math</code>、<code>Integer</code>、<code>System</code>和<code>Thread</code>，提供常用功能.</li>
+<li><code>java.net</code>：包含执行与网络相关的操作的类和接口。</li>
+<li><code>java.io</code>：包含能提供多种输入/输出功能的类。</li>
+<li><code>java.util</code>：包含一些实用工具类，如定义系统特性、接口的集合框架类、使用与日期日历相关的函数。</li>
+<li><code>java.text</code>：包含了一些java格式化相关的类</li>
+<li><code>java.sql</code>：包含了java进行JDBC数据库编程的相关类/接口</li>
+<li><code>java.awt</code>：包含了构成抽象窗口工具集（abstract window toolkits）的多个类，这些类被用来构建和管理应用程序的图形用户界面(GUI)。B/S，C/S</li>
+</ul>
+<h2 id="2、import"><a href="#2、import" class="headerlink" title="2、import"></a>2、import</h2><p><code>import</code>语句用于引入指定包层次下所需要的类。</p>
+<p>格式：<code>import 包名.类名;</code></p>
+<ul>
+<li><code>import</code>语句声明在<code>package</code>声明和类的声明之间；</li>
+<li><code>*</code>表示导入包下的所有类，比如<code>import java.util.*;</code>表示导入<code>util</code>包下的所有类或接口。</li>
+<li>如果是<code>java.lang</code>包下，或是当前包下的，可以不使用<code>import</code>语句。</li>
+<li>如果使用<strong>不同包</strong>下的<strong>同名的类</strong>。那么就需要使用<strong>类的全类名（包名.类名）</strong>的方式指明调用的是哪个类。</li>
+<li>如果已经导入<code>java.a</code>包下的类。那么如果需要使用<code>a</code>包的子包下的类的话，仍然需要导入。</li>
+</ul>
+<h2 id="3、MVC设计模式"><a href="#3、MVC设计模式" class="headerlink" title="3、MVC设计模式"></a>3、MVC设计模式</h2><p>MVC是常用的设计模式之一，将整个程序分为三个层次：<strong>数据模型层(Model)</strong>、<strong>视图层(View)</strong>和<strong>控制器层(Controller)</strong>。各个层的主要内容如下：</p>
+<ul>
+<li><strong>模型层(Model)</strong>，主要处理数据：<ul>
+<li>数据对象封装 ：<code>model.bean/domain</code></li>
+<li>数据库操作类：<code>model.dao</code></li>
+<li>数据库：<code>model.db</code></li>
+</ul>
+</li>
+<li><strong>视图层(View)</strong>，显示数据：<ul>
+<li>相关工具类：<code>view.utils</code></li>
+<li>自定义view：<code>view.ui</code></li>
+</ul>
+</li>
+<li><strong>控制层(Controller)</strong>：<ul>
+<li>应用界面相关：<code>controller.activity</code></li>
+<li>存放fragment：<code>controller.fragment</code></li>
+<li>显示列表的适配器：<code>controller.adapte</code></li>
+<li>服务相关的：<code>controller.service</code></li>
+<li>抽取的基类：<code>controller.base</code></li>
+</ul>
+</li>
+</ul>
+<p>MVC模式在项目中的应用：<a target="_blank" rel="noopener" href="https://github.com/kangshitao/Java_shangguigu/tree/main/Project2">客户信息管理软件</a></p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Kangshitao</li>
+    <li><strong>本文链接：</strong><a href="http://kangshitao.github.io/2021/03/20/java-note-0401/index.html" title="http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2021&#x2F;03&#x2F;20&#x2F;java-note-0401&#x2F;index.html">http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2021&#x2F;03&#x2F;20&#x2F;java-note-0401&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/03/21/java-note-0501/"><i class="iconfont iconleft"></i>Java学习笔记05-面向对象编程(中)</a>
+    <a href="/2021/03/20/java-note-0301/">Java学习笔记03-数组<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+        <section class="comments">
+  
+    <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz",
+        app_key: "XipU873t8gkSypbwl1HWUARD",
+        placeholder: "write comment content...",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+		var title1="text=Live and Learn有新评论啦~ --by Valine"
+		var SCKEY_Server="SCT21455TskriUeyliOqL6kHLhiCOMmlB"
+		var ValineButton=document.getElementsByClassName("vsubmit vbtn")[0];
+		function send_valine_Server(){
+			var text="desp=";
+			var pageurl=document.URL;
+			var ptime=new Date();
+			var vnick=document.getElementsByClassName("vnick vinput")[0].value;
+			var veditor=document.getElementsByClassName("veditor vinput")[0].value;
+			var data=text+"|昵称"+"|评论内容"+"|跳转链接"+"|评论时间"+"\n"+"|----|----|----|----|"+"\n"+"|"+vnick+"|"+veditor+"|"+pageurl+"|" +ptime.toLocaleString()+"|";
+			var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+			httpRequest.open('POST', 'https://sctapi.ftqq.com/'+SCKEY_Server+'.send', true); //第二步：打开连接
+			httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）
+			httpRequest.send(title1+"&"+data);//发送请求 将请头体体写在send中
+		};
+		ValineButton.onclick=send_valine_Server;
+      });
+    } else {
+      loadValine();
+    }
+  };
+ 
+</script>
+
+
+</section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E5%92%8C%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-text">一、面向过程和面向对象</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Java%E5%9F%BA%E6%9C%AC%E5%85%83%E7%B4%A0%EF%BC%9A%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1"><span class="toc-text">二、Java基本元素：类和对象</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="toc-text">三、对象的创建和使用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%B1%BB%E7%9A%84%E6%88%90%E5%91%98%E4%B9%8B%E4%B8%80%EF%BC%9A%E5%B1%9E%E6%80%A7"><span class="toc-text">四、类的成员之一：属性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E7%B1%BB%E7%9A%84%E6%88%90%E5%91%98%E4%B9%8B%E4%BA%8C%EF%BC%9A%E6%96%B9%E6%B3%95"><span class="toc-text">五、类的成员之二：方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E6%96%B9%E6%B3%95%E5%AE%9A%E4%B9%89"><span class="toc-text">1、方法定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD"><span class="toc-text">2、方法重载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%8F%AF%E5%8F%98%E4%B8%AA%E6%95%B0%E5%BD%A2%E5%8F%82"><span class="toc-text">3、可变个数形参</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E5%80%BC%E4%BC%A0%E9%80%92"><span class="toc-text">4、值传递</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E7%B1%BB%E7%9A%84%E6%88%90%E5%91%98%E4%B9%8B%E4%B8%89%EF%BC%9A%E6%9E%84%E9%80%A0%E5%99%A8-%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95"><span class="toc-text">六、类的成员之三：构造器(构造方法)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%89%B9%E5%BE%81%E4%B9%8B%E4%B8%80%EF%BC%9A%E5%B0%81%E8%A3%85%E4%B8%8E%E9%9A%90%E8%97%8F"><span class="toc-text">七、面向对象特征之一：封装与隐藏</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%B0%81%E8%A3%85%E6%80%A7"><span class="toc-text">1、封装性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%9B%9B%E7%A7%8D%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-text">2、四种权限修饰符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81JavaBean"><span class="toc-text">3、JavaBean</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AB%E3%80%81this%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">八、this关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E4%BF%AE%E9%A5%B0%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95"><span class="toc-text">1、修饰属性和方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E4%BF%AE%E9%A5%B0%E6%9E%84%E9%80%A0%E5%99%A8"><span class="toc-text">2、修饰构造器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B9%9D%E3%80%81package%E5%92%8Cimport"><span class="toc-text">九、package和import</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81package"><span class="toc-text">1、package</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81import"><span class="toc-text">2、import</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81MVC%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-text">3、MVC设计模式</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1574716653 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/kangshitao "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#24292E'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:1574716653@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">Total:
+  <span id="busuanzi_value_site_pv" style="font-size:12px;"></span></span>
+  <span id="busuanzi_container_site_uv" >| Visitors:
+  <span id="busuanzi_value_site_uv" style="font-size:12px;"></span></span>
+  </div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+  
+  
+<script src="/js/clicklove.js"></script>
+<!-- 页面点击小红心 -->
+  
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz',
+      appKey: 'XipU873t8gkSypbwl1HWUARD',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud").each(async (e) => {
+        const url = $(".leancloud").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud").eq(e).text(count ? count : '--');
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud").length === 1 ? $(".leancloud").attr('id').trim() : 'http://kangshitao.github.io';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    $(function () {
+	  const Counter = AV.Object.extend("Counter");
+	  showCount(Counter);
+      const localhost = /http\:\/\/localhost|http\:\/\/127.0.0.1|http\:\/\/0.0.0.0/;
+      if (localhost.test(document.URL)) {
+	    return;
+	  }
+	  addCount(Counter);
+    });
+  });
+</script>
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <script>
+    window.ga = window.ga || function () {
+      (ga.q = ga.q || []).push(arguments)
+    };
+    ga.l = +new Date;
+    ga('create', 'G-0FZTGJZNYS', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</html>

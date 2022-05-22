@@ -1,0 +1,753 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Java学习笔记15-反射 - Live And Learn</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="hexo-blog,live and learn,kangshitao, Java,反射机制,Class类,运行时类,类的加载,动态代理">
+  <meta name="description" content="一、Java反射机制概述Reflection(反射)是...">
+  <meta name="author" content="Kangshitao">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/atelier-heath-light.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/monokai-sublime.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg',
+        wechat: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '心之所向，素履以往',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'normal'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Live And Learn" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">Java学习笔记15-反射</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_14.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">Java学习笔记15-反射</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>四月 18, 2021</span>
+      
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2021/04/18/java-note-1501/" class="leancloud" data-flag-title="Java学习笔记15-反射"></span>
+        </span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>16032</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="一、Java反射机制概述"><a href="#一、Java反射机制概述" class="headerlink" title="一、Java反射机制概述"></a>一、Java反射机制概述</h1><p><strong>Reflection(反射)</strong>是被视为动态语言的关键，反射机制允许程序在执行期间借助于Reflection API取得任何类的内部信息，并能直接操作任意对象的内部属性及方法。</p>
+<p>类加载完之后，在堆内存的方法区中产生了一个Class类型的对象（一个类只有一个Class对象），这个对象包含了完整的类的结构信息。可以通过这个对象看到类的结构。</p>
+<p>反射就是通过实例化对象反向得到其所属类的全部信息：实例化对象—&gt;getClass()方法—&gt;得到完整的“包类”名称。</p>
+<p><strong>动态语言与静态语言</strong></p>
+<p>动态语言是运行时可以改变结构的语言，例如新的函数、对象等，主要有：C#、JavaScript、PHP、Python、Erlang等。</p>
+<p>静态语言是运行时结构不可变的语言，比如Java、C、C++</p>
+<p>Java虽然不是动态语言，但是可以使用反射机制、字节码操作获得类似动态语言的特性。</p>
+<h1 id="二、理解Class类并获取Class实例"><a href="#二、理解Class类并获取Class实例" class="headerlink" title="二、理解Class类并获取Class实例"></a>二、理解Class类并获取Class实例</h1><h2 id="1、Class类"><a href="#1、Class类" class="headerlink" title="1、Class类"></a>1、Class类</h2><p>在Object类中定义了如下方法，此方法被所有子类继承：</p>
+<p><code>public final Class getClass()</code></p>
+<p>返回值是Class类型，<strong>Class类是用来描述类的类</strong>，此类是Java反射的源头，也就是说可以通过反射求出类的名称。</p>
+<p>程序经过javac.exe命令以后，会生成一个或多个字节码文件(.class结尾)。使用java.exe命令对某个字节码文件进行解释运行。相当于将某个字节码文件加载到内存中。此过程就称为<strong>类的加载</strong>。加载到内存中的类，称为<strong>运行时类</strong>，此运行时类，就作为Class的一个<strong>实例</strong>。</p>
+<p>加载到内存中的运行时类，会缓存一定的时间。在此时间之内，可以通过不同的方式来获取此运行时类。</p>
+<p>对于每个类而言，JRE都为其保留一个不变的<strong>Class类型</strong>的对象。一个Class对象包含了特定某个结构<code>(class/interface/enum/annotation/primitive type/void/[])</code>的有关信息。</p>
+<ul>
+<li>Class本身也是一个类。</li>
+<li>Class对象只能由系统建立对象。</li>
+<li>一个加载的类在JVM中只会有一个Class实例，Class的实例就对应着一个运行时类。</li>
+<li>一个Class对象对应的是一个加载到JVM中的一个.class文件。</li>
+<li>每个类的实例都会记得自己是由哪个Class实例所生成。</li>
+<li>通过Class可以完整地得到一个类中的所有被加载的结构。</li>
+<li>Class类是Reflection的根源，任何想动态加载、运行的类，必须先获得相应的Class对象。</li>
+</ul>
+<h2 id="2、获取Class类实例"><a href="#2、获取Class类实例" class="headerlink" title="2、获取Class类实例"></a>2、获取Class类实例</h2><p>Class对象只能由系统创建，我们四种方式获取此实例，以String类为例：</p>
+<ul>
+<li>通过类的<code>class属性</code>获取，前提是已知具体的类。此方法最安全可靠，程序性能最高：<ul>
+<li><code>Class clazz = String.class;</code></li>
+</ul>
+</li>
+<li>调用实例的<code>getClass()方法</code>，前提是已知当前类的实例：<ul>
+<li><code>Class clazz = &quot;hello&quot;.getClass();</code></li>
+</ul>
+</li>
+<li>使用Class类的静态方法<code>forName()</code>获取，前提是已知一个类的全类名。可能抛出<code>ClassNotFoundException</code>异常：<ul>
+<li><code>Class clazz = Class.forName(&quot;java.lang.String&quot;);</code></li>
+</ul>
+</li>
+<li>其他方式：<ul>
+<li><code>ClassLoader cl = this.getClass().getClassLoader();</code></li>
+<li><code>Class clazz = cl.loadClass(&quot;java.lang.String&quot;);</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>哪些类可以有Class对象？</strong></p>
+<ul>
+<li><code>class</code>：类，外部类，成员类（成员内部类、静态内部类），局部内部类，匿名内部类。</li>
+<li><code>interface</code>：接口</li>
+<li><code>[]</code>：数组</li>
+<li><code>enum</code>：枚举类</li>
+<li><code>annotation</code>：注解@interface</li>
+<li><code>primitive type</code>：基本数据类型</li>
+<li><code>void</code></li>
+</ul>
+<h1 id="三、类的加载与ClassLoader的理解"><a href="#三、类的加载与ClassLoader的理解" class="headerlink" title="三、类的加载与ClassLoader的理解"></a>三、类的加载与ClassLoader的理解</h1><h2 id="1、类的加载过程"><a href="#1、类的加载过程" class="headerlink" title="1、类的加载过程"></a>1、类的加载过程</h2><p>程序使用某个类时，如果该类没有加载到内存中，会通过以下三个主要步骤对类初始化：</p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/java-note-1501_1.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /></p>
+<ul>
+<li><strong>加载</strong>：将class文件字节码内容加载到内存中，并将这些静态数据转换成方法区的运行时数据结构，然后<strong>生成一个代表这个类的java.lang.Class对象</strong>，作为方法区中类数据的访问入口（即引用地址）。所有需要访问和使用类数据只能通过这个Class对象。这个加载的过程需要<strong>类加载器</strong>参与。</li>
+<li><strong>链接</strong>：将Java类的二进制代码合并到JVM的运行状态之中的过程。包括三个阶段：<ul>
+<li><strong>验证</strong>：确保加载的类信息符合JVM规范，例如：以cafe开头，没有安全方面的问题</li>
+<li><strong>准备</strong>：正式为类变量（static）分配内存并设置类变量默认初始值的阶段，这些内存都将在方法区中进行分配。</li>
+<li><strong>解析</strong>：虚拟机常量池内的符号引用（常量名）替换为直接引用（地址）的过程。</li>
+</ul>
+</li>
+<li><strong>初始化</strong>：执行行类构造器<code>&lt;clinit&gt;()</code>方法的过程。类构造器<code>&lt;clinit&gt;()</code>方法是由编译期自动收集类中所有类变量的赋值动作和静态代码块中的语句合并产生的（类构造器是构造类信息的，不是构造该类对象的构造器）。当初始化一个类的时候，如果发现其父类还没有进行初始化，则需要先触发其父类的初始化。虚拟机会保证一个类的<code>&lt;clinit&gt;()</code>方法在多线程环境中被正确加锁和同步。</li>
+</ul>
+<p><strong>什么时候会发生类初始化?</strong></p>
+<p>详细可参考《深入理解Java虚拟机 第3版》第7章 虚拟机类加载机制。</p>
+<p><strong>类的主动引用（一定会发生类的初始化）</strong>:</p>
+<ul>
+<li>当虚拟机启动，先初始化main方法所在的类</li>
+<li>new一个类的对象</li>
+<li>调用类的静态成员（除了final常量）和静态方法</li>
+<li>使用java.lang.reflect包的方法对类进行反射调用</li>
+<li>当初始化一个类，如果其父类没有被初始化，则先会初始化它的父类</li>
+</ul>
+<p><strong>类的被动引用（不会发生类的初始化）</strong>：</p>
+<ul>
+<li>当访问一个静态域时，只有真正声明这个域的类才会被初始化</li>
+<li>当通过子类引用父类的静态变量，不会导致子类初始化</li>
+<li>通过数组定义某个类的引用，不会触发此类的初始化</li>
+<li>引用常量不会触发此类的初始化（常量在链接阶段就存入调用类的常量池中了）</li>
+</ul>
+<h2 id="2、类加载器"><a href="#2、类加载器" class="headerlink" title="2、类加载器"></a>2、类加载器</h2><p><strong>类加载器</strong>的作用：在加载阶段，类加载器将class文件字节码内容加载到内存中，并将这些静态数据转换成方法区的运行时数据结构然后在堆中生成一个代表这个类的java.lang.Class对象，作为方法区中类数据的访问入口。<br><strong>类缓存</strong>：标准的JavaSE类加载器可以按要求查找类，但一旦某个类被加载到类加载器中，它将维持加载（缓存）一段时间。不过JVM垃圾回收机制可以回收这些Class对象。</p>
+<p>JVM规范定义了如下类型的类加载器：</p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/java-note-1501_2.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /></p>
+<p>引导类加载器用来装载核心类库，无法直接获取。</p>
+<p>代码实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ClassLoaderTest</span> </span>&#123;<br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-comment">//对于自定义类，使用系统类加载器进行加载</span><br>        ClassLoader classLoader = ClassLoaderTest.class.getClassLoader();<br>        System.out.println(classLoader);<br>        <span class="hljs-comment">//jdk.internal.loader.ClassLoaders$AppClassLoader@2f0e140b</span><br><br>        <span class="hljs-comment">//调用系统类加载器的getParent()：获取扩展类加载器</span><br>        ClassLoader classLoader1 = classLoader.getParent();<br>        System.out.println(classLoader1); <br>        <span class="hljs-comment">//jdk.internal.loader.ClassLoaders$PlatformClassLoader@2aaf7cc2</span><br><br>        <span class="hljs-comment">//调用扩展类加载器的getParent()：无法获取引导类加载器</span><br>        <span class="hljs-comment">//引导类加载器主要负责加载java的核心类库，无法加载自定义类。</span><br>        ClassLoader classLoader2 = classLoader1.getParent();<br>        System.out.println(classLoader2); <span class="hljs-comment">//null</span><br>        ClassLoader classLoader3 = String.class.getClassLoader();<br>        System.out.println(classLoader3); <span class="hljs-comment">//null。核心类</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>类加载器的<code>getResourceAsStream(String str)</code>方法可以用来获取类路径下指定文件的输入流，可以用来加载properties配置文件：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ClassLoaderTest</span> </span>&#123;<br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test2</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        Properties pros =  <span class="hljs-keyword">new</span> Properties();<br>        <span class="hljs-comment">//此时的文件默认在当前的module下。</span><br>        <span class="hljs-comment">//读取配置文件的方式一：</span><br>        <span class="hljs-comment">//FileInputStream fis = new FileInputStream(&quot;jdbc.properties&quot;);</span><br>        <span class="hljs-comment">//FileInputStream fis = new FileInputStream(&quot;src\\jdbc1.properties&quot;);</span><br>        <span class="hljs-comment">//pros.load(fis);</span><br><br>        <span class="hljs-comment">//读取配置文件的方式二：使用ClassLoader</span><br>        <span class="hljs-comment">//配置文件默认识别为：当前module的src下</span><br>        ClassLoader classLoader = ClassLoaderTest.class.getClassLoader();<br>        InputStream is = classLoader.getResourceAsStream(<span class="hljs-string">&quot;jdbc1.properties&quot;</span>);<br>        pros.load(is);<br><br>        String user = pros.getProperty(<span class="hljs-string">&quot;user&quot;</span>);<br>        String password = pros.getProperty(<span class="hljs-string">&quot;password&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;user = &quot;</span> + user + <span class="hljs-string">&quot;,password = &quot;</span> + password);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="四、创建运行时类的对象"><a href="#四、创建运行时类的对象" class="headerlink" title="四、创建运行时类的对象"></a>四、创建运行时类的对象</h1><p>获得了Class对象以后，可以创建运行时类的对象。</p>
+<p>有两种方法创建运行时类对象：</p>
+<ul>
+<li>调用Class对象的<code>newInstance()</code>方法。使用此方法有两个要求：<ul>
+<li>要求运行时类必须有一个无参数的构造器。</li>
+<li>要求运行时类的构造器的访问权限需要足够，一般为public</li>
+</ul>
+</li>
+<li>调用Class对象的<code>getDeclaredConstructor(Class&lt;?&gt;... parameterTypes)</code>，参数就是运行时类对应构造器的参数，返回<code>Constructor</code>类对象，<code>Constructor</code>类中也有<code>newInstance()</code>方法，可以构造运行时类对象。这种方法不要求运行时类必须有无参构造器。</li>
+</ul>
+<p>代码实例，通过反射，创建运行时类对象：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NewInstanceTest</span> </span>&#123;<br>    <span class="hljs-comment">//反射的动态性</span><br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; <span class="hljs-number">10</span>;i++)&#123;<br>            <span class="hljs-keyword">int</span> num = <span class="hljs-keyword">new</span> Random().nextInt(<span class="hljs-number">2</span>);<span class="hljs-comment">//0,1</span><br>            String classPath = <span class="hljs-string">&quot;&quot;</span>;<br>            <span class="hljs-comment">//只有在运行时才知道具体的类</span><br>            <span class="hljs-keyword">switch</span>(num)&#123;<br>                <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:<br>                    classPath = <span class="hljs-string">&quot;java.util.Date&quot;</span>;<br>                    <span class="hljs-keyword">break</span>;<br>                <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:<br>                    classPath = <span class="hljs-string">&quot;java.lang.Object&quot;</span>;<br>                    <span class="hljs-keyword">break</span>;<br>            &#125;<br>            <span class="hljs-keyword">try</span> &#123;<br>                Object obj = getInstance(classPath);<br>                System.out.println(obj);<br>            &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;e.printStackTrace();&#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">    创建一个指定类的对象。</span><br><span class="hljs-comment">    classPath:指定类的全类名</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">getInstance</span><span class="hljs-params">(String classPath)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>       Class clazz =  Class.forName(classPath);<br>       <span class="hljs-keyword">return</span> clazz.newInstance();<span class="hljs-comment">//方式一</span><br>        <span class="hljs-comment">//方式二</span><br>       <span class="hljs-comment">//return clazz.getDeclaredConstructor().newInstance();</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>上述代码，体现了<strong>反射的动态性，运行时动态创建指定类的对象</strong>，这是反射机制应用最多的地方。</p>
+<h1 id="五、获取运行时类的完整结构"><a href="#五、获取运行时类的完整结构" class="headerlink" title="五、获取运行时类的完整结构"></a>五、获取运行时类的完整结构</h1><p>通过反射不仅可以创建运行时类的对象，还可以获取运行时类的完整结构，包括以下所有结构，这些操作都是基于Class类，使用Class类对象调用Class类的相关方法：</p>
+<ul>
+<li>运行时类实现的全部接口</li>
+<li>所继承的父类</li>
+<li>全部的构造器</li>
+<li>全部的方法</li>
+<li>全部的Field</li>
+</ul>
+<h2 id="1、获取运行时类实现的接口"><a href="#1、获取运行时类实现的接口" class="headerlink" title="1、获取运行时类实现的接口"></a>1、获取运行时类实现的接口</h2><p>调用<code>public Class&lt;?&gt;[]getInterfaces()</code>方法获取运行时类实现的所有接口。</p>
+<h2 id="2、获取运行时类继承的父类"><a href="#2、获取运行时类继承的父类" class="headerlink" title="2、获取运行时类继承的父类"></a>2、获取运行时类继承的父类</h2><p>调用<code>public Class&lt;? Super T&gt;getSuperclass()</code>返回此Class所表示的实体（类、接口、基本类型）的父类的Class。</p>
+<h2 id="3、获取运行时类的构造器"><a href="#3、获取运行时类的构造器" class="headerlink" title="3、获取运行时类的构造器"></a>3、获取运行时类的构造器</h2><p>获取运行时类的构造器：</p>
+<ul>
+<li><code>public Constructor&lt;T&gt;[] getConstructors()</code>：返回此Class对象所表示的类的所有public构造方法。</li>
+<li><code>public Constructor&lt;T&gt;[] getDeclaredConstructors()</code>：返回此Class对象表示的类声明的所有构造方法。</li>
+</ul>
+<p>返回的<code>Constructor</code>类，有以下方法：</p>
+<ul>
+<li><code>public int getModifiers()</code>：取得修饰符:</li>
+<li><code>public StringgetName()</code>：取得方法名称:</li>
+<li><code>public Class&lt;?&gt;[] getParameterTypes()</code>：取得参数的类型</li>
+<li><code>public T newInstance(Object ... initargs)</code>：构建运行时类的实例</li>
+</ul>
+<h2 id="4、获取运行时类的方法"><a href="#4、获取运行时类的方法" class="headerlink" title="4、获取运行时类的方法"></a>4、获取运行时类的方法</h2><p>获取运行时类的方法：</p>
+<ul>
+<li><code>public Method[] getDeclaredMethods()</code>：返回此Class对象所表示的类或接口的全部方法</li>
+<li><code>public Method[] getMethods()</code>：返回此Class对象所表示的类或接口的public的方法</li>
+</ul>
+<p>返回的<code>Method</code>类中有以下方法：</p>
+<ul>
+<li><code>public Class&lt;?&gt; getReturnType()</code>：取得全部的返回值</li>
+<li><code>public Class&lt;?&gt;[] getParameterTypes()</code>：取得全部的参数</li>
+<li><code>public int getModifiers()</code>：取得修饰符</li>
+<li><code>public Class&lt;?&gt;[] getExceptionTypes()</code>：取得异常信息</li>
+</ul>
+<h2 id="5、获取运行时类的Field"><a href="#5、获取运行时类的Field" class="headerlink" title="5、获取运行时类的Field"></a>5、获取运行时类的Field</h2><p>获取Field：</p>
+<ul>
+<li><code>public Field[] getFields()</code>：返回此Class对象所表示的类或接口的public的Field。</li>
+<li><code>public Field[] getDeclaredFields()</code>：返回此Class对象所表示的类或接口的全部Field。</li>
+</ul>
+<p>返回的<code>Field</code>类中有以下方法：</p>
+<ul>
+<li><code>public int getModifiers()</code>：以整数形式返回此Field的修饰符</li>
+<li><code>public Class&lt;?&gt; getType()</code>：得到Field的属性类型</li>
+<li><code>public String getName()</code>：返回Field的名称。</li>
+</ul>
+<h2 id="6、获取运行时类其他结构"><a href="#6、获取运行时类其他结构" class="headerlink" title="6、获取运行时类其他结构"></a>6、获取运行时类其他结构</h2><p><strong>获取注解相关内容</strong></p>
+<ul>
+<li><code>public &lt;A extends Annotation&gt; A getAnnotation(Class&lt;T&gt; annotationClass)</code></li>
+<li><code>public &lt;A extends Annotation&gt; A getDeclaredAnnotation(Class&lt;A&gt; annotationClass)</code></li>
+</ul>
+<p><strong>泛型相关</strong></p>
+<ul>
+<li><code>public Type getGenericSuperclass()</code>：获取父类泛型类型</li>
+<li><code>ParameterizedType</code>：泛型类型，继承了Type接口。<code>ParameterizedTypeImpl</code>类实现了此接口。</li>
+<li><code>getActualTypeArguments()</code>：<code>ParameterizedType</code>中定义的<code>Type[]</code>类型数组，用于获取实际的泛型类型参数数组</li>
+</ul>
+<p><strong>类所在的包</strong></p>
+<ul>
+<li><code>public Package getPackage()</code></li>
+</ul>
+<h1 id="六、调用运行时类的指定结构"><a href="#六、调用运行时类的指定结构" class="headerlink" title="六、调用运行时类的指定结构"></a>六、调用运行时类的指定结构</h1><p>使用反射获取不仅可以一次获取所有的结构，也可以获取指定的某个结构，然后调用此结构。</p>
+<h2 id="1、调用指定方法"><a href="#1、调用指定方法" class="headerlink" title="1、调用指定方法"></a>1、调用指定方法</h2><p>可以使用反射获取指定的方法，并调用此方法。步骤如下：</p>
+<ul>
+<li><code>getMethod(Stringname,Class…parameterTypes)</code>方法取得指定的Method对象，并设置此方法操作时所需要的参数类型。</li>
+<li>使用<code>Object invoke(Objectobj, Object[]args)</code>进行调用，并向方法中传递要设置的obj对象的参数信息。</li>
+</ul>
+<blockquote>
+<p>invoke方法的说明：</p>
+<ol>
+<li>Object对应原方法的返回值，若原方法无返回值，此时返回null</li>
+<li>若原方法若为静态方法，此时形参Object obj可为null</li>
+<li>若原方法形参列表为空，则Object[] args为null</li>
+<li>若原方法声明为private,则需要在调用此invoke()方法前，显式调用方法对象的setAccessible(true)方法，设置可见性，然后即可访问private的方法。</li>
+</ol>
+</blockquote>
+<p>代码实例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ReflectionTest</span></span>&#123;<br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">    Person类中有非静态方法show，和静态方法showDesc()</span><br><span class="hljs-comment">    private static void showDesc()</span><br><span class="hljs-comment">    */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testMethod</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        Class clazz = Person.class;<br>        <span class="hljs-comment">//创建运行时类的对象</span><br>        Person p = (Person) clazz.newInstance();<br>        <span class="hljs-comment">/*</span><br><span class="hljs-comment">        1.获取指定的某个方法</span><br><span class="hljs-comment">        getDeclaredMethod():</span><br><span class="hljs-comment">        参数1：指明获取的方法的名称  </span><br><span class="hljs-comment">        参数2：指明获取的方法的形参列表</span><br><span class="hljs-comment">         */</span><br>        <span class="hljs-comment">//获取Person类中的show方法</span><br>        Method show = clazz.getDeclaredMethod(<span class="hljs-string">&quot;show&quot;</span>, String.class);<br>        <span class="hljs-comment">//2.保证当前方法是可访问的</span><br>        show.setAccessible(<span class="hljs-keyword">true</span>);<br>        <span class="hljs-comment">/*</span><br><span class="hljs-comment">        3. 调用方法的invoke()方法:</span><br><span class="hljs-comment">        参数1：方法的调用者，指明是哪个对象的方法  </span><br><span class="hljs-comment">        参数2：给方法形参赋值的实参</span><br><span class="hljs-comment">        invoke()的返回值即为对应类中调用的方法的返回值。</span><br><span class="hljs-comment">         */</span><br>        <span class="hljs-comment">//类似于String nation = p.show(&quot;CHN&quot;);</span><br>        Object returnValue = show.invoke(p,<span class="hljs-string">&quot;CHN&quot;</span>); <br>        System.out.println(returnValue);<br>        <br>        <span class="hljs-comment">/*</span><br><span class="hljs-comment">        调用静态方法</span><br><span class="hljs-comment">        */</span><br>        <span class="hljs-comment">//调用showDesc方法</span><br>        Method showDesc = clazz.getDeclaredMethod(<span class="hljs-string">&quot;showDesc&quot;</span>);<br>        showDesc.setAccessible(<span class="hljs-keyword">true</span>);<br>        <span class="hljs-comment">//如果调用的运行时类中的方法没有返回值，则此invoke()返回null</span><br>        Object returnVal = showDesc.invoke(Person.class);<br>        <span class="hljs-comment">//这两种写法都可以，参数为空即可，不需要指明对象，</span><br>        <span class="hljs-comment">//因为静态方法不需要通过对象调用，类中的静态方法是已知的。</span><br>        <span class="hljs-comment">//Object returnVal2 = showDesc.invoke(clazz);</span><br>        <span class="hljs-comment">//Object returnVal3 = showDesc.invoke(null);</span><br>        System.out.println(returnVal);<span class="hljs-comment">//null</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="2、调用指定属性"><a href="#2、调用指定属性" class="headerlink" title="2、调用指定属性"></a>2、调用指定属性</h2><p>同样，反射机制可以调用指定的某个属性，并且可以直接通过Field类操作类中的属性，通过Field类提供的set()和get()方法就可以完成设置和取得属性内容的操作。</p>
+<p><strong>获取指定属性</strong> ：</p>
+<ul>
+<li><code>public Field getField(String name)</code>：返回此Class对象表示的类或接口的指定的public的Field。</li>
+<li><code>public Field getDeclaredField(String name)</code>：返回此Class对象表示的类或接口的指定的Field。</li>
+</ul>
+<p><strong>Field中的方法</strong>：</p>
+<ul>
+<li><code>public Object get(Object obj)</code>：取得指定对象obj上此Field的属性内容</li>
+<li><code>public void set(Object obj,Object value)</code>：设置指定对象obj上此Field的属性内容</li>
+</ul>
+<p>代码实例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ReflectionTes</span></span>&#123;<br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testField1</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        <span class="hljs-comment">//创建Class类实例</span><br>        Class clazz = Person.class;<br>        <span class="hljs-comment">//创建运行时类的对象</span><br>        Person p = (Person) clazz.newInstance();<br>        <span class="hljs-comment">//1. 获取运行时类中指定变量名的属性，获取Person中的name属性</span><br>        Field name = clazz.getDeclaredField(<span class="hljs-string">&quot;name&quot;</span>);<br>        <span class="hljs-comment">//2.保证当前属性是可访问的</span><br>        name.setAccessible(<span class="hljs-keyword">true</span>);<br>        <span class="hljs-comment">//3.获取、设置对象p的name属性值为“Tom”</span><br>        name.set(p,<span class="hljs-string">&quot;Tom&quot;</span>);<br>        System.out.println(name.get(p));  <span class="hljs-comment">// Tom</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="3、调用指定构造器"><a href="#3、调用指定构造器" class="headerlink" title="3、调用指定构造器"></a>3、调用指定构造器</h2><p>通过反射获取指定的构造器，也可以创建运行时类的对象。</p>
+<p><strong>获取指定构造器</strong>：</p>
+<ul>
+<li><code>public Constructor&lt;T&gt; getConstructor(Class&lt;?&gt;... parameterTypes)</code>：获取public的参数类型为指定类型的构造器。</li>
+<li><code>public Constructor&lt;T&gt; getDeclaredConstructor(Class&lt;?&gt;... parameterTypes)</code>：获取运行时类声明的<strong>参数类型为指定参数</strong>的构造器，</li>
+</ul>
+<p>代码实例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ReflectionTest</span></span>&#123;<br>    <span class="hljs-comment">//Person类中有以下构造器</span><br>    <span class="hljs-comment">//private Person(String name)</span><br>     <span class="hljs-meta">@Test</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testConstructor</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        Class clazz = Person.class;<br>        <span class="hljs-comment">/*</span><br><span class="hljs-comment">        1.获取指定的构造器</span><br><span class="hljs-comment">        getDeclaredConstructor():参数：指明构造器的参数列表</span><br><span class="hljs-comment">         */</span><br>        Constructor constructor = clazz.getDeclaredConstructor(String.class);<br>        <span class="hljs-comment">//2.保证此构造器是可访问的</span><br>        constructor.setAccessible(<span class="hljs-keyword">true</span>);<br>        <span class="hljs-comment">//3.调用此构造器创建运行时类的对象</span><br>        Person per = (Person) constructor.newInstance(<span class="hljs-string">&quot;Tom&quot;</span>);<br>        System.out.println(per);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>关于setAccessible方法的说明</strong></p>
+<p><code>Method</code>和<code>Field</code>、<code>Constructor</code>对象都有<code>setAccessible()</code>方法。</p>
+<p><code>setAccessible</code>用于启动和禁用访问安全检查的开关：</p>
+<ul>
+<li>参数值为<code>true</code>指示反射的对象在使用时应该取消Java语言访问检查。有以下作用：<ul>
+<li>提高反射的效率。如果代码中必须用反射，而该句代码需要频繁的被调用，需要设置为<code>true</code>。</li>
+<li>使得原本无法访问的私有成员也可以访问。</li>
+</ul>
+</li>
+<li>参数值为<code>false</code>指示反射的对象应该实施Java语言访问检查。</li>
+</ul>
+<h1 id="七、反射的应用：动态代理"><a href="#七、反射的应用：动态代理" class="headerlink" title="七、反射的应用：动态代理"></a>七、反射的应用：动态代理</h1><h2 id="1、动态代理概述"><a href="#1、动态代理概述" class="headerlink" title="1、动态代理概述"></a>1、动态代理概述</h2><p><strong>代理模式</strong>：使用一个代理将对象包装起来,然后用该代理对象取代原始对象。任何对原始对象的调用都要通过代理。代理对象决定是否以及何时将方法调用转到原始对象上。代理类和被代理类要实现同一个接口。</p>
+<p><strong>静态代理</strong>：代理类和目标对象的类都是在编译期间确定下来，不利于程序的扩展。每一个代理类只能为一个接口服务，这样程序开发中必然产生过多的代理。</p>
+<p><strong>动态代理</strong>：通过一个代理类完成全部的代理功能。在程序运行时根据需要动态创建目标类的代理对象。</p>
+<p>动态代理使用场合：</p>
+<ul>
+<li>调试</li>
+<li>远程方法调用</li>
+</ul>
+<p>动态代理相比于静态代理的优点：抽象角色中（接口）声明的所有方法都被转移到调用处理器一个集中的方法中处理，这样，可以更加灵活和统一的处理众多的方法。</p>
+<p>一种<strong>静态代理</strong>实现举例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.atguigu.java;<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">静态代理举例</span><br><span class="hljs-comment">特点：代理类和被代理类在编译期间，就确定了。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-comment">//共同接口</span><br><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">ClothFactory</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">produceCloth</span><span class="hljs-params">()</span></span>;<br>&#125;<br><br><span class="hljs-comment">//代理类</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProxyClothFactory</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ClothFactory</span></span>&#123;<br>    <span class="hljs-keyword">private</span> ClothFactory factory;<span class="hljs-comment">//用被代理类对象进行实例化</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ProxyClothFactory</span><span class="hljs-params">(ClothFactory factory)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.factory = factory;<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">produceCloth</span><span class="hljs-params">()</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;代理工厂做一些准备工作&quot;</span>);<br>        factory.produceCloth();<br>        System.out.println(<span class="hljs-string">&quot;代理工厂做一些后续的收尾工作&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">//被代理类</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NikeClothFactory</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ClothFactory</span></span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">produceCloth</span><span class="hljs-params">()</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;Nike工厂生产一批运动服&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StaticProxyTest</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-comment">//创建被代理类的对象</span><br>        ClothFactory nike = <span class="hljs-keyword">new</span> NikeClothFactory();<br>        <span class="hljs-comment">//创建代理类的对象</span><br>        ClothFactory proxyClothFactory = <span class="hljs-keyword">new</span> ProxyClothFactory(nike);<br>        <span class="hljs-comment">//调用代理类的方法</span><br>        proxyClothFactory.produceCloth();<br>    &#125;<br>&#125;<br><span class="hljs-comment">/*输出结果</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">代理工厂做一些准备工作</span><br><span class="hljs-comment">Nike工厂生产一批运动服</span><br><span class="hljs-comment">代理工厂做一些后续的收尾工作</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
+<h2 id="2、动态代理实现"><a href="#2、动态代理实现" class="headerlink" title="2、动态代理实现"></a>2、动态代理实现</h2><p>Java中提供了<code>Proxy</code>类，专门用于完成代理操作。其是所有动态代理类的父类。通过此类为一个或多个接口动态地生成实现类。</p>
+<p><code>Proxy</code>类提供用于创建动态代理类和动态代理对象的静态方法:</p>
+<ul>
+<li><code>static Class&lt;?&gt; getProxyClass(ClassLoader loader, Class&lt;?&gt;...interfaces)</code>：创建<br>一个动态代理类所对应的Class对象</li>
+<li><code>static Object newProxyInstance(ClassLoader loader, Class&lt;?&gt;[] interfaces
+InvocationHandler h)</code>：直接创建一个动态代理对象。第一个参数是类加载器，第二个参数是被代理类实现的全部接口，第三个参数是<code>InvocationHandler</code>接口的实现类实例。</li>
+</ul>
+<p>动态代理实现步骤：</p>
+<ul>
+<li>创建一个实现接口<code>InvocationHandler</code>的类，它必须实现<code>invoke</code>方法，以完成代理的具体操作。</li>
+<li>创建被代理的类以及接口。</li>
+<li>通过<code>Proxy</code>的静态方法<code>new ProxyInstance(ClassLoader loader, Class[] interfaces, InvocationHandler h)</code>创建一个Subject接口代理。</li>
+<li>通过<code>Subject</code>代理调用<code>RealSubject</code>实现类的方法。</li>
+</ul>
+<p>以上步骤很难体现出动态代理的优势，下面的例子是更实用的动态代理机制的代码实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.atguigu.java;<br><span class="hljs-keyword">import</span> java.lang.reflect.InvocationHandler;<br><span class="hljs-keyword">import</span> java.lang.reflect.Method;<br><span class="hljs-keyword">import</span> java.lang.reflect.Proxy;<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">  动态代理的举例</span><br><span class="hljs-comment"> */</span><br><span class="hljs-comment">//步骤2.创建实现的共同接口和被代理类</span><br><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Human</span></span>&#123; <br>    <span class="hljs-function">String <span class="hljs-title">getBelief</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">eat</span><span class="hljs-params">(String food)</span></span>;<br>&#125;<br><span class="hljs-comment">//被代理类</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SuperMan</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Human</span></span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getBelief</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;I believe I can fly!&quot;</span>;<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">eat</span><span class="hljs-params">(String food)</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;我喜欢吃&quot;</span> + food);<br>    &#125;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HumanUtil</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method1</span><span class="hljs-params">()</span></span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;*****通用方法一*****&quot;</span>);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method2</span><span class="hljs-params">()</span></span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;*****通用方法二*****&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">要想实现动态代理，需要解决的问题？</span><br><span class="hljs-comment">问题一：如何根据加载到内存中的被代理类，动态的创建一个代理类及其对象。</span><br><span class="hljs-comment">问题二：当通过代理类的对象调用方法a时，如何动态的去调用被代理类中的同名方法a。</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">//步骤3.创建Subject接口代理。</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProxyFactory</span></span>&#123;<br>    <span class="hljs-comment">//调用此方法，返回一个代理类的对象。解决问题一</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Object <span class="hljs-title">getProxyInstance</span><span class="hljs-params">(Object obj)</span></span>&#123;<span class="hljs-comment">//obj:被代理类的对象</span><br>        MyInvocationHandler handler = <span class="hljs-keyword">new</span> MyInvocationHandler();<br>        handler.bind(obj);<br>        <span class="hljs-keyword">return</span> Proxy.newProxyInstance(obj.getClass().getClassLoader(),<br>                                      obj.getClass().getInterfaces(),<br>                                      handler);&#125;<br>&#125;<br><br><span class="hljs-comment">//步骤1.创建实现InvocationHandler接口的类</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyInvocationHandler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">InvocationHandler</span></span>&#123;<br>    <span class="hljs-keyword">private</span> Object obj;<span class="hljs-comment">//需要使用被代理类的对象进行赋值</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">bind</span><span class="hljs-params">(Object obj)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.obj = obj;<br>    &#125;<br>    <span class="hljs-comment">//当我们通过代理类的对象，调用方法a时，就会自动的调用如下的方法：invoke()</span><br>    <span class="hljs-comment">//将被代理类要执行的方法a的功能就声明在invoke()中</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">invoke</span><span class="hljs-params">(Object proxy, Method method, Object[] args)</span> </span><br><span class="hljs-function">        <span class="hljs-keyword">throws</span> Throwable </span><br><span class="hljs-function">    </span>&#123;<br>        HumanUtil util = <span class="hljs-keyword">new</span> HumanUtil();<br>        util.method1();<br>        <span class="hljs-comment">//method:即为代理类对象调用的方法，此方法也就作为了被代理类对象要调用的方法</span><br>        <span class="hljs-comment">//obj:被代理类的对象</span><br>        Object returnValue = method.invoke(obj,args);<br>        util.method2();<br>        <span class="hljs-comment">//上述方法的返回值就作为当前类中的invoke()的返回值。</span><br>        <span class="hljs-keyword">return</span> returnValue;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProxyTest</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        SuperMan superMan = <span class="hljs-keyword">new</span> SuperMan();<br>        <span class="hljs-comment">//proxyInstance:代理类的对象。通过指定的被代理类，创建代理类对象</span><br>        Human proxyInstance = (Human) ProxyFactory.getProxyInstance(superMan);<br>        <span class="hljs-comment">//当通过代理类对象调用方法时，会自动的调用被代理类中同名的方法</span><br>        String belief = proxyInstance.getBelief();<br>        System.out.println(belief);<br>        proxyInstance.eat(<span class="hljs-string">&quot;火锅&quot;</span>);<br>    &#125;<br>&#125;<br><span class="hljs-comment">/*输出结果</span><br><span class="hljs-comment">*****通用方法一*****</span><br><span class="hljs-comment">*****通用方法二*****</span><br><span class="hljs-comment">I believe I can fly!</span><br><span class="hljs-comment">*****通用方法一*****</span><br><span class="hljs-comment">我喜欢吃火锅</span><br><span class="hljs-comment">*****通用方法二*****</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
+<h2 id="3、动态代理与AOP"><a href="#3、动态代理与AOP" class="headerlink" title="3、动态代理与AOP"></a>3、动态代理与AOP</h2><p>AOP（Aspect Orient Programming），面向切片编程。</p>
+<p>使用Proxy生成一个动态代理时，往往并不会凭空产生一个动态代理，这样没有太大的意义。通常都是为指定的目标对象生成动态代理。</p>
+<p>这种动态代理在AOP中被称为AOP代理，AOP代理可代替目标对象，AOP代理包含了目标对象的全部方法。但AOP代理中的方法与目标对象的方法存在差异：<strong>AOP代理里的方法可以在执行目标方法之前、之后插入一些通用处理</strong>。</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Kangshitao</li>
+    <li><strong>本文链接：</strong><a href="http://kangshitao.github.io/2021/04/18/java-note-1501/index.html" title="http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2021&#x2F;04&#x2F;18&#x2F;java-note-1501&#x2F;index.html">http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2021&#x2F;04&#x2F;18&#x2F;java-note-1501&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/04/18/java-note-1601/"><i class="iconfont iconleft"></i>Java学习笔记16-Java8的其它新特征</a>
+    <a href="/2021/04/17/java-note-1401/">Java学习笔记14-网络编程<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+        <section class="comments">
+  
+    <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz",
+        app_key: "XipU873t8gkSypbwl1HWUARD",
+        placeholder: "write comment content...",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+		var title1="text=Live and Learn有新评论啦~ --by Valine"
+		var SCKEY_Server="SCT21455TskriUeyliOqL6kHLhiCOMmlB"
+		var ValineButton=document.getElementsByClassName("vsubmit vbtn")[0];
+		function send_valine_Server(){
+			var text="desp=";
+			var pageurl=document.URL;
+			var ptime=new Date();
+			var vnick=document.getElementsByClassName("vnick vinput")[0].value;
+			var veditor=document.getElementsByClassName("veditor vinput")[0].value;
+			var data=text+"|昵称"+"|评论内容"+"|跳转链接"+"|评论时间"+"\n"+"|----|----|----|----|"+"\n"+"|"+vnick+"|"+veditor+"|"+pageurl+"|" +ptime.toLocaleString()+"|";
+			var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+			httpRequest.open('POST', 'https://sctapi.ftqq.com/'+SCKEY_Server+'.send', true); //第二步：打开连接
+			httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）
+			httpRequest.send(title1+"&"+data);//发送请求 将请头体体写在send中
+		};
+		ValineButton.onclick=send_valine_Server;
+      });
+    } else {
+      loadValine();
+    }
+  };
+ 
+</script>
+
+
+</section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81Java%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6%E6%A6%82%E8%BF%B0"><span class="toc-text">一、Java反射机制概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%90%86%E8%A7%A3Class%E7%B1%BB%E5%B9%B6%E8%8E%B7%E5%8F%96Class%E5%AE%9E%E4%BE%8B"><span class="toc-text">二、理解Class类并获取Class实例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81Class%E7%B1%BB"><span class="toc-text">1、Class类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E8%8E%B7%E5%8F%96Class%E7%B1%BB%E5%AE%9E%E4%BE%8B"><span class="toc-text">2、获取Class类实例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E4%B8%8EClassLoader%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">三、类的加载与ClassLoader的理解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B"><span class="toc-text">1、类的加载过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="toc-text">2、类加载器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%88%9B%E5%BB%BA%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB%E7%9A%84%E5%AF%B9%E8%B1%A1"><span class="toc-text">四、创建运行时类的对象</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E8%8E%B7%E5%8F%96%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB%E7%9A%84%E5%AE%8C%E6%95%B4%E7%BB%93%E6%9E%84"><span class="toc-text">五、获取运行时类的完整结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E8%8E%B7%E5%8F%96%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%8E%A5%E5%8F%A3"><span class="toc-text">1、获取运行时类实现的接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E8%8E%B7%E5%8F%96%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB%E7%BB%A7%E6%89%BF%E7%9A%84%E7%88%B6%E7%B1%BB"><span class="toc-text">2、获取运行时类继承的父类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E8%8E%B7%E5%8F%96%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB%E7%9A%84%E6%9E%84%E9%80%A0%E5%99%A8"><span class="toc-text">3、获取运行时类的构造器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E8%8E%B7%E5%8F%96%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">4、获取运行时类的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E8%8E%B7%E5%8F%96%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB%E7%9A%84Field"><span class="toc-text">5、获取运行时类的Field</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81%E8%8E%B7%E5%8F%96%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB%E5%85%B6%E4%BB%96%E7%BB%93%E6%9E%84"><span class="toc-text">6、获取运行时类其他结构</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E8%B0%83%E7%94%A8%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB%E7%9A%84%E6%8C%87%E5%AE%9A%E7%BB%93%E6%9E%84"><span class="toc-text">六、调用运行时类的指定结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E8%B0%83%E7%94%A8%E6%8C%87%E5%AE%9A%E6%96%B9%E6%B3%95"><span class="toc-text">1、调用指定方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E8%B0%83%E7%94%A8%E6%8C%87%E5%AE%9A%E5%B1%9E%E6%80%A7"><span class="toc-text">2、调用指定属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E8%B0%83%E7%94%A8%E6%8C%87%E5%AE%9A%E6%9E%84%E9%80%A0%E5%99%A8"><span class="toc-text">3、调用指定构造器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E5%8F%8D%E5%B0%84%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%9A%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86"><span class="toc-text">七、反射的应用：动态代理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%A6%82%E8%BF%B0"><span class="toc-text">1、动态代理概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%AE%9E%E7%8E%B0"><span class="toc-text">2、动态代理实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E4%B8%8EAOP"><span class="toc-text">3、动态代理与AOP</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1574716653 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/kangshitao "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#24292E'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:1574716653@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">Total:
+  <span id="busuanzi_value_site_pv" style="font-size:12px;"></span></span>
+  <span id="busuanzi_container_site_uv" >| Visitors:
+  <span id="busuanzi_value_site_uv" style="font-size:12px;"></span></span>
+  </div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+  
+  
+<script src="/js/clicklove.js"></script>
+<!-- 页面点击小红心 -->
+  
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz',
+      appKey: 'XipU873t8gkSypbwl1HWUARD',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud").each(async (e) => {
+        const url = $(".leancloud").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud").eq(e).text(count ? count : '--');
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud").length === 1 ? $(".leancloud").attr('id').trim() : 'http://kangshitao.github.io';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    $(function () {
+	  const Counter = AV.Object.extend("Counter");
+	  showCount(Counter);
+      const localhost = /http\:\/\/localhost|http\:\/\/127.0.0.1|http\:\/\/0.0.0.0/;
+      if (localhost.test(document.URL)) {
+	    return;
+	  }
+	  addCount(Counter);
+    });
+  });
+</script>
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <script>
+    window.ga = window.ga || function () {
+      (ga.q = ga.q || []).push(arguments)
+    };
+    ga.l = +new Date;
+    ga('create', 'G-0FZTGJZNYS', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</html>

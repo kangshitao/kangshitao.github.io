@@ -1,0 +1,791 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MyBatis配置与使用 - Live And Learn</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="hexo-blog,live and learn,kangshitao, MyBatis,SQL,XML配置">
+  <meta name="description" content="一、MyBatis介绍MyBatis是一款优秀的持久层...">
+  <meta name="author" content="Kangshitao">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/atelier-heath-light.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/monokai-sublime.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg',
+        wechat: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '心之所向，素履以往',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'normal'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Live And Learn" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">MyBatis配置与使用</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_7.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">MyBatis配置与使用</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>六月 21, 2021</span>
+      
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2021/06/21/mybatis-basis/" class="leancloud" data-flag-title="MyBatis配置与使用"></span>
+        </span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>28638</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="一、MyBatis介绍"><a href="#一、MyBatis介绍" class="headerlink" title="一、MyBatis介绍"></a>一、MyBatis介绍</h1><p>MyBatis是一款优秀的持久层框架，它支持自定义 SQL、存储过程以及高级映射。MyBatis 免除了几乎所有的 JDBC 代码以及设置参数和获取结果集的工作。MyBatis 可以通过简单的<strong>XML</strong> 或<strong>注解</strong>来配置和映射原始类型、接口和 Java POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。</p>
+<p>总结：MyBatis使用<strong>XML</strong> 或<strong>注解</strong>替代了传统的DAO实现，开发人员只需要关注SQL语句的编写，不需要花费大量代码去获取数据库连接和处理结果集。</p>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://mybatis.org/mybatis-3/zh/index.html">https://mybatis.org/mybatis-3/zh/index.html</a></p>
+<blockquote>
+<p>表现层、业务层、持久层三层框架。</p>
+</blockquote>
+<h1 id="二、MyBatis实现CRUD"><a href="#二、MyBatis实现CRUD" class="headerlink" title="二、MyBatis实现CRUD"></a>二、MyBatis实现CRUD</h1><p><strong>使用环境</strong>：</p>
+<p>IDEA Ultimate 2020.3</p>
+<p>MyBatis 3.4.6</p>
+<p>MySQL 5.1.47</p>
+<p>Maven 3.8.1</p>
+<p>练习代码参考：<a target="_blank" rel="noopener" href="https://github.com/kangshitao/MyBatis_study">Mybatis_study</a></p>
+<h2 id="2-1-基本步骤"><a href="#2-1-基本步骤" class="headerlink" title="2.1 基本步骤"></a>2.1 基本步骤</h2><p>Maven项目中使用MyBatis的大致步骤，和常用的文件目录结构如图：</p>
+<p><img    class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/mybatis-basis_1.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">Maven项目中配置MyBatis</span></p>
+<h2 id="2-2-步骤详情"><a href="#2-2-步骤详情" class="headerlink" title="2.2 步骤详情"></a>2.2 步骤详情</h2><h3 id="2-2-1-pom文件配置"><a href="#2-2-1-pom文件配置" class="headerlink" title="2.2.1 pom文件配置"></a>2.2.1 pom文件配置</h3><p>要使用MyBatis，首先需要导入其jar包，在<a target="_blank" rel="noopener" href="https://mvnrepository.com/">mvnrepository</a>网站找到MyBatis依赖，将其放入Maven配置文件中的依赖中即可。同时还需要导入MySQL依赖，其余的根据需求导入。</p>
+<p><code>pom.xml</code>文件是Maven项目的配置文件，其配置了项目的组id，部署id，版本号，依赖包等内容。</p>
+<p>这里将<code>Mybatis_study</code>作为父工程，其中包括了多个子模块，只需要在父工程的配置文件中添加依赖，子模块的<code>pom.xml</code>就不再需要额外引入依赖了。</p>
+<p>父工程的<code>pom.xml</code>文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">project</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!--作为父工程--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.kang<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>Mybatis_study<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--子模块--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">modules</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">module</span>&gt;</span>mybatis-01<span class="hljs-tag">&lt;/<span class="hljs-name">module</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">module</span>&gt;</span>mybatis-02<span class="hljs-tag">&lt;/<span class="hljs-name">module</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">module</span>&gt;</span>mybatis-03<span class="hljs-tag">&lt;/<span class="hljs-name">module</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">modules</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span><br>        <span class="hljs-comment">&lt;!--源代码使用的JDK版本--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">maven.compiler.source</span>&gt;</span>15<span class="hljs-tag">&lt;/<span class="hljs-name">maven.compiler.source</span>&gt;</span><br>        <span class="hljs-comment">&lt;!--编译源代码使用的JDK版本--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">maven.compiler.target</span>&gt;</span>15<span class="hljs-tag">&lt;/<span class="hljs-name">maven.compiler.target</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">packaging</span>&gt;</span>pom<span class="hljs-tag">&lt;/<span class="hljs-name">packaging</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--在dependencies中添加需要的依赖--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>        <span class="hljs-comment">&lt;!--mybatis依赖--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.mybatis<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mybatis<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.4.6<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-comment">&lt;!--mysql依赖--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>mysql<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mysql-connector-java<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.1.47<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-comment">&lt;!--junit依赖--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.12<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-comment">&lt;!-- log4j依赖 --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>log4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>log4j<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.2.17<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">build</span>&gt;</span><br><span class="hljs-comment">&lt;!--资源插件，使maven在编译时将src/main/java下的指定的文件拷贝到target/classes中--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">resources</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">resource</span>&gt;</span><br>                <span class="hljs-comment">&lt;!--directory，指定要拷贝的目录--&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">directory</span>&gt;</span>src/main/java<span class="hljs-tag">&lt;/<span class="hljs-name">directory</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">includes</span>&gt;</span><br><span class="hljs-comment">&lt;!--指定目录下的文件，将所有properties后缀和xml后缀的文件都拷贝到target/classes中--&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">include</span>&gt;</span>**/*.properties<span class="hljs-tag">&lt;/<span class="hljs-name">include</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">include</span>&gt;</span>**/*.xml<span class="hljs-tag">&lt;/<span class="hljs-name">include</span>&gt;</span><br>                <span class="hljs-tag">&lt;/<span class="hljs-name">includes</span>&gt;</span><br><span class="hljs-comment">&lt;!-- false表示不启用过滤器，因为上面*.properties已经起到过滤作用了--&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">filtering</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-name">filtering</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">resource</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">resource</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">directory</span>&gt;</span>src/main/resources<span class="hljs-tag">&lt;/<span class="hljs-name">directory</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">includes</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">include</span>&gt;</span>**/*.properties<span class="hljs-tag">&lt;/<span class="hljs-name">include</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">include</span>&gt;</span>**/*.xml<span class="hljs-tag">&lt;/<span class="hljs-name">include</span>&gt;</span><br>                <span class="hljs-tag">&lt;/<span class="hljs-name">includes</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">filtering</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-name">filtering</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">resource</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">resources</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">build</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>因为Maven在编译时，默认只会将<code>resource</code>目录下的配置文件添加到<code>target/classes</code>文件夹下，如果使用了Mapper配置文件，则需要在Maven配置文件中使用<code>&lt;resources&gt;</code>标签，使Maven编译时将指定目录下的配置文件也拷贝到<code>target/classes</code>文件夹下。</p>
+<p>另一种做法是，在<code>resource</code>目录下，创建和DAO接口相同的目录，将配置文件添加到这个目录下。</p>
+<blockquote>
+<p>项目中这些路径，都是编译后的文件所在的位置，所以原则是保证编译后，能够根据代码中写的路径找到相应的文件。</p>
+<p>Maven会将<code>resource</code>目录下的配置文件编译到<code>target/classes</code>目录下，将<code>java</code>目录下的文件也编译到<code>target/classes</code>目录。</p>
+<p>如果resource目录下存在一个和java目录相同的子目录，编译后，这两个目录中的内容都会存放在<code>target/classes</code>的同一个目录中，这个路径就是原来的相同的子目录（就是说两个相同的子目录编译后只会存在一个）</p>
+</blockquote>
+<h3 id="2-2-2-MyBatis配置文件"><a href="#2-2-2-MyBatis配置文件" class="headerlink" title="2.2.2 MyBatis配置文件"></a>2.2.2 MyBatis配置文件</h3><p><code>mybatis-config.xml</code>配置文件位于<code>resource</code>文件目录下，其包含了对MyBatis系统的核心设置，包括获取数据库连接实例的数据源（DataSource）以及决定事务作用域和控制方式的事务管理器（TransactionManager）等。</p>
+<p><code>mybatis-config.xml</code>的简单示例：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">configuration</span></span><br><span class="hljs-meta">        <span class="hljs-meta-keyword">PUBLIC</span> <span class="hljs-meta-string">&quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span></span><br><span class="hljs-meta">        <span class="hljs-meta-string">&quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--环境配置，可以配置多个环境，并指定一个默认的环境--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">environments</span> <span class="hljs-attr">default</span>=<span class="hljs-string">&quot;development&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">environment</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;development&quot;</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">transactionManager</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;JDBC&quot;</span>/&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">dataSource</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;POOLED&quot;</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;driver&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;com.mysql.jdbc.Driver&quot;</span>/&gt;</span><br>                <span class="hljs-comment">&lt;!--这里需要使用转义字符代替&amp;符号--&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;url&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;jdbc:mysql://localhost:3306/mybatis?characterEncoding=UTF-8<span class="hljs-symbol">&amp;amp;</span>serverTimezone=UTC&quot;</span>/&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;username&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;root&quot;</span>/&gt;</span><span class="hljs-comment">&lt;!--数据库用户--&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;password&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;123456&quot;</span>/&gt;</span><span class="hljs-comment">&lt;!--密码--&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">dataSource</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">environment</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">environments</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--Mapper映射--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">mappers</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">&quot;com/kang/dao/UserMapper.xml&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">mappers</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>MyBatis的XML配置文件的按照严格的结构配置，配置文件中的标签书写顺序要严格按照下面的顺序。参考MyBatis官方文档：</p>
+<ul>
+<li><strong>configuration（配置）</strong><ul>
+<li><strong><a target="_blank" rel="noopener" href="https://mybatis.org/mybatis-3/zh/configuration.html#properties">properties（属性）</a>：</strong>属性可以在外部进行配置，将配置信息写在另外的配置文件然后引入即可。或者可以定义全局变量，在<code>dataSource</code>中的<code>property</code>根据<code>name</code>使用<code>$&#123;&#125;</code>获取即可。</li>
+<li><strong><a target="_blank" rel="noopener" href="https://mybatis.org/mybatis-3/zh/configuration.html#settings">settings（设置）</a>：</strong>可以设置缓存开启、执行器类型、驼峰命名映射、日志实现等功能。</li>
+<li><strong><a target="_blank" rel="noopener" href="https://mybatis.org/mybatis-3/zh/configuration.html#typeAliases">typeAliases（类型别名）</a>：</strong>为Java类型设置别名，仅用于XML文件，使用简短的类名代替全限类名，降低冗余书写。起别名的方式也有多种，可以为一个单独类起别名，可以给一个包起别名，也可以使用注解的方式给类起别名。</li>
+<li><strong><a target="_blank" rel="noopener" href="https://mybatis.org/mybatis-3/zh/configuration.html#typeHandlers">typeHandlers（类型处理器）</a></strong></li>
+<li><strong><a target="_blank" rel="noopener" href="https://mybatis.org/mybatis-3/zh/configuration.html#objectFactory">objectFactory（对象工厂）</a></strong></li>
+<li><strong><a target="_blank" rel="noopener" href="https://mybatis.org/mybatis-3/zh/configuration.html#plugins">plugins（插件）</a></strong></li>
+<li><strong>environments（环境配置）：</strong>MyBatis可以配置多种环境，每个SqlSessionFactory实例只能选择一种环境。<ul>
+<li>environment（环境变量）<ul>
+<li>transactionManager（事务管理器）</li>
+<li>dataSource（数据源）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong><a target="_blank" rel="noopener" href="https://mybatis.org/mybatis-3/zh/configuration.html#databaseIdProvider">databaseIdProvider（数据库厂商标识）</a></strong></li>
+<li><strong><a target="_blank" rel="noopener" href="https://mybatis.org/mybatis-3/zh/configuration.html#mappers">mappers（映射器）</a>：</strong>映射器的作用是告诉MyBatis去哪里找SQL语句执行，填写Mapper配置文件的地址。项目中每个Mapper配置文件都要在这里注册。有四种方式指定资源路径，其中<code>class</code>和<code>package</code>的方式要求配置文件和mapper接口要同名，package还要求配置文件和接口在同一个包下。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2-3-获取SqlSession对象"><a href="#2-2-3-获取SqlSession对象" class="headerlink" title="2.2.3 获取SqlSession对象"></a>2.2.3 获取SqlSession对象</h3><p>使用MyBatis实现CRUD操作，主要是通过<code>SqlSession</code>对象进行的，其类似于传统JDBC中的数据库Connection对象。MyBatis中使用<strong>Mapper</strong>的概念替换了DAO的概念。</p>
+<p>获取<code>SqlSession</code>对象的主要过程如下：</p>
+<ul>
+<li>通过<code>SqlSessionFactoryBuilder</code>对象获取<code>SqlSessionFactory</code>对象。（建造者模式）</li>
+<li>通过<code>SqlSessionFactory</code>对象获取<code>SqlSession</code>对象。（工厂模式）</li>
+<li>通过<code>SqlSession</code>对象生成相应的<code>Mapper</code>实现类对象。</li>
+<li>通过<code>Mapper</code>实现类对象调用<code>Mapper</code>中的方法实现CRUD操作。</li>
+</ul>
+<p>在<code>java/com/kang/utils</code>路径下，创建<code>MybatisUtils</code>工具类，用户获取<code>SqlSession</code>对象：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.kang.utils;<br><span class="hljs-keyword">import</span> org.apache.ibatis.io.Resources;<br><span class="hljs-keyword">import</span> org.apache.ibatis.session.SqlSession;<br><span class="hljs-keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;<br><span class="hljs-keyword">import</span> org.apache.ibatis.session.SqlSessionFactoryBuilder;<br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> java.io.InputStream;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MybatisUtils</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> SqlSessionFactory sqlSessionFactory;<br>    <span class="hljs-keyword">static</span> &#123;<br>        <span class="hljs-comment">//编译后的文件路径，即target/classes下的路径</span><br>        String resource = <span class="hljs-string">&quot;mybatis-config.xml&quot;</span>;<br>        InputStream inputStream = <span class="hljs-keyword">null</span>;<br>        <span class="hljs-keyword">try</span> &#123;<br>            inputStream = Resources.getResourceAsStream(resource);<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>        <span class="hljs-comment">//获取sqlSessionFactory对象</span><br>        sqlSessionFactory = <span class="hljs-keyword">new</span> SqlSessionFactoryBuilder().build(inputStream);<br>    &#125;<br>    <span class="hljs-comment">//根据sqlSessionFactory获取SqlSession对象</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> SqlSession <span class="hljs-title">getSqlSession</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-comment">//带参的openSession方法可以显式开启和关闭自动提交功能。</span><br>        <span class="hljs-comment">//MyBatis默认是关闭自动提交功能的，因此DML语句需要手动提交。</span><br>        <span class="hljs-keyword">return</span> sqlSessionFactory.openSession();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>关于SqlSessionFactoryBuilder、SqlSessionFactory、SqlSession对象的生命周期</strong></p>
+<ul>
+<li><code>SqlSessionFactoryBuilder</code>：一旦创建了 SqlSessionFactory，就不再需要SqlSessionFactoryBuilder了。 因此它的最佳作用域是<strong>方法作用域（也就是局部方法变量）</strong>。 可以重用 SqlSessionFactoryBuilder 来创建多个 SqlSessionFactory 实例，但最好还是不要一直保留着它，以保证所有的 XML 解析资源可以被释放给更重要的事情。</li>
+<li><code>SqlSessionFactory</code>：SqlSessionFactory 一旦被创建就应该在<strong>应用的运行期间一直存在</strong>，没有任何理由丢弃它或重新创建另一个实例。 使用 SqlSessionFactory 的最佳实践是在应用运行期间不要重复创建多次，因此 SqlSessionFactory 的最佳作用域是<strong>应用作用域</strong>。 有很多方法可以做到，最简单的就是使用<strong>单例模式</strong>或者<strong>静态单例模式</strong>。</li>
+<li><code>SqlSession</code>：每个线程都应该有自己的 SqlSession 实例。SqlSession 的实例不是线程安全的，因此是不能被共享的，所以它的<strong>最佳的作用域是请求或方法作用域</strong>。 绝对不能将 SqlSession 实例的引用放在一个类的静态域，甚至一个类的实例变量也不行。 也绝不能将 SqlSession 实例的引用放在任何类型的托管作用域中，比如 Servlet 框架中的 HttpSession。 如果现在正在使用一种 Web 框架，考虑将 SqlSession 放在一个和 HTTP 请求相似的作用域中。 换句话说，<strong>每次收到 HTTP 请求，就可以打开一个 SqlSession，返回一个响应后，就关闭它</strong>。 这个关闭操作很重要，为了确保每次都能执行关闭操作，应该把这个关闭操作放到 finally 块中。</li>
+</ul>
+<h3 id="2-2-4-编写Bean类和Mapper接口"><a href="#2-2-4-编写Bean类和Mapper接口" class="headerlink" title="2.2.4 编写Bean类和Mapper接口"></a>2.2.4 编写Bean类和Mapper接口</h3><p>创建<code>pojo</code>或<code>bean</code>目录，然后在其中创建JavaBean类，比如<code>User</code>类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.kang.pojo;<br><br><span class="hljs-comment">//定义id，name，pwd三个属性</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> id;<br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-keyword">private</span> String pwd;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">User</span><span class="hljs-params">()</span> </span>&#123;&#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">User</span><span class="hljs-params">(<span class="hljs-keyword">int</span> id, String name, String pwd)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.id = id;<br>        <span class="hljs-keyword">this</span>.name = name;<br>        <span class="hljs-keyword">this</span>.pwd = pwd;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getId</span><span class="hljs-params">()</span> </span>&#123;<span class="hljs-keyword">return</span> id;&#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setId</span><span class="hljs-params">(<span class="hljs-keyword">int</span> id)</span> </span>&#123;<span class="hljs-keyword">this</span>.id = id;&#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;<span class="hljs-keyword">return</span> name;&#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span> </span>&#123;<span class="hljs-keyword">this</span>.name = name;&#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getPwd</span><span class="hljs-params">()</span> </span>&#123;<span class="hljs-keyword">return</span> pwd;&#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setPwd</span><span class="hljs-params">(String pwd)</span> </span>&#123;<span class="hljs-keyword">this</span>.pwd = pwd;&#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;User&#123;&quot;</span> +<br>            <span class="hljs-string">&quot;id=&quot;</span> + id +<br>            <span class="hljs-string">&quot;, name=&#x27;&quot;</span> + name + <span class="hljs-string">&#x27;\&#x27;&#x27;</span> +<br>            <span class="hljs-string">&quot;, pwd=&#x27;&quot;</span> + pwd + <span class="hljs-string">&#x27;\&#x27;&#x27;</span> +<br>            <span class="hljs-string">&#x27;&#125;&#x27;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>创建<code>dao</code>目录，在其中编写<code>User</code>类对应的Mapper接口，定义一些操作。比如<code>UserMapper</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.kang.dao;<br><span class="hljs-keyword">import</span> com.kang.pojo.User;<br><br><span class="hljs-keyword">import</span> java.util.List;<br><span class="hljs-keyword">import</span> java.util.Map;<br><br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">UserMapper</span> </span>&#123;<br><br>    <span class="hljs-comment">// 查询全部用户</span><br>    <span class="hljs-function">List&lt;User&gt; <span class="hljs-title">getUserList</span><span class="hljs-params">()</span></span>;<br><br>    <span class="hljs-comment">// 根据id查询用户</span><br>    <span class="hljs-function">User <span class="hljs-title">getUserById</span><span class="hljs-params">(<span class="hljs-keyword">int</span> id)</span></span>;<br><br>    <span class="hljs-comment">//添加一个用户</span><br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">addUser</span><span class="hljs-params">(User user)</span></span>;<br><br>    <span class="hljs-comment">// 更新用户信息</span><br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">updateUser</span><span class="hljs-params">(User user)</span></span>;<br><br>    <span class="hljs-comment">// 删除用户</span><br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">deleteUser</span><span class="hljs-params">(<span class="hljs-keyword">int</span> id)</span></span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h3 id="2-2-5-Mapper配置文件"><a href="#2-2-5-Mapper配置文件" class="headerlink" title="2.2.5 Mapper配置文件"></a>2.2.5 Mapper配置文件</h3><p>传统JDBC需要对每个DAO接口创建一个实现类，以供service层使用。在MyBatis中，对每个Mapper接口创建一个配置文件即可，甚至可以不需要Mapper映射文件，直接在Mapper接口中使用注解功能，执行相应的SQL语句。</p>
+<p>这里先讨论Mapper映射文件的配置。</p>
+<p>创建<code>UserMapper.xml</code>映射文件，内容如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">mapper</span></span><br><span class="hljs-meta">        <span class="hljs-meta-keyword">PUBLIC</span> <span class="hljs-meta-string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span><br><span class="hljs-meta">        <span class="hljs-meta-string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span><br><span class="hljs-comment">&lt;!--namespace</span><br><span class="hljs-comment">命名空间，用于绑定一个对应的DAO/Mapper接口,这里和UserMapper绑定。</span><br><span class="hljs-comment">这样相当于写了一个实现类来实现此接口。</span><br><span class="hljs-comment">--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">&quot;com.kang.dao.UserMapper&quot;</span>&gt;</span><br>    <br>    <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;getUserList&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;com.kang.pojo.User&quot;</span>&gt;</span><br>        select * from user<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!-- #&#123;id&#125;会被预编译成？号，只有一个参数时参数名称可以随便写 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;getUserById&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;com.kang.pojo.User&quot;</span>&gt;</span><br>        select * from user where id=#&#123;id&#125;<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br>	<br>    <span class="hljs-comment">&lt;!--参数是类或者map时，参数名称必须和类中的属性名/map中的key相同--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;addUser&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;com.kang.pojo.User&quot;</span>&gt;</span><br>        insert into user(id,name,pwd) values(#&#123;id&#125;,#&#123;name&#125;,#&#123;pwd&#125;)<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">insert</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">update</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;updateUser&quot;</span>  <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;com.kang.pojo.User&quot;</span>&gt;</span><br>        update user set name=#&#123;name&#125;,pwd=#&#123;pwd&#125; where id=#&#123;id&#125;<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">update</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">delete</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;deleteUser&quot;</span>&gt;</span><br>        delete from user where id=#&#123;id&#125;<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">delete</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>上述映射文件，实现了Mapper接口中每个方法的功能。每个映射文件，都需要写到MyBatis配置文件（即<code>mybatis-config.xml</code>）的<code>&lt;mapper&gt;</code>标签中进行绑定。</p>
+<h3 id="2-2-6-执行CRUD语句"><a href="#2-2-6-执行CRUD语句" class="headerlink" title="2.2.6 执行CRUD语句"></a>2.2.6 执行CRUD语句</h3><p>在以上几步都完成以后，就可以编写代码实施具体的操作，主要步骤为：</p>
+<ul>
+<li>从工具类中获取<code>SqlSession</code>对象。</li>
+<li>调用<code>SqlSession</code>类的getMapper()方法获取Mapper接口的一个实现类对象。</li>
+<li>根据获取的Mapper实现类对象，调用具体的方法完成操作。</li>
+<li>关闭SqlSession。</li>
+</ul>
+<p>以查询和添加用户为例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 查询所有用户</span><br><span class="hljs-meta">@Test</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getUserList</span><span class="hljs-params">()</span> </span>&#123;<br>    SqlSession sqlSession = <span class="hljs-keyword">null</span>;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">// 1.获取SqlSession对象</span><br>        sqlSession = MybatisUtils.getSqlSession();<br>        <span class="hljs-comment">// 2.获取UserMapper接口实现类对象。</span><br>        UserMapper mapper = sqlSession.getMapper(UserMapper.class);<br>        <span class="hljs-comment">// 3.通过mapper调用方法完成功能</span><br>        List&lt;User&gt; userList = mapper.getUserList();<br>        <span class="hljs-keyword">for</span> (User user : userList) &#123;<br>            System.out.println(user);<br>        &#125;<br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        e.printStackTrace();<br>    &#125; <span class="hljs-keyword">finally</span> &#123;<br>        <span class="hljs-comment">//关闭SqlSession</span><br>        <span class="hljs-keyword">if</span>(sqlSession != <span class="hljs-keyword">null</span>)&#123;<br>            sqlSession.close();<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">//添加一名用户</span><br><span class="hljs-meta">@Test</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addUser</span><span class="hljs-params">()</span> </span>&#123;<br>    SqlSession sqlSession = <span class="hljs-keyword">null</span>;<br>    <span class="hljs-keyword">try</span> &#123;<br>        sqlSession = MybatisUtils.getSqlSession();<br>        UserMapper mapper = sqlSession.getMapper(UserMapper.class);<br>        mapper.addUser(<span class="hljs-keyword">new</span> User(<span class="hljs-number">1</span>, <span class="hljs-string">&quot;test&quot;</span>, <span class="hljs-string">&quot;test&quot;</span>));<br>        sqlSession.commit(); <span class="hljs-comment">//提交事务</span><br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        e.printStackTrace();<br>    &#125; <span class="hljs-keyword">finally</span> &#123;<br>        <span class="hljs-keyword">if</span>(sqlSession != <span class="hljs-keyword">null</span>)&#123;<br>            sqlSession.close();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这样，使用MyBatis进行CRUD的基本流程就大致完成了，下面讨论其中的详细配置和要注意的问题。</p>
+<h1 id="三、XML映射文件"><a href="#三、XML映射文件" class="headerlink" title="三、XML映射文件"></a>三、XML映射文件</h1><p>Mapper映射文件中，一共有9个顶级元素，每个顶级元素有自己的参数配置，可以参考<a target="_blank" rel="noopener" href="https://mybatis.org/mybatis-3/zh/sqlmap-xml.html#">官方文档-XML映射器</a></p>
+<ul>
+<li><code>cache</code> – 该命名空间的缓存配置。</li>
+<li><code>cache-ref</code> – 引用其它命名空间的缓存配置。</li>
+<li><code>resultMap</code> – 结果映射，描述如何从数据库结果集中加载对象，是最复杂也是最强大的元素。</li>
+<li><code>parameterMap</code> – 参数映射。已被废弃，将来可能被移除，建议使用行内参数映射。</li>
+<li><code>sql</code> – 可被其它语句引用的可重用语句块。类似于JSP中的common元素，在别的语句中通过include标签引入，提高代码可重用性。</li>
+<li><code>insert</code> – 映射插入语句。</li>
+<li><code>update</code> – 映射更新语句。</li>
+<li><code>delete</code> – 映射删除语句。</li>
+<li><code>select</code> – 映射查询语句。</li>
+</ul>
+<h2 id="3-1-一些参数说明"><a href="#3-1-一些参数说明" class="headerlink" title="3.1 一些参数说明"></a>3.1 一些参数说明</h2><p><code>select</code>元素的参数和<code>insert</code>/<code>update</code>/<code>delete</code>参数有区别。下面重点说明几个重要的参数。</p>
+<ul>
+<li><code>id</code>：命名空间中唯一的标识符，可以被用来引用这条语句，值为Mapper接口的方法名</li>
+<li><code>resultType</code>：select元素特有。 期望从这条语句中返回结果的类全限定名或别名。 如果返回的是集合，那应该设置为集合包含的类型，而不是集合本身的类型。 resultType 和 resultMap 之间只能同时使用一个。</li>
+<li><code>resultMap</code>：select元素特有。 对外部 resultMap 的命名引用。结果映射是 MyBatis 最强大的特性。</li>
+<li><code>parameterType</code>：将会传入这条语句的参数的类全限定名或别名。这个属性是可选的，因为MyBatis 可以通过类型处理器（TypeHandler）推断出具体传入语句的参数，默认值为未设置（unset）。</li>
+</ul>
+<p><strong>关于parameterType的@Param</strong></p>
+<p>参考自：<a target="_blank" rel="noopener" href="http://www.mybatis.cn/archives/920.html">http://www.mybatis.cn/archives/920.html</a></p>
+<p>1、简单类型不需要设置<code>parameterType</code>。</p>
+<p>2、复杂的参数类型需要设置<code>parameterType</code>，比如传入一个对象时，需要使用，比如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;insertUser&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;User&quot;</span>&gt;</span><br>    insert into users (id, username, password)<br>    values (#&#123;id&#125;, #&#123;username&#125;, #&#123;password&#125;)<br><span class="hljs-tag">&lt;/<span class="hljs-name">insert</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>此时，User 类型的参数对象传递到了语句中，会查找 id、username 和 password 属性，然后将它们的值传入预处理语句的参数中。</p>
+<p>此外，<code>parameterType</code>的值还可以使用<code>map</code>(这里是别名)传递，表示参数类型是<code>Map</code>，参数的名称为<code>Map</code>中的<code>key</code>：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectUsers&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;User&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;map&quot;</span>&gt;</span><br>  select id, username, password<br>  from users<br>  where id = #&#123;id&#125; and age = #&#123;age&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>3、复杂类型也可以使用<code>@Param</code>的方式，此时不需要设置<code>parameterType</code>。</p>
+<p>Mapper接口中：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml">public List<span class="hljs-tag">&lt;<span class="hljs-name">Users</span>&gt;</span> getUsers(@Param(&quot;name&quot;) String name, @Param(&quot;age&quot;) int age);<br></code></pre></td></tr></table></figure>
+<p>映射文件中的语句：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectUsers&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;User&quot;</span>&gt;</span><br>    select id, username, password<br>    from users<br>    where id = #&#123;id&#125; and age = #&#123;age&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>使用<code>@Param</code>注解的方式，不需要设置参数类型，参数名称为注解定义的名称，这种方式只适用于参数较少的情况。</p>
+<h2 id="3-2-结果映射"><a href="#3-2-结果映射" class="headerlink" title="3.2 结果映射"></a>3.2 结果映射</h2><p><code>resultMap</code>用于对结果集进行映射。其和<code>resultType</code>只能同时一个。简单情况下，可以直接使用<code>resultType=&quot;map&quot;</code>实现简单的映射，比如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;getUserById&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;map&quot;</span>&gt;</span><br>    select id, username, pwd<br>    from user<br>    where id = #&#123;id&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>这种情况下，语句简单地将所有的列映射到 <code>HashMap</code> 的键上，这由 <code>resultType</code> 属性指定。虽然在大部分情况下都够用，但是 <code>HashMap</code> 并不是一个很好的领域模型。实际情况下更可能会使用 <code>JavaBean</code> 或<code>POJO</code>（Plain Old Java Objects）作为<code>resultType</code>，比如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;getUserById&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;com.kang.pojo.User&quot;</span>&gt;</span><br>    select id, username, pwd<br>    from user <br>    where id = #&#123;id&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>对于一些复杂情况，比如联表查询，或者属性名和表字段名不一致时，必须使用<code>resultMap</code>进行映射。</p>
+<h3 id="3-2-1-使用resultMap解决列名和属性名不一致问题"><a href="#3-2-1-使用resultMap解决列名和属性名不一致问题" class="headerlink" title="3.2.1 使用resultMap解决列名和属性名不一致问题"></a>3.2.1 使用resultMap解决列名和属性名不一致问题</h3><p>对于<code>User</code>表，数据库中属性是<code>id</code>，<code>name</code>，<code>pwd</code>，而Javabean中属性为<code>id</code>，<code>name</code>，<code>password</code>。二者的密码属性名称不一致，会导致查出来结果为null。</p>
+<p>其中一种解决方法是在SQL语句中给列名起别名，使其和属性名保持一致：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;getUserById&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;com.kang.pojo.User&quot;</span>&gt;</span><br>    select id, username, pwd as password<br>    from user <br>    where id = #&#123;id&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>第二个方法是使用<code>resultMap</code>进行结果集映射：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;getUserById&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;int&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;UserMap&quot;</span>&gt;</span><br>    select id,name,pwd <br>    from user <br>    where id=#&#123;id&#125;;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;UserMap&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;com.kang.pojo.User&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;id&quot;</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;id&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;name&quot;</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;name&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;pwd&quot;</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;password&quot;</span>/&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><code>resultMap</code>中有两个重要的参数，主要用于多表查询：</p>
+<ul>
+<li><code>association</code>：一个复杂类型的<strong>关联</strong>；许多结果将包装成这种类型。用于<strong>一对一或多对一</strong>查询，查询结果是对于一个对象时使用。比如多个学生和同一个老师关联。</li>
+<li><code>collection</code>：一个复杂类型的<strong>集合</strong>。用于<strong>一对多或多对多</strong>查询，查询结果是多个对象时使用。比如一个老师和多个不同的学生的关系，查询一个老师教的多个不同的学生，应该使用collection。</li>
+</ul>
+<p>其他标签和属性，比如：</p>
+<ul>
+<li><code>id</code>标签： 将一个列的值映射到一个简单数据类型的属性或字段。id元素对应的属性会被标记为对象的标识符，在比较对象实例时使用。 这样可以提高整体的性能，尤其是进行嵌套结果映射的时候。</li>
+<li><code>result</code>标签：也是将一个列的值映射到一个简单数据类型的属性或字段。</li>
+<li><code>column</code>属性：数据库中的列名，或者是列的别名。类似于<code>resultSet.getString(columnName)</code> 方法的参数。</li>
+<li><code>property</code>属性：映射到列结果的Java类中的字段或属性。如果用来匹配的 JavaBean 存在给定名字的属性，那么它将会被使用。否则 MyBatis 将会寻找给定名称的字段。</li>
+</ul>
+<h3 id="3-2-2-N对1查询"><a href="#3-2-2-N对1查询" class="headerlink" title="3.2.2 N对1查询"></a>3.2.2 N对1查询</h3><p>如果多个表，例如两个表进行一对一或者多对一查询，就需要使用<code>resultMap</code>，具体来说是使用<code>resultMap</code>的<code>association</code> 。</p>
+<p>比如，多个学生对应一个老师，类定义如下：</p>
+<p><code>Student.java</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> id;<br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-keyword">private</span> Teacher teacher;<br>    ...<span class="hljs-comment">//get，set方法等</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p><code>StudentMapper</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">StudentMapper</span> </span>&#123;<br>    <span class="hljs-comment">//查询所有的学生信息，以及对应的老师的信息</span><br>    <span class="hljs-comment">//这个表的所有学生对应一个老师，此时是多对一的关系</span><br>    <span class="hljs-function">List&lt;Student&gt; <span class="hljs-title">getStudent</span><span class="hljs-params">()</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><code>teacher.java</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Teacher</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> id;<br>    <span class="hljs-keyword">private</span> String name;<br>    ...<span class="hljs-comment">//get，set方法等</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>假设当前数据库中，所有的学生的老师都是同一位，即多对一的情况，有两种查询方式，第一种类似于子查询，第二种是结果嵌套（常用）。</p>
+<p>查询语句如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--	多对一</span><br><span class="hljs-comment">    思路一：子查询</span><br><span class="hljs-comment">    1.查询所有的学生信息</span><br><span class="hljs-comment">    2.根据结果中的tid，查询老师信息</span><br><span class="hljs-comment">--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;getStudent&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;StudentTeacher&quot;</span>&gt;</span><br>    select * from student;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;StudentTeacher&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;com.kang.pojo.Student&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;id&quot;</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;id&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;name&quot;</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;name&quot;</span>/&gt;</span><br><span class="hljs-comment">&lt;!--</span><br><span class="hljs-comment">association 关联</span><br><span class="hljs-comment">column表示调用该查询语句时传入的参数是什么</span><br><span class="hljs-comment">--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">association</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;teacher&quot;</span> </span><br><span class="hljs-tag">                 <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;tid&quot;</span> </span><br><span class="hljs-tag">                 <span class="hljs-attr">javaType</span>=<span class="hljs-string">&quot;com.kang.pojo.Teacher&quot;</span> </span><br><span class="hljs-tag">                 <span class="hljs-attr">select</span>=<span class="hljs-string">&quot;getTeacherName&quot;</span>/&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;getTeacherName&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;com.kang.pojo.Teacher&quot;</span>&gt;</span><br>    select * from teacher where id=#&#123;id&#125;;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br><br><span class="hljs-comment">&lt;!--==========================================--&gt;</span><br><span class="hljs-comment">&lt;!-- 思路二：按照结果嵌套查询 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;getStudent2&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;StudentTeacher2&quot;</span>&gt;</span><br>    select s.id as sid,<br>    s.name as sname,<br>    t.id as tid,<br>    t.name as tname<br>    from student s,teacher t<br>    where s.tid=t.id;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;StudentTeacher2&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;com.kang.pojo.Student&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;id&quot;</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;sid&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;name&quot;</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;sname&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">association</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;teacher&quot;</span> <span class="hljs-attr">javaType</span>=<span class="hljs-string">&quot;com.kang.pojo.Teacher&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;id&quot;</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;tid&quot;</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;name&quot;</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;tname&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">association</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<h3 id="3-2-3-N对多查询"><a href="#3-2-3-N对多查询" class="headerlink" title="3.2.3 N对多查询"></a>3.2.3 N对多查询</h3><p>一个老师对应多个学生，查询老师和其学生，就是一对多/多对多的问题。</p>
+<p><code>Teacher.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Teacher</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> id;<br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-keyword">private</span> List&lt;Student&gt; students; <span class="hljs-comment">//一个老师教多名学生</span><br>    ...<span class="hljs-comment">//get，set方法等</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p><code>TeacherMapper</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">TeacherMapper</span> </span>&#123;<br>    <span class="hljs-comment">//获取指定老师的信息及其教的所有学生信息</span><br>    <span class="hljs-function">Teacher <span class="hljs-title">getTeacherById</span><span class="hljs-params">(<span class="hljs-keyword">int</span> id)</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><code>Student.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> id;<br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> tid;<br>    ...<span class="hljs-comment">//get，set方法等</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>多对多和一对多的查询是相似地，都是使用collection，同样有两种方式：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;getTeacherById&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;getTeacherStudent&quot;</span>&gt;</span><br>    select t.id as tid,<br>    t.name as tname,<br>    s.id as sid,<br>    s.name as sname,<br>    s.tid as stid<br>    from student s, teacher t<br>    where t.id=#&#123;id&#125; and s.tid=t.id;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;getTeacherStudent&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;com.kang.pojo.Teacher&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;id&quot;</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;tid&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;name&quot;</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;tname&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">collection</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;students&quot;</span> <span class="hljs-attr">ofType</span>=<span class="hljs-string">&quot;com.kang.pojo.Student&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;id&quot;</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;sid&quot;</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;name&quot;</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;sname&quot;</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;tid&quot;</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;stid&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">collection</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span><br><br><span class="hljs-comment">&lt;!-- 方式二：嵌套子查询</span><br><span class="hljs-comment">    1.先查询指定id的老师</span><br><span class="hljs-comment">    2.根据指定老师id查询所有符合条件的学生</span><br><span class="hljs-comment">    --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;getTeacherById2&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;getTeacherStudent2&quot;</span>&gt;</span><br>    select * from teacher where id=#&#123;id&#125;;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;getTeacherStudent2&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;com.kang.pojo.Teacher&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;id&quot;</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;id&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;name&quot;</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;name&quot;</span>/&gt;</span><br>    <span class="hljs-comment">&lt;!--结果是一个List对象，集合中的元素是Student类--&gt;</span><br>    <span class="hljs-comment">&lt;!-- 这里的javaType可以省略 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">collection</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;students&quot;</span> </span><br><span class="hljs-tag">                <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;id&quot;</span></span><br><span class="hljs-tag">                <span class="hljs-attr">javaType</span>=<span class="hljs-string">&quot;List&quot;</span> </span><br><span class="hljs-tag">                <span class="hljs-attr">ofType</span>=<span class="hljs-string">&quot;com.kang.pojo.Student&quot;</span></span><br><span class="hljs-tag">                <span class="hljs-attr">select</span>=<span class="hljs-string">&quot;getStudentsByTid&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;getStudentsByTid&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;com.kang.pojo.Student&quot;</span>&gt;</span><br>    select * from student where tid=#&#123;tid&#125;;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>注意到，在<code>association</code>和<code>collection</code>标签中，出现了<code>ofType</code>和<code>javaType</code>两种类型，二者都是用来指定对象类型的，区别如下：</p>
+<ul>
+<li><code>javaType</code>用来指定pojo类中属性的类型，如果<code>property</code>标签的值不是集合，就使用<code>javaType</code>。一般用于<code>association</code>标签中。<ul>
+<li>比如N对一查询中，<code>Student</code>类中的<code>teacher</code>属性，只是一个对象，不是集合，类型是<code>Teacher</code>类，因此使用<code>javaType</code>，值为<code>com.kang.pojo.Teacher</code>。</li>
+<li>在N对多的查询中，<code>Teacher</code>类中的<code>students</code>属性，是一个<code>List</code>类型，因此其值为<code>List</code>。</li>
+</ul>
+</li>
+<li><code>ofType</code>用来指定集合中存储元素的类型。当<code>property</code>标签的值是集合的时候使用<code>ofType</code>，值为集合中元素的类型。<ul>
+<li>比如在N对多查询中，<code>Teacher</code>类中的<code>students</code>属性，是一个<code>List</code>类型，<code>List</code>中的元素类型是<code>Student</code>类型，因此<code>ofType=&quot;com.kang.pojo.Student&quot;</code>。</li>
+</ul>
+</li>
+</ul>
+<h1 id="四、注解"><a href="#四、注解" class="headerlink" title="四、注解"></a>四、注解</h1><h2 id="4-1-使用方法"><a href="#4-1-使用方法" class="headerlink" title="4.1 使用方法"></a>4.1 使用方法</h2><p>前面说过，MyBatis有两种方式实现SQL语句，可以通过XML映射文件实现SQL语句，也可以使用注解的方式，直接在Mapper接口的方法上用注解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Select(&quot;select * from user where $&#123;column&#125; = #&#123;value&#125;&quot;)</span><br><span class="hljs-function">User <span class="hljs-title">findByColumn</span><span class="hljs-params">(<span class="hljs-meta">@Param(&quot;column&quot;)</span> String column, <span class="hljs-meta">@Param(&quot;value&quot;)</span> String value)</span></span>;<br></code></pre></td></tr></table></figure>
+<p>其中<code>@Param</code>为参数注解，指定参数的值应该对应到SQL语句中的哪个参数。</p>
+<p>上述使用注解的方法不需要XML映射文件，使用时直接传入参数即可：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">User userOfId1 = userMapper.findByColumn(<span class="hljs-string">&quot;id&quot;</span>, <span class="hljs-number">1L</span>);<br>User userOfNameKid = userMapper.findByColumn(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;kid&quot;</span>);<br>User userOfEmail = userMapper.findByColumn(<span class="hljs-string">&quot;email&quot;</span>, <span class="hljs-string">&quot;noone@nowhere.com&quot;</span>);<br></code></pre></td></tr></table></figure>
+<p>其中 <code>$&#123;column&#125;</code> 会被直接替换，而 <code>#&#123;value&#125;</code> 会使用 <code>?</code> 预处理，从而实现根据不同列查询。</p>
+<p>但是使用<code>$&#123;&#125;</code>存在SQL注入的问题。</p>
+<p><strong>关于@Param注解</strong>：</p>
+<p>其和<code>parameterType</code>的对比可以参考3.1节的内容。</p>
+<p><code>@Param</code>注解的作用是给参数命名，命名后的参数可以根据名字将其值传入到SQL语句中，一般使用<code>#&#123;&#125;</code>的方式。</p>
+<ul>
+<li>如果方法有多个参数，如果使用参数注解，则每个参数都必须使用<code>@Param</code>注解。只有一个参数时可以不用写<code>@Param</code>注解，但建议加上。</li>
+<li>SQL语句中参数<code>#&#123;name&#125;</code>取的就是<code>@Param&#123;&quot;name&quot;&#125;</code>中的<code>name</code>。</li>
+</ul>
+<p>在不使用<code>@Param</code>注解的时候，函数的参数只能为一个，并且在查询语句取值时只能用<code>#&#123;&#125;</code>。如果想传递多个参数，<code>parameterType</code>参数类型为<code>map</code>（此处为别名，对应类型为Map）或者为<code>JavaBean</code>类。</p>
+<p>而使用<code>@Param</code>注解则可以使用多个参数，无需再设置<code>parameterType</code>，并且在查询语句中使用时可以使用<code>#&#123;&#125;</code>或者<code>$&#123;&#125;</code>。</p>
+<h2 id="4-2-和-的区别"><a href="#4-2-和-的区别" class="headerlink" title="4.2  ${} 和 #{}的区别"></a>4.2  <code>$&#123;&#125;</code> 和 <code>#&#123;&#125;</code>的区别</h2><p><code>$&#123;&#125;</code>和<code>#&#123;&#125;</code>是两种取变量的方式，二者的区别如下：</p>
+<ul>
+<li><code>$&#123;&#125;</code>是 Properties 文件中的变量占位符，它可以用于标签属性值和 sql 内部，属于静态文本替换。<ul>
+<li>比如<code>$&#123;driver&#125;</code>会被静态替换为com.mysql.jdbc.Driver。</li>
+<li>使用<code>$&#123;&#125;</code>存在SQL注入的问题。</li>
+</ul>
+</li>
+<li><code>#&#123;&#125;</code>是 sql 的参数占位符，MyBatis 会将 sql 中的<code>#&#123;&#125;</code>预编译为<code>?</code>号，在 sql 执行前会使用<code>PreparedStatement</code>的参数设置方法，按序给SQL语句的<code>?</code>号占位符设置参数值。<code>#&#123;&#125;</code>没有SQL注入的问题。</li>
+</ul>
+<h1 id="五、动态SQL"><a href="#五、动态SQL" class="headerlink" title="五、动态SQL"></a>五、动态SQL</h1><p>动态SQL能够根据不同的条件自动拼接SQL语句，MyBatis中借用OGNL（对象图导航语言）的表达式实现动态SQL。主要有以下四种元素：</p>
+<ul>
+<li><strong>if</strong></li>
+<li><strong>choose ( when, otherwise )</strong></li>
+<li><strong>trim ( where, set )</strong></li>
+<li><strong>foreach</strong></li>
+</ul>
+<h2 id="5-1-if"><a href="#5-1-if" class="headerlink" title="5.1 if"></a>5.1 if</h2><p>使用<code>if</code>可以根据条件判断是否要添加条件：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;queryBlogIf&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;com.kang.pojo.Blog&quot;</span>&gt;</span><br>    select * from blog where state = ‘ACTIVE’<br>    <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;title != null&quot;</span>&gt;</span><br>        and title like concat(&#x27;%&#x27;,#&#123;title&#125;,&#x27;%&#x27;)<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;author != null&quot;</span>&gt;</span><br>        and author = #&#123;author&#125;<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>根据传入的参数，判断是否满足对应的条件，如果满足条件，会将语句加上。</p>
+<blockquote>
+<p>这里的模糊查询，使用了concat函数，能够防止SQL注入。同时参数只需要传入value值即可，否则参数中还需要传入%。</p>
+</blockquote>
+<h2 id="5-2-choose、when、otherwise"><a href="#5-2-choose、when、otherwise" class="headerlink" title="5.2 choose、when、otherwise"></a>5.2 choose、when、otherwise</h2><p><code>if</code>条件只要满足，就会使用，如果只想使用一个条件，可以使用<code>choose</code>结构：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;findActiveBlogLike&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;Blog&quot;</span>&gt;</span><br>    SELECT * FROM BLOG WHERE state = ‘ACTIVE’<br>    <span class="hljs-tag">&lt;<span class="hljs-name">choose</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">when</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;title != null&quot;</span>&gt;</span><br>            AND title like #&#123;title&#125;<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">when</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">when</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;author != null&quot;</span>&gt;</span><br>            AND author_name like #&#123;author.name&#125;<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">when</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">otherwise</span>&gt;</span><br>            AND featured = 1<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">otherwise</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">choose</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><code>choose</code>最多只会匹配一个条件，即使有多个条件满足，也只会从上到下匹配到最先满足条件的语句。</p>
+<p><code>otherwise</code>表示如果所有的<code>when</code>条件没有一个满足的，则使用<code>otherwise</code>中的语句。</p>
+<h2 id="5-3-trim、where、set"><a href="#5-3-trim、where、set" class="headerlink" title="5.3 trim、where、set"></a>5.3 trim、where、set</h2><p>以上条件的<code>where</code>是固定的，如果将<code>where</code>改为动态的，就需要考虑一个问题，即条件中的<code>and</code>什么时候添加，或者<code>where</code>改写在哪个条件中。</p>
+<p>使用<code>where</code>可以完美解决这个问题：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;findActiveBlogLike&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;Blog&quot;</span>&gt;</span><br>    SELECT * FROM BLOG<br>    <span class="hljs-tag">&lt;<span class="hljs-name">where</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;state != null&quot;</span>&gt;</span><br>            state = #&#123;state&#125;<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;title != null&quot;</span>&gt;</span><br>            AND title like #&#123;title&#125;<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;author != null and author.name != null&quot;</span>&gt;</span><br>            AND author_name like #&#123;author.name&#125;<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">where</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><code>where</code> 元素只会在子元素返回任何内容的情况下才插入 “WHERE” 子句。而且，若子句的开头为 “AND” 或 “OR”，<code>where</code> 元素也会将它们去除。</p>
+<p>同样地，<code>set</code>元素可以用于”INSERT”中动态插入：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">update</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;updateAuthorIfNecessary&quot;</span>&gt;</span><br>    update Author<br>    <span class="hljs-tag">&lt;<span class="hljs-name">set</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;username != null&quot;</span>&gt;</span>username=#&#123;username&#125;,<span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;password != null&quot;</span>&gt;</span>password=#&#123;password&#125;,<span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;email != null&quot;</span>&gt;</span>email=#&#123;email&#125;,<span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;bio != null&quot;</span>&gt;</span>bio=#&#123;bio&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">set</span>&gt;</span><br>    where id=#&#123;id&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">update</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><code>set</code>元素会动态地在行首插入”SET”关键字，并会删掉额外的逗号。</p>
+<p><code>where</code>和<code>set</code>都可以看作是<code>trim</code>的特例。</p>
+<p>其中上述的<code>where</code>用<code>trim</code>元素写为：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- AND和OR后面的空格要加上，保证SQL语句拼接正确 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">trim</span> <span class="hljs-attr">prefix</span>=<span class="hljs-string">&quot;WHERE&quot;</span> <span class="hljs-attr">prefixOverrides</span>=<span class="hljs-string">&quot;AND |OR &quot;</span>&gt;</span><br>    ...<br><span class="hljs-tag">&lt;/<span class="hljs-name">trim</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><code>prefixOverrides</code>属性会忽略通过管道符分隔的文本序列（空格是必要的）。上述例子会移除所有 <code>prefixOverrides</code>属性中指定的内容，并且插入 <code>prefix</code>属性中指定的内容。</p>
+<p>上述的<code>set</code>用<code>trim</code>元素写为：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">trim</span> <span class="hljs-attr">prefix</span>=<span class="hljs-string">&quot;SET&quot;</span> <span class="hljs-attr">suffixOverrides</span>=<span class="hljs-string">&quot;,&quot;</span>&gt;</span><br>    ...<br><span class="hljs-tag">&lt;/<span class="hljs-name">trim</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<h2 id="5-4-foreach"><a href="#5-4-foreach" class="headerlink" title="5.4 foreach"></a>5.4 foreach</h2><p><code>foreach</code>用于对集合进行遍历，比如<code>IN</code>条件语句：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectPostIn&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;domain.blog.Post&quot;</span>&gt;</span><br>    SELECT *<br>    FROM POST P<br>    WHERE ID in<br>    <span class="hljs-tag">&lt;<span class="hljs-name">foreach</span> <span class="hljs-attr">item</span>=<span class="hljs-string">&quot;item&quot;</span> <span class="hljs-attr">index</span>=<span class="hljs-string">&quot;index&quot;</span> <span class="hljs-attr">collection</span>=<span class="hljs-string">&quot;list&quot;</span></span><br><span class="hljs-tag">             <span class="hljs-attr">open</span>=<span class="hljs-string">&quot;(&quot;</span> <span class="hljs-attr">separator</span>=<span class="hljs-string">&quot;,&quot;</span> <span class="hljs-attr">close</span>=<span class="hljs-string">&quot;)&quot;</span>&gt;</span><br>        #&#123;item&#125;<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">foreach</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>其中<code>item</code>表示本次迭代的项，<code>index</code>表示索引，<code>collection</code>表示集合对象，这里为<code>list</code>，可以传入List、Map、SET等任何可迭代对象。</p>
+<p>上述语句对应的SQL语句为：<code>SELECT * FROM POST P WHERE ID in (?,?,...,?)</code>，其中参数的个数为集合中项的个数。</p>
+<h2 id="5-5-script"><a href="#5-5-script" class="headerlink" title="5.5 script"></a>5.5 script</h2><p>在带注解的映射器接口类中使用动态SQL，可以使用<code>script</code>元素，比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Update(&#123;&quot;&lt;script&gt;&quot;,</span><br><span class="hljs-meta">         &quot;update Author&quot;,</span><br><span class="hljs-meta">         &quot;  &lt;set&gt;&quot;,</span><br><span class="hljs-meta">         &quot;    &lt;if test=&#x27;username != null&#x27;&gt;username=#&#123;username&#125;,&lt;/if&gt;&quot;,</span><br><span class="hljs-meta">         &quot;    &lt;if test=&#x27;password != null&#x27;&gt;password=#&#123;password&#125;,&lt;/if&gt;&quot;,</span><br><span class="hljs-meta">         &quot;    &lt;if test=&#x27;email != null&#x27;&gt;email=#&#123;email&#125;,&lt;/if&gt;&quot;,</span><br><span class="hljs-meta">         &quot;    &lt;if test=&#x27;bio != null&#x27;&gt;bio=#&#123;bio&#125;&lt;/if&gt;&quot;,</span><br><span class="hljs-meta">         &quot;  &lt;/set&gt;&quot;,</span><br><span class="hljs-meta">         &quot;where id=#&#123;id&#125;&quot;,</span><br><span class="hljs-meta">         &quot;&lt;/script&gt;&quot;&#125;)</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">updateAuthorValues</span><span class="hljs-params">(Author author)</span></span>;<br></code></pre></td></tr></table></figure>
+<h1 id="六、MyBatis缓存"><a href="#六、MyBatis缓存" class="headerlink" title="六、MyBatis缓存"></a>六、MyBatis缓存</h1><p>MyBatis的缓存分为<strong>一级缓存(本地缓存)</strong>和<strong>二级缓存</strong>：</p>
+<ul>
+<li><strong>一级缓存</strong>：作用域为一个SqlSession域，即一次请求。默认开启。<strong>SqlSession关闭后，一级缓存的内容会存放到二级缓存</strong>。<ul>
+<li>比如，同一个SqlSession中，对象中有一个HashMap存放缓存数据。第一次查询操作执行完毕后，会将查询到的数据写到缓存，第二次尝试从缓存中获取数据，如果能够命中，则没必要去查询数据库，可以提高效率。</li>
+</ul>
+</li>
+<li><strong>二级缓存</strong>：作用域是整个<code>namespace</code>，即同一个命名空间的所有SqlSession共享二级缓存。默认关闭。<ul>
+<li>如果两个SqlSession执行相同的查询操作，第二次会直接从二级缓存中获取数据，避免了从数据库中查询。</li>
+</ul>
+</li>
+</ul>
+<p><strong>查询缓存过程</strong>：第一次查询时，回去缓存中查找数据，如果没有，则查询数据库，然后将查询的数据放入一级缓存。之后的同一个SqlSession域（类似于同一个请求）中的相同查询能够命中缓存，从缓存中获取数据。当SqlSession关闭时，将一级缓存的内容放入二级缓存。</p>
+<p>开启二级缓存，需要在MyBatis核心配置文件的<code>&lt;settings&gt;</code>元素中，设置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- </span><br><span class="hljs-comment">	全局性地开启或关闭所有映射器配置文件中已配置的任何缓存 </span><br><span class="hljs-comment">--&gt;</span> <br><span class="hljs-tag">&lt;<span class="hljs-name">setting</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;cacheEnabled&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;true&quot;</span>/&gt;</span><br></code></pre></td></tr></table></figure>
+<p>然后在XML映射文件中加入：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- </span><br><span class="hljs-comment">	为当前Mapper开启二级缓存 </span><br><span class="hljs-comment">	参数都可以省略，使用默认值	</span><br><span class="hljs-comment">--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">cache</span> <span class="hljs-attr">eviction</span>=<span class="hljs-string">&quot;FIFO&quot;</span> <span class="hljs-attr">flushInterval</span>=<span class="hljs-string">&quot;6000&quot;</span> <span class="hljs-attr">size</span>=<span class="hljs-string">&quot;512&quot;</span> <span class="hljs-attr">readOnly</span>=<span class="hljs-string">&quot;true&quot;</span>/&gt;</span><br></code></pre></td></tr></table></figure>
+<p>也可以单独为某个方法开启是否使用缓存。</p>
+<p>开启二级缓存后，还需要将要缓存的pojo实现Serializable接口，为了将缓存数据取出执行反序列化操作，因为二级缓存数据存储介质多种多样，不一定只存在内存中，有可能存在硬盘中。</p>
+<p>二级缓存可用的清除策略有：</p>
+<ul>
+<li><code>LRU</code> – 最近最少使用：移除最长时间不被使用的对象。（默认策略）</li>
+<li><code>FIFO</code> – 先进先出：按对象进入缓存的顺序来移除它们。</li>
+<li><code>SOFT</code> – 软引用：基于垃圾回收器状态和软引用规则移除对象。</li>
+<li><code>WEAK</code> – 弱引用：更积极地基于垃圾收集器状态和弱引用规则移除对象。</li>
+</ul>
+<p> <code>insert/delete/update</code> 语句的<code>flushCache</code>参数默认为<code>true</code>，意味着这几种语句会自动刷新缓存。</p>
+<blockquote>
+<p>二级缓存是事务性的。这意味着，当 SqlSession 完成并提交时，或是完成并回滚，但没有执行DML语句时，缓存也会获得更新。</p>
+</blockquote>
+<h1 id="七、日志"><a href="#七、日志" class="headerlink" title="七、日志"></a>七、日志</h1><p>Mybatis 通过使用内置的日志工厂提供日志功能。内置日志工厂将会把日志工作委托给下面的实现之一：</p>
+<ul>
+<li>SLF4J</li>
+<li>Apache Commons Logging</li>
+<li>Log4j 2</li>
+<li>Log4j</li>
+<li>JDK logging</li>
+</ul>
+<p>MyBatis 内置日志工厂会基于运行时检测信息选择日志委托实现。它会（按上面罗列的顺序）使用第一个查找到的实现。当没有找到这些实现时，将会禁用日志功能。</p>
+<p>可以在MyBatis核心配置文件的<code>&lt;settings&gt;</code>元素中，开启日志工厂，比如log4j：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--日志工厂实现--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">setting</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;logImpl&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;LOG4J&quot;</span>/&gt;</span><br></code></pre></td></tr></table></figure>
+<p>使用log4j的前提是需要导入其jar包，在Maven配置文件中导入log4j的依赖。</p>
+<p>使用log4j需要使用配置文件，在<code>resources</code>文件夹中创建<code>log4j.preperties</code>配置文件，配置log4j的具体信息。可以参考log4j官方文档：<a target="_blank" rel="noopener" href="https://logging.apache.org/log4j/2.x/javadoc.html">https://logging.apache.org/log4j/2.x/javadoc.html</a></p>
+<p>一个可供参考的log4j配置文件：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment"># Loggers :日志记录器，控制日志的输出级别和日志是否输出</span><br><span class="hljs-comment"># Appenders：输出端，指定日志的输出方式（比如到控制台、文件、远程服务器、数据库等）</span><br><span class="hljs-comment"># Layout：控制日志信息的输出格式</span><br><span class="hljs-comment">#   日志级别：</span><br><span class="hljs-comment">#   OFF	    最高日志级别，关闭所有日志</span><br><span class="hljs-comment">#   FATAL	将会导致应用程序退出的错误</span><br><span class="hljs-comment">#   ERROR	发生错误事件，但仍不影响系统的继续运行</span><br><span class="hljs-comment">#   WARN	警告，即潜在的错误情形</span><br><span class="hljs-comment">#   INFO	一般用于粗粒度级别上，强调应用程序的运行全程</span><br><span class="hljs-comment">#   DEBUG	一般用于细粒度级别上，对调试应用程序非常有帮助</span><br><span class="hljs-comment">#   ALL	    最低等级，打开所有日志记录</span><br><span class="hljs-comment"># 常用Error、Warn、INFO、Debug四种</span><br><br><span class="hljs-comment">### 根设置###</span><br><span class="hljs-comment"># 用于设置制定级别以上的日志输出到指定输出端,名字和个数可以任意，但是需要和后面的设置对应。</span><br><span class="hljs-comment"># 输出DEBUG级别以上的日志到控制台和文件</span><br><span class="hljs-meta">log4j.rootLogger</span>=<span class="hljs-string">DEBUG,console,file</span><br><br><span class="hljs-comment">### 输出到控制台的相关设置 ###</span><br><span class="hljs-comment"># 调用ConcoleAppender类，输出到控制台</span><br><span class="hljs-meta">log4j.appender.console</span>=<span class="hljs-string">org.apache.log4j.ConsoleAppender</span><br><span class="hljs-comment"># 默认值是System.out</span><br><span class="hljs-meta">log4j.appender.console.Target</span>=<span class="hljs-string">System.out</span><br><span class="hljs-comment"># 指定日志的最低输出级别，默认是DEBUG</span><br><span class="hljs-meta">log4j.appender.console.Threshold</span>=<span class="hljs-string">DEBUG</span><br><span class="hljs-meta">log4j.appender.console.layout</span>=<span class="hljs-string">org.apache.log4j.PatternLayout</span><br><span class="hljs-meta">log4j.appender.console.layout.ConversionPattern</span>=<span class="hljs-string">[%c]-%m%n</span><br><br><span class="hljs-comment">### 输出到文件的相关设置 ###</span><br><span class="hljs-comment"># 调用RollingFileAppender，文件大小到达指定尺寸的时候产生一个新文件</span><br><span class="hljs-meta">log4j.appender.file</span>=<span class="hljs-string">org.apache.log4j.RollingFileAppender</span><br><span class="hljs-comment"># 输出到指定文件</span><br><span class="hljs-meta">log4j.appender.file.File</span>=<span class="hljs-string">./log/kang.log</span><br><span class="hljs-comment"># 默认为true，表示添加到末尾，如果是false则表示覆盖</span><br><span class="hljs-meta">log4j.appender.file.Append</span>=<span class="hljs-string">true</span><br><span class="hljs-comment"># 设置单个日志文件大小。KB、MB、GB</span><br><span class="hljs-meta">log4j.appender.file.MaxFileSize</span>=<span class="hljs-string">10MB</span><br><span class="hljs-meta">log4j.appender.file.Threshold</span>=<span class="hljs-string">DEBUG</span><br><span class="hljs-comment"># PatternLayout，灵活指定布局模式</span><br><span class="hljs-meta">log4j.appender.file.layout</span>=<span class="hljs-string">org.apache.log4j.PatternLayout</span><br><span class="hljs-meta">log4j.appender.file.layout.ConversionPattern</span>=<span class="hljs-string">[%p][%d&#123;yy-MM-dd&#125;][%c]%m%n</span><br><br><span class="hljs-comment">### 日志输出级别 ###</span><br><span class="hljs-meta">log4j.logger.org.mybatis</span>=<span class="hljs-string">DEBUG</span><br><span class="hljs-meta">log4j.logger.java.sql</span>=<span class="hljs-string">DEBUG</span><br><span class="hljs-meta">log4j.logger.java.sql.Statement</span>=<span class="hljs-string">DEBUG</span><br><span class="hljs-meta">log4j.logger.java.sql.ResultSet</span>=<span class="hljs-string">DEBUG</span><br><span class="hljs-meta">log4j.logger.java.sql.PreparedStatement</span>=<span class="hljs-string">DEBUG</span><br></code></pre></td></tr></table></figure>
+<h1 id="八、其他问题"><a href="#八、其他问题" class="headerlink" title="八、其他问题"></a>八、其他问题</h1><p>参考<a target="_blank" rel="noopener" href="https://snailclimb.gitee.io/javaguide/#/docs/system-design/framework/mybatis/mybatis-interview">JavaGuide</a></p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Kangshitao</li>
+    <li><strong>本文链接：</strong><a href="http://kangshitao.github.io/2021/06/21/mybatis-basis/index.html" title="http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2021&#x2F;06&#x2F;21&#x2F;mybatis-basis&#x2F;index.html">http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2021&#x2F;06&#x2F;21&#x2F;mybatis-basis&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/" rel="tag">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/" rel="tag">SQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSM/" rel="tag">SSM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/06/27/spring-basis/"><i class="iconfont iconleft"></i>Spring5配置与使用</a>
+    <a href="/2021/06/07/mysql-advance/">MySQL数据库高级篇-索引和性能优化<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+        <section class="comments">
+  
+    <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz",
+        app_key: "XipU873t8gkSypbwl1HWUARD",
+        placeholder: "write comment content...",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+		var title1="text=Live and Learn有新评论啦~ --by Valine"
+		var SCKEY_Server="SCT21455TskriUeyliOqL6kHLhiCOMmlB"
+		var ValineButton=document.getElementsByClassName("vsubmit vbtn")[0];
+		function send_valine_Server(){
+			var text="desp=";
+			var pageurl=document.URL;
+			var ptime=new Date();
+			var vnick=document.getElementsByClassName("vnick vinput")[0].value;
+			var veditor=document.getElementsByClassName("veditor vinput")[0].value;
+			var data=text+"|昵称"+"|评论内容"+"|跳转链接"+"|评论时间"+"\n"+"|----|----|----|----|"+"\n"+"|"+vnick+"|"+veditor+"|"+pageurl+"|" +ptime.toLocaleString()+"|";
+			var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+			httpRequest.open('POST', 'https://sctapi.ftqq.com/'+SCKEY_Server+'.send', true); //第二步：打开连接
+			httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）
+			httpRequest.send(title1+"&"+data);//发送请求 将请头体体写在send中
+		};
+		ValineButton.onclick=send_valine_Server;
+      });
+    } else {
+      loadValine();
+    }
+  };
+ 
+</script>
+
+
+</section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81MyBatis%E4%BB%8B%E7%BB%8D"><span class="toc-text">一、MyBatis介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81MyBatis%E5%AE%9E%E7%8E%B0CRUD"><span class="toc-text">二、MyBatis实现CRUD</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4"><span class="toc-text">2.1 基本步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E6%AD%A5%E9%AA%A4%E8%AF%A6%E6%83%85"><span class="toc-text">2.2 步骤详情</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-pom%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE"><span class="toc-text">2.2.1 pom文件配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-MyBatis%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">2.2.2 MyBatis配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3-%E8%8E%B7%E5%8F%96SqlSession%E5%AF%B9%E8%B1%A1"><span class="toc-text">2.2.3 获取SqlSession对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-4-%E7%BC%96%E5%86%99Bean%E7%B1%BB%E5%92%8CMapper%E6%8E%A5%E5%8F%A3"><span class="toc-text">2.2.4 编写Bean类和Mapper接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-5-Mapper%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">2.2.5 Mapper配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-6-%E6%89%A7%E8%A1%8CCRUD%E8%AF%AD%E5%8F%A5"><span class="toc-text">2.2.6 执行CRUD语句</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81XML%E6%98%A0%E5%B0%84%E6%96%87%E4%BB%B6"><span class="toc-text">三、XML映射文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E4%B8%80%E4%BA%9B%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="toc-text">3.1 一些参数说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84"><span class="toc-text">3.2 结果映射</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-1-%E4%BD%BF%E7%94%A8resultMap%E8%A7%A3%E5%86%B3%E5%88%97%E5%90%8D%E5%92%8C%E5%B1%9E%E6%80%A7%E5%90%8D%E4%B8%8D%E4%B8%80%E8%87%B4%E9%97%AE%E9%A2%98"><span class="toc-text">3.2.1 使用resultMap解决列名和属性名不一致问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2-N%E5%AF%B91%E6%9F%A5%E8%AF%A2"><span class="toc-text">3.2.2 N对1查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-3-N%E5%AF%B9%E5%A4%9A%E6%9F%A5%E8%AF%A2"><span class="toc-text">3.2.3 N对多查询</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%B3%A8%E8%A7%A3"><span class="toc-text">四、注解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">4.1 使用方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E5%92%8C-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">4.2  ${} 和 #{}的区别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%8A%A8%E6%80%81SQL"><span class="toc-text">五、动态SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-if"><span class="toc-text">5.1 if</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-choose%E3%80%81when%E3%80%81otherwise"><span class="toc-text">5.2 choose、when、otherwise</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-trim%E3%80%81where%E3%80%81set"><span class="toc-text">5.3 trim、where、set</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-foreach"><span class="toc-text">5.4 foreach</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-5-script"><span class="toc-text">5.5 script</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81MyBatis%E7%BC%93%E5%AD%98"><span class="toc-text">六、MyBatis缓存</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E6%97%A5%E5%BF%97"><span class="toc-text">七、日志</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98"><span class="toc-text">八、其他问题</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1574716653 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/kangshitao "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#24292E'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:1574716653@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">Total:
+  <span id="busuanzi_value_site_pv" style="font-size:12px;"></span></span>
+  <span id="busuanzi_container_site_uv" >| Visitors:
+  <span id="busuanzi_value_site_uv" style="font-size:12px;"></span></span>
+  </div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+  
+  
+<script src="/js/clicklove.js"></script>
+<!-- 页面点击小红心 -->
+  
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz',
+      appKey: 'XipU873t8gkSypbwl1HWUARD',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud").each(async (e) => {
+        const url = $(".leancloud").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud").eq(e).text(count ? count : '--');
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud").length === 1 ? $(".leancloud").attr('id').trim() : 'http://kangshitao.github.io';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    $(function () {
+	  const Counter = AV.Object.extend("Counter");
+	  showCount(Counter);
+      const localhost = /http\:\/\/localhost|http\:\/\/127.0.0.1|http\:\/\/0.0.0.0/;
+      if (localhost.test(document.URL)) {
+	    return;
+	  }
+	  addCount(Counter);
+    });
+  });
+</script>
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <script>
+    window.ga = window.ga || function () {
+      (ga.q = ga.q || []).push(arguments)
+    };
+    ga.l = +new Date;
+    ga('create', 'G-0FZTGJZNYS', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</html>

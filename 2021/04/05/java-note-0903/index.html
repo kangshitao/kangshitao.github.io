@@ -1,0 +1,655 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Java学习笔记09(3)-常用类之Java比较器和其他常用类 - Live And Learn</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="hexo-blog,live and learn,kangshitao, Java,Java比较器,Comparable接口,Comparator接口">
+  <meta name="description" content="一、Java比较器Java实现对象排序有两种方式：
+
+...">
+  <meta name="author" content="Kangshitao">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/atelier-heath-light.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/monokai-sublime.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg',
+        wechat: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '心之所向，素履以往',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'normal'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Live And Learn" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">Java学习笔记09(3)-常用类之Java比较器和其他常用类</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_11.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">Java学习笔记09(3)-常用类之Java比较器和其他常用类</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>四月 05, 2021</span>
+      
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2021/04/05/java-note-0903/" class="leancloud" data-flag-title="Java学习笔记09(3)-常用类之Java比较器和其他常用类"></span>
+        </span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>5966</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="一、Java比较器"><a href="#一、Java比较器" class="headerlink" title="一、Java比较器"></a>一、Java比较器</h1><p>Java实现对象排序有两种方式：</p>
+<ul>
+<li>自然排序：<code>java.lang.Comparable</code></li>
+<li>定制排序：<code>java.util.Comparator</code></li>
+</ul>
+<h2 id="1、Comparable"><a href="#1、Comparable" class="headerlink" title="1、Comparable"></a>1、Comparable</h2><p><code>Comparable</code>接口强行对实现它的每个类的对象进行整体排序，这种排序称为类的自然排序。</p>
+<p>实现<code>Comparable</code>的类，必须实现<code>compareTo(Object obj)</code>方法，从小到大的排序规则如下：</p>
+<ul>
+<li>如果当前对象this大于obj，返回正整数。</li>
+<li>如果当前对象this小于obj，返回负整数。</li>
+<li>如果当前对象this等于obj，返回0。</li>
+</ul>
+<blockquote>
+<p>以上规则是从小到大排列，如果想从大到小排列，则正负和上面相反。</p>
+</blockquote>
+<p><code>String</code>类、包装类等类实现了<code>Comparable</code>接口，并实现了<code>compareTo()</code>方法，进行了从小到大的排列。</p>
+<p>实现<code>Comparable</code>接口的对象列表可以通过<code>Collections.sort</code>或<code>Arrays.sort</code>进行自动排序，比如<code>String</code>数组就可以自动比较大小，自动排序：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CompareTest</span> </span>&#123;<br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span></span>&#123;<br>        String[] str = <span class="hljs-keyword">new</span> String[]&#123;<span class="hljs-string">&quot;DD&quot;</span>,<span class="hljs-string">&quot;BB&quot;</span>,<span class="hljs-string">&quot;AA&quot;</span>,<span class="hljs-string">&quot;CC&quot;</span>&#125;;<br>        <span class="hljs-comment">//String实现了Comparable接口，String对象可以比较大小</span><br>        Arrays.sort(str);  <span class="hljs-comment">//借助Arrays.sort进行排序</span><br>        System.out.println(Arrays.toString(str));<br>        <span class="hljs-comment">//输出结果为：[AA, BB, CC, DD]</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="2、Comparator"><a href="#2、Comparator" class="headerlink" title="2、Comparator"></a>2、Comparator</h2><p>当元素的类型没有实现<code>java.lang.Comparable</code>接口而又不方便修改代码，或者实现了<code>java.lang.Comparable</code>接口的排序规则不适合当前的操作，那么可以考虑使用<code>Comparator</code>的对象来排序，强行对多个对象进行整体排序的比较。</p>
+<p>实现<code>Comparator</code>接口需要实现其<code>compare(Obj o1, Obj o2)</code>方法，规则和<code>compareTo(Object obj)</code>相同。</p>
+<p>同样地，可以将<code>Comparator</code>传递给<code>sort</code>方法（如<code>Collections.sort</code>或<code>Arrays.sort</code>），控制排序规则。还可以使用<code>Comparator</code>来控制某些数据结构（如有序set或有序映射）的顺序，或者为那些没有自然顺序的对象<code>collection</code>提供排序。</p>
+<p>举例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CompareTest</span> </span>&#123;<br>        <span class="hljs-meta">@Test</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test3</span><span class="hljs-params">()</span></span>&#123;<br>        String[] str = <span class="hljs-keyword">new</span> String[]&#123;<span class="hljs-string">&quot;DD&quot;</span>,<span class="hljs-string">&quot;BB&quot;</span>,<span class="hljs-string">&quot;AA&quot;</span>,<span class="hljs-string">&quot;CC&quot;</span>&#125;;<br>        <span class="hljs-comment">//实现Comparator接口，自定义排序规则。需要重写compare方法</span><br>        <span class="hljs-comment">//Arrays.sort方法的第二个参数，需要比较器对象，这里使用匿名实现类对象</span><br>        Arrays.sort(str, <span class="hljs-keyword">new</span> Comparator() &#123;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">compare</span><span class="hljs-params">(Object o1, Object o2)</span> </span>&#123;<br>                <span class="hljs-comment">//如果使用泛型，这里可以不用强制转型</span><br>                <span class="hljs-keyword">if</span>(o1 <span class="hljs-keyword">instanceof</span> String &amp;&amp; o2 <span class="hljs-keyword">instanceof</span> String)&#123;<br>                    String s1 = (String) o1;<br>                    String s2 = (String) o2;<br>                    <span class="hljs-keyword">return</span> -s1.compareTo(s2);<br>                &#125;<span class="hljs-keyword">else</span>&#123; <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">&quot;类型错误&quot;</span>);&#125;<br>            &#125;<br>        &#125;);<br>        System.out.println(Arrays.toString(str));<br>        <span class="hljs-comment">//临时改变了排序规则，此时输出为[DD, CC, BB, AA]</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p><code>Comparable</code>接口的方式一旦指定，保证<code>Comparable</code>接口实现类的对象在任何位置都可以比较大小。<br><code>Comparator</code>接口属于临时性的比较。</p>
+</blockquote>
+<h1 id="二、System类"><a href="#二、System类" class="headerlink" title="二、System类"></a>二、System类</h1><p><code>java.lang.System</code>类代表系统，系统级的很多属性和控制方法都放置在该类的内部。</p>
+<p><code>System</code>类的构造器是<code>private</code>的，因此无法创建该类的对象，其内的成员变量和成员方法都是<code>static</code>的，可以方便调用。</p>
+<p><strong>成员变量</strong>：</p>
+<ul>
+<li><code>in</code>：标准输入流</li>
+<li><code>out</code>：标准输出流</li>
+<li><code>err</code>：标准错误输出流</li>
+</ul>
+<p><strong>成员方法</strong>：</p>
+<ul>
+<li><p><code>native long currentTimeMillis()</code>：返回当前的计算机时间，时间的表达格式为当前计算机时间和GMT时间(格林威治时间)1970年1月1号0时0分0秒所差的毫秒数。</p>
+</li>
+<li><p><code>void exit(int status)</code>：退出程序。其中status的值为0代表正常退出，非零代表异常退出。使用该方法可以在图形界面编程中实现程序的退出功能等。</p>
+</li>
+<li><p><code>void gc()</code>：请求系统进行垃圾回收。至于系统是否立刻回收，则取决于系统中垃圾回收算法的实现以及系统执行时的情况。</p>
+</li>
+<li><p><code>String getProperty(String key)</code>：获得系统中属性名为key的属性对应的值。系统中常见的属性名以及属性的作用如下：</p>
+<ul>
+<li><code>java.version</code>：Java运行时环境版本</li>
+<li><code>java.home</code>：Java安装目录</li>
+<li><code>os.name</code>：操作系统的名称</li>
+<li><code>os.version</code>：操作系统的版本</li>
+<li><code>user.name</code>：用户名称</li>
+<li><code>user.home</code>：用户的主目录</li>
+<li><code>user.dir</code>：用户的当前目录</li>
+</ul>
+<p>代码举例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OtherClass</span> </span>&#123;<br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;java的version:&quot;</span> + System.getProperty(<span class="hljs-string">&quot;java.version&quot;</span>));<br>        System.out.println(<span class="hljs-string">&quot;java的home:&quot;</span> + System.getProperty(<span class="hljs-string">&quot;java.home&quot;</span>));<br>        System.out.println(<span class="hljs-string">&quot;os的name:&quot;</span> + System.getProperty(<span class="hljs-string">&quot;os.name&quot;</span>));<br>        System.out.println(<span class="hljs-string">&quot;os的version:&quot;</span> + System.getProperty(<span class="hljs-string">&quot;os.version&quot;</span>));<br>        System.out.println(<span class="hljs-string">&quot;user的name:&quot;</span> + System.getProperty(<span class="hljs-string">&quot;user.name&quot;</span>));<br>        System.out.println(<span class="hljs-string">&quot;user的home:&quot;</span> + System.getProperty(<span class="hljs-string">&quot;user.home&quot;</span>));<br>        System.out.println(<span class="hljs-string">&quot;user的dir:&quot;</span> + System.getProperty(<span class="hljs-string">&quot;user.dir&quot;</span>));<br>    &#125;<br>&#125;<br><span class="hljs-comment">/*以上代码输出结果为：</span><br><span class="hljs-comment">java的version:15.0.1</span><br><span class="hljs-comment">java的home:D:\JDK15</span><br><span class="hljs-comment">os的name:Windows 10</span><br><span class="hljs-comment">os的version:10.0</span><br><span class="hljs-comment">user的name:xxx</span><br><span class="hljs-comment">user的home:C:\Users\xxx</span><br><span class="hljs-comment">user的dir:D:\IntelliJ IDEA\Project\Java_shangguigu\JavaSenior\day04</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="三、Math类"><a href="#三、Math类" class="headerlink" title="三、Math类"></a>三、Math类</h1><p><code>java.lang.Math</code>类提供了一系列静态方法用于科学计算，其方法的参数和返回值类型一般为<code>double</code>型：</p>
+<ul>
+<li><code>abs</code>：绝对值</li>
+<li><code>acos</code>/<code>asin</code>/<code>atan</code>/<code>cos</code>/<code>sin</code>/<code>tan</code>：三角函数</li>
+<li><code>sqrt</code>：平方根</li>
+<li><code>pow(double a, double b)</code>：求a的b次幂</li>
+<li><code>log</code>：自然对数</li>
+<li><code>exp</code>：e为底数</li>
+<li><code>max(double a, double b)</code>：求a、b之间的最大值</li>
+<li><code>min(double a, double b)</code>：求a、b之间的最小值</li>
+<li><code>random()</code>：返回0.0到1.0之间的随机数</li>
+<li><code>long round(double a)</code>：double型数据a转换为long型（四舍五入）</li>
+<li><code>toDegrees(double angrad)</code>：弧度—&gt;角度</li>
+<li><code>toRadians(double angdeg)</code>：角度—&gt;弧度</li>
+</ul>
+<h1 id="四、BigInteger与BigDecimal"><a href="#四、BigInteger与BigDecimal" class="headerlink" title="四、BigInteger与BigDecimal"></a>四、BigInteger与BigDecimal</h1><h2 id="1、BigInteger"><a href="#1、BigInteger" class="headerlink" title="1、BigInteger"></a>1、BigInteger</h2><p><code>Long</code>是<code>long</code>的包装类，最大值为<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="7.042ex" height="2.843ex" style="vertical-align: -0.505ex;" viewBox="0 -1006.6 3031.8 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">2^{63}-1</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMAIN-32" x="0" y="0"></use>
+<g transform="translate(500,412)">
+ <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-36"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-33" x="500" y="0"></use>
+</g>
+ <use xlink:href="#E1-MJMAIN-2212" x="1530" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-31" x="2531" y="0"></use>
+</g>
+</svg>，如果是再大的数，就需要使用<code>BigInteger</code>类。<code>java.math.BigInteger</code>表示<strong>不可变的任意精度的整数</strong>。<code>BigInteger</code>类用<code>int[]</code>来模拟非常大的整数，<code>BigInteger</code>类对象进行计算的时候只能使用实例方法。</p>
+<p>构造器：</p>
+<ul>
+<li><code>BigInteger(String val)</code>：根据字符串构建BigInteger对象</li>
+</ul>
+<p>常用方法：</p>
+<ul>
+<li><code>public BigInteger abs()</code>：返回此BigInteger的绝对值的BigInteger。</li>
+<li><code>BigInteger add(BigInteger val)</code>：返回其值为(this + val)的BigInteger</li>
+<li><code>BigInteger subtract(BigInteger val)</code>：返回其值为(this-val)的BigInteger</li>
+<li><code>BigInteger multiply(BigInteger val)</code>：返回其值为(this * val)的BigInteger</li>
+<li><code>BigInteger divide(BigInteger val)</code>：返回其值为(this / val)的BigInteger。整数相除只保留整数部分。</li>
+<li><code>BigInteger remainder(BigInteger val)</code>：返回其值为(this % val)的BigInteger。</li>
+<li><code>BigInteger[] divideAndRemainder(BigInteger val)</code>：返回包含(this / val)后跟(this % val)的两个BigInteger的数组。</li>
+<li><code>BigInteger pow(int exponent)</code>：返回其值为this的exponent次幂的BigInteger。</li>
+</ul>
+<p>BigInteger和基本数据类型转换：</p>
+<ul>
+<li>转换为<code>byte</code>：<code>byteValue()</code></li>
+<li>转换为<code>short</code>：<code>shortValue()</code></li>
+<li>转换为<code>int</code>：<code>intValue()</code></li>
+<li>转换为<code>long</code>：<code>longValue()</code></li>
+<li>转换为<code>float</code>：<code>floatValue()</code></li>
+<li>转换为<code>double</code>：<code>doubleValue()</code></li>
+</ul>
+<blockquote>
+<p>直接调用以上方法，如果超出范围，不会抛出异常，会导致结果不正确。</p>
+<p>调用<code>xxxValueExact()</code>方法，转换超出范围时，会抛出<code>ArithmeticException</code>异常，以保证结果准确。</p>
+</blockquote>
+<h2 id="2、BigDecimal"><a href="#2、BigDecimal" class="headerlink" title="2、BigDecimal"></a>2、BigDecimal</h2><p><code>java.math.BigDecimal</code>表示一个任意大小且精度完全准确的浮点数，同样是不可变的。</p>
+<p><code>BigDecimal</code>用<code>scale()</code>表示小数位数，小数末尾是0的时候也计算在内。如果调用<code>scale()</code>方法，返回值为负数，比如<code>-2</code>，表示这个数是整数，并且末尾有两个0。</p>
+<p>构造器：</p>
+<ul>
+<li><code>public BigDecimal(double val)</code></li>
+<li><code>public BigDecimal(String val)</code></li>
+</ul>
+<p>常用方法：</p>
+<ul>
+<li><code>public BigDecimal setScale(int newScale)</code>：设置当前BigDecimal的精度，如果比原始值低，根据指定的处理方式进行四舍五入或者直接截断。</li>
+<li><code>public BigDecimal stripTrailingZeros()</code>：将一个BigDecimal格式化为一个相等的，但去掉了末尾0的BigDecimal</li>
+<li><code>public BigDecimal add(BigDecimal augend)</code></li>
+<li><code>public BigDecimal subtract(BigDecimal subtrahend)</code></li>
+<li><code>public BigDecimal multiply(BigDecimal multiplicand)</code></li>
+<li><code>public BigDecimal divide(BigDecimal divisor,int scale,int roundingMode)</code>：如果除不尽，会报<code>ArithmeticException</code>异常，此时必须指定精度以及如何截断。</li>
+</ul>
+<p>说明：</p>
+<ol>
+<li>通过源码可知，一个<code>BigDecimal</code>是通过一个<code>BigInteger</code>和一个<code>scale</code>来表示的，即<code>BigInteger</code>表示一个完整的整数，而<code>scale</code>表示小数位数。</li>
+<li>比较两个<code>BigDecimal</code>数的大小，应该使用<code>compareTo()</code>方法，根据两个值的大小分别返回<code>-1</code>、<code>1</code>和<code>0</code>，分别表示小于、大于和等于。</li>
+<li><code>compareTo()</code>比较的是两个数值的大小，而<code>equals()</code>方法不但要求两个<code>BigDecimal</code>的值相等，还要求它们的<code>scale()</code>相等：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">BigDecimal d1 = <span class="hljs-keyword">new</span> BigDecimal(<span class="hljs-string">&quot;123.456&quot;</span>);<br>BigDecimal d2 = <span class="hljs-keyword">new</span> BigDecimal(<span class="hljs-string">&quot;123.45600&quot;</span>);<br>System.out.println(d1.equals(d2)); <span class="hljs-comment">// false, 因为scale不同</span><br><br><span class="hljs-comment">// true,因为d2去除尾部0后scale变为2</span><br>System.out.println(d1.equals(d2.stripTrailingZeros()));<br>System.out.println(d1.compareTo(d2)); <span class="hljs-comment">// 0，表示相等</span><br></code></pre></td></tr></table></figure>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Kangshitao</li>
+    <li><strong>本文链接：</strong><a href="http://kangshitao.github.io/2021/04/05/java-note-0903/index.html" title="http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2021&#x2F;04&#x2F;05&#x2F;java-note-0903&#x2F;index.html">http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2021&#x2F;04&#x2F;05&#x2F;java-note-0903&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/04/05/java-note-1001/"><i class="iconfont iconleft"></i>Java学习笔记10-枚举类与注解</a>
+    <a href="/2021/04/04/java-note-0902/">Java学习笔记09(2)-常用类之日期类<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+        <section class="comments">
+  
+    <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz",
+        app_key: "XipU873t8gkSypbwl1HWUARD",
+        placeholder: "write comment content...",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+		var title1="text=Live and Learn有新评论啦~ --by Valine"
+		var SCKEY_Server="SCT21455TskriUeyliOqL6kHLhiCOMmlB"
+		var ValineButton=document.getElementsByClassName("vsubmit vbtn")[0];
+		function send_valine_Server(){
+			var text="desp=";
+			var pageurl=document.URL;
+			var ptime=new Date();
+			var vnick=document.getElementsByClassName("vnick vinput")[0].value;
+			var veditor=document.getElementsByClassName("veditor vinput")[0].value;
+			var data=text+"|昵称"+"|评论内容"+"|跳转链接"+"|评论时间"+"\n"+"|----|----|----|----|"+"\n"+"|"+vnick+"|"+veditor+"|"+pageurl+"|" +ptime.toLocaleString()+"|";
+			var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+			httpRequest.open('POST', 'https://sctapi.ftqq.com/'+SCKEY_Server+'.send', true); //第二步：打开连接
+			httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）
+			httpRequest.send(title1+"&"+data);//发送请求 将请头体体写在send中
+		};
+		ValineButton.onclick=send_valine_Server;
+      });
+    } else {
+      loadValine();
+    }
+  };
+ 
+</script>
+
+
+</section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81Java%E6%AF%94%E8%BE%83%E5%99%A8"><span class="toc-text">一、Java比较器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81Comparable"><span class="toc-text">1、Comparable</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81Comparator"><span class="toc-text">2、Comparator</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81System%E7%B1%BB"><span class="toc-text">二、System类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81Math%E7%B1%BB"><span class="toc-text">三、Math类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81BigInteger%E4%B8%8EBigDecimal"><span class="toc-text">四、BigInteger与BigDecimal</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81BigInteger"><span class="toc-text">1、BigInteger</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81BigDecimal"><span class="toc-text">2、BigDecimal</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1574716653 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/kangshitao "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#24292E'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:1574716653@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">Total:
+  <span id="busuanzi_value_site_pv" style="font-size:12px;"></span></span>
+  <span id="busuanzi_container_site_uv" >| Visitors:
+  <span id="busuanzi_value_site_uv" style="font-size:12px;"></span></span>
+  </div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+  
+  
+<script src="/js/clicklove.js"></script>
+<!-- 页面点击小红心 -->
+  
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz',
+      appKey: 'XipU873t8gkSypbwl1HWUARD',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud").each(async (e) => {
+        const url = $(".leancloud").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud").eq(e).text(count ? count : '--');
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud").length === 1 ? $(".leancloud").attr('id').trim() : 'http://kangshitao.github.io';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    $(function () {
+	  const Counter = AV.Object.extend("Counter");
+	  showCount(Counter);
+      const localhost = /http\:\/\/localhost|http\:\/\/127.0.0.1|http\:\/\/0.0.0.0/;
+      if (localhost.test(document.URL)) {
+	    return;
+	  }
+	  addCount(Counter);
+    });
+  });
+</script>
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <script>
+    window.ga = window.ga || function () {
+      (ga.q = ga.q || []).push(arguments)
+    };
+    ga.l = +new Date;
+    ga('create', 'G-0FZTGJZNYS', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</html>

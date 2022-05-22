@@ -1,0 +1,649 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Java学习笔记09(1)-常用类之String - Live And Learn</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="hexo-blog,live and learn,kangshitao, Java,String,StringBuffer,StringBuilder">
+  <meta name="description" content="一、String类1、字符串的使用String类的特征...">
+  <meta name="author" content="Kangshitao">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/atelier-heath-light.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/monokai-sublime.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg',
+        wechat: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '心之所向，素履以往',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'normal'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Live And Learn" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">Java学习笔记09(1)-常用类之String</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_14.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">Java学习笔记09(1)-常用类之String</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>四月 03, 2021</span>
+      
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2021/04/03/java-note-0901/" class="leancloud" data-flag-title="Java学习笔记09(1)-常用类之String"></span>
+        </span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>7606</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="一、String类"><a href="#一、String类" class="headerlink" title="一、String类"></a>一、String类</h1><h2 id="1、字符串的使用"><a href="#1、字符串的使用" class="headerlink" title="1、字符串的使用"></a>1、字符串的使用</h2><p><code>String</code>类的特征：</p>
+<ul>
+<li><code>String</code>类声明为<code>final</code>的，不可以被继承。</li>
+<li><code>String</code>类实现了<code>Serializable</code>接口，表示字符串是支持序列化的。</li>
+<li><code>String</code> 类实现了<code>Comparable</code>接口，表示字符串可以比较大小</li>
+<li><code>String</code>类内部定义了<code>final char[] value</code>，用于存储字符串数据。数组不能被重新赋值，数组元素不能被修改。（JDK 9.0改为了<code>byte</code>数组）</li>
+<li><code>String</code>代表不可变的字符序列，<strong>不可变性</strong>，以下操作需要重写指定内存区域进行赋值，不能使用原有的<code>value</code>进行赋值：<ul>
+<li>当对字符串重新赋值时</li>
+<li>当对现有的字符串进行连接操作时</li>
+<li>当调用String的replace方法修改指定的字符/字符串时</li>
+</ul>
+</li>
+</ul>
+<h2 id="2、字符串创建和存储"><a href="#2、字符串创建和存储" class="headerlink" title="2、字符串创建和存储"></a>2、字符串创建和存储</h2><p>字符串有两种创建方式：</p>
+<ul>
+<li>字面量定义：比如 <code>String s1 = &quot;hello&quot;;</code></li>
+<li>创建<code>String</code>类对象：比如：<code>String s2 = new String(&quot;hello&quot;);</code></li>
+</ul>
+<p>字面量定义的字符串存储在<strong>字符串常量池（位于方法区）</strong>中，目的是共享；通过创建对象构建的字符串存储在<strong>堆</strong>中，堆中的地址值又指向字符串常量池中的值。</p>
+<blockquote>
+<p>字符串常量池中不会保存内容相同的字符串，每个字符串只保存一份。</p>
+<p>通过创建String类对象构造的字符串，内存中一共创建了两个对象，一个String类对象，一个底层的数组对象。</p>
+</blockquote>
+<p>两种方式定义的字符串，在内存中的区别：</p>
+<div align='center'>
+    <img src='https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/java-note-0901_1.png'/>
+</div>
+
+
+
+<p>具体案例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> class <span class="hljs-title">Test</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>&#123;<br>        String s1 = <span class="hljs-string">&quot;hello&quot;</span>; <span class="hljs-comment">//字面量方式定义</span><br>        String s2 = <span class="hljs-string">&quot;hello&quot;</span>;<br>        String s3 = <span class="hljs-keyword">new</span> String(<span class="hljs-string">&quot;hello&quot;</span>);  <span class="hljs-comment">//创建对象的方式定义</span><br>        String s4 = <span class="hljs-keyword">new</span> String(<span class="hljs-string">&quot;hello&quot;</span>);<br>        <br>        <span class="hljs-comment">//字面量定义的字符串，直接指向常量池，所以地址相等</span><br>        System.out.println(s1 == s2);  <span class="hljs-comment">//true</span><br>        <span class="hljs-comment">//new出来的每个对象有单独的空间和地址，因此地址不同</span><br>        System.out.println(s3 == s4); <span class="hljs-comment">//false</span><br>        System.out.println(s1 == s3); <span class="hljs-comment">//false</span><br>        System.out.println(s1 == s4); <span class="hljs-comment">//false</span><br>        <span class="hljs-comment">//只要其中一个是变量，地址就不相等</span><br>        System.out.println(<span class="hljs-string">&quot;hello&quot;</span>+<span class="hljs-string">&quot;java&quot;</span> == <span class="hljs-string">&quot;hello&quot;</span>+<span class="hljs-string">&quot;java&quot;</span>); <span class="hljs-comment">//true</span><br>        System.out.println(<span class="hljs-string">&quot;hello&quot;</span>+<span class="hljs-string">&quot;java&quot;</span> == <span class="hljs-string">&quot;hellojava&quot;</span>);  <span class="hljs-comment">//true</span><br>        System.out.println((s1+<span class="hljs-string">&quot;java&quot;</span>) == (s1+<span class="hljs-string">&quot;java&quot;</span>)); <span class="hljs-comment">//false</span><br>        System.out.println((s1+<span class="hljs-string">&quot;java&quot;</span>) == (s2+<span class="hljs-string">&quot;java&quot;</span>)); <span class="hljs-comment">//false</span><br>        <span class="hljs-comment">//此时的s5是新创建的字符串，s4本身并没有改变</span><br>        String s5 = s4.replace(<span class="hljs-string">&#x27;h&#x27;</span>,<span class="hljs-string">&#x27;a&#x27;</span>); <br>        System.out.println(s4);  <span class="hljs-comment">//hello</span><br>        System.out.println(s5);  <span class="hljs-comment">//aello</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>总结：</p>
+<ul>
+<li>常量(字面量定义的，或者final修饰的，都是常量)与常量的拼接结果在常量池。且常量池中不会存在相同内容的常量。</li>
+<li>只要其中有一个是变量，结果就在堆中，地址也不同。比如<code>s1 + s2</code>、<code>s1+&quot;abc&quot;</code>、<code>s1+=&quot;abc&quot;</code>等，用<code>==</code>比较是地址，结果是<code>false</code>，比如<code>s1+&quot;abc&quot; == s1+&quot;abc&quot;</code>为<code>false</code></li>
+<li>如果拼接的结果调用<code>intern()</code>方法，返回值就在常量池中。</li>
+</ul>
+<h1 id="二、String类常用方法"><a href="#二、String类常用方法" class="headerlink" title="二、String类常用方法"></a>二、String类常用方法</h1><p>String类的常用方法：</p>
+<p><code>int length()</code>：返回字符串的长度：<code>return value.length</code><br><code>char charAt(int index)</code>：返回某索引处的字符：<code>return value[index]</code><br><code>boolean isEmpty()</code>：判断是否是空字符串：<code>return value.length==0</code><br><code>String toLowerCase()</code>：使用默认语言环境，将String中的所有字符转换为小写<br><code>String toUpperCase()</code>：使用默认语言环境，将String中的所有字符转换为大写<br><code>String trim()</code>：返回字符串的副本，忽略前导空白和尾部空白<br><code>boolean equals(Object obj)</code>：比较字符串的内容是否相同<br><code>boolean equalsIgnoreCase(String anotherString)</code>：与equals方法类似，忽略大小写<br><code>String concat(String str)</code>：将指定字符串连接到此字符串的结尾。等价于用“+”<br><code>int compareTo(String anotherString)</code>：比较两个字符串的大小<br><code>String substring(int beginIndex)</code>：返回一个新的字符串，它是此字符串的从beginIndex开始截取到最后的一个子字符串。<br><code>String substring(int beginIndex,int endIndex)</code>：返回一个新字符串，它是此字符串从beginIndex开始截取到endIndex(不包含)的一个子字符串。<br><code>boolean endsWith(String suffix)</code>：测试此字符串是否以指定的后缀结束<br><code>boolean startsWith(String prefix)</code>：测试此字符串是否以指定的前缀开始<br><code>boolean startsWith(String prefix,int toffset)</code>：测试此字符串从指定索引开始的子字符串是否以指定前缀开始<br><code>boolean contains(CharSequence s)</code>：当且仅当此字符串包含指定的char值序列时，返回true<br><code>int indexOf(String str)</code>：返回指定子字符串在此字符串中第一次出现处的索引<br><code>int indexOf(String str, int fromIndex)</code>：返回指定子字符串在此字符串中第一次出现处的索引，从指定的索引开始<br><code>int lastIndexOf(String str)</code>：返回指定子字符串在此字符串中最右边出现处的索引<br><code>int lastIndexOf(String str, int fromIndex)</code>：返回指定子字符串在此字符串中最后一次出现处的索引，从指定的索引开始反向搜索</p>
+<blockquote>
+<p>注：<code>indexOf</code>和<code>lastIndexOf</code>方法如果未找到都是返回-1 </p>
+</blockquote>
+<p><code>String replace(char oldChar,char newChar)</code>：返回一个新的字符串，它是通过用newChar替换此字符串中出现的所有oldChar得到的。<br><code>String replace(CharSequence target,CharSequence replacement)</code>：使用指定的字面值替换序列替换此字符串所有匹配字面值目标序列的子字符串。<br><code>String replaceAll(String regex,String replacement)</code>：使用给定的replacement替换此字符串所有匹配给定的正则表达式的子字符串。<br><code>String replaceFirst(String regex,String replacement)</code>：使用给定的replacement替换此字符串匹配给定的正则表达式的第一个子字符串。<br><code>boolean matches(String regex)</code>：告知此字符串是否匹配给定的正则表达式。<br><code>String[] split(String regex)</code>：根据给定正则表达式的匹配拆分此字符串。<br><code>String[] split(String regex,int limit)</code>：根据匹配给定的正则表达式来拆分此字符串，最多不超过limit个，如果超过了，剩下的全部都放到最后一个元素中。</p>
+<h1 id="三、String类与基本数据类型之间的转换"><a href="#三、String类与基本数据类型之间的转换" class="headerlink" title="三、String类与基本数据类型之间的转换"></a>三、String类与基本数据类型之间的转换</h1><h2 id="1、字符串与基本数据类型、包装类"><a href="#1、字符串与基本数据类型、包装类" class="headerlink" title="1、字符串与基本数据类型、包装类"></a>1、字符串与基本数据类型、包装类</h2><ul>
+<li>字符串—&gt;基本数据类型、包装类:<ul>
+<li><code>Integer</code>包装类的<code>public static int parseInt(String s)</code>可将由“数字”字符组成的字符串转换为整型。类似地,使用<code>java.lang</code>包中的<code>Byte</code>、<code>Short</code>、<code>Long</code>、<code>Float</code>、<code>Double</code>类调相应的类方法可以将由“数字”字符组成的字符串，转化为相应的基本数据类型。</li>
+</ul>
+</li>
+<li>基本数据类型、包装类—&gt;字符串：<ul>
+<li>调用<code>String</code>类的<code>public String valueOf(int n)</code>可将<code>int</code>型转换为字符串。相应的<code>valueOf(byte b)</code>、<code>valueOf(long l)</code>、<code>valueOf(float f)</code>、<code>valueOf(double d)</code>、<code>valueOf(boolean b)</code>可由参数的相应类型到字符串的转换。</li>
+</ul>
+</li>
+</ul>
+<h2 id="2、字符串与字符数组"><a href="#2、字符串与字符数组" class="headerlink" title="2、字符串与字符数组"></a>2、字符串与字符数组</h2><ul>
+<li>字符数组—&gt;字符串：<ul>
+<li><code>String</code>类的构造器：<code>String(char[])</code>和<code>String(char[]，int offset，int length)</code>分别用字符数组中的全部字符和部分字符创建字符串对象。</li>
+</ul>
+</li>
+<li>字符串—&gt;字符数组：<ul>
+<li><code>public char[] toCharArray()</code>：将字符串中的全部字符存放在一个字符数组中。</li>
+<li><code>public void getChars(int srcBegin, int srcEnd, char[]dst, int dstBegin)</code>：提供了将指定索引范围内的字符串存放到数组中的方法。</li>
+</ul>
+</li>
+</ul>
+<h2 id="3、字符串与字节数组"><a href="#3、字符串与字节数组" class="headerlink" title="3、字符串与字节数组"></a>3、字符串与字节数组</h2><ul>
+<li>字节数组—&gt;字符串：<ul>
+<li><code>String(byte[])</code>：通过使用平台的默认字符集解码指定的byte数组，构造一个新的String。</li>
+<li><code>String(byte[]，int offset，int length)</code>：用指定的字节数组的一部分，即从数组起始位置offset开始取length个字节构造一个字符串对象。</li>
+</ul>
+</li>
+<li>字符串—&gt;字节数组：<ul>
+<li><code>public byte[] getBytes()</code>：使用平台的默认字符集(编码方式)将此String编码为byte序列，并将结果存储到一个新的byte数组中。</li>
+<li><code>public byte[] getBytes(String charsetName)</code>：使用指定的字符集将此String编码到byte序列，并将结果存储到新的byte数组。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>字节数组转换为字符串的过程，就是解码的过程，反之，字符串变为字节数组是编码的过程。</p>
+<p>编码和解码默认使用平台默认字符集。</p>
+<p>编码和解码使用的字符集(比如都是UTF-8)应该相同，否则出现乱码。</p>
+</blockquote>
+<h1 id="四、StringBuffer和StringBuilder"><a href="#四、StringBuffer和StringBuilder" class="headerlink" title="四、StringBuffer和StringBuilder"></a>四、StringBuffer和StringBuilder</h1><p><code>StringBuffer</code>和<code>StringBuilder</code>都是<strong>可变的字符序列</strong>，对字符串修改，不会产生新的对象，直接在原来的字符串对象上进行修改。</p>
+<p><code>String</code>、<code>StringBuffer</code>、<code>StringBuilder</code>的异同：</p>
+<ul>
+<li><code>String</code>： 1.0 ，不可变的字符序列；底层使用char[]来保存</li>
+<li><code>StringBuffer</code>：1.0 ，可变的字符序列；<strong>线程安全</strong>的，效率低；底层使用char[]来保存</li>
+<li><code>StringBuilder</code>：JDK 5.0新增 ，可变的字符序列；<strong>线程不安全</strong>，效率高；底层使用char[]来保存</li>
+</ul>
+<blockquote>
+<p>JDK9.0之后，三者的底层存储结构都改为了byte[]数组</p>
+<p>效率从高到低排列：<code>StringBuilder</code> &gt; <code>StringBuffer</code>&gt; <code>String</code></p>
+</blockquote>
+<p><code>StringBuffer</code>和<code>StringBuilder</code>在使用方法上类似，提供的方法也相同。这里以<code>StringBuffer</code>为例，讲解其扩容机制以及常用的方法。</p>
+<h2 id="1、构造StringBuffer-StringBuilder对象"><a href="#1、构造StringBuffer-StringBuilder对象" class="headerlink" title="1、构造StringBuffer/StringBuilder对象"></a>1、构造StringBuffer/StringBuilder对象</h2><p><code>StringBuffer</code>类不同于<code>String</code>，其对象必须使用构造器生成。有三个构造器：</p>
+<ul>
+<li><code>StringBuffer()</code>：初始容量为16的字符串缓冲区。</li>
+<li><code>StringBuffer(intsize)</code>：构造指定容量的字符串缓冲区。</li>
+<li><code>StringBuffer(String str)</code>：将内容初始化为指定字符串内容。</li>
+</ul>
+<p>举例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> class <span class="hljs-title">test</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span></span>&#123;<br>        StringBuffer sb1 = <span class="hljs-keyword">new</span> StringBuffer(<span class="hljs-string">&quot;abc&quot;</span>);  <span class="hljs-comment">//abc</span><br>        sb1.setCharAt(<span class="hljs-number">0</span>,<span class="hljs-string">&#x27;m&#x27;</span>); <span class="hljs-comment">//直接修改sb1，不会创建新的对象</span><br>        System.out.println(sb1);  <span class="hljs-comment">//mbc  </span><br><br>        StringBuffer sb2 = <span class="hljs-keyword">new</span> StringBuffer();<br>        System.out.println(sb2.length());  <span class="hljs-comment">//0</span><br>        StringBuffer sb3 = <span class="hljs-keyword">new</span> StringBuffer();<br>        String s = <span class="hljs-keyword">null</span>;<br>        sb3.append(s); <span class="hljs-comment">//append方法可以将null当作字符串添加进去</span><br>        System.out.println(sb3);  <span class="hljs-comment">//此时的sb3为字符串&quot;null&quot;</span><br>        System.out.println(sb3.length()); <span class="hljs-comment">// 4</span><br>        <span class="hljs-comment">//StringBuffer sb4 = new StringBuffer(null); //构造的时候不行</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><code>String</code>、<code>StringBuffer</code>、<code>StringBuilder</code>三者之间的相互转换：</p>
+<ul>
+<li><code>String</code>—&gt;<code>StringBuffer</code>、<code>StringBuilder</code>，直接调用两者的构造器：<code>StringBuffer sb = new StringBuffer(str);</code></li>
+<li><code>StringBuffer</code>、<code>StringBuilder</code>—&gt;<code>String</code>：<ul>
+<li>调用两者的<code>toString()</code>方法</li>
+<li>调用<code>String</code>的构造器。<code>String str = new String(sb);</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="2、扩容机制"><a href="#2、扩容机制" class="headerlink" title="2、扩容机制"></a>2、扩容机制</h2><p>对于<code>StringBuffer</code>和<code>StringBuilder</code>来说，如果添加的数据，底层数组装不下，就需要扩容底层的数组。</p>
+<p>默认情况下，扩容为原来容量的2倍+2（JDK 7.0 ，不同JDK版本可能不同），同时将原有数组中的元素复制到新的数组中。</p>
+<blockquote>
+<p>关于为什么+2，各种解释：</p>
+<p>1、考虑到在创建Sf，Sb设置的初始长度不大时（例如1），+2 可以很大地提升扩容的效率，减少扩容的次数</p>
+<p>2、在旧版本的JDK扩容语句是 (value.length + 1) * 2 先加一再乘2，推测原意思是扩容的话至少增添一个空间再乘2，兼顾到扩容的次数和要减少扩容过大浪费的空间</p>
+<p>3、newCapacity(int)的传入参数有可能是0，那么在参数是0的情况下，0&lt;&lt;1运算结果也是0，如果没+2，那么在创建数组的时候会创建出MAX_ARRAY_SIZE大小，所以作为设计的安全性考虑，选择了+2。</p>
+<p>4、在使用StringBuffer的时候，append()之后，我们一般会在后面在加上一个分隔符，例如逗号，也就是再加上一个char，而char在java中占2个字节，避免了因为添加分隔符而再次引起扩容</p>
+</blockquote>
+<p>举例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java">String str = <span class="hljs-keyword">new</span> String();  <span class="hljs-comment">//底层操作：new char[0]</span><br>String str1 = <span class="hljs-keyword">new</span> String(<span class="hljs-string">&quot;abc&quot;</span>);<span class="hljs-comment">//底层操作：new char[]&#123;&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;&#125;</span><br><br>StringBuffer sb = <span class="hljs-keyword">new</span> StringBuffer();   <span class="hljs-comment">//sb.length()是0</span><br><span class="hljs-comment">//默认创建长度为16的内容为空的数组，即char[] value = new char[16]</span><br><span class="hljs-comment">//这里sb.length()的结果是0，返回长度不是底层value数组的长度</span><br>sb.append(<span class="hljs-string">&#x27;a&#x27;</span>);  <span class="hljs-comment">//底层操作：value[0] = &#x27;a&#x27;;</span><br><br>StringBuffer sb2 = <span class="hljs-keyword">new</span> StringBuffer(<span class="hljs-string">&quot;abc&quot;</span>); <br><span class="hljs-comment">//构建一个长度为&quot;abc&quot;.length()+16的数组，即：</span><br><span class="hljs-comment">//char[] value = new char[&quot;abc&quot;.length()+16]</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>为了提高效率，建议使用<code>StringBuffer(int capacity)</code> 或 <code>StringBuilder(int capacity)</code>指定初始容量，尽量避免自动扩容。</p>
+</blockquote>
+<h2 id="3、常用方法"><a href="#3、常用方法" class="headerlink" title="3、常用方法"></a>3、常用方法</h2><ul>
+<li><code>String Buffer append(xxx)</code>：提供了很多的append()方法，用于进行字符串拼接。如果参数是null，会被当成字符串添加进去</li>
+<li><code>String Buffer delete(int start,int end)</code>：删除指定位置的内容</li>
+<li><code>String Buffer replace(int start,int end,String str)</code>：把[start,end)位置替换为str</li>
+<li><code>String Buffer insert(int offset,xxx)</code>：在指定位置插入xxx</li>
+<li><code>String Buffer reverse()</code>：把当前字符序列逆转</li>
+<li><code>public int indexOf(String str)</code></li>
+<li><code>public String substring(int start,int end)</code></li>
+<li><code>public int length()</code></li>
+<li><code>public char charAt(int n )</code></li>
+<li><code>public void setCharAt(int n ,char ch)</code></li>
+</ul>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Kangshitao</li>
+    <li><strong>本文链接：</strong><a href="http://kangshitao.github.io/2021/04/03/java-note-0901/index.html" title="http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2021&#x2F;04&#x2F;03&#x2F;java-note-0901&#x2F;index.html">http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2021&#x2F;04&#x2F;03&#x2F;java-note-0901&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/04/04/java-note-0902/"><i class="iconfont iconleft"></i>Java学习笔记09(2)-常用类之日期类</a>
+    <a href="/2021/04/03/java-note-0801/">Java学习笔记08-多线程<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+        <section class="comments">
+  
+    <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz",
+        app_key: "XipU873t8gkSypbwl1HWUARD",
+        placeholder: "write comment content...",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+		var title1="text=Live and Learn有新评论啦~ --by Valine"
+		var SCKEY_Server="SCT21455TskriUeyliOqL6kHLhiCOMmlB"
+		var ValineButton=document.getElementsByClassName("vsubmit vbtn")[0];
+		function send_valine_Server(){
+			var text="desp=";
+			var pageurl=document.URL;
+			var ptime=new Date();
+			var vnick=document.getElementsByClassName("vnick vinput")[0].value;
+			var veditor=document.getElementsByClassName("veditor vinput")[0].value;
+			var data=text+"|昵称"+"|评论内容"+"|跳转链接"+"|评论时间"+"\n"+"|----|----|----|----|"+"\n"+"|"+vnick+"|"+veditor+"|"+pageurl+"|" +ptime.toLocaleString()+"|";
+			var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+			httpRequest.open('POST', 'https://sctapi.ftqq.com/'+SCKEY_Server+'.send', true); //第二步：打开连接
+			httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）
+			httpRequest.send(title1+"&"+data);//发送请求 将请头体体写在send中
+		};
+		ValineButton.onclick=send_valine_Server;
+      });
+    } else {
+      loadValine();
+    }
+  };
+ 
+</script>
+
+
+</section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81String%E7%B1%BB"><span class="toc-text">一、String类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">1、字符串的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%88%9B%E5%BB%BA%E5%92%8C%E5%AD%98%E5%82%A8"><span class="toc-text">2、字符串创建和存储</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81String%E7%B1%BB%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">二、String类常用方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81String%E7%B1%BB%E4%B8%8E%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="toc-text">三、String类与基本数据类型之间的转换</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8E%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E3%80%81%E5%8C%85%E8%A3%85%E7%B1%BB"><span class="toc-text">1、字符串与基本数据类型、包装类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8E%E5%AD%97%E7%AC%A6%E6%95%B0%E7%BB%84"><span class="toc-text">2、字符串与字符数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8E%E5%AD%97%E8%8A%82%E6%95%B0%E7%BB%84"><span class="toc-text">3、字符串与字节数组</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81StringBuffer%E5%92%8CStringBuilder"><span class="toc-text">四、StringBuffer和StringBuilder</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E6%9E%84%E9%80%A0StringBuffer-StringBuilder%E5%AF%B9%E8%B1%A1"><span class="toc-text">1、构造StringBuffer&#x2F;StringBuilder对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6"><span class="toc-text">2、扩容机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">3、常用方法</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1574716653 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/kangshitao "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#24292E'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:1574716653@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">Total:
+  <span id="busuanzi_value_site_pv" style="font-size:12px;"></span></span>
+  <span id="busuanzi_container_site_uv" >| Visitors:
+  <span id="busuanzi_value_site_uv" style="font-size:12px;"></span></span>
+  </div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+  
+  
+<script src="/js/clicklove.js"></script>
+<!-- 页面点击小红心 -->
+  
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz',
+      appKey: 'XipU873t8gkSypbwl1HWUARD',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud").each(async (e) => {
+        const url = $(".leancloud").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud").eq(e).text(count ? count : '--');
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud").length === 1 ? $(".leancloud").attr('id').trim() : 'http://kangshitao.github.io';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    $(function () {
+	  const Counter = AV.Object.extend("Counter");
+	  showCount(Counter);
+      const localhost = /http\:\/\/localhost|http\:\/\/127.0.0.1|http\:\/\/0.0.0.0/;
+      if (localhost.test(document.URL)) {
+	    return;
+	  }
+	  addCount(Counter);
+    });
+  });
+</script>
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <script>
+    window.ga = window.ga || function () {
+      (ga.q = ga.q || []).push(arguments)
+    };
+    ga.l = +new Date;
+    ga('create', 'G-0FZTGJZNYS', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,793 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Python正则表达式 - Live And Learn</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="hexo-blog,live and learn,kangshitao, regular expression,python re,python正则表达式,re库">
+  <meta name="description" content="Re简介正则表达式(Regular Expressio...">
+  <meta name="author" content="Kangshitao">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/atelier-heath-light.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/monokai-sublime.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg',
+        wechat: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '心之所向，素履以往',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'normal'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Live And Learn" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">Python正则表达式</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_15.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">Python正则表达式</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>十一月 01, 2020</span>
+      
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2020/11/01/RegularExpression/" class="leancloud" data-flag-title="Python正则表达式"></span>
+        </span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2987</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="Re简介"><a href="#Re简介" class="headerlink" title="Re简介"></a>Re简介</h1><p>正则表达式(Regular Expression，RE，以下简称Re)通常用来检索、替换那些符合某个模式(规则)的文本，也就是说，RE是用来记录文本规则的代码。</p>
+<p>总的来说，正则表达式是：</p>
+<ul>
+<li>通用的字符串表达框架</li>
+<li>简洁表达一组字符串的表达式</li>
+<li>针对字符串表达“简洁”和“特征”思想的工具</li>
+<li>判断字符串的特征归属</li>
+</ul>
+<h1 id="Re的使用"><a href="#Re的使用" class="headerlink" title="Re的使用"></a>Re的使用</h1><p>编程语言使用正则表达式时需要编译，将符合正则表达式语法的字符串转换成正则表达式特征，也就是说，编译是将一个符合正则表达式语法的<strong>字符串</strong>编译为<strong>正则表达式</strong>。</p>
+<blockquote>
+<p>我们用字符串的形式表示正则表达式，如字符串<code>[a-z]</code>是表示匹配a到z中的任意一个字母的Re的表示方法</p>
+</blockquote>
+<h1 id="Re的语法"><a href="#Re的语法" class="headerlink" title="Re的语法"></a>Re的语法</h1><p>Re的语法是核心部分，RE语法是由字符和操作符组成。</p>
+<p>常用操作符：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">操作符</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">具体用例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>.</code></td>
+<td style="text-align:center">表示除换行符\n以外的任何单个字符，如果要匹配’.’，则使用<code>\.</code>，其余字符同理</td>
+<td style="text-align:center">无</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>[]</code></td>
+<td style="text-align:center">字符集，对单个字符给出取值范围</td>
+<td style="text-align:center">例：<code>[abc]</code>表示a或b或c，<code>[a-z]</code>表示从a到z的任意单个字符</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>[^]</code></td>
+<td style="text-align:center">非字符集，对单个字符给出排除范围</td>
+<td style="text-align:center">例：<code>[^abc]</code>表示非a或b或c的单个字符</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>*</code></td>
+<td style="text-align:center">前一个字符0次或无限次扩展</td>
+<td style="text-align:center">例：<code>abc*</code>表示ab、abc、abcc、abccc等</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>+</code></td>
+<td style="text-align:center">前一个字符1次或无限次扩展</td>
+<td style="text-align:center">例：<code>abc+</code>表示abc、abcc、abccc等</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>?</code></td>
+<td style="text-align:center">前一个字符0次或1次扩展</td>
+<td style="text-align:center">例：<code>abc?</code>表示ab、abc</td>
+</tr>
+<tr>
+<td style="text-align:center">&#124;</td>
+<td style="text-align:center">左右表达式任意一个</td>
+<td style="text-align:center">例：abc&#124;def表示abc或def</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\</code></td>
+<td style="text-align:center">将下一个字符标记为或特殊字符、或原义字符、或向后引用、或八进制转义符。</td>
+<td style="text-align:center">例： <code>n</code> 匹配字符 n。<code>\n</code> 匹配换行符,而 <code>\\</code> 匹配 <code>\</code>， <code>\(</code>匹配 “(“。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>&#123;m&#125;</code></td>
+<td style="text-align:center">扩展前一个字符m次</td>
+<td style="text-align:center">例：<code>ab&#123;2&#125;c</code>表示abbc</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>&#123;m,n&#125;</code></td>
+<td style="text-align:center">扩展前一个字符m到n(包括n)次</td>
+<td style="text-align:center">例：<code>ab&#123;1,2&#125;c</code>表示abc、abbc</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>^</code></td>
+<td style="text-align:center">匹配字符串开头</td>
+<td style="text-align:center">例：<code>^abc</code>表示abc且在一个字符串的开头</td>
+</tr>
+<tr>
+<td style="text-align:center">&#36;</td>
+<td style="text-align:center">匹配字符串结尾</td>
+<td style="text-align:center">例：abc&#36;表示abc且在一个字符串的结尾</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>()</code></td>
+<td style="text-align:center">分组标记，内部只能用&#124;操作符</td>
+<td style="text-align:center">例：<code>(abc)</code>表示abc，(abc&#124;def)表示abc或def</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\d</code></td>
+<td style="text-align:center">表示数字，等价于<code>[0-9]</code></td>
+<td style="text-align:center">无</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\w</code></td>
+<td style="text-align:center">表示单词字符，等价于<code>[A-Za-z0-9_]</code>(包括下划线)</td>
+<td style="text-align:center">无</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="Re语法实例"><a href="#Re语法实例" class="headerlink" title="Re语法实例"></a>Re语法实例</h1><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">正则表达式</th>
+<th style="text-align:center">匹配的字符串</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">P(Y&#124;YT&#124;YTH)?N</td>
+<td style="text-align:center">‘PN’、’PYN’、’PYTN’、’PYTHN’</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>PYTHON+</code></td>
+<td style="text-align:center">‘PYTHON’、’PYTHONN’、’PYTHONNN’…</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>PY[TH]ON</code></td>
+<td style="text-align:center">‘PYTON’,’PYHON’</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>PY[^TH]?ON</code></td>
+<td style="text-align:center">‘PYON’、’PYaON’、’PYbON’…（不含T和H即可）</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>PY&#123;0,3&#125;N</code></td>
+<td style="text-align:center">‘PN’、’PYN’、’PYYN’、’PYYYN’</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>^[A-Za-z]+$</code></td>
+<td style="text-align:center">由26个字母组成的字符串</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>^[A-Za-z0-9]+$</code></td>
+<td style="text-align:center">由26个字母和数字组成的字符串</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>^-?\d+$</code></td>
+<td style="text-align:center">整数形式的字符串</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>^[0-9]*[1-9][0-9]*$</code></td>
+<td style="text-align:center">正整数形式的字符串</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>[1-9]\d&#123;5&#125;</code></td>
+<td style="text-align:center">中国境内邮政编码，6位</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>[\u4e00-\u9fa5]</code></td>
+<td style="text-align:center">匹配中文字符(UTF-8编码)</td>
+</tr>
+<tr>
+<td style="text-align:center">\d{3}-\d{8}&#124;\d{4}-\d{7}</td>
+<td style="text-align:center">国内电话号码，如000-12345678</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>如果想要匹配ip地址，需要考虑如何表示取值范围在0-255，将其分为四部分，即0-99,100-199,200-249,250-255：</p>
+<p>(([1-9]?\d&#124;1\d{2}&#124;2[0-4]\d&#124;25[0-5]).){3}([1-9]?\d&#124;1\d{2}&#124;2[0-4]\d&#124;25[0-5])</p>
+<p>上述正则表达式，每两个<code>|</code>之间的正则表达式表示一个范围内的数，比如<code>[1-9]?\d</code>表示0-99</p>
+<h1 id="Python的re库"><a href="#Python的re库" class="headerlink" title="Python的re库"></a>Python的re库</h1><p>python中的<a target="_blank" rel="noopener" href="https://docs.python.org/3.9/library/re.html">re</a>库使用raw string(原生字符串类型)表示正则表达式，如原生字符串<code>text</code>写作<code>r&#39;text&#39;</code></p>
+<p>例如，<code>r&#39;[1-9]\d&#123;5&#125;&#39;</code>是用来匹配邮政编码的Re字符串形式</p>
+<blockquote>
+<p>raw string 是指不包含转义符的字符串，即<code>\</code>不被认为是转义符<br>也可以使用string类型，但是更繁琐，不建议使用</p>
+</blockquote>
+<h2 id="主要功能函数"><a href="#主要功能函数" class="headerlink" title="主要功能函数"></a>主要功能函数</h2><ul>
+<li><code>re.search()</code>        # 在一个字符串中搜索匹配Re的第一个位置，返回match对象</li>
+<li><code>re.match()</code>       # 从一个字符串的开始位置起匹配Re，返回match对象</li>
+<li><code>re.findall()</code>        # 搜索字符串，以列表类型返回全部能匹配的字符串</li>
+<li><code>re.split()</code>           # 将一个字符串按照Re匹配结果进行分割，返回列表类型</li>
+<li><code>re.finditer()</code>       # 搜索字符串，返回一个匹配结果的迭代类型，每个迭代元素是match对象</li>
+<li><code>re.sub()</code>             # 在一个字符串中替换所有匹配Re的子串，返回替换后的子串</li>
+</ul>
+<p>函数的具体参数使用，详见<a target="_blank" rel="noopener" href="https://docs.python.org/3.9/library/re.html#module-contents">官方文档</a>，以<code>re.search()</code>函数举例：</p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs vala">re.search(pattern, <span class="hljs-keyword">string</span>, flags=<span class="hljs-number">0</span>)<br><span class="hljs-meta"># 其中pattern是Re的字符串，string是待匹配的字符串</span><br><span class="hljs-meta"># flags是Re使用时的控制标记，用于控制Re的匹配方式，如是否区分大小写等</span><br></code></pre></td></tr></table></figure>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><ul>
+<li><p>函数式用法，一次性操作：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">rst = re.search(<span class="hljs-string">r&#x27;[1-9]\d&#123;5&#125;&#x27;</span>, <span class="hljs-string">&#x27;BIT 100081&#x27;</span>)<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>面向对象用法，编译后的多次操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">pat = re.<span class="hljs-built_in">compile</span>(<span class="hljs-string">r&#x27;[1-9]\d&#123;5&#125;&#x27;</span>)<br>rst = pat.search(<span class="hljs-string">&#x27;BIT 100081&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p><code>pat = re.compile(pattern, flags=0)</code>是编译函数，将Re的字符串形式编译为Re对象</p>
+<p>生成的结果pat才是正则表达式，参数pattern只是正则表达式的字符串表示方法</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="Match对象"><a href="#Match对象" class="headerlink" title="Match对象"></a>Match对象</h2><p>match对象是re函数的一种返回值对象，其有很多属性。</p>
+<p><strong>属性</strong>：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">代码</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>match.string</code></td>
+<td style="text-align:center">待匹配的文本</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>match.re</code></td>
+<td style="text-align:center">匹配时使用的正则表达式</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>match.pos</code></td>
+<td style="text-align:center">正则表达式搜索文本的开始位置</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>match.endpos</code></td>
+<td style="text-align:center">正则表达式搜索文本的结束位置</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>方法</strong>：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">代码</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>match.group(0)</code></td>
+<td style="text-align:center">返回匹配后的字符串</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>match.start()</code></td>
+<td style="text-align:center">返回匹配字符串在原始字符串的开始位置</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>match.end()</code></td>
+<td style="text-align:center">返回匹配字符串在原始字符串的结束位置</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>match.span()</code></td>
+<td style="text-align:center">返回(start(),end())，即开始和结束位置</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="贪婪匹配和最小匹配"><a href="#贪婪匹配和最小匹配" class="headerlink" title="贪婪匹配和最小匹配"></a>贪婪匹配和最小匹配</h2><p>re库默认采用贪婪匹配，即输出匹配最长的子串</p>
+<p>若想得到最小匹配，则需要对以下操作符扩展，即在引起贪婪匹配的操作符后加<code>?</code>:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">扩展</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>*?</code></td>
+<td style="text-align:center">前一个字符0次或无限次扩展，最小匹配</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>+?</code></td>
+<td style="text-align:center">前一个字符1次或无限次扩展，最小匹配</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>??</code></td>
+<td style="text-align:center">前一个字符0次或1次扩展，最小匹配</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>&#123;m,n&#125;?</code></td>
+<td style="text-align:center">扩展前一个字符m至n次(含n)，最小匹配</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Kangshitao</li>
+    <li><strong>本文链接：</strong><a href="http://kangshitao.github.io/2020/11/01/RegularExpression/index.html" title="http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2020&#x2F;11&#x2F;01&#x2F;RegularExpression&#x2F;index.html">http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2020&#x2F;11&#x2F;01&#x2F;RegularExpression&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2020/11/05/paper-SGNN-HN/"><i class="iconfont iconleft"></i>论文阅读-Star Graph Neural Networks for Session-based Recommendation</a>
+    <a href="/2020/10/31/git/">Git命令<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+        <section class="comments">
+  
+    <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz",
+        app_key: "XipU873t8gkSypbwl1HWUARD",
+        placeholder: "write comment content...",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+		var title1="text=Live and Learn有新评论啦~ --by Valine"
+		var SCKEY_Server="SCT21455TskriUeyliOqL6kHLhiCOMmlB"
+		var ValineButton=document.getElementsByClassName("vsubmit vbtn")[0];
+		function send_valine_Server(){
+			var text="desp=";
+			var pageurl=document.URL;
+			var ptime=new Date();
+			var vnick=document.getElementsByClassName("vnick vinput")[0].value;
+			var veditor=document.getElementsByClassName("veditor vinput")[0].value;
+			var data=text+"|昵称"+"|评论内容"+"|跳转链接"+"|评论时间"+"\n"+"|----|----|----|----|"+"\n"+"|"+vnick+"|"+veditor+"|"+pageurl+"|" +ptime.toLocaleString()+"|";
+			var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+			httpRequest.open('POST', 'https://sctapi.ftqq.com/'+SCKEY_Server+'.send', true); //第二步：打开连接
+			httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）
+			httpRequest.send(title1+"&"+data);//发送请求 将请头体体写在send中
+		};
+		ValineButton.onclick=send_valine_Server;
+      });
+    } else {
+      loadValine();
+    }
+  };
+ 
+</script>
+
+
+</section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Re%E7%AE%80%E4%BB%8B"><span class="toc-text">Re简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Re%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">Re的使用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Re%E7%9A%84%E8%AF%AD%E6%B3%95"><span class="toc-text">Re的语法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Re%E8%AF%AD%E6%B3%95%E5%AE%9E%E4%BE%8B"><span class="toc-text">Re语法实例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Python%E7%9A%84re%E5%BA%93"><span class="toc-text">Python的re库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD%E5%87%BD%E6%95%B0"><span class="toc-text">主要功能函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">使用方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Match%E5%AF%B9%E8%B1%A1"><span class="toc-text">Match对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%AA%E5%A9%AA%E5%8C%B9%E9%85%8D%E5%92%8C%E6%9C%80%E5%B0%8F%E5%8C%B9%E9%85%8D"><span class="toc-text">贪婪匹配和最小匹配</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1574716653 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/kangshitao "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#24292E'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:1574716653@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">Total:
+  <span id="busuanzi_value_site_pv" style="font-size:12px;"></span></span>
+  <span id="busuanzi_container_site_uv" >| Visitors:
+  <span id="busuanzi_value_site_uv" style="font-size:12px;"></span></span>
+  </div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+  
+  
+<script src="/js/clicklove.js"></script>
+<!-- 页面点击小红心 -->
+  
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz',
+      appKey: 'XipU873t8gkSypbwl1HWUARD',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud").each(async (e) => {
+        const url = $(".leancloud").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud").eq(e).text(count ? count : '--');
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud").length === 1 ? $(".leancloud").attr('id').trim() : 'http://kangshitao.github.io';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    $(function () {
+	  const Counter = AV.Object.extend("Counter");
+	  showCount(Counter);
+      const localhost = /http\:\/\/localhost|http\:\/\/127.0.0.1|http\:\/\/0.0.0.0/;
+      if (localhost.test(document.URL)) {
+	    return;
+	  }
+	  addCount(Counter);
+    });
+  });
+</script>
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <script>
+    window.ga = window.ga || function () {
+      (ga.q = ga.q || []).push(arguments)
+    };
+    ga.l = +new Date;
+    ga('create', 'G-0FZTGJZNYS', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</html>

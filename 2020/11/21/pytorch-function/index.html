@@ -1,0 +1,733 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>PyTorch各种维度变换函数总结 - Live And Learn</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="hexo-blog,live and learn,kangshitao, pytorch,reshape',view,transpose,permute,unsqueeze,维度变换">
+  <meta name="description" content="介绍本文对于PyTorch中的各种维度变换的函数进行总...">
+  <meta name="author" content="Kangshitao">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/atelier-heath-light.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/monokai-sublime.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg',
+        wechat: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '心之所向，素履以往',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'normal'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Live And Learn" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">PyTorch各种维度变换函数总结</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_15.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">PyTorch各种维度变换函数总结</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>十一月 21, 2020</span>
+      
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2020/11/21/pytorch-function/" class="leancloud" data-flag-title="PyTorch各种维度变换函数总结"></span>
+        </span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>7279</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>本文对于PyTorch中的各种维度变换的函数进行总结，包括<code>reshape()</code>、<code>view()</code>、<code>resize_()</code>、<code>transpose()</code>、<code>permute()</code>、<code>squeeze()</code>、<code>unsqeeze()</code>、<code>expand()</code>、<code>repeat()</code>函数的介绍和对比。</p>
+<h1 id="contiguous"><a href="#contiguous" class="headerlink" title="contiguous"></a>contiguous</h1><p>区分各个维度转换函数的前提是需要了解<strong>contiguous</strong>。在PyTorch中，contiguous指的是<strong>Tensor底层一维数组的存储顺序和其元素顺序一致</strong>。</p>
+<p>Tensor是以一维数组的形式存储的，C/C++使用<strong>行优先</strong>(按行展开)的方式，Python中的Tensor底层实现使用的是C，因此PyThon中的Tensor也是按行展开存储的，如果其<strong>存储顺序</strong>和<strong>按行优先展开的一维数组元素顺序</strong>一致，就说这个Tensor是连续(contiguous)的。</p>
+<p><strong>形式化定义：</strong></p>
+<p>对于任意的<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.216ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 523.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">d</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-64" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-64" x="0" y="0"></use>
+</g>
+</svg>维张量<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.84ex" height="2.009ex" style="vertical-align: -0.338ex;" viewBox="0 -719.6 361.5 865.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">t</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-74" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-74" x="0" y="0"></use>
+</g>
+</svg>，如果满足对于所有的<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.802ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 345.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">i</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-69" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-69" x="0" y="0"></use>
+</g>
+</svg>，第<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.802ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 345.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">i</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-69" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-69" x="0" y="0"></use>
+</g>
+</svg>维相邻元素间隔=第<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.805ex" height="2.343ex" style="vertical-align: -0.505ex;" viewBox="0 -791.3 2068.9 1008.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">i+1</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-69" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-69" x="0" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-2B" x="567" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-31" x="1568" y="0"></use>
+</g>
+</svg>维相邻元素间隔<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.808ex" height="1.509ex" style="vertical-align: 0.019ex; margin-bottom: -0.19ex;" viewBox="0 -576.1 778.5 649.8" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">\times</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMAIN-D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMAIN-D7" x="0" y="0"></use>
+</g>
+</svg>第<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.805ex" height="2.343ex" style="vertical-align: -0.505ex;" viewBox="0 -791.3 2068.9 1008.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">i+1</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-69" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-69" x="0" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-2B" x="567" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-31" x="1568" y="0"></use>
+</g>
+</svg>维长度的乘积，则<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.84ex" height="2.009ex" style="vertical-align: -0.338ex;" viewBox="0 -719.6 361.5 865.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">t</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-74" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-74" x="0" y="0"></use>
+</g>
+</svg>是连续的：</p>
+<script type="math/tex; mode=display">
+stride[i]=stride[i+1]\times size[i+1],\forall i=0,\ldots,d-1(i\neq d-1)</script><ul>
+<li><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="8.177ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 3520.5 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">stride[i]</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-73" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-74" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-72" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-69" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-64" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-65" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-5B" d="M118 -250V750H255V710H158V-210H255V-250H118Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-5D" d="M22 710V750H159V-250H22V-210H119V710H22Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-73" x="0" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-74" x="469" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-72" x="831" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-69" x="1282" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-64" x="1628" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-65" x="2151" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-5B" x="2618" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-69" x="2896" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-5D" x="3242" y="0"></use>
+</g>
+</svg>表示第<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.802ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 345.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">i</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-69" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-69" x="0" y="0"></use>
+</g>
+</svg>维相邻元素之间间隔的位数，称为步长，可通过<code>stride()</code>方法获得。</li>
+<li><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="6.161ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 2652.5 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">size[i]</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-73" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-69" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-7A" d="M347 338Q337 338 294 349T231 360Q211 360 197 356T174 346T162 335T155 324L153 320Q150 317 138 317Q117 317 117 325Q117 330 120 339Q133 378 163 406T229 440Q241 442 246 442Q271 442 291 425T329 392T367 375Q389 375 411 408T434 441Q435 442 449 442H462Q468 436 468 434Q468 430 463 420T449 399T432 377T418 358L411 349Q368 298 275 214T160 106L148 94L163 93Q185 93 227 82T290 71Q328 71 360 90T402 140Q406 149 409 151T424 153Q443 153 443 143Q443 138 442 134Q425 72 376 31T278 -11Q252 -11 232 6T193 40T155 57Q111 57 76 -3Q70 -11 59 -11H54H41Q35 -5 35 -2Q35 13 93 84Q132 129 225 214T340 322Q352 338 347 338Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-65" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-5B" d="M118 -250V750H255V710H158V-210H255V-250H118Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-5D" d="M22 710V750H159V-250H22V-210H119V710H22Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-73" x="0" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-69" x="469" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-7A" x="815" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-65" x="1283" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-5B" x="1750" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-69" x="2028" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-5D" x="2374" y="0"></use>
+</g>
+</svg>表示固定其他维度时，第<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.802ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 345.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">i</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-69" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-69" x="0" y="0"></use>
+</g>
+</svg>维的元素数量，即第<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.802ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 345.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">i</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-69" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-69" x="0" y="0"></use>
+</g>
+</svg>维的长度，通过<code>size()</code>方法获得。</li>
+</ul>
+<blockquote>
+<p>Python中的多维张量按照<strong>行优先展开</strong>的方式存储，访问矩阵中下一个元素是通过偏移来实现的，这个偏移量称为<strong>步长(stride)</strong>，比如python中，访问<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="5.165ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 2223.9 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">2\times3</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMAIN-32" x="0" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-D7" x="722" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-33" x="1723" y="0"></use>
+</g>
+</svg>矩阵的同一行中的相邻元素，物理结构需要偏移1个位置，即步长为1，同一列中的两个相邻元素则步长为3。</p>
+</blockquote>
+<p>举例说明：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python">&gt;&gt;&gt;t = torch.arange(<span class="hljs-number">12</span>).reshape(<span class="hljs-number">3</span>,<span class="hljs-number">4</span>)<br>&gt;&gt;&gt;t<br>tensor([[ <span class="hljs-number">0</span>,  <span class="hljs-number">1</span>,  <span class="hljs-number">2</span>,  <span class="hljs-number">3</span>],<br>        [ <span class="hljs-number">4</span>,  <span class="hljs-number">5</span>,  <span class="hljs-number">6</span>,  <span class="hljs-number">7</span>],<br>        [ <span class="hljs-number">8</span>,  <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>]])<br>&gt;&gt;&gt;t.stride(),t.stride(<span class="hljs-number">0</span>),t.stride(<span class="hljs-number">1</span>) <span class="hljs-comment"># 返回t两个维度的步长，第0维的步长，第1维的步长</span><br>((<span class="hljs-number">4</span>,<span class="hljs-number">1</span>),<span class="hljs-number">4</span>,<span class="hljs-number">1</span>)<br><span class="hljs-comment"># 第0维的步长，表示沿着列的两个相邻元素，比如‘0’和‘4’两个元素的步长为4</span><br>&gt;&gt;&gt;t.size(<span class="hljs-number">1</span>)<br><span class="hljs-number">4</span><br><span class="hljs-comment"># 对于i=0，满足stride[0]=stride[1] * size[1]=1*4=4，那么t是连续的。</span><br></code></pre></td></tr></table></figure>
+<p>PyTorch中的有一些操作没有真正地改变tensor的内容，只是改变了索引和元素的对应关系，操作之前和操作之后的数据是共享的。这些操作包括<code>narrow(),view(),expand(),transpose()</code>等<a href="#2"><sup>[2]</sup></a>。当执行这些函数时，原来语义上相邻、内存里也相邻的元素，可能会出现语义上相邻，但内存上不相邻的情况，就不连续(not contiguous)了。</p>
+<p>PyTorch提供了两个关于contiguous的方法：</p>
+<p><code>is_contiguous()</code>     : 判断Tensor是否是连续的<br><code>contiguous()</code>           : 返回新的Tensor，重新开辟一块内存，并且是连续的</p>
+<p>举例说明(参考<a href="#1">[1]</a>)：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python">&gt;&gt;&gt;t = torch.arange(<span class="hljs-number">12</span>).reshape(<span class="hljs-number">3</span>,<span class="hljs-number">4</span>)<br>&gt;&gt;&gt;t<br>tensor([[ <span class="hljs-number">0</span>,  <span class="hljs-number">1</span>,  <span class="hljs-number">2</span>,  <span class="hljs-number">3</span>],<br>        [ <span class="hljs-number">4</span>,  <span class="hljs-number">5</span>,  <span class="hljs-number">6</span>,  <span class="hljs-number">7</span>],<br>        [ <span class="hljs-number">8</span>,  <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>]])<br>&gt;&gt;&gt;t2 = t.transpose(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>)<br>&gt;&gt;&gt;t2<br>tensor([[ <span class="hljs-number">0</span>,  <span class="hljs-number">4</span>,  <span class="hljs-number">8</span>],<br>        [ <span class="hljs-number">1</span>,  <span class="hljs-number">5</span>,  <span class="hljs-number">9</span>],<br>        [ <span class="hljs-number">2</span>,  <span class="hljs-number">6</span>, <span class="hljs-number">10</span>],<br>        [ <span class="hljs-number">3</span>,  <span class="hljs-number">7</span>, <span class="hljs-number">11</span>]])<br>&gt;&gt;&gt;t.data_ptr() == t2.data_ptr()  <span class="hljs-comment"># 返回两个张量的首元素的内存地址</span><br><span class="hljs-literal">True</span>    	<span class="hljs-comment">#说明底层数据是同一个一维数组</span><br>&gt;&gt;&gt;t.is_contiguous(),t2.is_contiguous()  <span class="hljs-comment"># t连续，t2不连续</span><br>(<span class="hljs-literal">True</span>, <span class="hljs-literal">False</span>)<br></code></pre></td></tr></table></figure>
+<p>可以看到，t和t2共享内存中的数据。如果对t2使用<code>contiguous()</code>方法，会开辟新的内存空间：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python">&gt;&gt;&gt;t3 = t2.contiguous()<br>&gt;&gt;&gt;t3<br>tensor([[ <span class="hljs-number">0</span>,  <span class="hljs-number">4</span>,  <span class="hljs-number">8</span>],<br>        [ <span class="hljs-number">1</span>,  <span class="hljs-number">5</span>,  <span class="hljs-number">9</span>],<br>        [ <span class="hljs-number">2</span>,  <span class="hljs-number">6</span>, <span class="hljs-number">10</span>],<br>        [ <span class="hljs-number">3</span>,  <span class="hljs-number">7</span>, <span class="hljs-number">11</span>]])<br>&gt;&gt;&gt;t3.data_ptr() == t2.data_ptr() <span class="hljs-comment"># 底层数据不是同一个一维数组</span><br><span class="hljs-literal">False</span><br>&gt;&gt;&gt;t3.is_contiguous()<br><span class="hljs-literal">True</span><br></code></pre></td></tr></table></figure>
+<p>关于contiguous的更深入的解释可以参考<a href="#1">[1]</a>.</p>
+<h1 id="view-reshape"><a href="#view-reshape" class="headerlink" title="view()/reshape()"></a>view()/reshape()</h1><h2 id="view"><a href="#view" class="headerlink" title="view()"></a>view()</h2><p>tensor.<a target="_blank" rel="noopener" href="https://pytorch.org/docs/master/tensors.html?highlight=view#torch.Tensor.view">view()</a>函数返回一个和tensor共享底层数据，但不同形状的tensor。使用<code>view()</code>函数的要求是<strong>tensor必须是contiguous的</strong>。</p>
+<p>用法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python">&gt;&gt;&gt;t<br>tensor([[ <span class="hljs-number">0</span>,  <span class="hljs-number">1</span>,  <span class="hljs-number">2</span>,  <span class="hljs-number">3</span>],<br>        [ <span class="hljs-number">4</span>,  <span class="hljs-number">5</span>,  <span class="hljs-number">6</span>,  <span class="hljs-number">7</span>],<br>        [ <span class="hljs-number">8</span>,  <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>]])<br>&gt;&gt;&gt;t2 = t.view(<span class="hljs-number">2</span>,<span class="hljs-number">6</span>)<br>&gt;&gt;&gt;t2<br>tensor([[ <span class="hljs-number">0</span>,  <span class="hljs-number">1</span>,  <span class="hljs-number">2</span>,  <span class="hljs-number">3</span>,  <span class="hljs-number">4</span>,  <span class="hljs-number">5</span>],<br>        [ <span class="hljs-number">6</span>,  <span class="hljs-number">7</span>,  <span class="hljs-number">8</span>,  <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>]])<br>&gt;&gt;&gt;t.data_ptr() == t2.data_ptr()	<span class="hljs-comment"># 二者的底层数据是同一个一维数组</span><br><span class="hljs-literal">True</span><br></code></pre></td></tr></table></figure>
+<h2 id="reshape"><a href="#reshape" class="headerlink" title="reshape()"></a>reshape()</h2><p>tensor.<a target="_blank" rel="noopener" href="https://pytorch.org/docs/master/generated/torch.reshape.html#torch.reshape">reshape()</a>类似于<code>tensor.contigous().view()</code>操作，如果tensor是连续的，则reshape()操作和view()相同，返回指定形状、共享底层数据的tensor；如果tensor是不连续的，则会开辟新的内存空间，返回指定形状的tensor，底层数据和原来的tensor是独立的，相当于先执行<code>contigous()</code>，再执行<code>view()</code>。</p>
+<blockquote>
+<p>如果不在意底层数据是否使用新的内存，建议使用<code>reshape()</code>代替<code>view()</code>.</p>
+</blockquote>
+<h1 id="resize"><a href="#resize" class="headerlink" title="resize_()"></a>resize_()</h1><p>tensor.<a target="_blank" rel="noopener" href="https://pytorch.org/docs/master/tensors.html?highlight=resize#torch.Tensor.resize_">resize_()</a>函数，返回指定形状的tensor，与<code>reshape()</code>和<code>view()</code>不同的是，<code>resize_()</code>可以只截取tensor一部分数据，或者是元素个数大于原tensor也可以，会自动扩展新的位置。</p>
+<p><code>resize_()</code>函数对于tensor的连续性无要求，且返回的值是共享的底层数据（同<code>view()</code>），也就是说只返回了指定形状的索引，底层数据不变的。</p>
+<h1 id="transpose-permute"><a href="#transpose-permute" class="headerlink" title="transpose()/permute()"></a>transpose()/permute()</h1><blockquote>
+<p><code>permute()</code>和<code>transpose()</code>还有<code>t()</code>是PyTorch中的转置函数，其中<code>t()</code>函数只适用于2维矩阵的转置，是这三个函数里面最”弱”的。</p>
+</blockquote>
+<h2 id="transpose"><a href="#transpose" class="headerlink" title="transpose()"></a>transpose()</h2><p>tensor.<a target="_blank" rel="noopener" href="https://pytorch.org/docs/master/generated/torch.transpose.html#torch.transpose">transpose()</a>，返回tensor的指定维度的转置，底层数据共享，与<code>view()/reshape()</code>不同的是，<code>transpose()</code>只能实现维度上的转置，不能任意改变维度大小。</p>
+<p>对于维度交换来说，<code>view()/reshape()</code>和<code>transpose()</code>有很大的区别，一定不要混用！混用了以后虽然不会报错，但是数据是乱的，血坑。</p>
+<blockquote>
+<p><code>reshape()/view()</code>和<code>transpose()</code>的区别在于对于维度改变的方式不同，前者是在存储顺序的基础上对维度进行划分，也就是说将存储的一维数组根据shape大小重新划分，而<code>transpose()</code>则是真正意义上的转置，比如二维矩阵的转置。</p>
+</blockquote>
+<p>举个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python">&gt;&gt;&gt;t<br>tensor([[ <span class="hljs-number">0</span>,  <span class="hljs-number">1</span>,  <span class="hljs-number">2</span>,  <span class="hljs-number">3</span>],<br>        [ <span class="hljs-number">4</span>,  <span class="hljs-number">5</span>,  <span class="hljs-number">6</span>,  <span class="hljs-number">7</span>],<br>        [ <span class="hljs-number">8</span>,  <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>]])<br><span class="hljs-meta">&gt;&gt;&gt; </span>t.transpose(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>)	<span class="hljs-comment"># 交换t的前两个维度，即对t进行转置。</span><br>tensor([[ <span class="hljs-number">0</span>,  <span class="hljs-number">4</span>,  <span class="hljs-number">8</span>],<br>        [ <span class="hljs-number">1</span>,  <span class="hljs-number">5</span>,  <span class="hljs-number">9</span>],<br>        [ <span class="hljs-number">2</span>,  <span class="hljs-number">6</span>, <span class="hljs-number">10</span>],<br>        [ <span class="hljs-number">3</span>,  <span class="hljs-number">7</span>, <span class="hljs-number">11</span>]])<br><span class="hljs-meta">&gt;&gt;&gt; </span>a.reshape(<span class="hljs-number">4</span>,<span class="hljs-number">3</span>)     <span class="hljs-comment"># 使用reshape()/view()的方法，虽然形状一样，但是数据排列完全不同</span><br>tensor([[ <span class="hljs-number">0</span>,  <span class="hljs-number">1</span>,  <span class="hljs-number">2</span>],<br>        [ <span class="hljs-number">3</span>,  <span class="hljs-number">4</span>,  <span class="hljs-number">5</span>],<br>        [ <span class="hljs-number">6</span>,  <span class="hljs-number">7</span>,  <span class="hljs-number">8</span>],<br>        [ <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>]])<br></code></pre></td></tr></table></figure>
+<h2 id="permute"><a href="#permute" class="headerlink" title="permute()"></a>permute()</h2><p>tensor.<a target="_blank" rel="noopener" href="https://pytorch.org/docs/master/tensors.html?highlight=permute#torch.Tensor.permute">permute()</a>函数，以view的形式返回矩阵指定维度的转置，和<code>transpose()</code>功能相同。</p>
+<p>与<code>transpose()</code>不同的是，<code>permute()</code>同时对多个维度进行转置，且参数是<strong>期望的维度的顺序</strong>，而<code>transpose()</code>只能同时对<strong>两个维度</strong>转置，即参数只能是两个，这两个参数没有顺序，只代表了哪两个维度进行转置。</p>
+<p>举个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>t				<span class="hljs-comment"># t的形状为(2,3,2)</span><br>tensor([[[ <span class="hljs-number">0</span>,  <span class="hljs-number">1</span>],<br>         [ <span class="hljs-number">2</span>,  <span class="hljs-number">3</span>],<br>         [ <span class="hljs-number">4</span>,  <span class="hljs-number">5</span>]],<br><br>        [[ <span class="hljs-number">6</span>,  <span class="hljs-number">7</span>],<br>         [ <span class="hljs-number">8</span>,  <span class="hljs-number">9</span>],<br>         [<span class="hljs-number">10</span>, <span class="hljs-number">11</span>]]])<br><span class="hljs-meta">&gt;&gt;&gt; </span>t.transpose(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>)   <span class="hljs-comment"># 使用transpose()将前两个维度进行转置，返回(3,2,2)</span><br>tensor([[[ <span class="hljs-number">0</span>,  <span class="hljs-number">1</span>],<br>         [ <span class="hljs-number">6</span>,  <span class="hljs-number">7</span>]],<br><br>        [[ <span class="hljs-number">2</span>,  <span class="hljs-number">3</span>],<br>         [ <span class="hljs-number">8</span>,  <span class="hljs-number">9</span>]],<br><br>        [[ <span class="hljs-number">4</span>,  <span class="hljs-number">5</span>],<br>         [<span class="hljs-number">10</span>, <span class="hljs-number">11</span>]]])<br><span class="hljs-meta">&gt;&gt;&gt; </span>t.permute(<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">2</span>)   <span class="hljs-comment"># 使用permute()按照指定的维度序列对t转置，返回(3,2,2)</span><br>tensor([[[ <span class="hljs-number">0</span>,  <span class="hljs-number">1</span>],<br>         [ <span class="hljs-number">6</span>,  <span class="hljs-number">7</span>]],<br><br>        [[ <span class="hljs-number">2</span>,  <span class="hljs-number">3</span>],<br>         [ <span class="hljs-number">8</span>,  <span class="hljs-number">9</span>]],<br><br>        [[ <span class="hljs-number">4</span>,  <span class="hljs-number">5</span>],<br>         [<span class="hljs-number">10</span>, <span class="hljs-number">11</span>]]])<br></code></pre></td></tr></table></figure>
+<h1 id="squeeze-unsqueeze"><a href="#squeeze-unsqueeze" class="headerlink" title="squeeze()/unsqueeze()"></a>squeeze()/unsqueeze()</h1><h2 id="squeeze"><a href="#squeeze" class="headerlink" title="squeeze()"></a>squeeze()</h2><p>tensor.<a target="_blank" rel="noopener" href="https://pytorch.org/docs/master/generated/torch.squeeze.html?highlight=squeeze#torch.squeeze">squeeze()</a>返回去除size为1的维度的tensor，默认去除所有size=1的维度，也可以指定去除某一个size=1的维度，并返回去除后的结果。</p>
+<p>举个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>t.shape <br>torch.Size([<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>])<br><span class="hljs-meta">&gt;&gt;&gt; </span>t.squeeze().shape  <span class="hljs-comment"># 去除所有size=1的维度</span><br>torch.Size([<span class="hljs-number">3</span>, <span class="hljs-number">4</span>])<br><span class="hljs-meta">&gt;&gt;&gt; </span>t.squeeze(<span class="hljs-number">1</span>).shape  <span class="hljs-comment"># 去除第1维</span><br>torch.Size([<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>])<br><span class="hljs-meta">&gt;&gt;&gt; </span>t.squeeze(<span class="hljs-number">0</span>).shape  <span class="hljs-comment">#　如果指定的维度size不等于1，则不执行任何操作。</span><br>torch.Size([<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>])<br></code></pre></td></tr></table></figure>
+<h2 id="unsqueeze"><a href="#unsqueeze" class="headerlink" title="unsqueeze()"></a>unsqueeze()</h2><p>tensor.<a target="_blank" rel="noopener" href="https://pytorch.org/docs/master/generated/torch.unsqueeze.html#torch.unsqueeze">unsqueeze()</a>与<code>squeeze()</code>相反，是在tensor插入新的维度，插入的维度size=1，用于维度扩展。</p>
+<p>举个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>t.shape<br>torch.Size([<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>])<br><span class="hljs-meta">&gt;&gt;&gt; </span>t.unsqueeze(<span class="hljs-number">1</span>).shape   <span class="hljs-comment"># 在指定的位置上插入新的维度，size=1</span><br>torch.Size([<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>]) <br><span class="hljs-meta">&gt;&gt;&gt; </span>t.unsqueeze(<span class="hljs-number">-1</span>).shape  <span class="hljs-comment"># 参数为-1时表示在最后一维添加新的维度，size=1</span><br>torch.Size([<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>])<br><span class="hljs-meta">&gt;&gt;&gt; </span>t.unsqueeze(<span class="hljs-number">4</span>).shape   <span class="hljs-comment"># 和dim=-1等价</span><br>torch.Size([<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>])<br></code></pre></td></tr></table></figure>
+<h1 id="expand-repeat"><a href="#expand-repeat" class="headerlink" title="expand()/repeat()"></a>expand()/repeat()</h1><h2 id="expand"><a href="#expand" class="headerlink" title="expand()"></a>expand()</h2><p>tensor.<a target="_blank" rel="noopener" href="https://pytorch.org/docs/master/tensors.html?highlight=tensor%20expand#torch.Tensor.expand">expand()</a>的功能是扩展tensor中的size为1的维度，且只能扩展size=1的维度。以view的形式返回tensor，即不改变原来的tensor，只是以视图的形式返回数据。</p>
+<p>举个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>t<br>tensor([[[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>],<br>         [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]]])<br><span class="hljs-meta">&gt;&gt;&gt; </span>t.shape<br>torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])<br><span class="hljs-meta">&gt;&gt;&gt; </span>t.expand(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)  <span class="hljs-comment"># 将第0维扩展为3，可见其将第0维复制了3次</span><br>tensor([[[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>],<br>         [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]],<br><br>        [[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>],<br>         [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]],<br><br>        [[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>],<br>         [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]]])<br><span class="hljs-meta">&gt;&gt;&gt; </span>t.expand(<span class="hljs-number">3</span>,<span class="hljs-number">-1</span>,<span class="hljs-number">-1</span>) <span class="hljs-comment"># dim=-1表示固定这个维度，效果是一样的，这样写更方便</span><br>tensor([[[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>],<br>         [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]],<br><br>        [[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>],<br>         [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]],<br><br>        [[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>],<br>         [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]]])<br><span class="hljs-meta">&gt;&gt;&gt; </span>t.expand(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>).storage()    <span class="hljs-comment"># expand不扩展新的内存空间</span><br> <span class="hljs-number">0</span><br> <span class="hljs-number">1</span><br> <span class="hljs-number">2</span><br> <span class="hljs-number">3</span><br> <span class="hljs-number">4</span><br> <span class="hljs-number">5</span><br>[torch.LongStorage of size <span class="hljs-number">6</span>]<br></code></pre></td></tr></table></figure>
+<h2 id="repeat"><a href="#repeat" class="headerlink" title="repeat()"></a>repeat()</h2><p>tensor.<a target="_blank" rel="noopener" href="https://pytorch.org/docs/master/tensors.html?highlight=repeat#torch.Tensor.repeat">repeat()</a>用于维度复制，可以将size为任意大小的维度复制为n倍，和<code>expand()</code>不同的是，<code>repeat()</code>会分配新的存储空间，是真正的复制数据。</p>
+<p>举个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>t<br>tensor([[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>],<br>        [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]])<br><span class="hljs-meta">&gt;&gt;&gt; </span>t.shape<br>torch.Size([<span class="hljs-number">2</span>, <span class="hljs-number">3</span>])<br><span class="hljs-meta">&gt;&gt;&gt; </span>t.repeat(<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)  <span class="hljs-comment"># 将两个维度分别复制2、3倍</span><br>tensor([[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>],<br>        [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>],<br>        [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>],<br>        [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]])<br><span class="hljs-meta">&gt;&gt;&gt; </span>t.repeat(<span class="hljs-number">2</span>,<span class="hljs-number">3</span>).storage()   <span class="hljs-comment"># repeat()是真正的复制，会分配新的空间</span><br> <span class="hljs-number">0</span><br> <span class="hljs-number">1</span><br> <span class="hljs-number">2</span><br> <span class="hljs-number">0</span><br> <span class="hljs-number">1</span><br> <span class="hljs-number">2</span><br> <span class="hljs-number">0</span><br> <span class="hljs-number">1</span><br> <span class="hljs-number">2</span><br> <span class="hljs-number">3</span><br> <span class="hljs-number">4</span><br> <span class="hljs-number">5</span><br> ......<br> <span class="hljs-number">3</span><br> <span class="hljs-number">4</span><br> <span class="hljs-number">5</span><br>[torch.LongStorage of size <span class="hljs-number">36</span>]<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>如果维度size=1的时候，<code>repeat()</code>和<code>expand()</code>的作用是一样的，但是<code>expand()</code>不会分配新的内存，所以优先使用<code>expand()</code>函数。</p>
+</blockquote>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
+<li><code>view()/reshape()</code>两个函数用于<strong>将tensor变换为任意形状</strong>，本质是将所有的元素<strong>重新分配</strong>。</li>
+<li><code>t()/transpose()/permute()</code>用于<strong>维度的转置</strong>，转置和<code>reshape()</code>操作是有区别的，注意区分。</li>
+<li><code>squeeze()/unsqueeze()</code>用于<strong>压缩/扩展维度</strong>，仅在维度的<strong>个数</strong>上去除/添加，且去除/添加的维度size=1。</li>
+<li><code>expand()/repeat()</code>用于<strong>数据的复制</strong>，对一个或多个维度上的数据进行复制。</li>
+<li>以上提到的函数仅有两种会分配新的内存空间：<code>reshape()</code>操作处理非连续的tensor时，返回tensor的copy数据会分配新的内存；<code>repeat()</code>操作会分配新的内存空间。其余的操作都是返回的视图，底层数据是共享的，仅在索引上重新分配。</li>
+</ol>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><span id='1'>1. </span><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/64551412">PyTorch中的contiguous</a></p>
+<p><span id='2'>2. </span><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/48915810/pytorch-contiguous#">stackoverflow-pytorch-contiguous</a></p>
+<p><span id='3'>3. </span><a target="_blank" rel="noopener" href="https://pytorch.org/docs/master/index.html">PyTorch官方文档</a></p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Kangshitao</li>
+    <li><strong>本文链接：</strong><a href="http://kangshitao.github.io/2020/11/21/pytorch-function/index.html" title="http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2020&#x2F;11&#x2F;21&#x2F;pytorch-function&#x2F;index.html">http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2020&#x2F;11&#x2F;21&#x2F;pytorch-function&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyTorch/" rel="tag">PyTorch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2020/12/05/reverse-linkedlist/"><i class="iconfont iconleft"></i>单链表反转</a>
+    <a href="/2020/11/15/transformer/">自注意力和Transformer<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+        <section class="comments">
+  
+    <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz",
+        app_key: "XipU873t8gkSypbwl1HWUARD",
+        placeholder: "write comment content...",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+		var title1="text=Live and Learn有新评论啦~ --by Valine"
+		var SCKEY_Server="SCT21455TskriUeyliOqL6kHLhiCOMmlB"
+		var ValineButton=document.getElementsByClassName("vsubmit vbtn")[0];
+		function send_valine_Server(){
+			var text="desp=";
+			var pageurl=document.URL;
+			var ptime=new Date();
+			var vnick=document.getElementsByClassName("vnick vinput")[0].value;
+			var veditor=document.getElementsByClassName("veditor vinput")[0].value;
+			var data=text+"|昵称"+"|评论内容"+"|跳转链接"+"|评论时间"+"\n"+"|----|----|----|----|"+"\n"+"|"+vnick+"|"+veditor+"|"+pageurl+"|" +ptime.toLocaleString()+"|";
+			var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+			httpRequest.open('POST', 'https://sctapi.ftqq.com/'+SCKEY_Server+'.send', true); //第二步：打开连接
+			httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）
+			httpRequest.send(title1+"&"+data);//发送请求 将请头体体写在send中
+		};
+		ValineButton.onclick=send_valine_Server;
+      });
+    } else {
+      loadValine();
+    }
+  };
+ 
+</script>
+
+
+</section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#contiguous"><span class="toc-text">contiguous</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#view-reshape"><span class="toc-text">view()&#x2F;reshape()</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#view"><span class="toc-text">view()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reshape"><span class="toc-text">reshape()</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#resize"><span class="toc-text">resize_()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#transpose-permute"><span class="toc-text">transpose()&#x2F;permute()</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#transpose"><span class="toc-text">transpose()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#permute"><span class="toc-text">permute()</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#squeeze-unsqueeze"><span class="toc-text">squeeze()&#x2F;unsqueeze()</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#squeeze"><span class="toc-text">squeeze()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#unsqueeze"><span class="toc-text">unsqueeze()</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#expand-repeat"><span class="toc-text">expand()&#x2F;repeat()</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#expand"><span class="toc-text">expand()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#repeat"><span class="toc-text">repeat()</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reference"><span class="toc-text">Reference</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1574716653 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/kangshitao "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#24292E'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:1574716653@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">Total:
+  <span id="busuanzi_value_site_pv" style="font-size:12px;"></span></span>
+  <span id="busuanzi_container_site_uv" >| Visitors:
+  <span id="busuanzi_value_site_uv" style="font-size:12px;"></span></span>
+  </div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+  
+  
+<script src="/js/clicklove.js"></script>
+<!-- 页面点击小红心 -->
+  
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz',
+      appKey: 'XipU873t8gkSypbwl1HWUARD',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud").each(async (e) => {
+        const url = $(".leancloud").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud").eq(e).text(count ? count : '--');
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud").length === 1 ? $(".leancloud").attr('id').trim() : 'http://kangshitao.github.io';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    $(function () {
+	  const Counter = AV.Object.extend("Counter");
+	  showCount(Counter);
+      const localhost = /http\:\/\/localhost|http\:\/\/127.0.0.1|http\:\/\/0.0.0.0/;
+      if (localhost.test(document.URL)) {
+	    return;
+	  }
+	  addCount(Counter);
+    });
+  });
+</script>
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <script>
+    window.ga = window.ga || function () {
+      (ga.q = ga.q || []).push(arguments)
+    };
+    ga.l = +new Date;
+    ga('create', 'G-0FZTGJZNYS', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</html>

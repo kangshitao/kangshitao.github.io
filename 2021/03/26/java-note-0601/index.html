@@ -1,0 +1,727 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Java学习笔记06-面向对象编程(下) - Live And Learn</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="hexo-blog,live and learn,kangshitao, Java,static,final,单例模式,抽象类,接口,内部类,面向对象编程">
+  <meta name="description" content="一、关键字：static1、介绍static：静态的，...">
+  <meta name="author" content="Kangshitao">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/atelier-heath-light.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/monokai-sublime.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg',
+        wechat: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '心之所向，素履以往',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'normal'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Live And Learn" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">Java学习笔记06-面向对象编程(下)</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">Java学习笔记06-面向对象编程(下)</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>三月 26, 2021</span>
+      
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2021/03/26/java-note-0601/" class="leancloud" data-flag-title="Java学习笔记06-面向对象编程(下)"></span>
+        </span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>7803</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="一、关键字：static"><a href="#一、关键字：static" class="headerlink" title="一、关键字：static"></a>一、关键字：static</h1><h2 id="1、介绍"><a href="#1、介绍" class="headerlink" title="1、介绍"></a>1、介绍</h2><p><code>static</code>：静态的，可以用来修饰属性、方法、代码块、内部类。</p>
+<p>被<code>static</code>修饰的成员，有以下特点：</p>
+<ul>
+<li>随着类的加载而加载。</li>
+<li>优先于对象存在。</li>
+<li>修饰的成员，被所有对象共享。</li>
+<li>访问权限允许时，可不创建对象，直接被类调用。</li>
+</ul>
+<blockquote>
+<p>有关<code>static</code>修饰的成员特点，都可以从生命周期的角度来解释。</p>
+</blockquote>
+<h2 id="2、修饰属性"><a href="#2、修饰属性" class="headerlink" title="2、修饰属性"></a>2、修饰属性</h2><p><code>static</code>修饰的属性称为<strong>静态变量(类变量，类属性)</strong>，静态变量<strong>随着类的加载而加载</strong>，可以通过<code>类名.静态变量</code>的方法调用。静态变量的加载早于对象的创建，且在<strong>内存中只会存在一份</strong>，保存在<strong>方法区</strong>的<strong>静态域</strong>中。常见的静态变量：<code>System.out</code>、<code>Math.PI</code>等。</p>
+<p><strong>静态变量(类变量)</strong> vs <strong>非静态变量(实例变量)</strong>：</p>
+<ul>
+<li>静态变量：可以通过<code>类.静态变量</code>和<code>对象.静态变量</code>两种方法调用。多个对象共享一个静态变量，通过一个对象修改此属性，其他对象调用时是被修改后的值。</li>
+<li>实例变量：只能通过<code>对象.实例变量</code>的方式调用。每个对象都独立地拥有一套类中的实例变量，实例对象归具体的某个对象所有，修改某个对象的实例变量，不会影响其他对象同样的变量。</li>
+</ul>
+<h2 id="3、修饰方法"><a href="#3、修饰方法" class="headerlink" title="3、修饰方法"></a>3、修饰方法</h2><p><strong>静态方法</strong>vs<strong>非静态方法</strong>：</p>
+<ul>
+<li>静态方法：可以通过<code>类.方法</code>和<code>对象.方法</code>两种方法调用。静态方法只能调用静态方法和属性，可以通过创建对象的方法调用非静态方法和属性。静态方法不能使用<code>this</code>、<code>super</code>关键字。</li>
+<li>非静态方法：既可以调用静态方法，也可以调用非静态方法。</li>
+</ul>
+<blockquote>
+<p>静态方法不可以被重写。</p>
+</blockquote>
+<h2 id="4、使用场景"><a href="#4、使用场景" class="headerlink" title="4、使用场景"></a>4、使用场景</h2><ol>
+<li>判断属性是否要声明为静态的：<ul>
+<li>属性可以被多个对象共享，不会随着对象的不同而不同，比如银行利率。</li>
+<li>类中的常量一般声明为<code>static final</code>的。</li>
+</ul>
+</li>
+<li>判断方法是否要声明为静态的：<ul>
+<li>操作静态属性的方法一般声明为静态的。</li>
+<li>工具类中的方法习惯上声明为静态的，比如<code>Math</code>、<code>Arrays</code>、<code>Collections</code></li>
+</ul>
+</li>
+</ol>
+<h2 id="5、单例模式"><a href="#5、单例模式" class="headerlink" title="5、单例模式"></a>5、单例模式</h2><p><strong>单例模式</strong>，就是采取一定的方法保证在整个的软件系统中，对某个类只能存在一个对象实例，并且该类只提供一个取得其对象实例的方法。</p>
+<p>设计单例模式根据以下思路：</p>
+<ol>
+<li>想让类只能存在一个对象实例，就要将构造器权限设置为<code>private</code>，在类内部创建此对象。这样外部不能用<code>new</code>操作符创建新的对象。</li>
+<li>外部想要得到这个类的对象，就需要调用<code>public</code>的<code>static</code>方法得到此对象。</li>
+<li>获取对象的方法是<code>static</code>的，则指向类内部产生的该类对象的变量也必须是<code>static</code>的。</li>
+</ol>
+<p>根据以上思路，有两种单例模式写法，<code>饿汉式</code>和<code>懒汉式</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//饿汉式单例模式</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bank</span></span>&#123;<br>    <span class="hljs-comment">//1.私有化类的构造器</span><br>    <span class="hljs-keyword">private</span> Bank&#123;&#125;<br>    <br>    <span class="hljs-comment">//2.创建类的私有对象属性</span><br>    <span class="hljs-comment">//4.方法是静态的，则此对象属性必须是静态的</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Bank instance = <span class="hljs-keyword">new</span> Bank();<br>    <br>    <span class="hljs-comment">//3.提供公共的静态方法，返回类的对象</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Bank <span class="hljs-title">getInstance</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> instance;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">//懒汉式单例模式</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bank</span></span>&#123;<br>    <span class="hljs-comment">//1.私有化类的构造器</span><br>    <span class="hljs-keyword">private</span> Bank&#123;&#125;<br>    <br>    <span class="hljs-comment">//2.创建类的私有对象属性,先不初始化</span><br>    <span class="hljs-comment">//4.方法是静态的，则此对象属性必须是静态的</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Bank instance;<br>    <br>    <span class="hljs-comment">//3.提供公共的静态方法，返回类的对象</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Bank <span class="hljs-title">getInstance</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">if</span> (instance == <span class="hljs-keyword">null</span>)&#123;<br>            instance = <span class="hljs-keyword">new</span> Bank();<br>        &#125;<br>        <span class="hljs-keyword">return</span> instance;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>饿汉式单例模式vs懒汉式单例模式：</p>
+<ul>
+<li>饿汉式：无论有没有使用，都创建对象实例，对象加载时间较长；但饿汉式单例模式线程安全的。</li>
+<li>懒汉式：延迟对象的创建；以上写法是线程不安全的，可以修改为线程安全的。</li>
+</ul>
+<p>单例模式的应用：</p>
+<ul>
+<li>网站的计数器</li>
+<li>应用程序的日志应用</li>
+<li>数据库连接池</li>
+<li>读取配置文件的类</li>
+<li>Application</li>
+<li>Windows任务管理器</li>
+<li>Windows回收站</li>
+</ul>
+<h1 id="二、理解main方法"><a href="#二、理解main方法" class="headerlink" title="二、理解main方法"></a>二、理解main方法</h1><p><code>main()</code>方法是程序的入口，其形式为：<code>public static void main(String[] args)&#123;&#125;</code>，从形式上可知：</p>
+<ul>
+<li><code>main()</code>方法也是普通的静态方法，可以通过<code>类名.main()</code>的方式调用。<code>main()</code>方法调用其他非静态方法需要创建对象，然后使用<code>对象.非静态方法</code>的方式调用。</li>
+<li><code>main()</code>有参数，可以作为与控制台交互的方式。</li>
+</ul>
+<h1 id="三、类的成员之四：代码块"><a href="#三、类的成员之四：代码块" class="headerlink" title="三、类的成员之四：代码块"></a>三、类的成员之四：代码块</h1><ol>
+<li><p>代码块没有名字，自动执行。</p>
+</li>
+<li><p>作用：代码块用于对Java类或对象进行初始化。</p>
+</li>
+<li>一个类中可以定义多个代码块，按照先后顺序执行。</li>
+<li>代码块如果有修饰符，只能使用<code>static</code>修饰。</li>
+<li><strong>静态代码块</strong>：<ul>
+<li>内部可以有输出语句。</li>
+<li><strong>随着类的加载而执行</strong>，只会执行一次。</li>
+<li>作用：用来初始化类的信息，比如对类变量赋值。</li>
+</ul>
+</li>
+<li><strong>非静态代码块</strong>：<ul>
+<li>内部可以有输出语句。</li>
+<li>随着对象的创建而执行，每创建一次对象就执行一次。</li>
+<li><strong>非静态代码块先于构造器执行</strong>。</li>
+<li>作用：可以在创建对象时，对对象的属性进行初始化。</li>
+</ul>
+</li>
+<li>静态代码块和静态方法类似，只能直接调用静态方法和属性。</li>
+<li>代码块应用举例：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BlockTest</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        Student student = <span class="hljs-keyword">new</span> Student();<br>    &#125;<br>    <span class="hljs-keyword">static</span> &#123; <span class="hljs-comment">//先加载BlockTest类，再加载Person类</span><br>        System.out.println(<span class="hljs-string">&quot;BlockTest block&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>&#123;<br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">()</span></span>&#123;&#125;<br>    <span class="hljs-comment">//非静态代码块</span><br>    &#123;System.out.println(<span class="hljs-string">&quot;Person block&quot;</span>);&#125;<br>    <br>    <span class="hljs-comment">//静态代码块</span><br>    <span class="hljs-keyword">static</span>&#123;System.out.println(<span class="hljs-string">&quot;Person static block&quot;</span>);&#125;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Person</span></span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> number;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Student</span><span class="hljs-params">()</span></span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;Student constructor&quot;</span>);<br>    &#125;<br>    <br>    &#123;System.out.println(<span class="hljs-string">&quot;Student block&quot;</span>);&#125;<br>    <br>    <span class="hljs-keyword">static</span> &#123;System.out.println(<span class="hljs-string">&quot;Student static block&quot;</span>);&#125;<br>&#125;<br><span class="hljs-comment">/* </span><br><span class="hljs-comment">以上程序运行结果：</span><br><span class="hljs-comment">BlockTest block         //先加载主类</span><br><span class="hljs-comment">Person static block	//声明子类对象变量时，先加载父类，执行父类的静态代码块</span><br><span class="hljs-comment">Student static block	//然后加载子类，执行子类的静态代码块</span><br><span class="hljs-comment">Person block		//执行new语句通过构造器创建对象时，先执行父类非静态代码块</span><br><span class="hljs-comment">Student block		//然后执行子类代码块</span><br><span class="hljs-comment">Student constructor     //最后执行构造器</span><br><span class="hljs-comment">/*</span><br></code></pre></td></tr></table></figure>
+<p>以上结论可以总结为：<strong>由父及子，静态先行</strong>。</p>
+<p><strong>属性赋值的方式以及顺序</strong>：</p>
+<ol>
+<li>默认初始化</li>
+<li>显式初始化；多个代码块赋值(这两种方式根据代码顺序执行)</li>
+<li>构造器初始化</li>
+<li>创建对象以后，通过对象调用属性或方法进行赋值</li>
+</ol>
+<h1 id="四、关键字：final"><a href="#四、关键字：final" class="headerlink" title="四、关键字：final"></a>四、关键字：final</h1><p><code>final</code>：最后的，可以用来修饰<code>类</code>、<code>方法</code>、<code>变量</code>。</p>
+<ul>
+<li><code>final</code>修饰<code>类</code>：表示此<code>类</code>不能被其他类继承，比如<code>String</code>类、<code>System</code>类、<code>StringBuffer</code>类等</li>
+<li><code>final</code>修饰<code>方法</code>：表明此<code>方法</code>不能被重写，比如<code>Object</code>类的<code>getClass()</code>方法</li>
+<li><code>final</code>修饰<code>变量</code>：包括<code>属性</code>和<code>局部变量</code>，表示变量的值不允许被修改，此时的变量称为<code>常量</code>。<ul>
+<li><code>final</code>修饰<code>属性</code>，可以直接赋值，也可以先声明，然后在<code>代码块</code>中、<code>构造器</code>中再初始化赋值。</li>
+<li><code>构造器</code>中初始化常量，可以通过<code>形参</code>为每个对象设置不同的常量值，比如身份证号。</li>
+<li><code>final</code>修饰<code>局部变量</code>时，对于方法内部的<code>局部变量</code>，使用<code>final</code>修饰变为<code>常量</code>；对于<code>final</code>修饰的<code>形参</code>，调用方法的时候赋值，然后不允许再修改。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><code>static final</code>用来修饰的<code>属性</code>，称为<code>全局常量</code>。</p>
+</blockquote>
+<h1 id="五、抽象类与抽象方法"><a href="#五、抽象类与抽象方法" class="headerlink" title="五、抽象类与抽象方法"></a>五、抽象类与抽象方法</h1><p><code>abstract</code>：抽象的，可以用来修饰<code>类</code>、<code>方法</code>。</p>
+<h2 id="1、抽象类"><a href="#1、抽象类" class="headerlink" title="1、抽象类"></a>1、抽象类</h2><p><code>abstract</code>修饰的类称为抽象类。</p>
+<ul>
+<li>抽象类<strong>不能实例化对象</strong>，可以使用多态。</li>
+<li>抽象类中<strong>一定有构造器</strong>，便于子类实例化时调用。</li>
+<li>实际开发中会提供抽象类的子类，让子类对象实例化，完成相关操作。</li>
+</ul>
+<h2 id="2、抽象方法"><a href="#2、抽象方法" class="headerlink" title="2、抽象方法"></a>2、抽象方法</h2><p><code>abstract</code>修饰的方法称为<code>抽象方法</code>。</p>
+<ul>
+<li>抽象方法只有方法的声明，没有方法体（没有<code>&#123;&#125;</code>），例：<code>public void showInfo();</code></li>
+<li>包含抽象方法的类一定是抽象类，反之，抽象类可以没有抽象方法。</li>
+<li>只有子类<strong>实现</strong>（类似于重写）了父类中的<strong>所有抽象方法</strong>(包括<strong>直接父类</strong>和<strong>间接父类</strong>的所有抽象方法)，此子类才可以实例化，否则该子类也是抽象类。</li>
+</ul>
+<blockquote>
+<p>1.<code>abstract</code>不能修饰变量、构造器、代码块。</p>
+<p>2.因为抽象方法必须要被实现(重写)，所以<code>abstract</code>不能用来修饰<code>private</code>方法、<code>static</code>方法、<code>final</code>的方法。同样，<code>abstract</code>也不能修饰<code>final</code>的类。</p>
+</blockquote>
+<h2 id="3、匿名子类"><a href="#3、匿名子类" class="headerlink" title="3、匿名子类"></a>3、匿名子类</h2><p>定义抽象类<code>Person</code>的匿名子类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java">Person p = <span class="hljs-keyword">new</span> Person()&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">eat</span><span class="hljs-params">()</span></span>&#123; <br>        System.out.println(<span class="hljs-string">&quot;eat&quot;</span>);<br>    &#125;<br>&#125;; <span class="hljs-comment">//匿名子类需要重写父类的抽象方法</span><br><br><span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">eat</span><span class="hljs-params">()</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="六、接口-interface"><a href="#六、接口-interface" class="headerlink" title="六、接口(interface)"></a>六、接口(interface)</h1><p><code>interface</code>：接口。接口定义的是一组规则，是和类并列的结构。继承是一种“是不是”的关系，而接口是“能不能“的关系。定义接口：<code>interface Flyable&#123;&#125;</code></p>
+<ul>
+<li><code>JDK 7</code>及以前，接口中只能定义全局常量和抽象方法。<ul>
+<li>全局常量：默认权限是<code>public static final</code>，关键字可以省略不写。全局常量可以通过<code>接口.常量</code>调用。</li>
+<li>抽象方法：默认权限是<code>public abstract</code>，关键字同样可以不写</li>
+</ul>
+</li>
+<li><p><code>JDK 8</code>及以后，接口中除了能够定义全局常量和抽象方法以外，还能够定义静态方法，默认(<code>default</code>)方法。</p>
+<ul>
+<li>接口中定义的静态方法，只能使用接口调用，即<code>接口.静态方法</code>。</li>
+<li>实现类如果调用接口的默认方法，使用<code>接口.super.默认方法</code>的方式调用。</li>
+<li>通过实现类的对象，可以调用接口的默认方法。<strong>默认方法可以被重写，但不是必须的，不强制，接口中的抽象方法必须被重写</strong>。</li>
+<li>如果子类继承的父类和实现的接口中声明了同名同参的方法，如果子类没有重写，默认调用的是父类中的方法。(类优先原则)</li>
+<li>如果实现类同时实现了多个接口，这多个接口中定义了同名同参的默认方法，实现类必须重写此方法，否则报错。(接口冲突)</li>
+</ul>
+</li>
+<li><p>接口中<strong>不能定义构造器</strong>，即接口不能够实例化。</p>
+</li>
+<li>接口通过被类<code>实现(implements)</code>来使用。实现类必须实现接口的所有抽象方法，此类才能被实例化，否则此类必须定义为抽象类。</li>
+<li>Java类可以同时实现多个接口，弥补了Java无法多继承的缺陷。<code>implements</code>关键字在<code>extends</code>后面，比如父类B的子类A，实现了C、D两个接口：<code>class A extends B implements C,D&#123;&#125;</code></li>
+<li>接口和接口之间可以继承，而且可以多继承。接口的具体使用体现了多态性。</li>
+<li>接口的匿名实现类，格式和抽象类的匿名子类相同。</li>
+</ul>
+<h1 id="七、类的成员之五：内部类"><a href="#七、类的成员之五：内部类" class="headerlink" title="七、类的成员之五：内部类"></a>七、类的成员之五：内部类</h1><p>Java中允许将一个<code>类A</code>声明在另一个<code>类B</code>中，则<code>类A</code>是<code>内部类</code>，<code>类B</code>是<code>外部类</code>。<code>内部类</code>和<code>外部类</code>的类名不能相同。</p>
+<p>根据声明的位置不同，内部类又分为<code>成员内部类</code>和<code>局部内部类</code>(方法内、代码块内、构造器内)</p>
+<h2 id="1、成员内部类"><a href="#1、成员内部类" class="headerlink" title="1、成员内部类"></a>1、成员内部类</h2><p>成员内部类直接声明在类的内部，有两种身份：<strong>作为类的成员</strong>，<strong>作为一个类</strong>。</p>
+<p>作为类的成员，具有类的成员的特征：</p>
+<ul>
+<li>可以调用外部类的结构</li>
+<li>可以被<code>static</code>修饰</li>
+<li>可以被四种不同的权限修饰符修饰</li>
+</ul>
+<p>作为一个类，具有类的功能：</p>
+<ul>
+<li>成员内部类内可以定义属性、方法、构造器等，和一般的类定义相同</li>
+<li>可以被<code>final</code>修饰，表示不可以被继承。不加<code>final</code>则表示可以被继承</li>
+<li>可以被<code>abstract</code>修饰</li>
+</ul>
+<blockquote>
+<p>1.非static的成员内部类中的成员不能声明为static的，只有外部类，或者static的成员内部类中才可以声明static成员。</p>
+<p>2.外部类访问成员内部类的成员，通过<code>内部类.成员</code>或<code>内部类对象.成员</code>的方式。</p>
+<p>3.成员内部类可以直接使用外部类的所有成员，包括私有的数据。</p>
+</blockquote>
+<h2 id="2、局部内部类"><a href="#2、局部内部类" class="headerlink" title="2、局部内部类"></a>2、局部内部类</h2><p><strong>局部内部类</strong>是声明在方法内、代码块内、构造器内的类。</p>
+<p>局部内部类只能在声明它的方法或代码块中使用，但是局部内部类的对象可以通过外部方法的返回值返回使用，返回值类型只能是局部内部类的父类或父接口类型。</p>
+<ul>
+<li>局部内部类可以使用外部类的成员，包括私有的。</li>
+<li>局部内部类可以使用外部方法的局部变量，但必须是<code>final</code>的。JDK 8之后可以省略<code>final</code>关键字。</li>
+<li>和局部变量类似，局部内部类不能使用四种权限修饰符。</li>
+<li>局部内部类不能使用<code>static</code>修饰，也不能包含静态成员。</li>
+</ul>
+<h2 id="3、内部类的使用"><a href="#3、内部类的使用" class="headerlink" title="3、内部类的使用"></a>3、内部类的使用</h2><p>实例化<strong>成员内部类</strong>的对象：</p>
+<ul>
+<li>静态成员内部类：<code>外部类.内部类 对象名 = new 外部类.内部类();</code></li>
+<li>非静态成员内部类：①创建外部类对象：<code>外部类 p = new 外部类();</code>②<code>外部类.内部类 对象名 = p.new 内部类();</code></li>
+</ul>
+<p>在成员内部类中区分调用外部类的结构：</p>
+<ul>
+<li><code>this.属性</code>表示内部类的属性</li>
+<li><code>外部类.this.属性</code>表示调用外部类的属性</li>
+</ul>
+<p>局部内部类中的使用案例：如下面代码中的<code>public Comparable getComparable()&#123;&#125;</code></p>
+<p>内部类的使用代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>&#123;<br>    <span class="hljs-comment">//静态成员内部类</span><br>    <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Brain</span></span>&#123;<br>    &#125;<br>    <br>    <span class="hljs-comment">//非静态成员内部类</span><br>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Heart</span></span>&#123; &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">int</span> num = <span class="hljs-number">10</span>;<br>        <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AA</span></span>&#123;<br>            <span class="hljs-keyword">int</span> aa = num;<br>        &#125; <span class="hljs-comment">//方法中的局部内部类</span><br>        <span class="hljs-comment">//num = 20; //编译错误。局部内部类调用了num，则num是final的，不可以被修改。</span><br>    &#125;<br>    <br>    &#123;<br>        <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BB</span></span>&#123;&#125; <span class="hljs-comment">//代码块中的局部内部类</span><br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CC</span></span>&#123;&#125; <span class="hljs-comment">//构造器中的局部内部类</span><br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Comparable <span class="hljs-title">getComparable</span><span class="hljs-params">()</span></span>&#123;  <span class="hljs-comment">//返回一个实现了Comparable接口的类的对象</span><br>        <span class="hljs-comment">//方式一，定义局部内部类</span><br>        <span class="hljs-comment">/*</span><br><span class="hljs-comment">        class MyComparable implements Comparable&#123;</span><br><span class="hljs-comment">            public int compareTo(Object o)&#123;</span><br><span class="hljs-comment">                return 0;</span><br><span class="hljs-comment">            &#125;</span><br><span class="hljs-comment">        &#125;</span><br><span class="hljs-comment">        return new MyComparable();</span><br><span class="hljs-comment">        */</span><br><br>        <span class="hljs-comment">//方式二：使用匿名实现类，返回匿名实现类的匿名对象</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Comparable() &#123;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">compareTo</span><span class="hljs-params">(Object o)</span> </span>&#123;<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;&#125;<br>        &#125;;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>内部类在编译后，也会生成字节码文件：</p>
+<p>①成员内部类：<code>外部类$内部类名.class</code></p>
+<p>​                            例如：<code>Person$Brain.class</code></p>
+<p>②局部内部类：<code>外部类$数字 内部类名.class</code></p>
+<p>​                            例如：<code>Person$1AA.class</code></p>
+</blockquote>
+<h2 id="4、匿名内部类"><a href="#4、匿名内部类" class="headerlink" title="4、匿名内部类"></a>4、匿名内部类</h2><p><strong>匿名内部类</strong>不能定义任何静态成员、方法和类，只能创建匿名内部类的一个实例。一个匿名内部类一定是在<code>new</code>的后面，用其隐含实现一个接口或实现一个类。</p>
+<p>格式：</p>
+<p><code>new 父类构造器(实参列表)|实现接口()&#123;</code></p>
+<p>​        <code>//匿名内部类的类体部分</code></p>
+<p>​    <code>&#125;</code></p>
+<p>匿名内部类特点：</p>
+<ul>
+<li>匿名内部类必须继承父类或实现接口。</li>
+<li>只能有一个对象。</li>
+<li>对象只能使用多态形式引用。</li>
+</ul>
+<p>匿名内部类举例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Product</span></span>&#123;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getPrice</span><span class="hljs-params">()</span></span>;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span></span>;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AnonymousTest</span></span>&#123;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">(Product p)</span></span>&#123;<br>		System.out.println(<span class="hljs-string">&quot;购买了一个&quot;</span> + p.getName() + <span class="hljs-string">&quot;，花掉了&quot;</span> + p.getPrice());<br>	&#125;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>		AnonymousTest ta = <span class="hljs-keyword">new</span> AnonymousTest();<br>		<span class="hljs-comment">//调用test方法时，需要传入一个Product参数，</span><br>		<span class="hljs-comment">//此处传入其匿名实现类的实例，匿名内部类。</span><br>		ta.test(<span class="hljs-keyword">new</span> Product()&#123; <br>			<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getPrice</span><span class="hljs-params">()</span></span>&#123;<br>				<span class="hljs-keyword">return</span> <span class="hljs-number">567.8</span>;<br>			&#125;<br>			<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span></span>&#123;<br>				<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;AGP显卡&quot;</span>;<br>			&#125;<br>		&#125;);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Kangshitao</li>
+    <li><strong>本文链接：</strong><a href="http://kangshitao.github.io/2021/03/26/java-note-0601/index.html" title="http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2021&#x2F;03&#x2F;26&#x2F;java-note-0601&#x2F;index.html">http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2021&#x2F;03&#x2F;26&#x2F;java-note-0601&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/03/26/java-note-0701/"><i class="iconfont iconleft"></i>Java学习笔记07-异常处理</a>
+    <a href="/2021/03/21/java-note-0501/">Java学习笔记05-面向对象编程(中)<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+        <section class="comments">
+  
+    <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz",
+        app_key: "XipU873t8gkSypbwl1HWUARD",
+        placeholder: "write comment content...",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+		var title1="text=Live and Learn有新评论啦~ --by Valine"
+		var SCKEY_Server="SCT21455TskriUeyliOqL6kHLhiCOMmlB"
+		var ValineButton=document.getElementsByClassName("vsubmit vbtn")[0];
+		function send_valine_Server(){
+			var text="desp=";
+			var pageurl=document.URL;
+			var ptime=new Date();
+			var vnick=document.getElementsByClassName("vnick vinput")[0].value;
+			var veditor=document.getElementsByClassName("veditor vinput")[0].value;
+			var data=text+"|昵称"+"|评论内容"+"|跳转链接"+"|评论时间"+"\n"+"|----|----|----|----|"+"\n"+"|"+vnick+"|"+veditor+"|"+pageurl+"|" +ptime.toLocaleString()+"|";
+			var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+			httpRequest.open('POST', 'https://sctapi.ftqq.com/'+SCKEY_Server+'.send', true); //第二步：打开连接
+			httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）
+			httpRequest.send(title1+"&"+data);//发送请求 将请头体体写在send中
+		};
+		ValineButton.onclick=send_valine_Server;
+      });
+    } else {
+      loadValine();
+    }
+  };
+ 
+</script>
+
+
+</section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%85%B3%E9%94%AE%E5%AD%97%EF%BC%9Astatic"><span class="toc-text">一、关键字：static</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E4%BB%8B%E7%BB%8D"><span class="toc-text">1、介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E4%BF%AE%E9%A5%B0%E5%B1%9E%E6%80%A7"><span class="toc-text">2、修饰属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E4%BF%AE%E9%A5%B0%E6%96%B9%E6%B3%95"><span class="toc-text">3、修饰方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">4、使用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="toc-text">5、单例模式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%90%86%E8%A7%A3main%E6%96%B9%E6%B3%95"><span class="toc-text">二、理解main方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%B1%BB%E7%9A%84%E6%88%90%E5%91%98%E4%B9%8B%E5%9B%9B%EF%BC%9A%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="toc-text">三、类的成员之四：代码块</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%85%B3%E9%94%AE%E5%AD%97%EF%BC%9Afinal"><span class="toc-text">四、关键字：final</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%B8%8E%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95"><span class="toc-text">五、抽象类与抽象方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="toc-text">1、抽象类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95"><span class="toc-text">2、抽象方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%8C%BF%E5%90%8D%E5%AD%90%E7%B1%BB"><span class="toc-text">3、匿名子类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%8E%A5%E5%8F%A3-interface"><span class="toc-text">六、接口(interface)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E7%B1%BB%E7%9A%84%E6%88%90%E5%91%98%E4%B9%8B%E4%BA%94%EF%BC%9A%E5%86%85%E9%83%A8%E7%B1%BB"><span class="toc-text">七、类的成员之五：内部类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E6%88%90%E5%91%98%E5%86%85%E9%83%A8%E7%B1%BB"><span class="toc-text">1、成员内部类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%B1%80%E9%83%A8%E5%86%85%E9%83%A8%E7%B1%BB"><span class="toc-text">2、局部内部类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%86%85%E9%83%A8%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">3、内部类的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB"><span class="toc-text">4、匿名内部类</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1574716653 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/kangshitao "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#24292E'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:1574716653@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">Total:
+  <span id="busuanzi_value_site_pv" style="font-size:12px;"></span></span>
+  <span id="busuanzi_container_site_uv" >| Visitors:
+  <span id="busuanzi_value_site_uv" style="font-size:12px;"></span></span>
+  </div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+  
+  
+<script src="/js/clicklove.js"></script>
+<!-- 页面点击小红心 -->
+  
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz',
+      appKey: 'XipU873t8gkSypbwl1HWUARD',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud").each(async (e) => {
+        const url = $(".leancloud").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud").eq(e).text(count ? count : '--');
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud").length === 1 ? $(".leancloud").attr('id').trim() : 'http://kangshitao.github.io';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    $(function () {
+	  const Counter = AV.Object.extend("Counter");
+	  showCount(Counter);
+      const localhost = /http\:\/\/localhost|http\:\/\/127.0.0.1|http\:\/\/0.0.0.0/;
+      if (localhost.test(document.URL)) {
+	    return;
+	  }
+	  addCount(Counter);
+    });
+  });
+</script>
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <script>
+    window.ga = window.ga || function () {
+      (ga.q = ga.q || []).push(arguments)
+    };
+    ga.l = +new Date;
+    ga('create', 'G-0FZTGJZNYS', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Live And Learn</title>
+  
+  
+  <link href="http://kangshitao.github.io/atom.xml" rel="self"/>
+  
+  <link href="http://kangshitao.github.io/"/>
+  <updated>2022-05-22T13:44:18.537Z</updated>
+  <id>http://kangshitao.github.io/</id>
+  
+  <author>
+    <name>Kangshitao</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu20安装MySQL8.md</title>
+    <link href="http://kangshitao.github.io/2022/05/22/Ubuntu20-install-mysql8-md/"/>
+    <id>http://kangshitao.github.io/2022/05/22/Ubuntu20-install-mysql8-md/</id>
+    <published>2022-05-22T13:40:18.000Z</published>
+    <updated>2022-05-22T13:44:18.537Z</updated>
+    
+    
+    <summary type="html">Win11的WSL安装MySQL8.md</summary>
+    
+    
+    
+    <category term="数据库" scheme="http://kangshitao.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+    <category term="MySQL" scheme="http://kangshitao.github.io/tags/MySQL/"/>
+    
+    <category term="Ubuntu" scheme="http://kangshitao.github.io/tags/Ubuntu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RabbitMQ学习笔记</title>
+    <link href="http://kangshitao.github.io/2021/10/26/rabbitmq/"/>
+    <id>http://kangshitao.github.io/2021/10/26/rabbitmq/</id>
+    <published>2021-10-26T14:16:25.000Z</published>
+    <updated>2022-05-22T13:30:54.801Z</updated>
+    
+    
+    <summary type="html">RabbitMQ工作模式，Exchange、Queue基本概念，发布确认机制，死信队列、延迟队列，RabbitMQ集群简介</summary>
+    
+    
+    
+    <category term="消息队列" scheme="http://kangshitao.github.io/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"/>
+    
+    
+    <category term="消息队列" scheme="http://kangshitao.github.io/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"/>
+    
+    <category term="RabbitMQ" scheme="http://kangshitao.github.io/tags/RabbitMQ/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nginx安装与配置</title>
+    <link href="http://kangshitao.github.io/2021/10/09/nginx/"/>
+    <id>http://kangshitao.github.io/2021/10/09/nginx/</id>
+    <published>2021-10-09T05:15:06.000Z</published>
+    <updated>2022-05-22T13:30:54.800Z</updated>
+    
+    
+    <summary type="html">Nginx安装，反向代理、负载均衡、动静分离案例</summary>
+    
+    
+    
+    <category term="Nginx" scheme="http://kangshitao.github.io/categories/Nginx/"/>
+    
+    
+    <category term="Nginx" scheme="http://kangshitao.github.io/tags/Nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis基础</title>
+    <link href="http://kangshitao.github.io/2021/07/30/redis/"/>
+    <id>http://kangshitao.github.io/2021/07/30/redis/</id>
+    <published>2021-07-30T09:16:56.000Z</published>
+    <updated>2022-05-22T13:30:54.802Z</updated>
+    
+    
+    <summary type="html">Redis数据库的数据类型、事务、配置、主从配置等</summary>
+    
+    
+    
+    <category term="数据库" scheme="http://kangshitao.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+    <category term="数据库" scheme="http://kangshitao.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    <category term="SQL" scheme="http://kangshitao.github.io/tags/SQL/"/>
+    
+    <category term="Redis" scheme="http://kangshitao.github.io/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java并发编程-JUC基础</title>
+    <link href="http://kangshitao.github.io/2021/07/25/juc-basis/"/>
+    <id>http://kangshitao.github.io/2021/07/25/juc-basis/</id>
+    <published>2021-07-25T14:30:24.000Z</published>
+    <updated>2022-05-22T13:30:54.797Z</updated>
+    
+    
+    <summary type="html">JUC、锁、多线程、并发编程、阻塞队列、线程池等</summary>
+    
+    
+    
+    <category term="并发编程" scheme="http://kangshitao.github.io/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
+    
+    <category term="JUC" scheme="http://kangshitao.github.io/tags/JUC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringBoot2-配置与原理深入解析</title>
+    <link href="http://kangshitao.github.io/2021/07/12/springboot-advance/"/>
+    <id>http://kangshitao.github.io/2021/07/12/springboot-advance/</id>
+    <published>2021-07-12T13:29:42.000Z</published>
+    <updated>2022-05-22T13:30:54.804Z</updated>
+    
+    
+    <summary type="html">SpringBoot2的自动配置原理、启动流程</summary>
+    
+    
+    
+    <category term="SpringBoot2" scheme="http://kangshitao.github.io/categories/SpringBoot2/"/>
+    
+    
+    <category term="SpringBoot2" scheme="http://kangshitao.github.io/tags/SpringBoot2/"/>
+    
+    <category term="Spring" scheme="http://kangshitao.github.io/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringBoot数据访问-SQL</title>
+    <link href="http://kangshitao.github.io/2021/07/12/springboot-sql/"/>
+    <id>http://kangshitao.github.io/2021/07/12/springboot-sql/</id>
+    <published>2021-07-12T09:07:01.000Z</published>
+    <updated>2022-05-22T13:30:54.804Z</updated>
+    
+    
+    <summary type="html">SpringBoot进行数据访问，整合MyBatis进行CRUD操作</summary>
+    
+    
+    
+    <category term="SpringBoot2" scheme="http://kangshitao.github.io/categories/SpringBoot2/"/>
+    
+    
+    <category term="SpringBoot2" scheme="http://kangshitao.github.io/tags/SpringBoot2/"/>
+    
+    <category term="Spring" scheme="http://kangshitao.github.io/tags/Spring/"/>
+    
+    <category term="MyBatis" scheme="http://kangshitao.github.io/tags/MyBatis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用SpringBoot2进行Web开发</title>
+    <link href="http://kangshitao.github.io/2021/07/11/springboot-web/"/>
+    <id>http://kangshitao.github.io/2021/07/11/springboot-web/</id>
+    <published>2021-07-11T08:01:39.000Z</published>
+    <updated>2022-05-22T13:30:54.805Z</updated>
+    
+    
+    <summary type="html">使用SpringBoot框架开发Web项目，包括视图解析、参数传递、数据响应等</summary>
+    
+    
+    
+    <category term="SpringBoot2" scheme="http://kangshitao.github.io/categories/SpringBoot2/"/>
+    
+    
+    <category term="SpringBoot2" scheme="http://kangshitao.github.io/tags/SpringBoot2/"/>
+    
+    <category term="Spring" scheme="http://kangshitao.github.io/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringBoot2配置与使用</title>
+    <link href="http://kangshitao.github.io/2021/07/10/springboot2-basis/"/>
+    <id>http://kangshitao.github.io/2021/07/10/springboot2-basis/</id>
+    <published>2021-07-10T09:14:03.000Z</published>
+    <updated>2022-05-22T13:30:54.805Z</updated>
+    
+    
+    <summary type="html">使用SprintBoot创建Web应用；使用SprintBoot整合MyBatis；</summary>
+    
+    
+    
+    <category term="SpringBoot2" scheme="http://kangshitao.github.io/categories/SpringBoot2/"/>
+    
+    
+    <category term="SpringBoot2" scheme="http://kangshitao.github.io/tags/SpringBoot2/"/>
+    
+    <category term="Spring" scheme="http://kangshitao.github.io/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Junit5与单元测试</title>
+    <link href="http://kangshitao.github.io/2021/07/10/junit-5/"/>
+    <id>http://kangshitao.github.io/2021/07/10/junit-5/</id>
+    <published>2021-07-10T03:30:06.000Z</published>
+    <updated>2022-05-22T13:30:54.797Z</updated>
+    
+    
+    <summary type="html">Junit5的使用</summary>
+    
+    
+    
+    <category term="Tools" scheme="http://kangshitao.github.io/categories/Tools/"/>
+    
+    
+    <category term="Junit5" scheme="http://kangshitao.github.io/tags/Junit5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SSM框架整合</title>
+    <link href="http://kangshitao.github.io/2021/07/04/SSM-project/"/>
+    <id>http://kangshitao.github.io/2021/07/04/SSM-project/</id>
+    <published>2021-07-04T11:31:36.000Z</published>
+    <updated>2022-05-22T13:30:54.780Z</updated>
+    
+    
+    <summary type="html">Spring、SpringMVC、MyBatis整合案例</summary>
+    
+    
+    
+    <category term="SSM框架" scheme="http://kangshitao.github.io/categories/SSM%E6%A1%86%E6%9E%B6/"/>
+    
+    
+    <category term="Spring" scheme="http://kangshitao.github.io/tags/Spring/"/>
+    
+    <category term="MyBatis" scheme="http://kangshitao.github.io/tags/MyBatis/"/>
+    
+    <category term="SSM" scheme="http://kangshitao.github.io/tags/SSM/"/>
+    
+    <category term="SpringMVC" scheme="http://kangshitao.github.io/tags/SpringMVC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringMVC总结</title>
+    <link href="http://kangshitao.github.io/2021/07/03/spring-mvc/"/>
+    <id>http://kangshitao.github.io/2021/07/03/spring-mvc/</id>
+    <published>2021-07-03T08:15:45.000Z</published>
+    <updated>2022-05-22T13:30:54.804Z</updated>
+    
+    
+    <summary type="html">SpringMVC工作原理，Controller，拦截器，RestFul，JSON，Ajax</summary>
+    
+    
+    
+    <category term="SSM框架" scheme="http://kangshitao.github.io/categories/SSM%E6%A1%86%E6%9E%B6/"/>
+    
+    
+    <category term="SSM" scheme="http://kangshitao.github.io/tags/SSM/"/>
+    
+    <category term="SprinMVC" scheme="http://kangshitao.github.io/tags/SprinMVC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring5配置与使用</title>
+    <link href="http://kangshitao.github.io/2021/06/27/spring-basis/"/>
+    <id>http://kangshitao.github.io/2021/06/27/spring-basis/</id>
+    <published>2021-06-27T12:06:31.000Z</published>
+    <updated>2022-05-22T13:30:54.803Z</updated>
+    
+    
+    <summary type="html">IOC容器，依赖注入，Bean自动装配，动态代理与AOP，声明式事务，Spring与MyBatis整合</summary>
+    
+    
+    
+    <category term="SSM框架" scheme="http://kangshitao.github.io/categories/SSM%E6%A1%86%E6%9E%B6/"/>
+    
+    
+    <category term="Spring" scheme="http://kangshitao.github.io/tags/Spring/"/>
+    
+    <category term="SSM" scheme="http://kangshitao.github.io/tags/SSM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MyBatis配置与使用</title>
+    <link href="http://kangshitao.github.io/2021/06/21/mybatis-basis/"/>
+    <id>http://kangshitao.github.io/2021/06/21/mybatis-basis/</id>
+    <published>2021-06-21T14:30:22.000Z</published>
+    <updated>2022-05-22T13:30:54.798Z</updated>
+    
+    
+    <summary type="html">MyBatis配置文件解析，MyBatis的基本使用</summary>
+    
+    
+    
+    <category term="SSM框架" scheme="http://kangshitao.github.io/categories/SSM%E6%A1%86%E6%9E%B6/"/>
+    
+    
+    <category term="MyBatis" scheme="http://kangshitao.github.io/tags/MyBatis/"/>
+    
+    <category term="SSM" scheme="http://kangshitao.github.io/tags/SSM/"/>
+    
+    <category term="数据库" scheme="http://kangshitao.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    <category term="SQL" scheme="http://kangshitao.github.io/tags/SQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL数据库高级篇-索引和性能优化</title>
+    <link href="http://kangshitao.github.io/2021/06/07/mysql-advance/"/>
+    <id>http://kangshitao.github.io/2021/06/07/mysql-advance/</id>
+    <published>2021-06-07T04:00:31.000Z</published>
+    <updated>2022-05-22T13:30:54.799Z</updated>
+    
+    
+    <summary type="html">MySQL索引的使用，索引优化，性能优化；MySQL锁机制，MVCC，主从复制。</summary>
+    
+    
+    
+    <category term="数据库" scheme="http://kangshitao.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+    <category term="数据库" scheme="http://kangshitao.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    <category term="MySQL" scheme="http://kangshitao.github.io/tags/MySQL/"/>
+    
+    <category term="SQL" scheme="http://kangshitao.github.io/tags/SQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>操作系统复习</title>
+    <link href="http://kangshitao.github.io/2021/05/21/computer-os-review/"/>
+    <id>http://kangshitao.github.io/2021/05/21/computer-os-review/</id>
+    <published>2021-05-21T12:12:05.000Z</published>
+    <updated>2022-05-22T13:30:54.782Z</updated>
+    
+    
+    <summary type="html">进程和线程、死锁、内存管理、虚拟内存</summary>
+    
+    
+    
+    <category term="CS基础" scheme="http://kangshitao.github.io/categories/CS%E5%9F%BA%E7%A1%80/"/>
+    
+    
+    <category term="操作系统" scheme="http://kangshitao.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>计算机网络汇总</title>
+    <link href="http://kangshitao.github.io/2021/05/19/computer-network-review/"/>
+    <id>http://kangshitao.github.io/2021/05/19/computer-network-review/</id>
+    <published>2021-05-19T03:02:16.000Z</published>
+    <updated>2022-05-22T13:30:54.781Z</updated>
+    
+    
+    <summary type="html">计算机网络高频知识点总结</summary>
+    
+    
+    
+    <category term="CS基础" scheme="http://kangshitao.github.io/categories/CS%E5%9F%BA%E7%A1%80/"/>
+    
+    
+    <category term="计算机网络" scheme="http://kangshitao.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JVM垃圾回收相关概念补充</title>
+    <link href="http://kangshitao.github.io/2021/05/11/gc-related-concepts-supplement/"/>
+    <id>http://kangshitao.github.io/2021/05/11/gc-related-concepts-supplement/</id>
+    <published>2021-05-11T10:09:54.000Z</published>
+    <updated>2022-05-22T13:30:54.783Z</updated>
+    
+    
+    <summary type="html">内存溢出、内存泄露、STW、GC的并行与并发、强引用、软引用、弱引用、虚引用</summary>
+    
+    
+    
+    <category term="JVM" scheme="http://kangshitao.github.io/categories/JVM/"/>
+    
+    
+    <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
+    
+    <category term="JVM" scheme="http://kangshitao.github.io/tags/JVM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>深入理解String的intern()方法</title>
+    <link href="http://kangshitao.github.io/2021/05/10/understanding-string-intern/"/>
+    <id>http://kangshitao.github.io/2021/05/10/understanding-string-intern/</id>
+    <published>2021-05-10T11:40:39.000Z</published>
+    <updated>2022-05-22T13:30:54.806Z</updated>
+    
+    
+    <summary type="html">从JVM的角度理解字符串的创建和拼接过程，理解intern()方法</summary>
+    
+    
+    
+    <category term="JVM" scheme="http://kangshitao.github.io/categories/JVM/"/>
+    
+    
+    <category term="Java" scheme="http://kangshitao.github.io/tags/Java/"/>
+    
+    <category term="JVM" scheme="http://kangshitao.github.io/tags/JVM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JVM-不同JDK版本中方法区的演变</title>
+    <link href="http://kangshitao.github.io/2021/05/09/method-area-evolution/"/>
+    <id>http://kangshitao.github.io/2021/05/09/method-area-evolution/</id>
+    <published>2021-05-09T03:27:46.000Z</published>
+    <updated>2022-05-22T13:30:54.798Z</updated>
+    
+    
+    <summary type="html">JDK6，JDK7，JDK8及以后的方法区的变化</summary>
+    
+    
+    
+    <category term="JVM" scheme="http://kangshitao.github.io/categories/JVM/"/>
+    
+    
+    <category term="JVM" scheme="http://kangshitao.github.io/tags/JVM/"/>
+    
+    <category term="java" scheme="http://kangshitao.github.io/tags/java/"/>
+    
+  </entry>
+  
+</feed>

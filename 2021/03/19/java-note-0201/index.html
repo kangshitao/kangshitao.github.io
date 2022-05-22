@@ -1,0 +1,629 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Java学习笔记02-Java基本语法 - Live And Learn</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="hexo-blog,live and learn,kangshitao, Java基本语法,Java">
+  <meta name="description" content="一、关键字和保留字1、关键字Java关键字被Java语...">
+  <meta name="author" content="Kangshitao">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/atelier-heath-light.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/monokai-sublime.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg',
+        wechat: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '心之所向，素履以往',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'normal'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Live And Learn" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">Java学习笔记02-Java基本语法</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_3.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">Java学习笔记02-Java基本语法</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>三月 19, 2021</span>
+      
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2021/03/19/java-note-0201/" class="leancloud" data-flag-title="Java学习笔记02-Java基本语法"></span>
+        </span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2849</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="一、关键字和保留字"><a href="#一、关键字和保留字" class="headerlink" title="一、关键字和保留字"></a>一、关键字和保留字</h1><h2 id="1、关键字"><a href="#1、关键字" class="headerlink" title="1、关键字"></a>1、关键字</h2><p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html">Java关键字</a>被Java语言赋予了特殊含义，用做专门用途。一共有如下关键字</p>
+<ul>
+<li>用于定义数据类型：<code>class</code>、<code>interface</code>、<code>enum</code>、<code>byte</code>、<code>short</code>、<code>int</code>、<code>long</code>、<code>float</code>、<code>double</code>、<code>char</code>、<code>boolean</code>、<code>void</code></li>
+<li>用于定义流程控制：<code>if</code>、<code>else</code>、<code>switch</code>、<code>case</code>、<code>default</code>、<code>while</code>、<code>do</code>、<code>for</code>、break<code>、continue</code>、<code>return</code></li>
+<li>用于定义访问权限修饰符：<code>private</code>、<code>protected</code>、<code>public</code></li>
+<li>用于定义类，函数，变量修饰符：<code>abstract</code>、<code>final</code>、<code>static</code>、<code>synchronized</code></li>
+<li>用于定义类与类之间关系：<code>extends</code>、<code>implements</code></li>
+<li>用于定义建立实例及引用实例，判断实例：<code>new</code>、<code>this</code>、<code>super</code>、<code>instanceof</code></li>
+<li>用于异常处理：<code>try</code>、<code>catch</code>、<code>finally</code>、<code>throw</code>、<code>throws</code></li>
+<li>用于包：<code>package</code>、<code>import</code></li>
+<li>其他修饰符：<code>native</code>、<code>strictfp</code>、<code>transient</code>、<code>volatile</code>、<code>assert</code></li>
+</ul>
+<h2 id="2、保留字"><a href="#2、保留字" class="headerlink" title="2、保留字"></a>2、保留字</h2><p>Java保留字指的是现有Java版本尚未使用，但以后版本可能会作为关键字使用。</p>
+<p>有两个保留字：goto、const</p>
+<h1 id="二、标识符"><a href="#二、标识符" class="headerlink" title="二、标识符"></a>二、标识符</h1><p>标识符（Identifier）是对各种<strong>变量</strong>、<strong>方法</strong>和<strong>类</strong>等要素命名时使用的字符序列。</p>
+<ol>
+<li><p>标识符命名规则：</p>
+<ul>
+<li>由26个英文字母大小写，0-9，_或$组成。</li>
+<li>不能以数字开头。</li>
+<li>不可以使用关键字和保留字，但能包含关键字和保留字。</li>
+<li>Java中严格区分大小写，长度无限制。</li>
+<li>不能包含空格。</li>
+</ul>
+</li>
+<li><p>Java中命名规范</p>
+<ul>
+<li>包名：aaabbbccc</li>
+<li>类名、接口名：AaaBbbCcc</li>
+<li>变量名、方法名：aaaBbbCcc</li>
+<li>常量名：AAA_BBB_CCC</li>
+</ul>
+<blockquote>
+<p>起名时要遵循“<strong>见名知意</strong>”的原则。</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="三、变量"><a href="#三、变量" class="headerlink" title="三、变量"></a>三、变量</h1><h2 id="1、变量的分类"><a href="#1、变量的分类" class="headerlink" title="1、变量的分类"></a>1、变量的分类</h2><p>变量是程序中最基本的存储单元，包含<strong>变量类型</strong>、<strong>变量名</strong>和存储的<strong>值</strong>。</p>
+<p>根据数据类型分：</p>
+<div align='center'>
+    <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/java-note-0201_01.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" />
+</div>
+​    根据声明的位置：
+
+<div align='center'>
+   <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/java-note-0201_02.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" />
+</div>
+
+
+
+
+<blockquote>
+<p><strong>成员变量</strong>是方法体外，类体内声明的变量。</p>
+<p><strong>局部变量</strong>是方法体内部声明的变量。</p>
+</blockquote>
+<p>局部变量除形参外，需要显式初始化。而成员变量有默认的初始化值。</p>
+<p>需要注意的点：</p>
+<blockquote>
+<p><code>long</code>型常量需要在后面加‘l’或‘L’</p>
+<p><code>float</code>型常量需要在后面加‘f’或‘F’</p>
+<p>Java中整型变量默认为<code>int</code>型，浮点型默认是<code>doule</code>型</p>
+</blockquote>
+<h2 id="2、自动类型转换"><a href="#2、自动类型转换" class="headerlink" title="2、自动类型转换"></a>2、自动类型转换</h2><h3 id="自动类型转换"><a href="#自动类型转换" class="headerlink" title="自动类型转换"></a>自动类型转换</h3><p>以下几种类型从左到右自动类型提升(转换)：</p>
+<p><strong>(byte，char，short) → int → long → float → double</strong></p>
+<ul>
+<li><code>byte</code>，<code>short</code>，<code>char</code>之间不会相互转换，他们三者在计算时首先转换为<code>int</code>型</li>
+<li><code>boolean</code>类型不能与其他数据类型运算</li>
+<li>任何基本数据类型和<code>String</code>类型进行连接运算(+)时，基本数据类型会自动转化为<code>String</code>类型</li>
+</ul>
+<h3 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h3><p>强制类型转换是自动类型转换的<strong>逆过程</strong>。需要使用强制类型转换符：<code>()</code>，例<code>int a = (int) 3.14;</code></p>
+<h1 id="四、运算符"><a href="#四、运算符" class="headerlink" title="四、运算符"></a>四、运算符</h1><h2 id="1、算数运算符"><a href="#1、算数运算符" class="headerlink" title="1、算数运算符"></a>1、算数运算符</h2><p>算数运算符包括：<code>+</code>、<code>-</code>、<code>*</code>、<code>/</code>、<code>%</code>、<code>++</code>、<code>--</code>、<code>+(字符串连接)</code></p>
+<h2 id="2、赋值运算符"><a href="#2、赋值运算符" class="headerlink" title="2、赋值运算符"></a>2、赋值运算符</h2><p>赋值运算符包括：<code>=</code>、<code>+=</code>、<code>-=</code>、<code>*=</code>、<code>/=</code>、<code>%=</code></p>
+<blockquote>
+<p>这里的<code>+=</code>、<code>-=</code>、<code>*=</code>、<code>/=</code>、<code>%=</code>以及<code>++</code>、<code>--</code>运算符，都不会改变变量本身的类型。比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">short</span> s = <span class="hljs-number">10</span>;<br>s = s + <span class="hljs-number">1</span>;  <span class="hljs-comment">//编译错误，因为s+1已经被自动提升为int类型。</span><br>s = (<span class="hljs-keyword">short</span>)(s + <span class="hljs-number">1</span>); <span class="hljs-comment">//使用强制类型转换，正确</span><br>s++;  <span class="hljs-comment">//自增运算符不会改变数据类型，正确</span><br>s += <span class="hljs-number">1</span>; <span class="hljs-comment">//正确。</span><br></code></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="3、比较运算符"><a href="#3、比较运算符" class="headerlink" title="3、比较运算符"></a>3、比较运算符</h2><p>比较运算符包括：<code>==</code>、<code>!=</code>、<code>&gt;</code>、<code>&lt;</code>、<code>&gt;=</code>、<code>&lt;=</code>、<code>instanceof</code></p>
+<h2 id="4、逻辑运算符"><a href="#4、逻辑运算符" class="headerlink" title="4、逻辑运算符"></a>4、逻辑运算符</h2><p>逻辑运算符包括：<code>&amp;</code>、<code>&amp;&amp;</code>(短路与)、<code>|</code>、<code>||</code>(短路或)、<code>!</code>、<code>^(异或)</code></p>
+<h2 id="5、位运算符"><a href="#5、位运算符" class="headerlink" title="5、位运算符"></a>5、位运算符</h2><p>位运算符包括：<code>&lt;&lt;</code>、<code>&gt;&gt;</code>、<code>&gt;&gt;&gt;(无符号右移)</code>、<code>&amp;(按位与)</code>、<code>|(按位或)</code>、<code>^(按位异或)</code>、<code>~(按位取反)</code></p>
+<h2 id="6、三元运算符"><a href="#6、三元运算符" class="headerlink" title="6、三元运算符"></a>6、三元运算符</h2><p><code>(条件表达式) ? 表达式1 : 表达式2;</code>表示如果条件表达式为<code>true</code>，则返回表达式1，否则返回表达式2。</p>
+<blockquote>
+<p>这里的表达式1和表达式2必须是同种类型，或者能够自动类型提升。比如表达式1是<code>int</code>类型，表达式2是<code>double</code>类型，则表达式1会被自动转换为<code>double</code>类型。</p>
+</blockquote>
+<h1 id="五、程序流程控制"><a href="#五、程序流程控制" class="headerlink" title="五、程序流程控制"></a>五、程序流程控制</h1><h2 id="1、顺序结构"><a href="#1、顺序结构" class="headerlink" title="1、顺序结构"></a>1、顺序结构</h2><p>Java程序从上到下逐行地执行</p>
+<h2 id="2、分支结构"><a href="#2、分支结构" class="headerlink" title="2、分支结构"></a>2、分支结构</h2><ul>
+<li><strong>if语句</strong></li>
+</ul>
+<p>用法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//用法1：</span><br><span class="hljs-keyword">if</span>(条件表达式)&#123;<br>	执行代码块;<br>&#125;<br><span class="hljs-comment">//用法2：</span><br><span class="hljs-keyword">if</span>(条件表达式)&#123;<br>	执行代码块<span class="hljs-number">1</span>;<br>&#125;<span class="hljs-keyword">else</span>&#123;<br>	执行代码块<span class="hljs-number">2</span>;<br>&#125;<br><span class="hljs-comment">//用法3：</span><br><span class="hljs-keyword">if</span>(条件表达式)&#123;<br>	执行代码块<span class="hljs-number">1</span>;<br>&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>&#123;<br>	执行代码块<span class="hljs-number">2</span>;<br>&#125;<br>......<br><span class="hljs-keyword">else</span>&#123;<br>	执行代码块<span class="hljs-number">3</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<ul>
+<li><strong>switch语句</strong></li>
+</ul>
+<p>用法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">switch</span>(表达式)&#123;<br><span class="hljs-keyword">case</span> 常量<span class="hljs-number">1</span>:<br>	语句<span class="hljs-number">1</span>;<br>	<span class="hljs-comment">//break;</span><br><span class="hljs-keyword">case</span> 常量<span class="hljs-number">2</span>:<br>	语句<span class="hljs-number">2</span>;<br>	<span class="hljs-comment">//break;</span><br>......<br><span class="hljs-keyword">case</span> 常量N:<br>	语句N;<br>	<span class="hljs-comment">//break;</span><br><span class="hljs-keyword">default</span>:<br>	语句;<br>	<span class="hljs-comment">//break;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p><code>switch(表达式)</code>中的表达式必须是<code>byte</code>、<code>short</code>、<code>char</code>、<code>int</code>、<code>枚举</code>、<code>String</code>这几种类型之一。</p>
+<p><code>case</code>子句中的值必须是常量，不能是变量名或不确定的表达式值。</p>
+<p>同一个<code>switch</code>语句，所有<code>case</code>子句中的常量值互不相同。</p>
+<p>如果没有<code>break</code>，程序在运行第一个执行语句以后，会继续向下执行(即使<code>case</code>值不同，也会将下面的所有<code>case</code>中语句运行完)。</p>
+<p><code>default</code>语句是可选的，位置也是灵活的。没有匹配<code>case</code>时，会执行<code>default</code>的语句。</p>
+<p><code>switch</code>语句效率稍高，情况少的时候尽量不用<code>if</code>，选择<code>switch</code>语句。</p>
+</blockquote>
+<h2 id="3、循环结构"><a href="#3、循环结构" class="headerlink" title="3、循环结构"></a>3、循环结构</h2><ul>
+<li><strong>for语句</strong></li>
+</ul>
+<p>用法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">for</span>(<span class="hljs-number">1.</span>初始化部分; <span class="hljs-number">2.</span>循环条件; <span class="hljs-number">4.</span>迭代部分)&#123;<br>	<span class="hljs-number">3.</span>循环体部分;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li><strong>while语句</strong> </li>
+</ul>
+<p>用法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//用法1</span><br><span class="hljs-number">1.</span>初始化部分<br><span class="hljs-keyword">while</span>(<span class="hljs-number">2.</span>循环条件)&#123;<br>	<span class="hljs-number">3.</span>循环体部分;<br>	<span class="hljs-number">4.</span>迭代部分;<br>&#125;<br><span class="hljs-comment">//用法2</span><br><span class="hljs-number">1.</span>初始化部分<br><span class="hljs-keyword">do</span>&#123;<br>	<span class="hljs-number">3.</span>循环体部分;<br>	<span class="hljs-number">4.</span>迭代部分;<br>&#125;<span class="hljs-keyword">while</span>(<span class="hljs-number">2.</span>循环条件)<br></code></pre></td></tr></table></figure>
+<h2 id="4、break和continue"><a href="#4、break和continue" class="headerlink" title="4、break和continue"></a>4、break和continue</h2><p><code>break</code>用于终止某个语句块的执行，只能用于<code>switch</code>语句和循环语句，表示跳过循环体，终止循环。</p>
+<p><code>continue</code>只能用在循环体中，表示跳过当前循环，继续下一次循环。</p>
+<blockquote>
+<p><code>break</code>和<code>continue</code>用于循环体内时，都可以使用<code>label</code>指明具体要跳过的循环体是哪个。如果没有明确指明，则都默认对当前循环体起作用，<strong>就近原则</strong>。</p>
+</blockquote>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Kangshitao</li>
+    <li><strong>本文链接：</strong><a href="http://kangshitao.github.io/2021/03/19/java-note-0201/index.html" title="http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2021&#x2F;03&#x2F;19&#x2F;java-note-0201&#x2F;index.html">http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2021&#x2F;03&#x2F;19&#x2F;java-note-0201&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/03/20/java-note-0301/"><i class="iconfont iconleft"></i>Java学习笔记03-数组</a>
+    <a href="/2021/03/19/java-note-0101/">Java学习笔记01-Java语言概述<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+        <section class="comments">
+  
+    <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz",
+        app_key: "XipU873t8gkSypbwl1HWUARD",
+        placeholder: "write comment content...",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+		var title1="text=Live and Learn有新评论啦~ --by Valine"
+		var SCKEY_Server="SCT21455TskriUeyliOqL6kHLhiCOMmlB"
+		var ValineButton=document.getElementsByClassName("vsubmit vbtn")[0];
+		function send_valine_Server(){
+			var text="desp=";
+			var pageurl=document.URL;
+			var ptime=new Date();
+			var vnick=document.getElementsByClassName("vnick vinput")[0].value;
+			var veditor=document.getElementsByClassName("veditor vinput")[0].value;
+			var data=text+"|昵称"+"|评论内容"+"|跳转链接"+"|评论时间"+"\n"+"|----|----|----|----|"+"\n"+"|"+vnick+"|"+veditor+"|"+pageurl+"|" +ptime.toLocaleString()+"|";
+			var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+			httpRequest.open('POST', 'https://sctapi.ftqq.com/'+SCKEY_Server+'.send', true); //第二步：打开连接
+			httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）
+			httpRequest.send(title1+"&"+data);//发送请求 将请头体体写在send中
+		};
+		ValineButton.onclick=send_valine_Server;
+      });
+    } else {
+      loadValine();
+    }
+  };
+ 
+</script>
+
+
+</section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%85%B3%E9%94%AE%E5%AD%97%E5%92%8C%E4%BF%9D%E7%95%99%E5%AD%97"><span class="toc-text">一、关键字和保留字</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">1、关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E4%BF%9D%E7%95%99%E5%AD%97"><span class="toc-text">2、保留字</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%A0%87%E8%AF%86%E7%AC%A6"><span class="toc-text">二、标识符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%8F%98%E9%87%8F"><span class="toc-text">三、变量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%8F%98%E9%87%8F%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-text">1、变量的分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E8%87%AA%E5%8A%A8%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-text">2、自动类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-text">自动类型转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-text">强制类型转换</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">四、运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E7%AE%97%E6%95%B0%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">1、算数运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">2、赋值运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E6%AF%94%E8%BE%83%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">3、比较运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">4、逻辑运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">5、位运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81%E4%B8%89%E5%85%83%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">6、三元运算符</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="toc-text">五、程序流程控制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E9%A1%BA%E5%BA%8F%E7%BB%93%E6%9E%84"><span class="toc-text">1、顺序结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%88%86%E6%94%AF%E7%BB%93%E6%9E%84"><span class="toc-text">2、分支结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84"><span class="toc-text">3、循环结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81break%E5%92%8Ccontinue"><span class="toc-text">4、break和continue</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1574716653 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/kangshitao "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#24292E'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:1574716653@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">Total:
+  <span id="busuanzi_value_site_pv" style="font-size:12px;"></span></span>
+  <span id="busuanzi_container_site_uv" >| Visitors:
+  <span id="busuanzi_value_site_uv" style="font-size:12px;"></span></span>
+  </div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+  
+  
+<script src="/js/clicklove.js"></script>
+<!-- 页面点击小红心 -->
+  
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz',
+      appKey: 'XipU873t8gkSypbwl1HWUARD',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud").each(async (e) => {
+        const url = $(".leancloud").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud").eq(e).text(count ? count : '--');
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud").length === 1 ? $(".leancloud").attr('id').trim() : 'http://kangshitao.github.io';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    $(function () {
+	  const Counter = AV.Object.extend("Counter");
+	  showCount(Counter);
+      const localhost = /http\:\/\/localhost|http\:\/\/127.0.0.1|http\:\/\/0.0.0.0/;
+      if (localhost.test(document.URL)) {
+	    return;
+	  }
+	  addCount(Counter);
+    });
+  });
+</script>
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <script>
+    window.ga = window.ga || function () {
+      (ga.q = ga.q || []).push(arguments)
+    };
+    ga.l = +new Date;
+    ga('create', 'G-0FZTGJZNYS', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</html>

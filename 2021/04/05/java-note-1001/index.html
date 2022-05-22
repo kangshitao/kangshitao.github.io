@@ -1,0 +1,711 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Java学习笔记10-枚举类与注解 - Live And Learn</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="hexo-blog,live and learn,kangshitao, Java,Java枚举类,注解">
+  <meta name="description" content="一、枚举类1、什么是枚举类类的对象只有有限个，确定的，...">
+  <meta name="author" content="Kangshitao">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/atelier-heath-light.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/monokai-sublime.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg',
+        wechat: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '心之所向，素履以往',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'normal'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Live And Learn" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">Java学习笔记10-枚举类与注解</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">Java学习笔记10-枚举类与注解</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>四月 05, 2021</span>
+      
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2021/04/05/java-note-1001/" class="leancloud" data-flag-title="Java学习笔记10-枚举类与注解"></span>
+        </span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>10437</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="一、枚举类"><a href="#一、枚举类" class="headerlink" title="一、枚举类"></a>一、枚举类</h1><h2 id="1、什么是枚举类"><a href="#1、什么是枚举类" class="headerlink" title="1、什么是枚举类"></a>1、什么是枚举类</h2><p>类的对象只有<strong>有限个</strong>，<strong>确定的</strong>，称此类为<strong>枚举类</strong>。比如星期、性别、季节、xx状态等。</p>
+<p>当需要定义一组常量时，强烈建议使用枚举类。</p>
+<p>如果枚举类中只有一个对象，则可以作为单例模式的实现方式。</p>
+<p>属性：</p>
+<ul>
+<li>枚举类对象的<strong>属性不应允许被改动</strong>，所以应该使用<code>private final</code>修饰。</li>
+<li>枚举类中使用<code>private final</code>修饰的属性应该在构造器中为其赋值。</li>
+<li>若枚举类显式地定义了带参数的构造器，则在列出枚举值时也应该对应地传入参数。</li>
+</ul>
+<h2 id="2、自定义枚举类"><a href="#2、自定义枚举类" class="headerlink" title="2、自定义枚举类"></a>2、自定义枚举类</h2><p>JDK 5.0之前，没有<code>enum</code>关键字，只能自定义枚举类，步骤为：</p>
+<ul>
+<li>私有化类的构造器，保证不能在类的外部创建其对象。</li>
+<li>在类的内部创建枚举类的实例，声明为：<code>public static final</code></li>
+<li>对象如果有实例变量，应该声明为<code>private final</code>，并在构造器中初始化。</li>
+</ul>
+<p>举例说明：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SeasonTest</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        Season spring = Season.SPRING;<br>        System.out.println(spring);<br>    &#125;<br>&#125;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Season</span></span>&#123;<br>    <span class="hljs-comment">//1.声明对象属性为private final</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String seasonName; <span class="hljs-comment">//季节名字</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String seasonDec;  <span class="hljs-comment">//季节描述</span><br>    <span class="hljs-comment">//2.构造器应该是private的</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Season</span><span class="hljs-params">(String seasonName,String seasonDec)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.seasonName = seasonName;<br>        <span class="hljs-keyword">this</span>.seasonDec = seasonDec;  <span class="hljs-comment">//&#123;seasonName=&#x27;春天&#x27;, seasonDec=&#x27;春暖花开&#x27;&#125;</span><br>    &#125;<br>    <span class="hljs-comment">//3.创建确定个数的实例public static final</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Season SPRING = <span class="hljs-keyword">new</span> Season(<span class="hljs-string">&quot;春天&quot;</span>,<span class="hljs-string">&quot;春暖花开&quot;</span>);<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Season SUMMER = <span class="hljs-keyword">new</span> Season(<span class="hljs-string">&quot;夏天&quot;</span>,<span class="hljs-string">&quot;夏日炎炎&quot;</span>);<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Season AUTUMN = <span class="hljs-keyword">new</span> Season(<span class="hljs-string">&quot;秋天&quot;</span>,<span class="hljs-string">&quot;秋高气爽&quot;</span>);<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Season WINTER = <span class="hljs-keyword">new</span> Season(<span class="hljs-string">&quot;冬天&quot;</span>,<span class="hljs-string">&quot;冰天雪地&quot;</span>);<br><br>    <span class="hljs-comment">//4.根据需求，可以选择性地创建其他函数</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getSeasonName</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> seasonName;&#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getSeasonDec</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> seasonDec;&#125;<br>    <br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&#123;&quot;</span> +<br>                <span class="hljs-string">&quot;seasonName=&#x27;&quot;</span> + seasonName + <span class="hljs-string">&#x27;\&#x27;&#x27;</span> +<br>                <span class="hljs-string">&quot;, seasonDec=&#x27;&quot;</span> + seasonDec + <span class="hljs-string">&#x27;\&#x27;&#x27;</span> +<br>                <span class="hljs-string">&#x27;&#125;&#x27;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="3、使用enum定义枚举类"><a href="#3、使用enum定义枚举类" class="headerlink" title="3、使用enum定义枚举类"></a>3、使用enum定义枚举类</h2><p>JDK 5.0新增了<code>enum</code>定义枚举类的方式，使用<code>enum</code>定义的枚举类默认继承了<code>java.lang.Enum</code>类，因此不能再继承其他类。</p>
+<p>使用说明：</p>
+<ul>
+<li>枚举类的构造器只能使用<code>private</code>权限修饰符。</li>
+<li>枚举类的所有实例必须在枚举类中显式列出（<strong>以<code>,</code>分隔，以<code>;</code>结尾</strong>）。列出的实例，系统会自动添加<code>public static final</code>修饰。</li>
+<li><strong>必须在枚举类的第一行声明枚举类对象</strong>。</li>
+</ul>
+<p>JDK 5.0中，<code>switch</code>表达式中可以使用枚举类对象，<code>case</code>子句可以直接使用枚举值的名字，无需添加枚举类作为限定。</p>
+<p>使用<code>enum</code>定义枚举类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Season</span></span>&#123;<br>    <span class="hljs-comment">//1.提供当前枚举类的对象，多个对象之间用&quot;,&quot;隔开，末尾对象&quot;;&quot;结束</span><br>    SPRING(<span class="hljs-string">&quot;春天&quot;</span>,<span class="hljs-string">&quot;春暖花开&quot;</span>),<br>    SUMMER(<span class="hljs-string">&quot;夏天&quot;</span>,<span class="hljs-string">&quot;夏日炎炎&quot;</span>),<br>    AUTUMN(<span class="hljs-string">&quot;秋天&quot;</span>,<span class="hljs-string">&quot;秋高气爽&quot;</span>),<br>    WINTER(<span class="hljs-string">&quot;冬天&quot;</span>,<span class="hljs-string">&quot;冰天雪地&quot;</span>);<br>    <span class="hljs-comment">//2.声明Season对象的属性:private final修饰</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String seasonName;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String seasonDesc;<br><br>    <span class="hljs-comment">//3.构造器应该是private的，enum里面可以省略private关键字</span><br>    Season(String seasonName,String seasonDesc)&#123;<br>        <span class="hljs-keyword">this</span>.seasonName = seasonName;<br>        <span class="hljs-keyword">this</span>.seasonDesc = seasonDesc;<br>    &#125;<br>    <br>    <span class="hljs-comment">//可以根据需要声明其他方法</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getSeasonName</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> seasonName;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getSeasonDesc</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> seasonDesc;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="4、Enum类"><a href="#4、Enum类" class="headerlink" title="4、Enum类"></a>4、Enum类</h2><p><code>Enum</code>类有以下几个常用方法：</p>
+<ul>
+<li><code>values()</code>：静态方法，枚举类调用此方法返回包含此枚举类中所有枚举对象的<strong>枚举类型的对象数组</strong>。这个方法是Java编译器在编译枚举类的时候自动添加的方法。</li>
+<li><code>valueOf(String str)</code>：把一个字符串str转为对应的枚举类对象。要求str‘必须是枚举类对象的“名字”。如不是，会有运行时异常<code>IllegalArgumentException</code>。</li>
+<li><code>toString</code>：可以被重写</li>
+<li><code>public final boolean equals</code>：枚举类中可以直接使用<code>==</code>比较两个枚举常量是否相等，Enum类中的<code>equals</code>方法也是直接使用<code>==</code>实现的，此方法是为了在Set、List和Map中使用。</li>
+<li><code>public final int hashCode</code></li>
+<li><code>getDeclaringClass</code>：得到枚举常量所属枚举类型的Class对象，可以用来判断两个枚举常量是否属于同一个枚举类型</li>
+<li><code>name</code>：得到当前枚举常量的名字。</li>
+<li><code>ordinal</code>：得到当前枚举常量的次序。</li>
+<li><code>compareTo</code>：枚举类型实现了Comparable接口，比较两个枚举常量的大小(按照声明的顺序排列)</li>
+<li><code>protected final Object clone</code>：枚举类型不能被Clone，为了防止子类实现克隆方法，Enum实现了一个仅抛出<code>CloneNotSupportedException</code>异常的<code>final</code>方法<code>clone()</code>。</li>
+</ul>
+<p>代码举例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SeasonTest2</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-comment">//toString方法：</span><br>        System.out.println(Season2=.SPRING); <span class="hljs-comment">//SPRING</span><br>        <span class="hljs-comment">//父类是Enum类</span><br>        System.out.println(Season2.class.getSuperclass()); <span class="hljs-comment">//class java.lang.Enum</span><br><br>        <span class="hljs-comment">//values方法</span><br>        Season[] values = Season.values();<br>        <span class="hljs-keyword">for</span>(Season i: values)&#123;<br>            System.out.println(i);<br>        &#125;<br>        <span class="hljs-comment">/*输出：</span><br><span class="hljs-comment">        SPRING</span><br><span class="hljs-comment">        SUMMER</span><br><span class="hljs-comment">        AUTUMN</span><br><span class="hljs-comment">        WINTER</span><br><span class="hljs-comment">        */</span><br><br>        <span class="hljs-comment">//valueOf(String str)方法,返回枚举类中，对象名是str的枚举类对象</span><br>        Season winter = Season.valueOf(<span class="hljs-string">&quot;WINTER&quot;</span>);<br>        System.out.println(winter.toString()); <span class="hljs-comment">//WINTER</span><br>        <span class="hljs-comment">//等同于Systou.out.println(winter)</span><br><br>        <span class="hljs-comment">//枚举类在switch中的应用</span><br>        Season season = Season.SPRING;<br>        <span class="hljs-keyword">switch</span> (season)&#123;<br>            <span class="hljs-keyword">case</span> SPRING:<br>                System.out.println(<span class="hljs-string">&quot;春天&quot;</span>); <span class="hljs-comment">//输出：春天</span><br>                <span class="hljs-keyword">break</span>;<br>            <span class="hljs-keyword">case</span> SUMMER:<br>                System.out.println(<span class="hljs-string">&quot;夏天&quot;</span>);<br>                <span class="hljs-keyword">break</span>;<br>            <span class="hljs-keyword">case</span> AUTUMN:<br>                System.out.println(<span class="hljs-string">&quot;秋天&quot;</span>);<br>                <span class="hljs-keyword">break</span>;<br>            <span class="hljs-keyword">case</span> WINTER:<br>                System.out.println(<span class="hljs-string">&quot;冬天&quot;</span>);<br>                <span class="hljs-keyword">break</span>;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="5、枚举类实现接口"><a href="#5、枚举类实现接口" class="headerlink" title="5、枚举类实现接口"></a>5、枚举类实现接口</h2><p>和普通Java类一样，枚举类可以实现一个或多个接口：</p>
+<ul>
+<li>若每个枚举值在调用实现的接口方法呈现相同的行为方式，则只要统一实现该方法即可。</li>
+<li>若需要每个枚举值在调用实现的接口方法<strong>呈现出不同的行为方式</strong>,则可以让<strong>每个枚举值分别来实现该方法</strong>。</li>
+</ul>
+<p>比如下面的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SeasonTest2</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-comment">//values方法</span><br>        Season2[] values = Season2.values();<br>        <span class="hljs-keyword">for</span>(Season2 i: values)&#123;<br>            System.out.println(i);<br>            i.info();<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Season2</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Info</span></span>&#123;<br>    <span class="hljs-comment">//每个枚举变量单独实现Info接口中的方法</span><br>    SPRING (<span class="hljs-string">&quot;春天&quot;</span>,<span class="hljs-string">&quot;春暖花开&quot;</span>)&#123;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">info</span><span class="hljs-params">()</span></span>&#123;<br>            System.out.println(<span class="hljs-string">&quot;spring&quot;</span>);<br>        &#125;<br>    &#125;,<br>    SUMMER (<span class="hljs-string">&quot;夏天&quot;</span>,<span class="hljs-string">&quot;夏日炎炎&quot;</span>)&#123;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">info</span><span class="hljs-params">()</span></span>&#123;<br>            System.out.println(<span class="hljs-string">&quot;summer&quot;</span>);<br>        &#125;<br>    &#125;,<br>    AUTUMN (<span class="hljs-string">&quot;秋天&quot;</span>,<span class="hljs-string">&quot;秋高气爽&quot;</span>)&#123;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">info</span><span class="hljs-params">()</span></span>&#123;<br>            System.out.println(<span class="hljs-string">&quot;autumn&quot;</span>);<br>        &#125;<br>    &#125;,<br>    WINTER(<span class="hljs-string">&quot;冬天&quot;</span>,<span class="hljs-string">&quot;冰天雪地&quot;</span>)&#123;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">info</span><span class="hljs-params">()</span></span>&#123;<br>            System.out.println(<span class="hljs-string">&quot;winter&quot;</span>);<br>        &#125;<br>    &#125;;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String seasonName;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String seasonDec;<br>    Season2(String seasonName,String seasonDec)&#123;<br>        <span class="hljs-keyword">this</span>.seasonName = seasonName;<br>        <span class="hljs-keyword">this</span>.seasonDec = seasonDec;<br>    &#125;<br><br>&#125;<br><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Info</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">info</span><span class="hljs-params">()</span></span>;<br>&#125;<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">输出结果为：</span><br><span class="hljs-comment">SPRING</span><br><span class="hljs-comment">spring</span><br><span class="hljs-comment">SUMMER</span><br><span class="hljs-comment">summer</span><br><span class="hljs-comment">AUTUMN</span><br><span class="hljs-comment">autumn</span><br><span class="hljs-comment">WINTER</span><br><span class="hljs-comment">winter</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
+<h1 id="二、注解"><a href="#二、注解" class="headerlink" title="二、注解"></a>二、注解</h1><h2 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h2><p>JDK 5.0开始支持注解（Annotation），注解是代码里的特殊标记，可以在编译、类加载、运行时被读取，并执行相应的处理。通过使用注解，可以在不改变原有逻辑的情况下，在源文件中嵌入一些补充信息。代码分析工具、开发工具和部署工具可以通过这些补充信息进行验证或者部署。</p>
+<p>Annotation可以像修饰符一样被使用,可用于<strong>修饰包,类,构造器,方法,成员变量,参数,局部变量的声明</strong>，这些信息被保存在Annotation的“name=value”对中。</p>
+<p>在JavaSE中，注解的使用目的比较简单，例如标记过时的功能，忽略警告等。在JavaEE/Android中注解占据了更重要的角色，例如用来配置应用程序的任何切面，代替JavaEE旧版中所遗留的繁冗代码和XML配置等。</p>
+<p><strong>框架 = 注解 + 反射 + 设计模式</strong></p>
+<h2 id="2、常见注解"><a href="#2、常见注解" class="headerlink" title="2、常见注解"></a>2、常见注解</h2><p>常见的注解主要用三种用处：</p>
+<p>1、生成文档相关的注解。</p>
+<ul>
+<li><p>@author标明开发该类模块的作者，多个作者之间使用,分割</p>
+</li>
+<li><p>@version标明该类模块的版本@see参考转向，也就是相关主题</p>
+</li>
+<li><p>@since表示从哪个版本开始增加的</p>
+</li>
+<li><p>@param对方法中某参数的说明，如果没有参数就不能写</p>
+</li>
+<li><p>@return对方法返回值的说明，如果方法的返回值类型是void就不能写</p>
+</li>
+<li><p>@exception对方法可能抛出的异常进行说明，如果方法没有用throws显式抛出的异常就不能写</p>
+<p>其中</p>
+<ul>
+<li>@param@return和@exception这三个标记都是只用于方法的。</li>
+<li>@param的格式要求：@param形参名形参类型形参说明</li>
+<li>@return的格式要求：@return返回值类型返回值说明</li>
+<li>@exception的格式要求：@exception异常类型异常说明</li>
+<li>@param和@exception可以并列多个</li>
+</ul>
+</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">*<span class="hljs-doctag">@author</span> xxx</span><br><span class="hljs-comment">*<span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment">*<span class="hljs-doctag">@see</span> Math.java</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
+<p>2、编译时进行格式检查（JDK内置的三个基本注解）</p>
+<ul>
+<li><code>@Override</code>：限定重写父类方法，该注解只能用于方法。</li>
+<li><code>@Deprecated</code>：用于表示所修饰的元素(类、方法等)已过时。通常是因为所修饰的结构危险或存在更好的选择</li>
+<li><code>@SuppressWarnings</code>：抑制编译器警告。</li>
+</ul>
+<p>3、跟踪代码依赖性，实现替代配置文件的功能。例如Serverlet3.0中注解使得不再需要在web.xml文件中进行Servlet部署：</p>
+<div align='center'>
+    <img src='https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/java-note-1001_1.jpg'/>
+</div>
+
+<h2 id="3、自定义注解"><a href="#3、自定义注解" class="headerlink" title="3、自定义注解"></a>3、自定义注解</h2><p>自定义注解使用<code>@interface</code>关键字，并且自动继承了<code>java.lang.annotation.Annotation</code>接口。</p>
+<ul>
+<li><p>注解的成员变量在Annotation定义中以<strong>无参数方法</strong>的形式来声明。其方法名和返回值定义了该成员的名字和类型，称之为配置参数。类型只能是<strong>八种基本数据类型、String类型、Class类型、enum类型、Annotation类型以及以上类型的数组</strong>。</p>
+</li>
+<li><p>定义注解成员变量时如果指定初始值，可以使用<code>default</code>关键字。</p>
+</li>
+<li>如果只有一个参数成员，建议使用参数名为<code>value</code></li>
+<li>如果定义的注解含有配置参数，那么<strong>使用时必须指定参数值</strong>，除非它有默认值。格式是<code>参数名=参数值</code>，如果只有一个参数成员，且名称为<code>value</code>，可以省略<code>value=</code></li>
+<li>没有成员定义的<code>Annotation</code>称为<code>标记</code>；包含成员变量的<code>Annotation</code>称为<code>元数据Annotation</code>。</li>
+</ul>
+<blockquote>
+<p>自定义注解必须配上注解的信息处理流程才有意义。</p>
+</blockquote>
+<p>自定义注解举例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Hello</span> </span>&#123;<br>    <span class="hljs-comment">//使用是指定配置参数</span><br>    <span class="hljs-meta">@Report(type = 3,level = &quot;level&quot;,value = &quot;string&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> n;<br>    <br>    <span class="hljs-comment">//指定部分参数</span><br>    <span class="hljs-meta">@Report(level = &quot;level&quot;,value = &quot;string&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> p;<br><br>    <span class="hljs-meta">@Report(value = &quot;string&quot;)</span> <span class="hljs-comment">// 只对value赋值，等同于@Report(&quot;string&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> x;<br><br>    <span class="hljs-meta">@Report</span>  <span class="hljs-comment">//对所有参数使用默认值</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> y;<br>&#125;<br><span class="hljs-comment">//以下是自定义的一个注解，如果是public修饰的，必须单独放在一个java文件中</span><br><span class="hljs-comment">//三个配置参数都有默认值，因此使用的时候可以指定，也可以不指定</span><br><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> Report &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">type</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> 0</span>;  <span class="hljs-comment">//类型为int，配置参数名为type，默认值是0</span><br>    <span class="hljs-function">String <span class="hljs-title">level</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> &quot;info&quot;</span>;<br>    <span class="hljs-function">String <span class="hljs-title">value</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> &quot;&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="4、元注解"><a href="#4、元注解" class="headerlink" title="4、元注解"></a>4、元注解</h2><p>用于修饰其他注解的注解，就是<code>元注解(meta-annotation)</code>。</p>
+<p>JDK 5.0提供了4个标准的元注解：</p>
+<ul>
+<li><code>@Retention</code>：指定被修饰的注解的生命周期。</li>
+<li><code>@Target</code>：指定被修饰的注解能够用于修饰哪些程序元素。</li>
+<li><code>@Documented</code>：表示所修饰的注解在被<code>javadoc</code>解析时保留下来。</li>
+<li><code>@Inherited</code>：被修饰的注解将具有继承性。</li>
+</ul>
+<p><strong>1、@Retention</strong></p>
+<p><code>@Retentio</code>元注解用于定义<code>Annotation</code>的生命周期，其包含一个<code>RetentionPolicy</code>类型的成员变量，使用<code>@Retention</code>元注解时，必须为该成员变量指定值，有以下三种值(枚举变量)：</p>
+<ul>
+<li><code>RetentionPolicy.SOURCE</code>：在源文件中有效（即源文件中保留），编译器直接丢弃这种策略的注释</li>
+<li><code>RetentionPolicy.CLASS</code>：在class文件中有效（即class保留），运行Java程序时，JVM不会保留这种注解。<strong>这是默认值</strong>。</li>
+<li><code>RetentionPolicy.RUNTIME</code>：<strong>在运行时有效（即运行时保留），运行Java程序时，JVM会保留注释。程序可以通过反射获取该注释</strong>。</li>
+</ul>
+<p>如下图：</p>
+<div align='center'>
+    <img src='https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/java-note-1001_2.jpg'/>
+</div>
+
+<p>使用举例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> MyAnnotation &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">type</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> 0</span>;<br>    <span class="hljs-function">String <span class="hljs-title">level</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> &quot;info&quot;</span>;<br>    <span class="hljs-function">String <span class="hljs-title">value</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> &quot;&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>2、@Target</strong></p>
+<p><code>@Target</code>用于指定被修饰的<code>Annotation</code>能用于修饰哪些元素，<code>@Target</code>包含一个名为value的数组成员变量，可以取以下的值：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>取值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ElementType.CONSTRUCTOR</code></td>
+<td>用于描述构造器</td>
+</tr>
+<tr>
+<td><code>ElementType.PACKAGE</code></td>
+<td>用于描述包</td>
+</tr>
+<tr>
+<td><code>ElementType.FIELD</code></td>
+<td>用于描述域(包括枚举常量)</td>
+</tr>
+<tr>
+<td><code>ElementType.TYPE</code></td>
+<td>用于描述类、接口(包括注解类型)或enum声明</td>
+</tr>
+<tr>
+<td><code>ElementType.METHOD</code></td>
+<td>用于描述方法</td>
+</tr>
+<tr>
+<td><code>ElementType.LOCAL_VARIABLE</code></td>
+<td>用于描述局部变量</td>
+</tr>
+<tr>
+<td><code>ElementType.PARAMETER</code></td>
+<td>用于描述参数</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>3、@Documented</strong></p>
+<p><code>@Documented</code>用于指定被改元注解修饰的注解类将被<code>javadoc</code>工具提取成文档。默认情况下，<code>javadoc</code>不包括注解。</p>
+<p>定义为<code>Documented</code>的注解必须设置<code>Retention</code>的值为<code>RUNTIME</code>。</p>
+<p><strong>4、@Inherited</strong></p>
+<p><code>@Inherited</code>修饰的注解具有继承性，其子类自动具有该注解，即该注解类的子类可以继承父类级别的注解。</p>
+<h2 id="5、反射获取注解信息"><a href="#5、反射获取注解信息" class="headerlink" title="5、反射获取注解信息"></a>5、反射获取注解信息</h2><p>JDK 5.0在java.lang.reflect包下新增了AnnotatedElement接口,该接口代表<strong>程序中可以接受注解的程序元素</strong>。</p>
+<p>当一个Annotation类型被定义为运行时Annotation后,该注解才是运行时可见,当class文件被载入时保存在class文件中的Annotation才会被虚拟机读取。</p>
+<p>程序可以调用AnnotatedElement对象的如下方法来访问Annotation信息：</p>
+<ul>
+<li><code>getAnnotation(Class&lt;T&gt; annotatoinClass)</code></li>
+<li><code>getAnnotations()</code></li>
+<li><code>getDeclaredAnnotations()</code></li>
+<li><code>isAnnotationPresent(Class&lt;? extends Annotation&gt; annotationClass)</code></li>
+</ul>
+<h2 id="6、JDK-8中注解新特征"><a href="#6、JDK-8中注解新特征" class="headerlink" title="6、JDK 8中注解新特征"></a>6、JDK 8中注解新特征</h2><p>JDK 8.0新增了<strong>可重复注解</strong>和<strong>类型注解</strong>。</p>
+<p><strong>1、可重复注解</strong></p>
+<ul>
+<li>a. 在<code>MyAnnotation</code>上声明<code>@Repeatable</code>，成员值为<code>MyAnnotations.class</code>，此时的<code>MyAnnotations</code>为容器注解。</li>
+<li>b. 要求<code>MyAnnotation</code>的<code>@Target</code>和<code>@Retention</code>等元注解与<code>MyAnnotations</code>相同。</li>
+</ul>
+<p>使用示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//注意：这三个类都是public的，需要分别写在三个文件中</span><br><span class="hljs-meta">@Inherited</span><br><span class="hljs-meta">@Retention(RetentionPolicy.RUNTIME)</span> <br><span class="hljs-meta">@Target(&#123;TYPE, FIELD, METHOD, PARAMETER, CONSTRUCTOR, LOCAL_VARIABLE&#125;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> MyAnnotations &#123;<br>    MyAnnotation[] value();<br>&#125;<br><br><span class="hljs-meta">@Inherited</span><br><span class="hljs-meta">@Repeatable(MyAnnotations.class)</span> <span class="hljs-comment">//Repeatable的参数是容器注解的类型</span><br><span class="hljs-meta">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="hljs-meta">@Target(&#123;TYPE, FIELD, METHOD, PARAMETER, CONSTRUCTOR, LOCAL_VARIABLE,</span><br><span class="hljs-meta">         TYPE_PARAMETER,TYPE_USE&#125;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> MyAnnotation &#123;<br>    <span class="hljs-function">String <span class="hljs-title">value</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> &quot;hello&quot;</span>;<br>&#125;<br><br><span class="hljs-comment">//此时MyAnnotation注解可以重复使用</span><br><span class="hljs-meta">@MyAnnotation(value=&quot;hi&quot;)</span>  <br><span class="hljs-meta">@MyAnnotation(value=&quot;abc&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>&#123;&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>2、类型注解</strong></p>
+<p>JDK 8.0之后，元注解<code>@Target</code>的参数类型<code>ElementType</code>枚举值多了两个：<code>TYPE_PARAMETER</code>和<code>TYPE_USE</code>。在JDK 8.0之前，注解只能是在声明的地方所使用，Java8开始，注解可以应用在任何地方。</p>
+<ul>
+<li><code>ElementType.TYPE_PARAMETER</code>：表示该注解能写在类型变量的声明语句中（如：泛型声明）。</li>
+<li><code>ElementType.TYPE_USE</code>：表示该注解能写在使用类型的任何语句中。</li>
+</ul>
+<p>比如，同样使用上面的<code>@MyAnnotation</code>，其元注解<code>@Target</code>的参数包括了<code>TYPE_PARAMETER</code>和<code>TYPE_USE</code>，表明该注解可以写在类型变量的声明语句中，也能写在使用类型的任何语句中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span>&lt;@<span class="hljs-title">MyAnnotation</span> <span class="hljs-title">T</span>&gt;</span>&#123; <span class="hljs-comment">//写在声明语句中</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> @MyAnnotation RuntimeException</span>&#123;<br>        ArrayList&lt;<span class="hljs-meta">@MyAnnotation</span> String&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>        <span class="hljs-keyword">int</span> num = (<span class="hljs-meta">@MyAnnotation</span> <span class="hljs-keyword">int</span>) <span class="hljs-number">10L</span>; <span class="hljs-comment">//写在任何语句中</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Kangshitao</li>
+    <li><strong>本文链接：</strong><a href="http://kangshitao.github.io/2021/04/05/java-note-1001/index.html" title="http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2021&#x2F;04&#x2F;05&#x2F;java-note-1001&#x2F;index.html">http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2021&#x2F;04&#x2F;05&#x2F;java-note-1001&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/04/09/java-note-1101/"><i class="iconfont iconleft"></i>Java学习笔记11-Java集合</a>
+    <a href="/2021/04/05/java-note-0903/">Java学习笔记09(3)-常用类之Java比较器和其他常用类<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+        <section class="comments">
+  
+    <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz",
+        app_key: "XipU873t8gkSypbwl1HWUARD",
+        placeholder: "write comment content...",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+		var title1="text=Live and Learn有新评论啦~ --by Valine"
+		var SCKEY_Server="SCT21455TskriUeyliOqL6kHLhiCOMmlB"
+		var ValineButton=document.getElementsByClassName("vsubmit vbtn")[0];
+		function send_valine_Server(){
+			var text="desp=";
+			var pageurl=document.URL;
+			var ptime=new Date();
+			var vnick=document.getElementsByClassName("vnick vinput")[0].value;
+			var veditor=document.getElementsByClassName("veditor vinput")[0].value;
+			var data=text+"|昵称"+"|评论内容"+"|跳转链接"+"|评论时间"+"\n"+"|----|----|----|----|"+"\n"+"|"+vnick+"|"+veditor+"|"+pageurl+"|" +ptime.toLocaleString()+"|";
+			var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+			httpRequest.open('POST', 'https://sctapi.ftqq.com/'+SCKEY_Server+'.send', true); //第二步：打开连接
+			httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）
+			httpRequest.send(title1+"&"+data);//发送请求 将请头体体写在send中
+		};
+		ValineButton.onclick=send_valine_Server;
+      });
+    } else {
+      loadValine();
+    }
+  };
+ 
+</script>
+
+
+</section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%9E%9A%E4%B8%BE%E7%B1%BB"><span class="toc-text">一、枚举类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E6%9E%9A%E4%B8%BE%E7%B1%BB"><span class="toc-text">1、什么是枚举类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9E%9A%E4%B8%BE%E7%B1%BB"><span class="toc-text">2、自定义枚举类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E4%BD%BF%E7%94%A8enum%E5%AE%9A%E4%B9%89%E6%9E%9A%E4%B8%BE%E7%B1%BB"><span class="toc-text">3、使用enum定义枚举类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81Enum%E7%B1%BB"><span class="toc-text">4、Enum类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%AE%9E%E7%8E%B0%E6%8E%A5%E5%8F%A3"><span class="toc-text">5、枚举类实现接口</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%B3%A8%E8%A7%A3"><span class="toc-text">二、注解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E6%A6%82%E8%BF%B0"><span class="toc-text">1、概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%B8%B8%E8%A7%81%E6%B3%A8%E8%A7%A3"><span class="toc-text">2、常见注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3"><span class="toc-text">3、自定义注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E5%85%83%E6%B3%A8%E8%A7%A3"><span class="toc-text">4、元注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E5%8F%8D%E5%B0%84%E8%8E%B7%E5%8F%96%E6%B3%A8%E8%A7%A3%E4%BF%A1%E6%81%AF"><span class="toc-text">5、反射获取注解信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81JDK-8%E4%B8%AD%E6%B3%A8%E8%A7%A3%E6%96%B0%E7%89%B9%E5%BE%81"><span class="toc-text">6、JDK 8中注解新特征</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1574716653 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/kangshitao "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#24292E'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:1574716653@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">Total:
+  <span id="busuanzi_value_site_pv" style="font-size:12px;"></span></span>
+  <span id="busuanzi_container_site_uv" >| Visitors:
+  <span id="busuanzi_value_site_uv" style="font-size:12px;"></span></span>
+  </div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+  
+  
+<script src="/js/clicklove.js"></script>
+<!-- 页面点击小红心 -->
+  
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz',
+      appKey: 'XipU873t8gkSypbwl1HWUARD',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud").each(async (e) => {
+        const url = $(".leancloud").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud").eq(e).text(count ? count : '--');
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud").length === 1 ? $(".leancloud").attr('id').trim() : 'http://kangshitao.github.io';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    $(function () {
+	  const Counter = AV.Object.extend("Counter");
+	  showCount(Counter);
+      const localhost = /http\:\/\/localhost|http\:\/\/127.0.0.1|http\:\/\/0.0.0.0/;
+      if (localhost.test(document.URL)) {
+	    return;
+	  }
+	  addCount(Counter);
+    });
+  });
+</script>
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <script>
+    window.ga = window.ga || function () {
+      (ga.q = ga.q || []).push(arguments)
+    };
+    ga.l = +new Date;
+    ga('create', 'G-0FZTGJZNYS', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,646 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JVM垃圾回收相关概念补充 - Live And Learn</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="hexo-blog,live and learn,kangshitao, Java垃圾回收，STW，Java四种引用，Java内存泄露与内存溢出">
+  <meta name="description" content="一、System.gc()的理解默认情况下，调用Sys...">
+  <meta name="author" content="Kangshitao">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/atelier-heath-light.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/monokai-sublime.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg',
+        wechat: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '心之所向，素履以往',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'normal'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Live And Learn" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">JVM垃圾回收相关概念补充</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">JVM垃圾回收相关概念补充</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>五月 11, 2021</span>
+      
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2021/05/11/gc-related-concepts-supplement/" class="leancloud" data-flag-title="JVM垃圾回收相关概念补充"></span>
+        </span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>11998</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="一、System-gc-的理解"><a href="#一、System-gc-的理解" class="headerlink" title="一、System.gc()的理解"></a>一、System.gc()的理解</h1><p>默认情况下，调用<code>System.gc()</code>或者<code>Runtime.getRuntime().gc()</code>（<code>System.gc()</code>的底层方法）方法，会显式触发Full GC，同时对老年代和新生代进行回收，尝试释放被丢弃对象占用的内存。</p>
+<p><code>System.gc()</code>调用附带一个免责声明，无法保证对垃圾收集器的调用，也就是说，这个方法只是提醒垃圾收集器进行垃圾回收，具体什么时候会进行垃圾回收就不一定了，此方法不保证一定会回收。</p>
+<p>JVM实现者可以通过<code>System.gc()</code>调用来决定JVM的GC行为。而一般情况下，垃圾回收应该是自动进行的，无须手动触发，否则就太麻烦了。在一些特殊情况下，如我们正在编写一个性能基准，我们可以在运行之间调用<code>System.gc()</code>。</p>
+<p>例一：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SystemGCTest</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">new</span> SystemGCTest();<br>        System.gc();<span class="hljs-comment">//提醒jvm的垃圾回收器执行gc,但是不确定是否马上执行gc</span><br>        <span class="hljs-comment">//与Runtime.getRuntime().gc();的作用一样。</span><br><br>        <span class="hljs-comment">//此方法会强制调用失去引用对象的finalize()方法</span><br>        <span class="hljs-comment">//System.runFinalization();</span><br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">finalize</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;SystemGCTest 重写了finalize()&quot;</span>);<br>    &#125;<br>&#125;<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">如果不使用System.runFinalization()方法，由于System.gc()不保证一定执行垃圾回收，</span><br><span class="hljs-comment">因此执行上述代码，finalize()方法可能会被调用，也可能不会被调用</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
+<p>例二，调用<code>System.gc()</code>进行垃圾回收：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LocalVarGC</span> </span>&#123;<br>    <span class="hljs-comment">//buffer不会被回收</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">localvarGC1</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">byte</span>[] buffer = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">10</span> * <span class="hljs-number">1024</span> * <span class="hljs-number">1024</span>];<span class="hljs-comment">//10MB</span><br>        System.gc(); <br>    &#125;<br><br>    <span class="hljs-comment">//buffer会被回收</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">localvarGC2</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">byte</span>[] buffer = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">10</span> * <span class="hljs-number">1024</span> * <span class="hljs-number">1024</span>];<br>        buffer = <span class="hljs-keyword">null</span>;<br>        System.gc();<br>    &#125;<br>    <br>    <span class="hljs-comment">/*buffer不会被回收。</span><br><span class="hljs-comment">    查看字节码文件可知，局部变量表中存放了this和buffer两个变量,</span><br><span class="hljs-comment">    垃圾回收时发现buffer在变量表中，属于GC roots，因此不会被回收</span><br><span class="hljs-comment">    */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">localvarGC3</span><span class="hljs-params">()</span> </span>&#123;<br>        &#123;<br>            <span class="hljs-keyword">byte</span>[] buffer = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">10</span> * <span class="hljs-number">1024</span> * <span class="hljs-number">1024</span>];<br>        &#125;<br>        System.gc();<br>    &#125;<br><br>    <span class="hljs-comment">/*buffer会被回收。</span><br><span class="hljs-comment">    查看字节码文件可知，首先局部变量表中存放了this和buffer两个变量,</span><br><span class="hljs-comment">    然后，在代码块执行完后，超出了buffer的作用范围，value重用了buffer的变量槽</span><br><span class="hljs-comment">    因此垃圾回收时，buffer会被回收。</span><br><span class="hljs-comment">    可以参考《深入理解JVM 第三版》P296</span><br><span class="hljs-comment">    */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">localvarGC4</span><span class="hljs-params">()</span> </span>&#123;<br>        &#123;<br>            <span class="hljs-keyword">byte</span>[] buffer = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">10</span> * <span class="hljs-number">1024</span> * <span class="hljs-number">1024</span>];<br>        &#125;<br>        <span class="hljs-keyword">int</span> value = <span class="hljs-number">10</span>;<br>        System.gc();<br>    &#125;<br><br>    <span class="hljs-comment">//在localvarGC1中时，buffer没有被回收，localvarGC5中，buffer被回收。</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">localvarGC5</span><span class="hljs-params">()</span> </span>&#123;<br>        localvarGC1();<br>        System.gc();<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        LocalVarGC local = <span class="hljs-keyword">new</span> LocalVarGC();<br>        local.localvarGC1();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="二、内存溢出与内存泄漏"><a href="#二、内存溢出与内存泄漏" class="headerlink" title="二、内存溢出与内存泄漏"></a>二、内存溢出与内存泄漏</h1><h2 id="1、内存溢出"><a href="#1、内存溢出" class="headerlink" title="1、内存溢出"></a>1、内存溢出</h2><p>内存溢出（OutOfMemoryError）：没有空间内存，并且垃圾收集器也无法提供更多内存。</p>
+<p>JVM堆、方法区、虚拟机栈和本地方法栈都可能出现OOM问题，其中堆内存溢出的情况最为常见</p>
+<blockquote>
+<p>栈除了存在OOM的情况，当还存在StackOverflow的情况。如果线程请求的栈深度大于虚拟机所允许的最大深度，将抛出StackOverflowError异常；如果虚拟机的栈内存允许动态扩展，当扩展栈容量无法申请到足够的内存时，将抛出OOM异常。也就是说，如果栈不支持扩展，除非在创建线程申请内存时就因无法获得足够内存而出现OOM异常，否则在线程运行时是不会因为扩展而导致内存溢出的，只会因为栈容量无法容纳新的栈帧而导致StackOverflowError异常。</p>
+</blockquote>
+<p>导致OOM的原因有：</p>
+<ul>
+<li><p><strong>Java虚拟机的堆内存设置不够</strong>。可以通过<code>-Xms</code>、<code>-Xmx</code>参数来调整</p>
+</li>
+<li><p><strong>代码中创建了大量大对象，并且长时间不能被垃圾收集器收集（存在被引用）</strong>。比如JDK6之前的永久代，空间很小，且使用的是JVM内存，容易出现OOM问题。</p>
+<blockquote>
+<p>在抛出OOM之前，通常会触发一次GC，尽其所能去清理出空间。例如在引用机制分析中，涉及到JVM会去尝试回收软引用指向的对象等。在java.nio.BIts.reserveMemory()方法中，我们能清楚的看到，System.gc()会被调用，以清理空间。</p>
+</blockquote>
+</li>
+<li><p>不是在任何情况下垃圾收集器都会被触发。比如，当分配一个超大对象，其所需空间超过堆的最大值时，JVM可以判断出垃圾收集并不能解决这个问题，所以直接抛出OutOfMemoryError。</p>
+</li>
+</ul>
+<h2 id="2、内存泄漏"><a href="#2、内存泄漏" class="headerlink" title="2、内存泄漏"></a>2、内存泄漏</h2><p>内存泄露（Memory Leak），也称作“存储渗漏”，<strong>严格上来讲</strong>，内存泄漏指的是对象不会被程序使用了，但是GC又不能回收他们。比如不使用的对象没有断开和GC Roots引用链的连接，所以这些对象还是可达状态，无法被回收。</p>
+<p>Java中会出现的内存泄漏情况：</p>
+<ul>
+<li>单例模式。单例的生命周期和应用程序是一样长的，所以单例程序中，如果持有对外部对象的引用的话，那么这个外部对象是不能被回收的，则会导致内存泄漏的产生。<code>java.lang.Runtime</code>类就是单例模式。</li>
+<li>一些提供close的资源未关闭导致内存泄漏。比如数据库连接（<code>dataSourse.getConnection()</code>)，网络连接(<code>socket</code>)和IO连接必须手动close，否则是不能被回收的。</li>
+</ul>
+<blockquote>
+<p>引用计数算法无法解决循环引用问题，会导致内存泄露，但是Java中不会出现这种内存泄漏，因为Java没有使用引用计数算法。</p>
+</blockquote>
+<p>实际情况中，一些不太好的实践或疏忽导致对象的生命周期变得很长甚至导致OOM，也可以叫做<em>宽泛意义上的“内存泄漏”</em>。</p>
+<p>尽管内存泄漏并不会立刻引起程序崩溃，但是一旦发生内存泄漏，程序中的可用内存就会被逐步蚕食，直至耗尽所有内存，最终出现OOM异常，导致程序崩溃。</p>
+<blockquote>
+<p>这里的存储空间并不是指物理内存，而是指虚拟内存大小，这个虚拟内存大小取决于磁盘交换区设定的大小。 </p>
+</blockquote>
+<p>内存泄露并不一定会（或者说立即）导致内存溢出。</p>
+<h1 id="三、Stop-The-World"><a href="#三、Stop-The-World" class="headerlink" title="三、Stop The World"></a>三、Stop The World</h1><p>Stop-The-World，简称STW，指的是GC事件发生过程中，会产生应用程序的停顿。<strong>停顿产生时整个应用程序所有工作线程都会被暂停，没有任何响应</strong>，有点像卡死的感觉，这个停顿称为STW。比如：</p>
+<ul>
+<li>可达性分析算法中枚举根节点(GC Roots)会导致所有Java执行线程停顿。<ul>
+<li>分析工作必须在一个能确保一致性的快照中进行。</li>
+<li>一致性指整个分析期间整个执行系统看起来像被冻结在某个时间点上。</li>
+<li>如果出现分析过程中对象引用关系还在不断变化，则分析结果的准确性无法保证。</li>
+</ul>
+</li>
+</ul>
+<p>被STW中断的应用程序线程会在完成GC之后恢复，频繁中断会让用户感觉像是网速不快造成电影卡带一样，影响用户体验。所以我们需要减少STW的发生。</p>
+<p>STW的发生和采用哪款GC无关，所有的GC都有这种情况。即使是号称停顿时间可控，或者（几乎）不会发生停顿的CMS、G1、ZGC收集器也不能完全避免STW情况发生，枚举根节点时也必须要停顿的。只能说垃圾回收器越来越优秀，回收效率越来越高，尽可能地缩短了暂停时间。</p>
+<p>STW是JVM在后台自动发起和自动完成的。在用户不可见的情况下，把用户正常的工作线程全部停掉。</p>
+<p>开发中不要用<code>system.gc ();</code>，这个方法会触发Full GC，进而导致STW的发生。</p>
+<h1 id="四、垃圾回收的并行与并发"><a href="#四、垃圾回收的并行与并发" class="headerlink" title="四、垃圾回收的并行与并发"></a>四、垃圾回收的并行与并发</h1><h2 id="1、并发"><a href="#1、并发" class="headerlink" title="1、并发"></a>1、并发</h2><p>并发(Concurrent)是指<strong>一个时间段中</strong>有几个程序都处于已启动运行到运行完毕之间，且这几个程序都是在<strong>同一个处理器</strong>上运行。</p>
+<p>并发不是真正意义上的同时进行，只是CPU把一个时间段划分成几个时间片段(时间区间)，然后在这几个时间区间之间来回切换，由于CPU处理的速度非常快，只要时间间隔处理得当，即可让用户感觉是多个应用程序同时在进行。</p>
+<blockquote>
+<p>在某个时刻，实际只有一个程序正在运行。</p>
+</blockquote>
+<p>比如：</p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/gc-related-concepts-supplement_1.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /></p>
+<h2 id="2、并行"><a href="#2、并行" class="headerlink" title="2、并行"></a>2、并行</h2><p>并行(Parallel)是指当系统有一个以上CPU时，当一个CPU执行一个进程时，另一个CPU可以执行另一个进程，两个进程互不抢占CPU资源，可以同时进行。</p>
+<p>决定并行的因素不是CPU的数量，而是CPU的核心数量，比如一个CPU多个核也可以并行。</p>
+<p>并行适合科学计算，后台处理等弱交互场景。</p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/gc-related-concepts-supplement_2.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /></p>
+<p>并行和并发的对比：</p>
+<ul>
+<li>并发指的是<strong>多个事件在同一时间段内同时发生</strong>。并行指的是<strong>多个事件在同一时刻同时发生</strong>。</li>
+<li>并发的多个任务之间是互相抢占资源的。并行的多个任务之间是不互相抢占资源的。</li>
+<li>只有在多CPU或者一个CPU多核的情况中，才会发生并行。否则，看似同时发注的事情，其实都是并发执行的。</li>
+</ul>
+<h2 id="3、垃圾回收的并行和并发"><a href="#3、垃圾回收的并行和并发" class="headerlink" title="3、垃圾回收的并行和并发"></a>3、垃圾回收的并行和并发</h2><p>对于垃圾收集器来说，并行和并发的概念具体指的是：</p>
+<ul>
+<li>并行(Parallel)：指多条垃圾收集线程并行工作，但此时用户线程仍处于等待状态。如ParNew、Parallel scavenge、Parallel old收集器。</li>
+<li>串行(Serial)：相较于并行的概念，单线程收集。如果内存不够，则程序暂停，启动JVM垃圾回收器进行垃圾回收。回收完，再启动<br>程序的线程。比如Serial、Serial Old收集器。</li>
+<li>并发(Concurrent)：指用户线程与垃圾收集线程同时执行（但不一定是并行的，可能会交替执行)，垃圾回收线程在执行时不会停顿用户程序的运行。用户程序在继续运行，而垃圾收集程序线程运行于另一个CPU上。比如CMS、G1收集器。</li>
+</ul>
+<h1 id="五、再谈引用"><a href="#五、再谈引用" class="headerlink" title="五、再谈引用"></a>五、再谈引用</h1><p>JDK1.2之前，Java对象只有“被引用”和“未被引用”两种状态，这些对象要么被回收，要么不能被回收。对于那些“食之无味弃之可惜”的对象，比如我们希望能描述这样一种对象：当内存空间足够时，能保存在内存中，如果内存空间在进行垃圾回收后仍然非常紧张，那就可以抛弃这些对象，类似于缓存功能，这种情况下只有“被引用”和“未被引用”两种状态是不够的。</p>
+<p>JDK 1.2之后，Java对引用的概念进行了扩充，将引用分为强引用(Strongly Reference)、软引用(Soft Reference)、弱引用(Weak Reference)和虚引用(Phantom Reference)4种，这4种引用强度依次逐渐减弱。</p>
+<p>如图（其中FinalReference表示终结器引用）：</p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/gc-related-concepts-supplement_3.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /></p>
+<p>4种引用关系概述：</p>
+<ul>
+<li><strong>强引用(StrongReference)</strong>：最传统的“引用”的定义，是指在程序代码之中普遍存在的引用赋值，即类似<code>Object obj=new O bject()</code>这种引用关系。无论任何情况下只要强引用关系还存在，垃圾收集器永远不会回收掉被强引用的对象。<strong>不回收</strong></li>
+<li><strong>软引用(SoftReference)</strong>：用于描述一些“还有用，但非必须的对象”。被软引用关联着的对象，在系统将要发生内存溢出之前，将会把这些对象列入回收范围之中进行第二次回收。如果这次回收后还没有足够的内存，才会抛出内存溢出异常。<strong>内存不足即回收</strong></li>
+<li><strong>弱引用（weakReference)</strong>：用于描述非必须对象。被弱引用关联的对象只能生存到下一次垃圾收集之前。当垃圾收集器工作时，无论内存空间是否足够，都会回收掉被弱引用关联的对象。<strong>发现即回收</strong></li>
+<li><strong>虚引用(PhantomReference)</strong>：一个对象是否有虚引用的存在，完全不会对其生存时间构成影响，也无法通过虚引用来获得一个对象的实例。为一个对象设置虚引用关联的唯一目的就是能在这个对象被收集器回收时收到一个系统通知。<strong>对象回收跟踪</strong></li>
+</ul>
+<h2 id="1、强引用"><a href="#1、强引用" class="headerlink" title="1、强引用"></a>1、强引用</h2><p>强引用关联对象的主要特点是<strong>不回收</strong>。</p>
+<p>在Java程序中，最常见的引用类型是强引用（普通系统99%以上都是强引用)，也就是我们最常见的普通对象引用，也是默认的引用类型。</p>
+<p>当在Java语言中使用new操作符创建一个新的对象，并将其赋值给一个变量的时候，这个变量就成为指向该对象的一个强引用。</p>
+<p><strong>强引用的对象是可触及的（可达的），垃圾收集器永远不会回收强引用的对象</strong>。</p>
+<p>对于一个普通的对象，如果没有其他的引用关系，只要超过了引用的作用域或者显式地将相应（强）引用赋值为<code>null</code>，就是可以当做垃圾被收集了，当然具体回收时机还是要看垃圾收集策略。</p>
+<p>相对的，软引用、弱引用和虚引用的对象是软可触及、弱可触及和虚可触及的，在一定条件下，都是可以被回收的。所以，<strong>强引用是造成Java内存泄漏的主要原因之一</strong>。</p>
+<p>看下面的例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StrongReferenceTest</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        StringBuffer str = <span class="hljs-keyword">new</span> StringBuffer (<span class="hljs-string">&quot;Hello&quot;</span>);<br>        StringBuffer str1 = str;<br>        <br>        str = <span class="hljs-keyword">null</span>;<span class="hljs-comment">//取消str对“Hello”的引用</span><br>        System.gc(); <br>        <br>        <span class="hljs-keyword">try</span> &#123;<span class="hljs-comment">//暂停一段时间，保证GC会被触发</span><br>            Thread.sleep(<span class="hljs-number">3000</span>);<br>        &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>        <span class="hljs-comment">//“Hello”对象不会被回收，因此可以打印出内容</span><br>        System.out.println(str1); <span class="hljs-comment">//&quot;Hello&quot;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>上述程序执行时，主动触发GC机制，正常来讲，GC会将str关联的“Hello”对象回收，但“Hello”被str1强引用关联着，因此实际上“Hello”对象不会被回收。</p>
+<p>本例中的两个引用，都是强引用，强引用具备以下特点：</p>
+<ul>
+<li>强引用可以直接访问目标对象。</li>
+<li>强引用所指向的对象在<strong>任何时候都不会被系统回收</strong>，虚拟机宁可抛出OOM异常，也不会回收强引用所指向对象。</li>
+<li>强引用可能导致内存泄漏。</li>
+</ul>
+<h2 id="2、软引用"><a href="#2、软引用" class="headerlink" title="2、软引用"></a>2、软引用</h2><p>软引用关联对象的主要特点是<strong>内存不足即回收</strong>， 内存足够时不会回收软引用关联的对象。</p>
+<p>软引用是用来描述一些还有用，但非必需的对象。只被软引用关联着的对象，在系统将要发生内存溢出异常前，会把这些对象列进回收范围之中进行第二次回收（第一次回收是指回收不可达对象），如果这次回收还没有足够的内存，才会抛出内存溢出异常。</p>
+<blockquote>
+<p>这时出现OOM异常，并不是软引用对象导致的，因为软引用对象二次回收已经被回收掉了。</p>
+</blockquote>
+<p>软引用通常用来实现内存敏感的缓存。比如高速缓存，如果还有空闲内存，就可以暂时保留缓存，当内存不足时清理掉，这样就保证了使用缓存的同时，不会耗尽内存。</p>
+<p>垃圾回收器在某个时刻决定回收软可达的对象的时候，会清理软引用，并可选地把引用存放到一个引用队列(Reference Queue) 。</p>
+<p>类似弱引用，区别是Java虚拟机会尽量让软引用的存活时间长一些，迫不得已才清理。</p>
+<p>案例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SoftReferenceTest</span> </span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">User</span><span class="hljs-params">(<span class="hljs-keyword">int</span> id, String name)</span> </span>&#123;<br>            <span class="hljs-keyword">this</span>.id = id;<br>            <span class="hljs-keyword">this</span>.name = name;<br>        &#125;<br><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> id;<br>        <span class="hljs-keyword">public</span> String name;<br><br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;[id=&quot;</span> + id + <span class="hljs-string">&quot;, name=&quot;</span> + name + <span class="hljs-string">&quot;] &quot;</span>;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-comment">//创建对象，建立软引用</span><br>        SoftReference&lt;User&gt; userSoftRef = <br>            <span class="hljs-keyword">new</span> SoftReference&lt;User&gt;(<span class="hljs-keyword">new</span> User(<span class="hljs-number">1</span>, <span class="hljs-string">&quot;John&quot;</span>));<br>        <span class="hljs-comment">/*上面的一行代码，等价于如下的三行代码</span><br><span class="hljs-comment">        User u1 = new User(1,&quot;songhk&quot;);//先建立一个强引用</span><br><span class="hljs-comment">        //将创建软引用，指向强引用关联的对象</span><br><span class="hljs-comment">        SoftReference&lt;User&gt; userSoftRef = new SoftReference&lt;User&gt;(u1);</span><br><span class="hljs-comment">        u1 = null;//取消强引用，只保留软引用对对象的关联</span><br><span class="hljs-comment">        */</span><br><br>        <span class="hljs-comment">//从软引用中获得对象</span><br>        System.out.println(userSoftRef.get());<span class="hljs-comment">//[id=1, name=John]</span><br><br>        System.gc();<br>        System.out.println(<span class="hljs-string">&quot;After GC:&quot;</span>);<br>        <span class="hljs-comment">//由于堆空间内存足够，不会回收软引用的可达对象。</span><br>        System.out.println(userSoftRef.get());<br>        <span class="hljs-keyword">try</span> &#123;<span class="hljs-comment">//模拟堆内存不足的情况，-Xms10m,-Xmx10m</span><br>            <span class="hljs-comment">//会发生OOM的情况</span><br>            <span class="hljs-keyword">byte</span>[] b = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">1024</span> * <span class="hljs-number">1024</span> * <span class="hljs-number">7</span>];<br>        &#125; <span class="hljs-keyword">catch</span> (Throwable e) &#123;<br>            e.printStackTrace();<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            <span class="hljs-comment">//再次从软引用中获取数据</span><br>            <span class="hljs-comment">//OOM之前，垃圾回收器会回收软引用的可达对象。输出null</span><br>            System.out.println(userSoftRef.get());<span class="hljs-comment">//null</span><br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>执行以上程序，发现当内存足够时，软引用关联的对象并没有被回收，接下来试图创建大对象，导致堆空间内存不足，触发GC，这时会将软引用关联的对象回收掉。最后的结果输出为<code>null</code>，说明软引用对象确实被回收掉了。</p>
+<blockquote>
+<p>并不是要发生OOM时才会回收软引用关联的对象，只要堆内存不能存储软引用关联的对象时，就会将软引用关联的对象回收。</p>
+</blockquote>
+<h2 id="3、弱引用"><a href="#3、弱引用" class="headerlink" title="3、弱引用"></a>3、弱引用</h2><p>弱引用关联对象的主要特点是<strong>发现即回收</strong>。</p>
+<p>弱引用也是用来描述那些非必需对象，<strong>只被弱引用关联的对象只能生存到下一次垃圾收集发生为止</strong>。在系统GC时，<strong>只要发现弱引用，不管系统堆空间使用是否充足，都会回收掉只被弱引用关联的对象</strong>。</p>
+<p>但是，由于垃圾回收器的线程通常优先级很低，因此，并不一定能很快地发现持有弱引用的对象。在这种情况下，弱引用对象可以存在较长的时间。</p>
+<p>弱引用和软引用一样，在构造弱引用时，也可以指定一个引用队列，当弱引用对象被回收时，就会加入指定的引用队列，通过这个队列可以跟踪对象的回收情况。</p>
+<p>软引用、弱引用都非常适合来保存那些可有可无的缓存数据。如果这么做，当系统内存不足时，这些缓存数据会被回收，不会导致内存溢出。而当内存资源充足时，这些缓存数据又可以存在相当长的时间，从而起到加速系统的作用。</p>
+<p>弱引用的案例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WeakReferenceTest</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-comment">//构造了弱引用</span><br>        WeakReference&lt;User&gt; userWeakRef = <br>            <span class="hljs-keyword">new</span> WeakReference&lt;User&gt;(<span class="hljs-keyword">new</span> User(<span class="hljs-number">1</span>, <span class="hljs-string">&quot;John&quot;</span>));<br>        <span class="hljs-comment">//从弱引用中获取对象</span><br>        System.out.println(userWeakRef.get()); <span class="hljs-comment">//[id=1, name=John]</span><br><br>        System.gc();<br>        <span class="hljs-comment">//不管当前内存空间足够与否，都会回收它的内存</span><br>        System.out.println(<span class="hljs-string">&quot;After GC:&quot;</span>);<br>        <span class="hljs-comment">//重新尝试从弱引用中获取对象</span><br>        System.out.println(userWeakRef.get()); <span class="hljs-comment">//null</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>执行上述代码，最后一行输出结果为<code>null</code>，说明弱引用关联的对象被回收了。只要GC回收执行，弱引用关联的对象就会被回收。</p>
+<h2 id="4、虚引用"><a href="#4、虚引用" class="headerlink" title="4、虚引用"></a>4、虚引用</h2><p>虚引用关联对象的主要特点是<strong>对象回收跟踪</strong>。</p>
+<p>虚引用也称为“幽灵引用”或者“幻影引用”，是所有引用类型中最弱的一个。</p>
+<p>一个对象是否有虚引用的存在，完全不会决定对象的生命周期。如果一个对象<strong>仅持有虚引用，那么它和没有引用几乎是一样的，随时都可能被垃圾回收器回收</strong>。</p>
+<p>它不能单独使用，也<strong>无法通过虚引用来获取被引用的对象</strong>。当试图通过虚引用的get()方法取得对象时，总是nu11。</p>
+<p><strong>为一个对象设置虚引用关联的唯一目的在于跟踪垃圾回收过程</strong>。比如:能在这个对象被收集器回收时收到一个系统通知。</p>
+<p>虚引用必须和<strong>引用队列</strong>一起使用。虚引用在创建时必须提供一个引用队列作为参数。当垃圾回收器准备回收一个对象时，如果发现它还有虚引用，就会在回收对象后，将这个虚引用加入引用队列，以通知应用程序对象的回收情况。</p>
+<p>由于虚引用可以跟踪对象的回收时间，因此，也可以将一些资源释放操作放置在虚引用中执行和记录。</p>
+<p>案例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PhantomReferenceTest</span> </span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> PhantomReferenceTest obj;<span class="hljs-comment">//当前类对象的声明</span><br>    <span class="hljs-keyword">static</span> ReferenceQueue&lt;PhantomReferenceTest&gt; phantomQueue = <span class="hljs-keyword">null</span>;<span class="hljs-comment">//引用队列</span><br><br>    <span class="hljs-comment">//创建线程，一直检测引用队列，如果虚引用对象被回收了，引用队列不为空，打印回收记录</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CheckRefQueue</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Thread</span> </span>&#123;<br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>            <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) &#123;<br>                <span class="hljs-keyword">if</span> (phantomQueue != <span class="hljs-keyword">null</span>) &#123;<br>                    PhantomReference&lt;PhantomReferenceTest&gt; objt = <span class="hljs-keyword">null</span>;<br>                    <span class="hljs-keyword">try</span> &#123;<br>                        objt = (PhantomReference&lt;PhantomReferenceTest&gt;) phantomQueue.remove();<br>                    &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;e.printStackTrace();&#125;<br>                    <span class="hljs-keyword">if</span> (objt != <span class="hljs-keyword">null</span>) &#123;<br>                        System.out.println(<span class="hljs-string">&quot;追踪垃圾回收过程：PhantomReferenceTest实例被GC了&quot;</span>);<br>                    &#125;<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        Thread t = <span class="hljs-keyword">new</span> CheckRefQueue();<br>        t.setDaemon(<span class="hljs-keyword">true</span>);<span class="hljs-comment">//设置为守护线程：当程序中没有非守护线程时，守护线程也就执行结束。</span><br>        t.start();<br><br>        phantomQueue = <span class="hljs-keyword">new</span> ReferenceQueue&lt;PhantomReferenceTest&gt;();<br>        obj = <span class="hljs-keyword">new</span> PhantomReferenceTest();<br>        <span class="hljs-comment">//构造了 PhantomReferenceTest 对象的虚引用，并指定了引用队列</span><br>        PhantomReference&lt;PhantomReferenceTest&gt; phantomRef = <span class="hljs-keyword">new</span> <br>            PhantomReference&lt;PhantomReferenceTest&gt;(obj, phantomQueue);<br><br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">//无法通过虚引用获取其关联的对象</span><br>            System.out.println(phantomRef.get()); <span class="hljs-comment">//null</span><br>            <span class="hljs-comment">//将强引用去除</span><br>            obj = <span class="hljs-keyword">null</span>;<br>            System.out.println(<span class="hljs-string">&quot;调用GC&quot;</span>);<br>            System.gc(); <span class="hljs-comment">//一旦将obj对象回收，就会将此虚引用存放到引用队列中。</span><br>            Thread.sleep(<span class="hljs-number">1000</span>);<br>            <span class="hljs-keyword">if</span> (obj == <span class="hljs-keyword">null</span>) &#123;<br>                System.out.println(<span class="hljs-string">&quot;obj 是 null&quot;</span>);<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                System.out.println(<span class="hljs-string">&quot;obj 可用&quot;</span>);<br>            &#125;<br>        &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-comment">/*执行结果</span><br><span class="hljs-comment">null</span><br><span class="hljs-comment">调用GC</span><br><span class="hljs-comment">追踪垃圾回收过程：PhantomReferenceTest实例被GC了</span><br><span class="hljs-comment">obj 是 null</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
+<h2 id="5、终结器引用"><a href="#5、终结器引用" class="headerlink" title="5、终结器引用"></a>5、终结器引用</h2><p><strong>终结器引用（Final Reference）</strong>用以实现对象的<code>finalize ()</code>方法。无需手动编码，其内部配合引用队列使用。</p>
+<p>在GC时，终结器引用入队。由<code>Finalizer</code>线程通过终结器引用找到被引用对象并调用它的<code>finalize ()</code>方法，第二次GC时才能回收被引用对象。</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Kangshitao</li>
+    <li><strong>本文链接：</strong><a href="http://kangshitao.github.io/2021/05/11/gc-related-concepts-supplement/index.html" title="http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2021&#x2F;05&#x2F;11&#x2F;gc-related-concepts-supplement&#x2F;index.html">http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2021&#x2F;05&#x2F;11&#x2F;gc-related-concepts-supplement&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/05/19/computer-network-review/"><i class="iconfont iconleft"></i>计算机网络汇总</a>
+    <a href="/2021/05/10/understanding-string-intern/">深入理解String的intern()方法<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+        <section class="comments">
+  
+    <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz",
+        app_key: "XipU873t8gkSypbwl1HWUARD",
+        placeholder: "write comment content...",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+		var title1="text=Live and Learn有新评论啦~ --by Valine"
+		var SCKEY_Server="SCT21455TskriUeyliOqL6kHLhiCOMmlB"
+		var ValineButton=document.getElementsByClassName("vsubmit vbtn")[0];
+		function send_valine_Server(){
+			var text="desp=";
+			var pageurl=document.URL;
+			var ptime=new Date();
+			var vnick=document.getElementsByClassName("vnick vinput")[0].value;
+			var veditor=document.getElementsByClassName("veditor vinput")[0].value;
+			var data=text+"|昵称"+"|评论内容"+"|跳转链接"+"|评论时间"+"\n"+"|----|----|----|----|"+"\n"+"|"+vnick+"|"+veditor+"|"+pageurl+"|" +ptime.toLocaleString()+"|";
+			var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+			httpRequest.open('POST', 'https://sctapi.ftqq.com/'+SCKEY_Server+'.send', true); //第二步：打开连接
+			httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）
+			httpRequest.send(title1+"&"+data);//发送请求 将请头体体写在send中
+		};
+		ValineButton.onclick=send_valine_Server;
+      });
+    } else {
+      loadValine();
+    }
+  };
+ 
+</script>
+
+
+</section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81System-gc-%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">一、System.gc()的理解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E4%B8%8E%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F"><span class="toc-text">二、内存溢出与内存泄漏</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA"><span class="toc-text">1、内存溢出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F"><span class="toc-text">2、内存泄漏</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81Stop-The-World"><span class="toc-text">三、Stop The World</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%B9%B6%E5%8F%91"><span class="toc-text">四、垃圾回收的并行与并发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%B9%B6%E5%8F%91"><span class="toc-text">1、并发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%B9%B6%E8%A1%8C"><span class="toc-text">2、并行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E5%B9%B6%E8%A1%8C%E5%92%8C%E5%B9%B6%E5%8F%91"><span class="toc-text">3、垃圾回收的并行和并发</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%86%8D%E8%B0%88%E5%BC%95%E7%94%A8"><span class="toc-text">五、再谈引用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%BC%BA%E5%BC%95%E7%94%A8"><span class="toc-text">1、强引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E8%BD%AF%E5%BC%95%E7%94%A8"><span class="toc-text">2、软引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%BC%B1%E5%BC%95%E7%94%A8"><span class="toc-text">3、弱引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E8%99%9A%E5%BC%95%E7%94%A8"><span class="toc-text">4、虚引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E7%BB%88%E7%BB%93%E5%99%A8%E5%BC%95%E7%94%A8"><span class="toc-text">5、终结器引用</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1574716653 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/kangshitao "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#24292E'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:1574716653@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">Total:
+  <span id="busuanzi_value_site_pv" style="font-size:12px;"></span></span>
+  <span id="busuanzi_container_site_uv" >| Visitors:
+  <span id="busuanzi_value_site_uv" style="font-size:12px;"></span></span>
+  </div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+  
+  
+<script src="/js/clicklove.js"></script>
+<!-- 页面点击小红心 -->
+  
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz',
+      appKey: 'XipU873t8gkSypbwl1HWUARD',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud").each(async (e) => {
+        const url = $(".leancloud").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud").eq(e).text(count ? count : '--');
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud").length === 1 ? $(".leancloud").attr('id').trim() : 'http://kangshitao.github.io';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    $(function () {
+	  const Counter = AV.Object.extend("Counter");
+	  showCount(Counter);
+      const localhost = /http\:\/\/localhost|http\:\/\/127.0.0.1|http\:\/\/0.0.0.0/;
+      if (localhost.test(document.URL)) {
+	    return;
+	  }
+	  addCount(Counter);
+    });
+  });
+</script>
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <script>
+    window.ga = window.ga || function () {
+      (ga.q = ga.q || []).push(arguments)
+    };
+    ga.l = +new Date;
+    ga('create', 'G-0FZTGJZNYS', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</html>

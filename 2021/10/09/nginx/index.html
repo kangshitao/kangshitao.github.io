@@ -1,0 +1,721 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Nginx安装与配置 - Live And Learn</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="hexo-blog,live and learn,kangshitao, Nginx,反向代理,负载均衡,动静分离">
+  <meta name="description" content="一、安装Nginx环境：
+
+CentOS 7.9
+Ng...">
+  <meta name="author" content="Kangshitao">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/atelier-heath-light.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/monokai-sublime.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg',
+        wechat: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '心之所向，素履以往',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'normal'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Live And Learn" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">Nginx安装与配置</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_5.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">Nginx安装与配置</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 09, 2021</span>
+      
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2021/10/09/nginx/" class="leancloud" data-flag-title="Nginx安装与配置"></span>
+        </span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>8162</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="一、安装Nginx"><a href="#一、安装Nginx" class="headerlink" title="一、安装Nginx"></a>一、安装Nginx</h1><p><strong>环境：</strong></p>
+<ul>
+<li>CentOS 7.9</li>
+<li>Nginx 8.45</li>
+</ul>
+<p><strong>安装步骤：</strong></p>
+<p>1、<strong>首先需要确保系统已经安装了编译工具和库文件，可以使用<code>yum</code>命令安装</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 安装 make、zlib、zlib-devel、gcc-c++、libtool、openssl、openssl-devel</span><br>yum -y install make zlib zlib-devel gcc-c++ libtool openssl openssl-devel<br></code></pre></td></tr></table></figure>
+<p>2、<strong>需要PCRE的支持</strong></p>
+<p>Nginx的安装需要PCRE的支持，PCRE的作用是让Nginx支持Rewrite功能。安装PCRE的步骤如下：</p>
+<ul>
+<li><p>可以手动去<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/pcre/files/pcre/">官网</a>下载安装包，或者使用<code>wget</code>命令下载：</p>
+<p>首先进入<code>/usr/src/</code>目录，将pcre下载到这个目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@localhost /]<span class="hljs-comment"># cd /usr/src/  </span><br>[root@localhost src]<span class="hljs-comment"># wget https://sourceforge.net/projects/pcre/files/pcre/8.45/pcre-8.45.tar.gz/download</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>解压文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@localhost src]<span class="hljs-comment"># tar -zxvf download</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>解压后进入安装包目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@localhost src]<span class="hljs-comment"># cd pcre-8.45/</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>执行<code>configure</code>文件，编译并安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@localhost pcre-8.45]<span class="hljs-comment"># ./configure</span><br>[root@localhost pcre-8.45]<span class="hljs-comment"># make &amp;&amp; make install</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>查看版本号，安装成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@localhost pcre-8.45]<span class="hljs-comment"># pcre-config --version</span><br>8.45<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>3、<strong>安装Nginx</strong></p>
+<p>手动下载，或者使用<code>wget</code>下载安装包。</p>
+<p>同样在<code>/usr/src/</code>目录下下载安装包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@localhost src]<span class="hljs-comment"># ls</span><br>debug  kernels  nginx-1.20.1.tar.gz  pcre-8.45<br></code></pre></td></tr></table></figure>
+<p>然后解压：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@localhost src]<span class="hljs-comment"># tar -zxvf nginx-1.20.1.tar.gz</span><br></code></pre></td></tr></table></figure>
+<p>解压完后，进入<code>nginx-1.20.1</code>文件夹中，执行<code>configure</code>文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@localhost nginx-1.20.1]<span class="hljs-comment"># ./configure</span><br></code></pre></td></tr></table></figure>
+<p>编译并安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@localhost nginx-1.20.1]<span class="hljs-comment"># make &amp;&amp; make install</span><br></code></pre></td></tr></table></figure>
+<p>安装完成后，在<code>/usr/local/</code>目录会生成<code>nginx</code>的安装包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@localhost <span class="hljs-built_in">local</span>]<span class="hljs-comment"># ls</span><br>bin  etc  games  include  lib  lib64  libexec  mysql  nginx  redis  sbin  share  src<br></code></pre></td></tr></table></figure>
+<p>4、<strong>启动并测试Nginx</strong></p>
+<p>在<code>/usr/local/nginx/sbin</code>目录下就包括了Nginx的启动脚本。直接执行脚本即可启动Nginx服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@localhost sbin]<span class="hljs-comment"># ./nginx</span><br></code></pre></td></tr></table></figure>
+<p>在<code>/usr/local/nginx/conf/</code>目录下包括了各种配置文件，其中<code>nginx.conf</code>为nginx的配置文件，里面配置了Nginx的默认监听端口为<code>80</code>，我们可以使用<code>curl</code>命令访问测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@localhost conf]<span class="hljs-comment"># curl localhost:80</span><br>&lt;!DOCTYPE html&gt;<br>&lt;html&gt;<br>&lt;head&gt;<br>&lt;title&gt;Welcome to nginx!&lt;/title&gt;<br>&lt;style&gt;<br>    body &#123;<br>        width: 35em;<br>        margin: 0 auto;<br>        font-family: Tahoma, Verdana, Arial, sans-serif;<br>    &#125;<br>&lt;/style&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;<br>&lt;p&gt;If you see this page, the nginx web server is successfully installed and<br>working. Further configuration is required.&lt;/p&gt;<br><br>&lt;p&gt;For online documentation and support please refer to<br>&lt;a href=<span class="hljs-string">&quot;http://nginx.org/&quot;</span>&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;<br>Commercial support is available at<br>&lt;a href=<span class="hljs-string">&quot;http://nginx.com/&quot;</span>&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;<br><br>&lt;p&gt;&lt;em&gt;Thank you <span class="hljs-keyword">for</span> using nginx.&lt;/em&gt;&lt;/p&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></td></tr></table></figure>
+<p>可以看到，返回了html页面的内容，说明安装成功，并能够连接到Nginx。</p>
+<p>5、<strong>修改端口号</strong></p>
+<p>默认情况下，由于防火墙限制，外界是无法直接访问Linux中Nginx的，有两个解决方法：</p>
+<ul>
+<li><p>关闭Linux的防火墙。</p>
+</li>
+<li><p>开放访问的端口号，不需要关闭防火墙。</p>
+<ul>
+<li><p>查看开放的端口号：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">firewall-cmd --list-all<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>设置要开放的端口号：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 将80端口开放，并使其永久生效</span><br>firewall-cmd --add-port=80/tcp --permanent<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>重启防火墙即可生效。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">firewall-cmd --reload<br></code></pre></td></tr></table></figure>
+<p>或者使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">systemctl restart firewalld.service<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这样，即使不关闭防火墙，外界也能通过地址访问到Nginx。</p>
+</li>
+</ul>
+<h1 id="二、常用命令"><a href="#二、常用命令" class="headerlink" title="二、常用命令"></a>二、常用命令</h1><p>如果不配置环境变量，则使用Nginx命令需要在按照目录下面的<code>sbin/</code>目录中使用，即<code>/usr/local/nginx/sbin/</code>目录里面。</p>
+<p>1、查看Nginx的版本号：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@localhost sbin]<span class="hljs-comment"># ./nginx -v</span><br>nginx version: nginx/1.20.1<br></code></pre></td></tr></table></figure>
+<p>2、查看帮助：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@localhost sbin]<span class="hljs-comment"># ./nginx -h</span><br>nginx version: nginx/1.20.1<br>Usage: nginx [-?hvVtTq] [-s signal] [-p prefix]<br>             [-e filename] [-c filename] [-g directives]<br><br>Options:<br>  -?,-h         : this <span class="hljs-built_in">help</span><br>  -v            : show version and <span class="hljs-built_in">exit</span><br>  -V            : show version and configure options <span class="hljs-keyword">then</span> <span class="hljs-built_in">exit</span><br>  -t            : <span class="hljs-built_in">test</span> configuration and <span class="hljs-built_in">exit</span><br>  -T            : <span class="hljs-built_in">test</span> configuration, dump it and <span class="hljs-built_in">exit</span><br>  -q            : suppress non-error messages during configuration testing<br>  -s signal     : send signal to a master process: stop, quit, reopen, reload<br>  -p prefix     : <span class="hljs-built_in">set</span> prefix path (default: /usr/<span class="hljs-built_in">local</span>/nginx/)<br>  -e filename   : <span class="hljs-built_in">set</span> error <span class="hljs-built_in">log</span> file (default: logs/error.log)<br>  -c filename   : <span class="hljs-built_in">set</span> configuration file (default: conf/nginx.conf)<br>  -g directives : <span class="hljs-built_in">set</span> global directives out of configuration file<br><br></code></pre></td></tr></table></figure>
+<p>3、启动Nginx：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@localhost sbin]<span class="hljs-comment"># ./nginx</span><br></code></pre></td></tr></table></figure>
+<p>4、关闭Nginx：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@localhost sbin]<span class="hljs-comment"># ./nginx -s stop</span><br></code></pre></td></tr></table></figure>
+<p>5、重新加载Nginx，即不需要重启，只重新加载配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@localhost sbin]<span class="hljs-comment"># ./nginx -s reload</span><br></code></pre></td></tr></table></figure>
+<h1 id="三、Nginx配置文件"><a href="#三、Nginx配置文件" class="headerlink" title="三、Nginx配置文件"></a>三、Nginx配置文件</h1><p>Nginx的配置文件默认为<code>/usr/local/nginx/conf/nginx.conf</code>。</p>
+<p><code>nginx.conf</code>配置文件主要有三部分组成：</p>
+<p><strong>第一部分：全局块</strong></p>
+<p>全局块指的是配置文件开始到events块之间的内容。主要配置服务器整体运行的配置指令，比如配置运行Nginx服务器的用户（组）、允许生成的worker process数，进程PID存放路径、日志存放路径和类型以及配置文件的引入等。</p>
+<p><strong>第二部分：events块</strong></p>
+<p>events块主要影响Nginx服务器和用户的网络连接。常用的设置包括是否开启对多work process下的网络连接进行序列化，是否允许同时接收多个网络连接，选取哪种事件驱动模型来处理连接请求，每个word process可以同时支持的最大连接数等。</p>
+<p>这部分配置对Nginx的性能影响较大。</p>
+<p><strong>第三部分：http块</strong></p>
+<p>http块是Nginx服务器配置中最频繁的部分，代理、缓存和日志定义等绝大多数功能和第三方模块的配置都在这里。</p>
+<p>http块又分为<strong>http全局块</strong>和<strong>server块</strong>。</p>
+<ul>
+<li>http全局块：包括文件引入、MIME-TYPE定义、日志自定义、连接超时时间、单链接请求数上限等。</li>
+<li>server块：每个http块可以包括多个server块，每个server块相当于一个虚拟主机。每个server块也分为全局server块和location块：<ul>
+<li>全局server块：常见的配置包括本虚拟主机的监听配置、名称或IP配置</li>
+<li>location块：一个server块可以配置多个location块。主要作用是基于Nginx服务器接收到的请求字符串，对虚拟主机名称之外的字符串进行匹配，对特定的请求进行处理。地址定向、数据缓存和应答控制等功能，以及一些第三方模块的配置也在这里进行。</li>
+</ul>
+</li>
+</ul>
+<h1 id="四、反向代理"><a href="#四、反向代理" class="headerlink" title="四、反向代理"></a>四、反向代理</h1><h2 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h2><p><strong>正向代理：代理的对象是客户端。</strong>客户端通过代理访问服务器，但服务端不知道具体的客户端是谁。</p>
+<p><strong>反向代理：代理的对象是服务器。</strong>客户端直接访问代理，代理去访问服务器，客户端只知道代理是谁，不知道服务器是谁。</p>
+<h2 id="2、实例一"><a href="#2、实例一" class="headerlink" title="2、实例一"></a>2、实例一</h2><p><strong>实现效果</strong>：在浏览器中访问<code>www.hellonginx.com</code>，跳转到Linux系统tomcat主页面中。</p>
+<blockquote>
+<p>流程：<code>www.hellonginx.com</code>—-&gt;Nginx代理服务器—-&gt;tomcat服务器</p>
+</blockquote>
+<p><strong>准备工作</strong>：</p>
+<ul>
+<li>确保Linux系统安装了tomcat，这里使用默认端口8080。</li>
+<li>确保外界能够访问到Linux系统中的tomcat。可以通过设置开放端口、直接关闭防火墙两种方式。</li>
+</ul>
+<p><strong>具体配置</strong>：</p>
+<p>1、将域名和Nginx主机地址做映射。</p>
+<p>在Windows系统的host文件中进行域名和ip对应关系的配置，即域名对应Nginx的主机地址，例<code>www.hellonginx.com</code>—-<code>192.168.198.198:80</code>。</p>
+<p>在<code>C:\Windows\System32\drivers\etc\hosts</code>文件中，添加内容：</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs accesslog"><span class="hljs-number">192.168.198.198</span> www.hellonginx.com<br></code></pre></td></tr></table></figure>
+<p>配置好以后，在Windows系统浏览器中输入<code>www.hellonginx.com</code>就会访问Linux系统的Nginx，因为http默认端口就是80端口。</p>
+<p>2、在Nginx中进行请求转发的配置（反向代理配置）。</p>
+<p>在Nginx的配置文件<code>nginx.conf</code>中，在http块的server块中，将主机名改为主机ip地址，然后在<code>location</code>块中，添加请求转发的地址：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">proxy_pass http:<span class="hljs-regexp">//</span><span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>:<span class="hljs-number">8080</span><br></code></pre></td></tr></table></figure>
+<p>配置好以后的内容如下图：</p>
+<p><img    class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/nginx_1.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">反向代理配置</span></p>
+<p>保存以后，重启Nginx服务即可生效。</p>
+<p><img    class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/nginx_2.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">反向代理成功</span></p>
+<h2 id="3、实例二"><a href="#3、实例二" class="headerlink" title="3、实例二"></a>3、实例二</h2><p><strong>实现效果</strong>：使用Nginx反向代理，根据访问的路径跳转到不同端口的服务中。</p>
+<p>比如Nginx的监听端口为9001：</p>
+<ul>
+<li>访问<code>http://192.168.198.198:9001/edu/</code>，直接跳转到<code>192.168.198.198:8080</code></li>
+<li>访问<code>http://192.168.198.198:9001/vod/</code>，直接跳转到<code>192.168.198.198:8081</code></li>
+</ul>
+<p><strong>准备工作</strong>：</p>
+<p>1、需要准备两个tomcat服务器，一个是8080端口，一个是8081端口。</p>
+<p>可以使用docker容器，创建两个容器，分别用两个端口映射。也可以使用基础的方法，安装两个tomcat，将其中一个tomcat的默认端口号改为<code>8081</code>，在安装目录的<code>server.xml</code>文件中修改端口号。</p>
+<p>启动两个tomcat。</p>
+<p><img    class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/nginx_3.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">成功启动两个tomcat</span></p>
+<p>2、在两个tomcat服务器中分别准备两个测试页面。</p>
+<ul>
+<li>在8080端口的tomcat服务器的<code>webapps</code>文件夹中创建目录<code>edu</code>，然后创建文件<code>edu/0.html</code>，测试通过<code>192.168.198.198:8080/edu/0.html</code>能够访问成功。</li>
+<li>在8081端口的tomcat服务器的<code>webapps</code>文件夹中创建目录<code>vod</code>，然后创建文件<code>edu/1.html</code>，测试通过<code>192.168.198.198:8081/edu/1.html</code>能够访问成功。</li>
+</ul>
+<p><strong>具体配置：</strong></p>
+<p>在Nginx的配置中，在http块中添加一个server块，内容如下</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-section">server</span> &#123;<br>    <span class="hljs-attribute">listen</span>       <span class="hljs-number">9001</span>;    <span class="hljs-comment"># 监听端口9001</span><br>    <span class="hljs-attribute">server_name</span>  <span class="hljs-number">192.168.198.198</span>;  <span class="hljs-comment">#代理服务器ip</span><br>  <br>    <span class="hljs-attribute">location</span> ~/edu/ &#123;  <span class="hljs-comment"># 添加规则：如果请求中包括edu，则跳转到http://127.0.0.1:8080</span><br>        <span class="hljs-attribute">proxy_pass</span>   http://127.0.0.1:8080;<br>    &#125;<br>    <span class="hljs-attribute">location</span> ~/vod/ &#123;<br>        <span class="hljs-attribute">proxy_pass</span>   http://127.0.0.1:8081;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>location后面的<code>~</code>表示后面的字符串是正则表达式形式。</p>
+<p>注意：如果是在外面系统访问Linux中的Nginx，记得开放端口，9001、8080、8081都需要开放。</p>
+</blockquote>
+<p><strong>代理结果</strong></p>
+<p>配置好以后，重新加载Nginx或者重启服务即可。就可以实现根据条件代理到不同服务器的效果：</p>
+<p><img    class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/nginx_4.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">反向代理不同服务器</span></p>
+<blockquote>
+<p>浏览器访问192.168.198.198:9001/edu/0.html，通过Nginx反向代理，会访问192.168.198.198:8080/edu/0.html</p>
+<p>关于location反向代理的匹配规则，可以参考：<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000009651161">https://segmentfault.com/a/1190000009651161</a></p>
+</blockquote>
+<h1 id="五、负载均衡"><a href="#五、负载均衡" class="headerlink" title="五、负载均衡"></a>五、负载均衡</h1><h2 id="1、实例"><a href="#1、实例" class="headerlink" title="1、实例"></a>1、实例</h2><p><strong>实现目标</strong></p>
+<p>在浏览器输入<code>http://192.168.198.198/edu/a.html</code>，通过负载均衡，将请求平均分发到<code>8080</code>和<code>8081</code>两个tomcat服务器上。</p>
+<p><strong>准备工作</strong></p>
+<p>准备两台tomcat服务器，一台端口为是<code>8080</code>，另一台为<code>8081</code>。确保在Linux系统外都能够访问到这两个服务器。</p>
+<p>在两个tomcat服务器的<code>webapps</code>目录下，创建<code>edu/a.html</code>文件，用于测试</p>
+<p><strong>具体配置</strong></p>
+<p>在Nginx的配置文件<code>nginx.conf</code>中配置。</p>
+<ul>
+<li>在<strong>http块</strong>中添加<code>upstream</code>，命名为<code>myserver</code>，然后列出服务器的列表。</li>
+<li>在<strong>server块</strong>中的<code>location</code>中添加规则，设置<code>proxy_pass</code>的值为<code>http://myserver</code>。</li>
+</ul>
+<p><img    class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/nginx_5.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">负载均衡配置</span></p>
+<p>重新加载Nginx即可生效。这样，每次访问<code>192.168.198.198:80</code>时，Nginx服务器会将请求根据配置要求分发到<code>myserver</code>列出的服务器中。</p>
+<h2 id="2、分配策略"><a href="#2、分配策略" class="headerlink" title="2、分配策略"></a>2、分配策略</h2><p>Nginx的实现负载均衡有以下几种分配服务器策略：</p>
+<p><strong>1、轮询（默认）</strong></p>
+<p>轮询方式是Nginx默认的分配方式。</p>
+<p>轮询是指每个请求按时间顺序<strong>逐一分配</strong>到不同的后端服务器，如果后端服务器down掉，能自动剔除。</p>
+<p><strong>2、权重weight</strong></p>
+<p>weight表示权重，默认为1，权重越高被分配的客户端越多。</p>
+<p>配置方式：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs routeros">upstream server_pool&#123;<br><span class="hljs-built_in">	server </span>192.168.198.198:8080 <span class="hljs-attribute">weight</span>=5;<br><span class="hljs-built_in">	server </span>192.168.198.198:8081 <span class="hljs-attribute">weight</span>=10;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>3、ip_hash</strong></p>
+<p>每个请求按访问ip的hash结果分配，这样同一个ip地址每次访问固定的一个后端服务器，可以解决session共享的问题。</p>
+<p>配置方式：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs routeros">upstream server_pool&#123;<br>	ip_hash;<br><span class="hljs-built_in">	server </span>192.168.198.198:8080;<br><span class="hljs-built_in">	server </span>192.168.198.198:8081;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>4、fair</strong></p>
+<p>按照后端服务器的响应时间分配请求，响应时间短的优先分配。</p>
+<p>配置方式：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs routeros">upstream server_pool&#123;<br><span class="hljs-built_in">	server </span>192.168.198.198:8080;<br><span class="hljs-built_in">	server </span>192.168.198.198:8081;<br>	fair;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="六、动静分离"><a href="#六、动静分离" class="headerlink" title="六、动静分离"></a>六、动静分离</h1><h2 id="1、概念-1"><a href="#1、概念-1" class="headerlink" title="1、概念"></a>1、概念</h2><p>动静分离：将<strong>动态请求</strong>和<strong>静态请求</strong>分开，可以理解为使用Nginx处理静态页面，Tomcat处理动态页面。</p>
+<blockquote>
+<p>静态请求比如html页面、css样式、image图片等。</p>
+<p>动态请求比如请求数据库的数据等。</p>
+</blockquote>
+<p>动静分离有两种实现方式：</p>
+<ul>
+<li>第一种是将静态文件独立成单独的域名，放在独立的服务器上。是目前常用的方法。</li>
+<li>第二种是动态和静态文件混合在一起发布，通过Nginx分开。</li>
+</ul>
+<blockquote>
+<p>通过配置文件的<code>location</code>可以指定不同的后缀名实现不同的请求转发。</p>
+<p>expires参数可以设置浏览器缓存的过期时间。每次请求时，会对比服务器文件的更新时间，如果没有变化，则直接从浏览器缓存中取数据，否则才会从服务器下载。适合不经常变动的资源。</p>
+</blockquote>
+<h2 id="2、实例"><a href="#2、实例" class="headerlink" title="2、实例"></a>2、实例</h2><p><strong>实现目标</strong></p>
+<p>对于静态资源，使用Nginx访问，不通过tomcat服务器。</p>
+<p><strong>资源准备</strong></p>
+<p>准备好<code>a.html</code>和一个图片，例如<code>/data/www/a.html</code>和<code>/data/image/abc.jpg</code>。</p>
+<p><strong>具体配置</strong></p>
+<p>主要配置是在<code>server块</code>的<code>location</code>中：</p>
+<p><img    class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/nginx_6.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">动静分离配置</span></p>
+<p><code>root</code>表示根目录，以<code>/www/</code>为例，当访问<code>192.168.198.198/www/a.html</code>时，Nginx会去访问<code>/data/www/a.html</code>。</p>
+<p><code>index</code>用于查找主页。</p>
+<p><code>autoindex on</code>表示开启自动显示目录。</p>
+<p>效果如下，这样的静态请求不会经过tomcat，由Nginx代理直接访问指定的目录。因此即使tomcat关闭，不会影响以下请求：</p>
+<p><img    class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/nginx_7.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">动静分离实现效果</span></p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Kangshitao</li>
+    <li><strong>本文链接：</strong><a href="http://kangshitao.github.io/2021/10/09/nginx/index.html" title="http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2021&#x2F;10&#x2F;09&#x2F;nginx&#x2F;index.html">http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2021&#x2F;10&#x2F;09&#x2F;nginx&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/10/26/rabbitmq/"><i class="iconfont iconleft"></i>RabbitMQ学习笔记</a>
+    <a href="/2021/07/30/redis/">Redis基础<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+        <section class="comments">
+  
+    <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz",
+        app_key: "XipU873t8gkSypbwl1HWUARD",
+        placeholder: "write comment content...",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+		var title1="text=Live and Learn有新评论啦~ --by Valine"
+		var SCKEY_Server="SCT21455TskriUeyliOqL6kHLhiCOMmlB"
+		var ValineButton=document.getElementsByClassName("vsubmit vbtn")[0];
+		function send_valine_Server(){
+			var text="desp=";
+			var pageurl=document.URL;
+			var ptime=new Date();
+			var vnick=document.getElementsByClassName("vnick vinput")[0].value;
+			var veditor=document.getElementsByClassName("veditor vinput")[0].value;
+			var data=text+"|昵称"+"|评论内容"+"|跳转链接"+"|评论时间"+"\n"+"|----|----|----|----|"+"\n"+"|"+vnick+"|"+veditor+"|"+pageurl+"|" +ptime.toLocaleString()+"|";
+			var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+			httpRequest.open('POST', 'https://sctapi.ftqq.com/'+SCKEY_Server+'.send', true); //第二步：打开连接
+			httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）
+			httpRequest.send(title1+"&"+data);//发送请求 将请头体体写在send中
+		};
+		ValineButton.onclick=send_valine_Server;
+      });
+    } else {
+      loadValine();
+    }
+  };
+ 
+</script>
+
+
+</section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85Nginx"><span class="toc-text">一、安装Nginx</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">二、常用命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81Nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">三、Nginx配置文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86"><span class="toc-text">四、反向代理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E6%A6%82%E5%BF%B5"><span class="toc-text">1、概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%AE%9E%E4%BE%8B%E4%B8%80"><span class="toc-text">2、实例一</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%AE%9E%E4%BE%8B%E4%BA%8C"><span class="toc-text">3、实例二</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-text">五、负载均衡</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%AE%9E%E4%BE%8B"><span class="toc-text">1、实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5"><span class="toc-text">2、分配策略</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB"><span class="toc-text">六、动静分离</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E6%A6%82%E5%BF%B5-1"><span class="toc-text">1、概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%AE%9E%E4%BE%8B"><span class="toc-text">2、实例</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1574716653 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/kangshitao "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#24292E'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:1574716653@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">Total:
+  <span id="busuanzi_value_site_pv" style="font-size:12px;"></span></span>
+  <span id="busuanzi_container_site_uv" >| Visitors:
+  <span id="busuanzi_value_site_uv" style="font-size:12px;"></span></span>
+  </div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+  
+  
+<script src="/js/clicklove.js"></script>
+<!-- 页面点击小红心 -->
+  
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz',
+      appKey: 'XipU873t8gkSypbwl1HWUARD',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud").each(async (e) => {
+        const url = $(".leancloud").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud").eq(e).text(count ? count : '--');
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud").length === 1 ? $(".leancloud").attr('id').trim() : 'http://kangshitao.github.io';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    $(function () {
+	  const Counter = AV.Object.extend("Counter");
+	  showCount(Counter);
+      const localhost = /http\:\/\/localhost|http\:\/\/127.0.0.1|http\:\/\/0.0.0.0/;
+      if (localhost.test(document.URL)) {
+	    return;
+	  }
+	  addCount(Counter);
+    });
+  });
+</script>
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <script>
+    window.ga = window.ga || function () {
+      (ga.q = ga.q || []).push(arguments)
+    };
+    ga.l = +new Date;
+    ga('create', 'G-0FZTGJZNYS', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</html>

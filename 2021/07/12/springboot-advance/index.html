@@ -1,0 +1,843 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>SpringBoot2-配置与原理深入解析 - Live And Learn</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="hexo-blog,live and learn,kangshitao, Spring,SpringBoot2,Profile">
+  <meta name="description" content="一、SpringBoot自动配置原理SpringBoo...">
+  <meta name="author" content="Kangshitao">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/atelier-heath-light.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/monokai-sublime.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg',
+        wechat: 'https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '心之所向，素履以往',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'normal'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Live And Learn" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">SpringBoot2-配置与原理深入解析</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/archives " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/post_image_3.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">SpringBoot2-配置与原理深入解析</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>七月 12, 2021</span>
+      
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2021/07/12/springboot-advance/" class="leancloud" data-flag-title="SpringBoot2-配置与原理深入解析"></span>
+        </span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>14434</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="一、SpringBoot自动配置原理"><a href="#一、SpringBoot自动配置原理" class="headerlink" title="一、SpringBoot自动配置原理"></a>一、SpringBoot自动配置原理</h1><p>SpringBoot中的自动配置原理，需要从<code>@SpringBootApplication</code>这个注解出发。</p>
+<p>这个注解相当于以下三个注解：</p>
+<ul>
+<li><code>@SpringBootConfiguration</code>：等价于<code>@Configuration</code>，表明这是一个SpringBoot项目的配置类。</li>
+<li><code>@EnableAutoConfiguration</code>：开启自动配置功能。</li>
+<li><code>@ComponentScan</code>：自动扫描并加载<strong>给定的路径中</strong>符合条件的组件，注入到IOC容器中。</li>
+</ul>
+<p>其中自动配置的原理，就和<code>@EnableAutoConfiguration</code>有关。</p>
+<p>下面着重对其进行分析。</p>
+<p><code>@EnableAutoConfiguration</code>的源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@AutoConfigurationPackage</span><br><span class="hljs-meta">@Import(AutoConfigurationImportSelector.class)</span><br><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> EnableAutoConfiguration &#123;&#125;<br></code></pre></td></tr></table></figure>
+<p>可以看到，<code>@EnableAutoConfiguration</code>是由<code>@AutoConfigurationPackage</code>和<code>@Import</code>两个注解组成的。</p>
+<p>其中<code>@AutoConfigurationPackage</code>会自动导入主程序所在包及其子包的一系列组件。即<strong>自动导入包机制。</strong></p>
+<p><code>@Import</code>主要是按需加载自动配置类，将生效的自动配置类加载到容器。</p>
+<p>下面对这两个注解详细分析。</p>
+<h2 id="1-1-AutoConfigurationPackage自动导包"><a href="#1-1-AutoConfigurationPackage自动导包" class="headerlink" title="1.1 @AutoConfigurationPackage自动导包"></a>1.1 @AutoConfigurationPackage自动导包</h2><p><code>@AutoConfigurationPackage</code>注解是用来自动导入包的，下面深入解析其是如何导入的。</p>
+<p>进入其源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Import(AutoConfigurationPackages.Registrar.class)</span><br><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> AutoConfigurationPackage &#123;&#125;<br></code></pre></td></tr></table></figure>
+<p>可以看到，<code>AutoConfigurationPackage</code>为我们自动引入了一个注册器。继续进入<code>AutoConfigurationPackages.Registrar</code>：</p>
+<p><img    class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/springboot-advance_1.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">内部类Registrar的声明</span></p>
+<p><code>Registrar</code>是<code>AutoConfigurationPackages</code>的一个内部类，其中有两个方法，主要关注第一个方法。</p>
+<p>对<code>registerBeanDefinitions()</code>这个方法进行分析</p>
+<ul>
+<li><code>metadata</code>参数：注解的元信息。这里指的是<code>@AutoConfigurationPackage</code>这个注解，而这个注解相当于直接配置在了启动类上，因此从元信息中获取包名，就是启动类所在的目录名。比如当前启动类在<code>com/kang/root</code>目录下，则<code>new PackageImports(metadata).getPackageNames()</code>的值为<code>com.kang.root</code>。</li>
+<li><code>register()</code>：将指定目录下的包的所有组件注册进来。</li>
+</ul>
+<p>由此，我们可以得知，<strong><code>@AutoConfigurationPackage</code>注解，利用<code>Registrar</code>给容器中导入一系列组件，将指定的一个包下的所有组件导入进来，这个包就是主程序所在的包。</strong></p>
+<p>因此我们可以解释，为什么SpringBoot扫描包的路径就是主程序所在包及其子包。</p>
+<h2 id="1-2-Import-按需加载配置类"><a href="#1-2-Import-按需加载配置类" class="headerlink" title="1.2 @Import 按需加载配置类"></a>1.2 @Import 按需加载配置类</h2><p><code>@EnableAutoConfiguration</code>第二个重要的注解是<code>@Import</code>，其引入了<code>AutoConfigurationImportSelector</code>，这个类的继承体系如下：</p>
+<p><img    class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/springboot-advance_2.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">AutoConfigurationImportSelector的继承体系</span></p>
+<p>可以看到其实现了<code>ImportSelector</code>接口，并且实现了这个接口的<code>selectImports</code>方法，这个方法主要用于<strong>获取所有符合条件的全限定类名，这些类需要被加载到IOC容器中</strong>。</p>
+<p><code>AutoConfigurationImportSelector</code>类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-keyword">public</span> String[] selectImports(AnnotationMetadata annotationMetadata) &#123;<br>    <span class="hljs-comment">//判断自动装配开关是否打开</span><br>    <span class="hljs-keyword">if</span> (!isEnabled(annotationMetadata)) &#123;<br>        <span class="hljs-keyword">return</span> NO_IMPORTS;<br>    &#125;<br>    <span class="hljs-comment">//获取所有需要装配的bean</span><br>    AutoConfigurationEntry autoConfigurationEntry =<br>        getAutoConfigurationEntry(annotationMetadata);<br>    <span class="hljs-keyword">return</span> StringUtils.toStringArray(autoConfigurationEntry.getConfigurations());<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>接下来进入<code>getAutoConfigurationEntry()</code>这个方法，查看是如何获取需要装配的bean的。</p>
+<p>这个方法的源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> AutoConfigurationEntry <span class="hljs-title">getAutoConfigurationEntry</span><span class="hljs-params">(</span></span><br><span class="hljs-function"><span class="hljs-params">    AnnotationMetadata annotationMetadata)</span> </span>&#123;<br>    <span class="hljs-comment">//1.判断自动装配开关是否打开</span><br>    <span class="hljs-keyword">if</span> (!isEnabled(annotationMetadata)) &#123;<br>        <span class="hljs-keyword">return</span> EMPTY_ENTRY;<br>    &#125;<br>    <span class="hljs-comment">//2.</span><br>    AnnotationAttributes attributes = getAttributes(annotationMetadata);<br>    <span class="hljs-comment">//3.扫描spring.factories下需要自动装配的所有类</span><br>    List&lt;String&gt; configurations = getCandidateConfigurations(annotationMetadata,<br>                                                             attributes);<br>    <span class="hljs-comment">//4.下面是过滤出真正需要加载的类。</span><br>    configurations = removeDuplicates(configurations);<br>    Set&lt;String&gt; exclusions = getExclusions(annotationMetadata, attributes);<br>    checkExcludedClasses(configurations, exclusions);<br>    configurations.removeAll(exclusions);<br>    configurations = getConfigurationClassFilter().filter(configurations);<br>    fireAutoConfigurationImportEvents(configurations, exclusions);<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> AutoConfigurationEntry(configurations, exclusions);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>代码解析如下：</p>
+<p>1、判断自动装配开关是否打开，即<code>spring.boot.enableautoconfiguration</code>的值是否为true.</p>
+<p>2、获取<code>@EnableAutoConfiguration</code>注解的所有属性，即<code>exclude</code>和<code>excludeName</code>。</p>
+<p>3、<code>getCandidateConfigurations()</code>方法，从<code>META-INF/spring.factories</code>中获取所有需要自动装配的配置类。</p>
+<ul>
+<li><p>内部调用<code>SpringFactoriesLoader.loadFactoryNames()</code>，然后调用<code>loadSpringFactories()</code>方法。然后进入这个方法。</p>
+<ul>
+<li><p>可以看到，这个方法加载了<code>META-INF/spring.factories</code>这个配置文件，默认扫描当前系统里面所有的<code>META-INF/spring.factories</code>位置的文件。</p>
+</li>
+<li><p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/springboot-advance_3.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt=""></p>
+</li>
+<li><p>当前版本一共131个需要自动装配的类，没有第三方starter时，他们都是来自<code>spring-boot-autoconfigure-2.5.2</code>包里的<code>META-INF/spring.factories</code>文件。这个自动配置包里面规定了SpringBoot自动配置的一些属性，其中的<code>EnableAutoConfiguration</code>属性就是所有要自动装配的类，如图。</p>
+<p><img    class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/springboot-advance_4.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">META-INF/spring.factories里配置的需要自动装配的类</span></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>因此，如果我们想要实现一个starter，就必须在<code>META-INF/spring.factories</code>文件中配置这样的配置项，指定要加载的自动配置包。</p>
+<p>这一步中将自动配置类的所有需要加载的包都读取过来了，那么这些包必须全部加载吗？答案是否定的。</p>
+<p>顺着源码继续往下。</p>
+<p>4、<strong>按需开启自动配置项</strong>。虽然读取了所有需要自动加载的类，但是这些类生效都是有条件的，比如需要导入相关的包，这个类才能被加载。因此最终只加载生效的部分类。</p>
+<blockquote>
+<p>配置类中使用@Condition条件装配，判断当前类是否生效。</p>
+</blockquote>
+<h2 id="1-3-总结"><a href="#1-3-总结" class="headerlink" title="1.3 总结"></a>1.3 总结</h2><p>关于自动配置：</p>
+<ul>
+<li>SpringBoot先读取所有的自动配置类：<code>xxxxxAutoConfiguration</code></li>
+<li>每个自动配置类按照条件生效，默认都会绑定<code>xxxxProperties</code>类，这个类里面设置了默认的值。</li>
+<li><p><code>xxxProperties</code>类和配置文件进行了绑定，可以通过配置文件对默认值进行设置。</p>
+</li>
+<li><p>生效的配置类就会给容器中装配很多组件。只要容器中有这些组件，相当于这些功能就有了</p>
+</li>
+</ul>
+<p>如果我们需要的包没有被starter，则需要手动导入。</p>
+<p>我们可以在配置文件中对配置项的值进行修改。</p>
+<h1 id="二、Profile功能"><a href="#二、Profile功能" class="headerlink" title="二、Profile功能"></a>二、Profile功能</h1><p>为了方便多环境适配，SpringBoot简化了profile功能。</p>
+<p>我们可以配置多套环境，比如测试环境和生产环境，可以方便的在不同的环境中切换。</p>
+<p>比如同时配置多个配置文件，表示多个配置环境，根据需求使用不同的配置：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs applescript"><span class="hljs-built_in">application</span>.yaml     总配置文件<br><span class="hljs-built_in">application</span>-test.yaml  test环境<br><span class="hljs-built_in">application</span>-prod.yaml  prod环境<br>...<br></code></pre></td></tr></table></figure>
+<h2 id="2-1-application-profile功能"><a href="#2-1-application-profile功能" class="headerlink" title="2.1 application-profile功能"></a>2.1 application-profile功能</h2><ul>
+<li>默认配置文件 <code>application.yaml</code>任何时候都会加载</li>
+<li><p>指定环境配置文件，格式： application-{env}.yaml，比如application-prod.yaml文件，代表<code>prod</code>环境。</p>
+</li>
+<li><p>激活指定环境：</p>
+<ul>
+<li><p>方式一：使用配置文件激活。比如在默认配置文件中使用<code>spring.profiles.active=test</code>激活test环境。</p>
+</li>
+<li><p>方式二：命令行激活。对于已经打包的程序，命令行也能够<strong>指定环境并修改配置文件的任意值</strong>。比如使用命令行激活prod环境，并指定参数值</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 这时，命令行的参数值会生效</span><br>java -jar xxx.jar --spring.profiles.active=prod  --person.name=haha<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>默认配置与环境配置同时生效</p>
+</li>
+<li>对于同名配置项，指定的环境配置生效。</li>
+</ul>
+<h2 id="2-2-Profile条件装配功能"><a href="#2-2-Profile条件装配功能" class="headerlink" title="2.2 @Profile条件装配功能"></a>2.2 @Profile条件装配功能</h2><p>@Profile可以用在类上或者方法上，表示只有在指定的环境下才生效。</p>
+<p>比如<code>@Profile(&quot;test&quot;)</code>标注，表示这个类/方法只有在test环境下才生效。</p>
+<p>比如：</p>
+<p><code>person.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span><br><span class="hljs-meta">@ConfigurationProperties(&quot;person&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Person</span> </span>&#123;&#125;<br></code></pre></td></tr></table></figure>
+<p><code>Boss.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//这个类只在prod环境下注册</span><br><span class="hljs-meta">@Profile(&quot;prod&quot;)</span>  <br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Boss</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Person</span></span>&#123;<br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-keyword">private</span> Integer age;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;<span class="hljs-keyword">return</span> name;&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span> </span>&#123;<span class="hljs-keyword">this</span>.name = name;&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Integer <span class="hljs-title">getAge</span><span class="hljs-params">()</span> </span>&#123;<span class="hljs-keyword">return</span> age;&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(Integer age)</span> </span>&#123;<span class="hljs-keyword">this</span>.age = age;&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><code>Worker.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//这个类只在test环境下注册</span><br><span class="hljs-meta">@Profile(&quot;test&quot;)</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Worker</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Person</span></span>&#123;<br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-keyword">private</span> Integer age;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;<span class="hljs-keyword">return</span> name;&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span> </span>&#123;<span class="hljs-keyword">this</span>.name = name;&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Integer <span class="hljs-title">getAge</span><span class="hljs-params">()</span> </span>&#123;<span class="hljs-keyword">return</span> age;&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(Integer age)</span> </span>&#123;<span class="hljs-keyword">this</span>.age = age;&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>然后定义一个<code>controller</code>类，<code>HelloController.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloController</span> </span>&#123;<br>    <span class="hljs-meta">@Autowired</span><br>    Person person;<br><br>    <span class="hljs-meta">@GetMapping(&quot;/&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String  <span class="hljs-title">hello</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> person.getClass().getName();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这样，如果在<code>test</code>环境下，访问主页就会返回<code>com.kang.boot.bean.Worker</code>，如果在<code>prob</code>环境下，返回值为<code>com.kang.boot.bean.Boss</code>。</p>
+<h2 id="2-3-profile分组"><a href="#2-3-profile分组" class="headerlink" title="2.3 profile分组"></a>2.3 profile分组</h2><p>可以使用<code>spring.profiles.group</code>对配置文件进行分组，然后同时激活同一个组的多个配置文件。比如：</p>
+<p><code>application.properties</code></p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment"># 激活myprod组</span><br><span class="hljs-meta">spring.profiles.active</span>=<span class="hljs-string">myprod</span><br><br><span class="hljs-comment"># 定义两个配置组，myprod和mytest</span><br><span class="hljs-meta">spring.profiles.group.myprod[0]</span>=<span class="hljs-string">prod</span><br><span class="hljs-meta">spring.profiles.group.myprod[1]</span>=<span class="hljs-string">prod2</span><br><span class="hljs-meta">spring.profiles.group.mytest[0]</span>=<span class="hljs-string">test</span><br></code></pre></td></tr></table></figure>
+<h1 id="三、配置加载优先级"><a href="#三、配置加载优先级" class="headerlink" title="三、配置加载优先级"></a>三、配置加载优先级</h1><p>参考官方文档<a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#boot-features-external-config">Externalized Configuration</a></p>
+<p>后加载的会覆盖前面加载的。</p>
+<p>根据官方文档，SpringBoot的配置文件可以来自于以下方面，按照从上往下的顺序，其中后加载的会覆盖前面的：</p>
+<ul>
+<li>Default properties (specified by setting <code>SpringApplication.setDefaultProperties</code>).</li>
+<li><code>@PropertySource</code> annotations on your <code>@Configuration</code> classes. Please note that such property sources are not added to the <code>Environment</code> until the application context is being refreshed. This is too late to configure certain properties such as <code>logging.*</code> and <code>spring.main.*</code> which are read before refresh begins.</li>
+<li><strong>Config data (such as<code>application.properties</code> files)</strong></li>
+<li>A <code>RandomValuePropertySource</code> that has properties only in <code>random.*</code>.</li>
+<li>OS environment variables.</li>
+<li>Java System properties (<code>System.getProperties()</code>).</li>
+<li>JNDI attributes from <code>java:comp/env</code>.</li>
+<li><code>ServletContext</code> init parameters.</li>
+<li><code>ServletConfig</code> init parameters.</li>
+<li>Properties from <code>SPRING_APPLICATION_JSON</code> (inline JSON embedded in an environment variable or system property).</li>
+<li><strong>Command line arguments.</strong></li>
+<li><code>properties</code> attribute on your tests. Available on <code>@SpringBootTest</code> and the <a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-testing-spring-boot-applications-testing-autoconfigured-tests">test annotations for testing a particular slice of your application</a>.</li>
+<li><code>@TestPropertySource</code> annotations on your tests.</li>
+<li><a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/current/reference/html/using-spring-boot.html#using-boot-devtools-globalsettings">Devtools global settings properties</a> in the <code>$HOME/.config/spring-boot</code> directory when devtools is active.</li>
+</ul>
+<p>加粗是比较常用的两种。</p>
+<h2 id="3-1-外部配置源"><a href="#3-1-外部配置源" class="headerlink" title="3.1 外部配置源"></a>3.1 外部配置源</h2><p>常用：Java属性文件、YAML文件、环境变量、命令行参数；</p>
+<h2 id="3-2-配置文件查找位置"><a href="#3-2-配置文件查找位置" class="headerlink" title="3.2 配置文件查找位置"></a>3.2 配置文件查找位置</h2><p>配置文件的查找顺序：</p>
+<p>(1) classpath 根路径（Java文件夹和resource文件夹都属于根路径，编译后都位于target根目录下）</p>
+<p>(2) classpath 根路径下config目录</p>
+<p>(3) jar包当前目录</p>
+<p>(4) jar包当前目录的config目录</p>
+<p>(5) /config子目录的直接子目录</p>
+<h2 id="3-3-配置文件加载顺序："><a href="#3-3-配置文件加载顺序：" class="headerlink" title="3.3 配置文件加载顺序："></a>3.3 配置文件加载顺序：</h2><ol>
+<li>　当前jar包内部的application.properties和application.yml</li>
+<li><p>　当前jar包内部的application-{profile}.properties 和 application-{profile}.yml</p>
+</li>
+<li><p>　引用的外部jar包的application.properties和application.yml</p>
+</li>
+<li>　引用的外部jar包的application-{profile}.properties 和 application-{profile}.yml</li>
+</ol>
+<h2 id="3-4-总结"><a href="#3-4-总结" class="headerlink" title="3.4 总结"></a>3.4 总结</h2><p>指定环境优先，外部优先，后面的可以覆盖前面的同名配置项。</p>
+<h1 id="四、自定义starter"><a href="#四、自定义starter" class="headerlink" title="四、自定义starter"></a>四、自定义starter</h1><h2 id="4-1-starter启动原理"><a href="#4-1-starter启动原理" class="headerlink" title="4.1 starter启动原理"></a>4.1 starter启动原理</h2><p>starter的启动流程：</p>
+<p><strong>1、指定要加载的自动配置类</strong></p>
+<p>在引入starter后，会加载指定的自动配置类。</p>
+<p>SpringBoot的<code>autoconfigure</code>包中，<code>META-INF</code>下的<code>spring.factories</code>文件，使用了 <code>EnableAutoConfiguration</code> 的值指定了项目启动时要加载的自动配置类。如图：</p>
+<p><img    class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/springboot-advance_5.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">SpringBoot的spring.factories</span></p>
+<p><strong>2、自动配置类中指定要加载的类<code>xxxProperties</code></strong></p>
+<p>一般来说，自动配置类用于自动注册组件，并使用指定的配置类，进行属性值的注入。</p>
+<p>以<code>org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration</code>为例，加载这个自动配置类，这个配置类的声明如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration(proxyBeanMethods = false)</span><br><span class="hljs-meta">@ConditionalOnClass(CacheManager.class)</span><br><span class="hljs-meta">@ConditionalOnBean(CacheAspectSupport.class)</span><br><span class="hljs-meta">@ConditionalOnMissingBean(value = CacheManager.class, name = &quot;cacheResolver&quot;)</span><br><span class="hljs-meta">@EnableConfigurationProperties(CacheProperties.class)</span><br><span class="hljs-meta">@AutoConfigureAfter(&#123; CouchbaseDataAutoConfiguration.class, </span><br><span class="hljs-meta">                     HazelcastAutoConfiguration.class,</span><br><span class="hljs-meta">                     HibernateJpaAutoConfiguration.class,</span><br><span class="hljs-meta">                     RedisAutoConfiguration.class &#125;)</span><br><span class="hljs-meta">@Import(&#123; CacheConfigurationImportSelector.class, CacheManagerEntityManagerFactoryDependsOnPostProcessor.class &#125;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CacheAutoConfiguration</span> </span>&#123;...&#125;<br></code></pre></td></tr></table></figure>
+<p>这个自动配置类使用<code>@EnableConfigurationProperties</code>注解，指定了要加载的配置类<code>CacheProperties</code>。</p>
+<p>其余的注解则规定了这个自动配置类的生效条件，比如<code>@ConditionalOnBean</code>、<code>@ConditionalOnMissingBean</code>等注解。例如：<code>@ConditionalOnBean(CacheAspectSupport.class)</code>表示当前容器中有<code>CacheAspectSupport</code>这个类的组件时，当前的自动配置类才生效。</p>
+<p><strong>3、xxxProperties中绑定配置文件中的配置属性</strong></p>
+<p>这个类中规定了默认值，自动配置组件的值就是从这里取。并且这个类和配置文件绑定，我们可以通过配置文件对默认值进行修改。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@ConfigurationProperties(prefix = &quot;spring.cache&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CacheProperties</span> </span>&#123;...&#125;<br></code></pre></td></tr></table></figure>
+<p>比如<code>CacheProperties</code>这个配置类，使用<code>@ConfigurationProperties(prefix = &quot;spring.cache&quot;)</code>注解，将配置文件中<code>spring.cache</code>开头的配置项的值，绑定到当前类中对应的属性。</p>
+<p>这样，我们在总配置文件中使用<code>spring.cache.xxx=xxx</code>，就可以对cache相关的内容进行配置。</p>
+<h2 id="4-2-自定义starter"><a href="#4-2-自定义starter" class="headerlink" title="4.2 自定义starter"></a>4.2 自定义starter</h2><p>仿照官方的starter启动流程，我们可以创建自定义的starter。</p>
+<p><strong>1、创建starter和starter-autoconfigure项目</strong></p>
+<p>自定义starter需要创建一个starter项目和一个对这个starter自动配置的项目。</p>
+<p>如图：</p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/springboot-advance_6.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt=""></p>
+<p>自定义的启动器一般是xxx-spring-boot-starter的命名格式，对其自动配置的包一般是xxx-spring-boot-starter-autoconfigure格式。</p>
+<p>在启动器中引入自动配置包的依赖，如图：</p>
+<p><img    class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/springboot-advance_7.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">启动器中引入自动配置包的依赖</span></p>
+<p>这样，我们使用的时候，只需要引入starter就可以使用，它就会自动为我们导入自动配置的依赖包。</p>
+<p>我们可以把需要的配置，都在自动配置包中引入依赖。</p>
+<p><strong>2、在<code>spring.factories</code>中指定要加载的自动配置类</strong></p>
+<p>为了保证我们的自动配置类能自动加载，需要在自动配置包的<code>META-INF/spring.factories</code>文件中，指定项目启动时要加载的自动配置类：</p>
+<p><img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/springboot-advance_8.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt=""></p>
+<p><code>spring.factories</code>中的内容如下：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment"># Auto Configure</span><br><span class="hljs-meta">org.springframework.boot.autoconfigure.EnableAutoConfiguration</span>=<span class="hljs-string">\</span><br>  <span class="hljs-attr">com.kang.hello.auto.HelloServiceAutoConfiguration</span><br></code></pre></td></tr></table></figure>
+<p>指定项目启动时，会加载<code>com.kang.hello.auto.HelloServiceAutoConfiguration</code>这个配置类。</p>
+<p><strong>3、编写xxxAutoConfiguration和xxxProperties和功能类</strong></p>
+<p>配置类<code>HelloProperties</code>，对属性值和配置文件中的值进行绑定</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//绑定配置文件中的前缀</span><br><span class="hljs-meta">@ConfigurationProperties(prefix = &quot;kang.hello&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloProperties</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> String prefix;<br>    <span class="hljs-keyword">private</span> String suffix;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getPrefix</span><span class="hljs-params">()</span> </span>&#123;<span class="hljs-keyword">return</span> prefix;&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setPrefix</span><span class="hljs-params">(String prefix)</span> </span>&#123;<span class="hljs-keyword">this</span>.prefix = prefix;&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getSuffix</span><span class="hljs-params">()</span> </span>&#123;<span class="hljs-keyword">return</span> suffix;&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setSuffix</span><span class="hljs-params">(String suffix)</span> </span>&#123;<span class="hljs-keyword">this</span>.suffix = suffix;&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这样，项目中在配置文件中使用<code>kang.hello</code>就可以对<code>prefix</code>和<code>suffix</code>进行配置。</p>
+<p>自动配置类<code>HelloServiceAutoConfiguration</code>，用于注册组件：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@EnableConfigurationProperties(HelloProperties.class)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloServiceAutoConfiguration</span> </span>&#123;<br>    <br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-meta">@ConditionalOnMissingBean(HelloService.class)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> HelloService <span class="hljs-title">helloService</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> HelloService();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>当容器中没有<code>HelloService</code>组件时，自动配置类才会注册<code>HelloService</code>组件，并根据<code>HelloProperties</code>中的绑定的值，对<code>HelloProperties</code>中的属性值进行注入。</p>
+<p><code>HelloService</code>中定义了自定义启动器要封装的功能方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/*</span><br><span class="hljs-comment">默认不要放在容器中</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloService</span> </span>&#123;<br>    <span class="hljs-meta">@Autowired</span>  <span class="hljs-comment">//自动装配配置类</span><br>    HelloProperties helloProperties;<br>    <br>    <span class="hljs-comment">//定义一个方法，在输入参数中添加前缀和后缀</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">sayHello</span><span class="hljs-params">(String userName)</span></span>&#123;<br>        String prefix = helloProperties.getPrefix();<br>        String suffix = helloProperties.getSuffix();<br>        <span class="hljs-keyword">return</span> prefix+<span class="hljs-string">&quot;,&quot;</span>+userName+<span class="hljs-string">&quot;,&quot;</span>+suffix;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>4、将 starter和starter-autoconfigure项目进行打包安装</strong></p>
+<p>将自动配置包使用Maven进行install，然后对starter进行install。</p>
+<p>这样，我们的自定义启动器就算创建好了，别的项目直接引入自定义的starter依赖就可以使用其中提供的方法了。</p>
+<p><strong>5、测试自定义starter</strong></p>
+<p>新建一个项目，引入自定义的starter依赖：</p>
+<p><code>pom.xml</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.kang<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>kang-hello-spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>然后在配置类中，使用<code>kang.hello</code>对两个参数进行配置</p>
+<p><code>application.properties</code></p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">kang.hello.prefix</span> = <span class="hljs-string">hello</span><br><span class="hljs-meta">kang.hello.suffix</span> = <span class="hljs-string">bye</span><br></code></pre></td></tr></table></figure>
+<p>编写方法，调用starter中定义好的方法完成功能：</p>
+<p><code>HelloController</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloController</span> </span>&#123;<br>    <span class="hljs-comment">//引入了自定义的启动器，可以使用其提供的方法。</span><br>    <span class="hljs-meta">@Autowired</span><br>    HelloService helloService;<br><br>    <span class="hljs-meta">@GetMapping(&quot;/hello&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">sayHello</span><span class="hljs-params">()</span></span>&#123;<br>        String str = helloService.sayHello(<span class="hljs-string">&quot;KANG&quot;</span>);<br>        <span class="hljs-keyword">return</span> str;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这样，在浏览器中发送<code>hello</code>请求，返回值为：</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey"><span class="hljs-built_in">hello,</span>KANG,bye<br></code></pre></td></tr></table></figure>
+<p>测试成功，说明自定义的启动器没有问题。</p>
+<p>上面使用的是自动装配的<code>HelloService</code>，如果我们不希望使用提供的原方法，就可以自定义<code>HelloService</code>，这样，自动配置类不会自动注册<code>HelloService</code>，项目会使用我们自己的<code>HelloService</code>。实现了SpringBoot中的<strong>自定义优先</strong>的情况。</p>
+<p>因此，如果我们在使用starter的过程中，如果现有的方法不能满足我们的需求，我们就可以根据源码找到其方法进行重写，这样项目就会使用我们重写之后的方法。</p>
+<p>比如我们定义一个配置类，并自己新建一个<code>HelloService</code>对象，通过调用方法实现需求，这时底层使用的就是我们创建的这个对象：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyConfig</span> </span>&#123;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> HelloService <span class="hljs-title">helloService</span><span class="hljs-params">()</span></span>&#123;<br>        HelloService helloService = <span class="hljs-keyword">new</span> HelloService();<br>        <span class="hljs-comment">//对helloService进行自定义的操作，比如setXxx()</span><br>        <span class="hljs-keyword">return</span> helloService;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="五、SpringBoot启动原理"><a href="#五、SpringBoot启动原理" class="headerlink" title="五、SpringBoot启动原理"></a>五、SpringBoot启动原理</h1><h2 id="5-1-SpringBoot启动过程"><a href="#5-1-SpringBoot启动过程" class="headerlink" title="5.1 SpringBoot启动过程"></a>5.1 SpringBoot启动过程</h2><p>进入<code>run</code>方法：</p>
+<p><img    class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/springboot-advance_9.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">run方法代码</span></p>
+<p>可以看到主要有两步，创建<code>SpringApplication</code>和运行<code>SpringApplication</code>.</p>
+<p><strong>1、创建<code>SpringApplication</code></strong></p>
+<p>进入<code>new SpringApplication</code>方法，创建<code>SpringApplication</code>，应用创建的过程，简单来说就是先将一些组件读取到应用中。</p>
+<p><code>SpringApplication.java</code>的构造器方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">SpringApplication</span><span class="hljs-params">(ResourceLoader resourceLoader, Class&lt;?&gt;... primarySources)</span> </span>&#123;<br>    <span class="hljs-comment">//加载一些信息</span><br>    <span class="hljs-keyword">this</span>.resourceLoader = resourceLoader;<br>    <span class="hljs-comment">//判断是否有主配置类信息</span><br>    Assert.notNull(primarySources, <span class="hljs-string">&quot;PrimarySources must not be null&quot;</span>);<br>    <span class="hljs-comment">//保存主配置类信息  class com.kang.boot.Springboot09HelloTestApplication</span><br>    <span class="hljs-keyword">this</span>.primarySources = <span class="hljs-keyword">new</span> LinkedHashSet&lt;&gt;(Arrays.asList(primarySources));<br>    <span class="hljs-comment">//判断应用类型   Servlet</span><br>    <span class="hljs-keyword">this</span>.webApplicationType = WebApplicationType.deduceFromClasspath();<br>    <span class="hljs-comment">//去spring.factories查找初始启动引导器  null</span><br>    <span class="hljs-keyword">this</span>.bootstrapRegistryInitializers = getBootstrapRegistryInitializersFromSpringFactories();<br>    <span class="hljs-comment">//去spring.factories查找ApplicationContextInitializer  找到n个</span><br>    setInitializers((Collection) getSpringFactoriesInstances(ApplicationContextInitializer.class));<br>    <span class="hljs-comment">//去spring.factories查找监听器  找到n个</span><br>    setListeners((Collection) getSpringFactoriesInstances(ApplicationListener.class));<br>    <span class="hljs-comment">//查找主程序  class com.kang.boot.Springboot09HelloTestApplication</span><br>    <span class="hljs-keyword">this</span>.mainApplicationClass = deduceMainApplicationClass();<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>主要步骤总结如下：</p>
+<ul>
+<li>用于保存一些信息。</li>
+<li><p>判定当前应用的类型。内部使用了ClassUtils工具类。判断结果为Servlet类型</p>
+</li>
+<li><p><code>bootstrapRegistryInitializers</code>：初始启动引导器注册初始化，其内部通过<code>SpringFactoriesLoader</code>去<code>spring.factories</code>文件中找<strong><code>org.springframework.boot.Bootstrapper</code></strong>，即查看是否有初始的启动引导器。</p>
+</li>
+<li>去<code>spring.factories</code>文件找 <strong><code>ApplicationContextInitializer</code></strong>，即<code>ApplicationContext</code>初始化器<ul>
+<li>结果保存到：List<ApplicationContextInitializer<?>&gt; initializers</li>
+</ul>
+</li>
+<li>去<code>spring.factories</code>找<strong><code>ApplicationListener</code>，即应用监听器</strong><ul>
+<li>将结果保存到：List<ApplicationListener<?>&gt; listeners</li>
+</ul>
+</li>
+<li>查找主程序，找到第一个main方法就是主程序。</li>
+</ul>
+<p><strong>2、运行 <code>SpringApplication</code></strong></p>
+<p>创建完<code>SpringApplication</code>之后，执行<code>run()</code>方法。</p>
+<p><code>SpringApplication.java</code>的<code>run()</code>方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> ConfigurableApplicationContext <span class="hljs-title">run</span><span class="hljs-params">(String... args)</span> </span>&#123;<br>    <span class="hljs-comment">//stopWatch用于监听整个应用程序的启动和停止</span><br>    StopWatch stopWatch = <span class="hljs-keyword">new</span> StopWatch();<br>    <span class="hljs-comment">//启动stopWatch，记录应用的启动时间</span><br>    stopWatch.start();<br>    <span class="hljs-comment">//创建引导上下文</span><br>    DefaultBootstrapContext bootstrapContext = createBootstrapContext();<br>    ConfigurableApplicationContext context = <span class="hljs-keyword">null</span>;<br>    <span class="hljs-comment">//让当前应用进入Headless模式 java.awt.headless</span><br>    configureHeadlessProperty();<br>    <span class="hljs-comment">//获取所有的运行监听器</span><br>    SpringApplicationRunListeners listeners = getRunListeners(args);<br>    <span class="hljs-comment">//starting方法调用了所有监听器的starting方法</span><br>    listeners.starting(bootstrapContext, <span class="hljs-keyword">this</span>.mainApplicationClass);<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">//保存命令行参数</span><br>        ApplicationArguments applicationArguments = <span class="hljs-keyword">new</span> DefaultApplicationArguments(args);<br>        <span class="hljs-comment">//准备环境</span><br>        ConfigurableEnvironment environment = prepareEnvironment(listeners, <br>                                                                 bootstrapContext, <br>                                                                 applicationArguments);<br>        configureIgnoreBeanInfo(environment);<br>        <span class="hljs-comment">//打印banner，即运行程序的SPRING的ASCII码图案</span><br>        Banner printedBanner = printBanner(environment);<br>        <span class="hljs-comment">//创建IOC容器</span><br>        context = createApplicationContext();<br>        <span class="hljs-comment">//容器保存当前项目的startup信息</span><br>        context.setApplicationStartup(<span class="hljs-keyword">this</span>.applicationStartup);<br>        <span class="hljs-comment">//准备IOC容器的基本信息</span><br>        prepareContext(bootstrapContext, context, environment, listeners, <br>                       applicationArguments, printedBanner);<br>        <span class="hljs-comment">//刷新IOC容器</span><br>        refreshContext(context);<br>        <span class="hljs-comment">//刷新之后的工作</span><br>        afterRefresh(context, applicationArguments);<br>        <span class="hljs-comment">//关闭stopWatch，计算出应用启动花费的时间</span><br>        stopWatch.stop();<br>        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.logStartupInfo) &#123;<br>            <span class="hljs-keyword">new</span> StartupInfoLogger(<span class="hljs-keyword">this</span>.mainApplicationClass).logStarted(getApplicationLog(), <br>                                                                        stopWatch);<br>        &#125;<br>        <span class="hljs-comment">//通知所有的监听器的started方法</span><br>        listeners.started(context);<br>        <span class="hljs-comment">//调用所有runners</span><br>        callRunners(context, applicationArguments);<br>    &#125;<br>    <span class="hljs-keyword">catch</span> (Throwable ex) &#123;<br>        <span class="hljs-comment">//如果有异常，会调用监听器的failed()方法</span><br>        handleRunFailure(context, ex, listeners);<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalStateException(ex);<br>    &#125;<br><br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">//调用监听器的running方法</span><br>        listeners.running(context);<br>    &#125;<br>    <span class="hljs-keyword">catch</span> (Throwable ex) &#123;<br>        handleRunFailure(context, ex, <span class="hljs-keyword">null</span>);<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalStateException(ex);<br>    &#125;<br>    <span class="hljs-comment">//最后返回容器</span><br>    <span class="hljs-keyword">return</span> context;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><code>run()</code>方法的主要步骤如下：</p>
+<ul>
+<li><p>创建<code>StopWatch</code>对象并启动，其记录了应用的启动时间。</p>
+</li>
+<li><p>创建引导上下文（Context环境）—-<code>createBootstrapContext()</code></p>
+<ul>
+<li>获取到所有之前的 bootstrappers， 依次执行 intitialize() ，来完成对引导启动器上下文环境设置</li>
+</ul>
+</li>
+<li><p>让当前应用进入<code>headless</code>模式，即<code>java.awt.headless</code>(自力更生模式)</p>
+</li>
+<li><p>获取所有<code>RunListener</code>（运行监听器），为了方便所有Listener进行事件感知。</p>
+<ul>
+<li>去<code>spring.factories</code>文件中找<strong><code>SpringApplicationRunListener</code>， </strong>比如<code>EventPublishRunListenr</code></li>
+</ul>
+</li>
+<li><p>遍历所有的<code>SpringApplicationRunListener</code>调用其<code>starting()</code>方法；相当于通知所有感兴趣系统正在启动过程的监听器，项目正在 <code>starting</code>。</p>
+</li>
+<li><p>保存命令行参数—-<code>ApplicationArguments</code></p>
+</li>
+<li><p>准备环境—-<code>prepareEnvironment()</code>;</p>
+<ul>
+<li>返回或者创建基础环境信息对象—-<code>StandardServletEnvironment</code></li>
+<li>配置环境信息对象。<ul>
+<li>读取所有的配置源的配置属性值。</li>
+</ul>
+</li>
+<li>绑定环境信息</li>
+<li>监听器调用 <code>environmentPrepared()</code>，通知所有的监听器当前环境准备完成。</li>
+</ul>
+</li>
+<li><p><strong>创建IOC容器</strong> —-<code>createApplicationContext()</code></p>
+<ul>
+<li><p>根据项目类型创建容器。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-keyword">switch</span> (webApplicationType) &#123;<br>        <span class="hljs-keyword">case</span> SERVLET:<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> AnnotationConfigServletWebServerApplicationContext();<br>        <span class="hljs-keyword">case</span> REACTIVE:<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> AnnotationConfigReactiveWebServerApplicationContext();<br>        <span class="hljs-keyword">default</span>:<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> AnnotationConfigApplicationContext();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>比如当前类型为servlet，则创建 <code>AnnotationConfigServletWebServerApplicationContext</code></p>
+</li>
+</ul>
+</li>
+<li><p><strong>准备 IOC容器的基本信息</strong>  —-<code>prepareContext()</code></p>
+<ul>
+<li>保存环境信息</li>
+<li>IOC容器的后置处理流程。</li>
+<li>应用初始化器—<code>applyInitializers</code>；<ul>
+<li>遍历所有的 <code>ApplicationContextInitializer</code>。就是创建<code>SpringApplication</code>时找到的那些初始化器。然后调用它们的<code>initialize</code>方法，来对ioc容器进行初始化扩展功能。</li>
+</ul>
+</li>
+<li>遍历所有的 listener，即第一步中查找到的监听器，内部调用每个监听器的 <code>contextPrepared()</code>，表示IOC容器准备完成。</li>
+<li>这个方法最后，所有的监听器调用<code>contextLoaded()</code>，即通知所有的监听器IOC容器加载完毕。</li>
+</ul>
+</li>
+<li><p><strong>刷新IOC容器。</strong>refreshContext</p>
+<ul>
+<li>创建容器中的所有组件（即Spring的运行原理）</li>
+</ul>
+</li>
+<li><p>容器刷新完成后工作 —- <code>afterRefresh()</code></p>
+</li>
+<li><p>调用<code>started</code>方法，调用所有监听器的<code>started</code>方法，即通知所有监听器start结束。</p>
+</li>
+<li><p>调用所有runners —- <code>callRunners()</code></p>
+<ul>
+<li>获取容器中的<strong><code>ApplicationRunner</code></strong></li>
+<li>获取容器中的<strong><code>CommandLineRunner</code></strong></li>
+<li>合并所有runner并且按照@Order进行排序</li>
+<li>遍历所有的runner，调用 run方法</li>
+</ul>
+</li>
+<li><p>如果以上有异常，调用Listener 的<code>failed()</code>方法，表示启动失败了。</p>
+</li>
+<li><p>调用所有监听器的<code>running</code>方法 —-<code>listeners.running(context);</code>，通知所有的监听器，容器正在运行。</p>
+<ul>
+<li>如果<code>running</code>有问题，继续通知<code>failed()</code> 。调用所有 Listener 的<code>failed()</code>，通知所有的监听器。</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-2-Application-Events-and-Listeners"><a href="#5-2-Application-Events-and-Listeners" class="headerlink" title="5.2 Application Events and Listeners"></a>5.2 Application Events and Listeners</h2><p>SpringApplication有独特的<a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-application-events-and-listeners">事件和监听器</a>，根据SpringBoot的启动过程，我们可以使用他们在启动过程中做一些额外的事情：</p>
+<ul>
+<li><strong>ApplicationContextInitializer</strong></li>
+<li><strong>ApplicationListener</strong></li>
+<li><strong>SpringApplicationRunListener</strong>：在IOC容器的各个阶段做一些事情，一共有七种状态，表示IOC容器的不同阶段，不同阶段的容器具备的功能也是不同的。根据这个特征可以定制化一些功能。</li>
+</ul>
+<p>实现代码举例：</p>
+<p><code>MyApplicationContextInitializer</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApplicationContextInitializer</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ApplicationContextInitializer</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initialize</span><span class="hljs-params">(ConfigurableApplicationContext applicationContext)</span> </span>&#123;<br>        <span class="hljs-comment">//do something</span><br>        System.out.println(<span class="hljs-string">&quot;MyApplicationContextInitializer...initialize...&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><code>MyApplicationListener</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApplicationListener</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ApplicationListener</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onApplicationEvent</span><span class="hljs-params">(ApplicationEvent event)</span> </span>&#123;<br>        <span class="hljs-comment">//do something</span><br>        System.out.println(<span class="hljs-string">&quot;MyApplicationListener...onApplicationEvent...&quot;</span>);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p><code>MySpringApplicationRunListener</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MySpringApplicationRunListener</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">SpringApplicationRunListener</span> </span>&#123;<br><br>    <span class="hljs-keyword">private</span> SpringApplication application;<br>    <span class="hljs-comment">//注意：这里需要一个有参构造器</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MySpringApplicationRunListener</span><span class="hljs-params">(SpringApplication application,</span></span><br><span class="hljs-function"><span class="hljs-params">                                          String [] args)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.application = application;<br><br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">starting</span><span class="hljs-params">(ConfigurableBootstrapContext bootstrapContext)</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;MySpringApplicationRunListener...starting...&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">environmentPrepared</span><span class="hljs-params">(ConfigurableBootstrapContext bootstrapContext,</span></span><br><span class="hljs-function"><span class="hljs-params">                                    ConfigurableEnvironment environment)</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;MySpringApplicationRunListener...environmentPrepared...&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">contextPrepared</span><span class="hljs-params">(ConfigurableApplicationContext context)</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;MySpringApplicationRunListener...contextPrepared...&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">contextLoaded</span><span class="hljs-params">(ConfigurableApplicationContext context)</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;MySpringApplicationRunListener...contextLoaded...&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">started</span><span class="hljs-params">(ConfigurableApplicationContext context)</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;MySpringApplicationRunListener...started...&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">running</span><span class="hljs-params">(ConfigurableApplicationContext context)</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;MySpringApplicationRunListener...running...&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">failed</span><span class="hljs-params">(ConfigurableApplicationContext context, Throwable exception)</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;MySpringApplicationRunListener...failed...&quot;</span>);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>此外，由于<code>ApplicationContextInitializer</code>,<code>ApplicationListener</code>,<code>SpringApplicationRunListener</code>都需要在<code>spring.factories</code>文件中找，因此我们需要在这个文件中配置他们：</p>
+<p><code>resources/META-INF/spring.factories</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"># Initializers<br>org.springframework.context.ApplicationContextInitializer=\<br>  com.kang.boot.listener.MyApplicationContextInitializer<br><br># Application Listeners<br>org.springframework.context.ApplicationListener=\<br>  com.kang.boot.listener.MyApplicationListener<br><br>org.springframework.boot.SpringApplicationRunListener=\<br>  com.kang.boot.listener.MySpringApplicationRunListener<br></code></pre></td></tr></table></figure>
+<h2 id="5-3-ApplicationRunner和CommandLineRunner"><a href="#5-3-ApplicationRunner和CommandLineRunner" class="headerlink" title="5.3 ApplicationRunner和CommandLineRunner"></a>5.3 ApplicationRunner和CommandLineRunner</h2><p><code>ApplicationRunner</code>和<code>CommandLineRunner</code>都是在IOC容器中获取的，因此我们需要将它们注册为组件。</p>
+<p><code>MyApplicationRunner</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApplicationRunner</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ApplicationRunner</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">(ApplicationArguments args)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;MyApplicationRunner...run&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><code>MyCommandLineRunner</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/*</span><br><span class="hljs-comment">应用一启动，做一个一次性的事情</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyCommandLineRunner</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">CommandLineRunner</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">(String... args)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;MyCommandLineRunner...run...&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这样，启动主程序，可以看到运行结果，和我们分析的SpringBoot启动过程是一样的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs java">MyApplicationListener...onApplicationEvent...<br>MySpringApplicationRunListener...starting...<br>MyApplicationListener...onApplicationEvent...<br>MySpringApplicationRunListener...environmentPrepared...<br><br>  .   ____          _            __ _ _<br> /\\ / ___<span class="hljs-string">&#x27;_ __ _ _(_)_ __  __ _ \ \ \ \</span><br><span class="hljs-string">( ( )\___ | &#x27;</span>_ | <span class="hljs-string">&#x27;_| | &#x27;</span>_ \/ _` | \ \ \ \<br> \\/  ___)| |_)| | | | | || (_| |  ) ) ) )<br>  <span class="hljs-string">&#x27;  |____| .__|_| |_|_| |_\__, | / / / /</span><br><span class="hljs-string"> =========|_|==============|___/=/_/_/_/</span><br><span class="hljs-string"> :: Spring Boot ::                (v2.5.2)</span><br><span class="hljs-string"></span><br><span class="hljs-string">MyApplicationContextInitializer...initialize...</span><br><span class="hljs-string">MyApplicationListener...onApplicationEvent...</span><br><span class="hljs-string">MySpringApplicationRunListener...contextPrepared...</span><br><span class="hljs-string">Starting Springboot09HelloTestApplication</span><br><span class="hljs-string">No active profile set, falling back to default profiles: default</span><br><span class="hljs-string">MyApplicationListener...onApplicationEvent...</span><br><span class="hljs-string">MySpringApplicationRunListener...contextLoaded...</span><br><span class="hljs-string">Tomcat initialized with port(s): 8080 (http)</span><br><span class="hljs-string">Starting service [Tomcat]</span><br><span class="hljs-string">Starting Servlet engine: [Apache Tomcat/9.0.48]</span><br><span class="hljs-string">Initializing Spring embedded WebApplicationContext</span><br><span class="hljs-string">Root WebApplicationContext: initialization completed in 2013 ms</span><br><span class="hljs-string">Tomcat started on port(s): 8080 (http) with context path &#x27;</span><span class="hljs-string">&#x27;</span><br><span class="hljs-string">MyApplicationListener...onApplicationEvent...</span><br><span class="hljs-string">MyApplicationListener...onApplicationEvent...</span><br><span class="hljs-string">Started Springboot09HelloTestApplication in 3.645 seconds (JVM running for 7.097)</span><br><span class="hljs-string">MyApplicationListener...onApplicationEvent...</span><br><span class="hljs-string">MyApplicationListener...onApplicationEvent...</span><br><span class="hljs-string">MySpringApplicationRunListener...started...</span><br><span class="hljs-string">MyApplicationRunner...run</span><br><span class="hljs-string">MyCommandLineRunner...run...</span><br><span class="hljs-string">MyApplicationListener...onApplicationEvent...</span><br><span class="hljs-string">MyApplicationListener...onApplicationEvent...</span><br><span class="hljs-string">MySpringApplicationRunListener...running...</span><br></code></pre></td></tr></table></figure>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Kangshitao</li>
+    <li><strong>本文链接：</strong><a href="http://kangshitao.github.io/2021/07/12/springboot-advance/index.html" title="http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2021&#x2F;07&#x2F;12&#x2F;springboot-advance&#x2F;index.html">http:&#x2F;&#x2F;kangshitao.github.io&#x2F;2021&#x2F;07&#x2F;12&#x2F;springboot-advance&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://cdn.jsdelivr.net/gh/kangshitao/BlogPicture@main/img/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot2/" rel="tag">SpringBoot2</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/07/25/juc-basis/"><i class="iconfont iconleft"></i>Java并发编程-JUC基础</a>
+    <a href="/2021/07/12/springboot-sql/">SpringBoot数据访问-SQL<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+        <section class="comments">
+  
+    <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz",
+        app_key: "XipU873t8gkSypbwl1HWUARD",
+        placeholder: "write comment content...",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+		var title1="text=Live and Learn有新评论啦~ --by Valine"
+		var SCKEY_Server="SCT21455TskriUeyliOqL6kHLhiCOMmlB"
+		var ValineButton=document.getElementsByClassName("vsubmit vbtn")[0];
+		function send_valine_Server(){
+			var text="desp=";
+			var pageurl=document.URL;
+			var ptime=new Date();
+			var vnick=document.getElementsByClassName("vnick vinput")[0].value;
+			var veditor=document.getElementsByClassName("veditor vinput")[0].value;
+			var data=text+"|昵称"+"|评论内容"+"|跳转链接"+"|评论时间"+"\n"+"|----|----|----|----|"+"\n"+"|"+vnick+"|"+veditor+"|"+pageurl+"|" +ptime.toLocaleString()+"|";
+			var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+			httpRequest.open('POST', 'https://sctapi.ftqq.com/'+SCKEY_Server+'.send', true); //第二步：打开连接
+			httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）
+			httpRequest.send(title1+"&"+data);//发送请求 将请头体体写在send中
+		};
+		ValineButton.onclick=send_valine_Server;
+      });
+    } else {
+      loadValine();
+    }
+  };
+ 
+</script>
+
+
+</section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81SpringBoot%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E5%8E%9F%E7%90%86"><span class="toc-text">一、SpringBoot自动配置原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-AutoConfigurationPackage%E8%87%AA%E5%8A%A8%E5%AF%BC%E5%8C%85"><span class="toc-text">1.1 @AutoConfigurationPackage自动导包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-Import-%E6%8C%89%E9%9C%80%E5%8A%A0%E8%BD%BD%E9%85%8D%E7%BD%AE%E7%B1%BB"><span class="toc-text">1.2 @Import 按需加载配置类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E6%80%BB%E7%BB%93"><span class="toc-text">1.3 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Profile%E5%8A%9F%E8%83%BD"><span class="toc-text">二、Profile功能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-application-profile%E5%8A%9F%E8%83%BD"><span class="toc-text">2.1 application-profile功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-Profile%E6%9D%A1%E4%BB%B6%E8%A3%85%E9%85%8D%E5%8A%9F%E8%83%BD"><span class="toc-text">2.2 @Profile条件装配功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-profile%E5%88%86%E7%BB%84"><span class="toc-text">2.3 profile分组</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E9%85%8D%E7%BD%AE%E5%8A%A0%E8%BD%BD%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-text">三、配置加载优先级</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E5%A4%96%E9%83%A8%E9%85%8D%E7%BD%AE%E6%BA%90"><span class="toc-text">3.1 外部配置源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE%E4%BD%8D%E7%BD%AE"><span class="toc-text">3.2 配置文件查找位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F%EF%BC%9A"><span class="toc-text">3.3 配置文件加载顺序：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%E6%80%BB%E7%BB%93"><span class="toc-text">3.4 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89starter"><span class="toc-text">四、自定义starter</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-starter%E5%90%AF%E5%8A%A8%E5%8E%9F%E7%90%86"><span class="toc-text">4.1 starter启动原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E8%87%AA%E5%AE%9A%E4%B9%89starter"><span class="toc-text">4.2 自定义starter</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81SpringBoot%E5%90%AF%E5%8A%A8%E5%8E%9F%E7%90%86"><span class="toc-text">五、SpringBoot启动原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-SpringBoot%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B"><span class="toc-text">5.1 SpringBoot启动过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-Application-Events-and-Listeners"><span class="toc-text">5.2 Application Events and Listeners</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-ApplicationRunner%E5%92%8CCommandLineRunner"><span class="toc-text">5.3 ApplicationRunner和CommandLineRunner</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1574716653 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/kangshitao "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#24292E'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:1574716653@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">Total:
+  <span id="busuanzi_value_site_pv" style="font-size:12px;"></span></span>
+  <span id="busuanzi_container_site_uv" >| Visitors:
+  <span id="busuanzi_value_site_uv" style="font-size:12px;"></span></span>
+  </div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+  
+  
+<script src="/js/clicklove.js"></script>
+<!-- 页面点击小红心 -->
+  
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'dVB32zRRBIgKa5WuB56mtboj-gzGzoHsz',
+      appKey: 'XipU873t8gkSypbwl1HWUARD',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud").each(async (e) => {
+        const url = $(".leancloud").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud").eq(e).text(count ? count : '--');
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud").length === 1 ? $(".leancloud").attr('id').trim() : 'http://kangshitao.github.io';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    $(function () {
+	  const Counter = AV.Object.extend("Counter");
+	  showCount(Counter);
+      const localhost = /http\:\/\/localhost|http\:\/\/127.0.0.1|http\:\/\/0.0.0.0/;
+      if (localhost.test(document.URL)) {
+	    return;
+	  }
+	  addCount(Counter);
+    });
+  });
+</script>
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <script>
+    window.ga = window.ga || function () {
+      (ga.q = ga.q || []).push(arguments)
+    };
+    ga.l = +new Date;
+    ga('create', 'G-0FZTGJZNYS', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</html>
