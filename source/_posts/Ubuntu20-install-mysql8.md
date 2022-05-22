@@ -1,6 +1,6 @@
 ---
-title: Ubuntu20安装MySQL8.md
-excerpt: Win11的WSL安装MySQL8.md
+title: Ubuntu20安装MySQL8
+excerpt: Win11的WSL安装MySQL8
 mathjax: true
 date: 2022-05-22 21:40:18
 tags: [Ubuntu,MySQL]
